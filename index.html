@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WealthX – 个人财务助手</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
 </head>
 <body class="bg-white text-gray-800 transition-colors duration-300" id="bodyEl">
   <div class="flex min-h-screen">
@@ -26,7 +31,7 @@
         <option value="ko">한국어</option>
       </select>
       <label class="text-sm font-semibold mt-4" data-i18n="nav_theme">🌓 主题</label>
-      <button onclick="toggleDarkMode()" class="px-3 py-1 mt-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+      <button id="themeToggle" class="px-3 py-1 mt-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600" data-i18n="theme_toggle">
         切换
       </button>
     </nav>
@@ -212,6 +217,7 @@
   }
 };
   </script>
+
   <script>
     function changeLang(lang) {
       const dict = window.i18n[lang] || {};
