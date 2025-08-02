@@ -72,26 +72,32 @@
   </div>
 
 <script src="i18n.js"></script>
-
-    function changeLang(lang) {
-      const dict = window.i18n[lang] || {};
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.dataset.i18n;
-        if (dict[key]) el.innerHTML = dict[key];
-      });
-    }
-
-    function toggleDarkMode() {
-      document.getElementById('bodyEl').classList.toggle('dark');
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const browserLang = (navigator.language || navigator.userLanguage || 'zh').toLowerCase();
-      const supported = ['zh', 'zh-tw', 'en', 'ja', 'fr', 'de', 'ko'];
-      const matched = supported.find(l => browserLang.startsWith(l)) || 'zh';
-      document.getElementById('lang').value = matched;
-      changeLang(matched);
+<script>
+  function changeLang(lang) {
+    const dict = window.i18n[lang] || {};
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key]) el.innerHTML = dict[key];
     });
-  </script>
+    document.getElementById('lang').value = lang;
+  }
+
+  function toggleDarkMode() {
+    document.getElementById('bodyEl').classList.toggle('dark');
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    // 默认使用浏览器语言或简体中文
+    const browserLang = (navigator.language || navigator.userLanguage || 'zh').toLowerCase();
+    const supported = ['zh', 'zh-tw', 'en', 'ja', 'fr', 'de', 'ko'];
+    const matched = supported.find(l => browserLang.startsWith(l)) || 'zh';
+
+    document.getElementById('lang').value = matched;
+    changeLang(matched);
+
+    // 绑定暗黑模式按钮
+    document.getElementById('themeToggle').addEventListener('click', toggleDarkMode);
+  });
+</script>
 </body>
 </html>
