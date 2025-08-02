@@ -1,75 +1,22 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WealthX – 个人财务助手</title>
-  <style>
-    :root {
-      --bg: #fff;
-      --text: #222;
-      --nav: #f4f4f4;
-    }
-    body.dark {
-      --bg: #121212;
-      --text: #eee;
-      --nav: #1e1e1e;
-    }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
-    .container {
-      display: flex;
-      min-height: 100vh;
-    }
-    nav {
-      width: 220px;
-      background: var(--nav);
-      padding: 20px;
-      box-shadow: 2px 0 6px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: background 0.3s;
-    }
-    nav h2 {
-      font-size: 1.2em;
-      margin: 0 0 12px 0;
-    }
-    nav a {
-      color: inherit;
-      text-decoration: none;
-      font-size: 0.95em;
-    }
-    nav select, nav input[type=checkbox] {
-      margin-top: 4px;
-    }
-    #main-content {
-      flex: 1;
-      padding: 40px;
-      max-width: 700px;
-      line-height: 1.6;
-    }
-    img {
-      max-width: 100%;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="container">
+<body class="bg-white text-gray-800 transition-colors duration-300" id="bodyEl">
+  <div class="flex min-h-screen">
     <!-- 左侧导航栏 -->
-    <nav>
-      <h2>WealthX</h2>
-      <a href="#features" data-i18n="nav_features">核心体验</a>
-      <a href="#more" data-i18n="nav_more">更多亮点</a>
-      <a href="#support" data-i18n="nav_support">技术支持</a>
-      <hr>
-      <label for="lang" data-i18n="nav_language">🌐 语言</label>
-      <select id="lang" onchange="changeLang(this.value)">
+    <nav class="w-64 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 flex flex-col p-6 space-y-4">
+      <h2 class="text-xl font-bold">WealthX</h2>
+      <a href="#features" class="hover:text-blue-500" data-i18n="nav_features">核心体验</a>
+      <a href="#more" class="hover:text-blue-500" data-i18n="nav_more">更多亮点</a>
+      <a href="#support" class="hover:text-blue-500" data-i18n="nav_support">技术支持</a>
+      <hr class="border-gray-300 dark:border-gray-700" />
+      <label class="text-sm font-semibold" data-i18n="nav_language">🌐 语言</label>
+      <select id="lang" class="p-2 rounded bg-white dark:bg-gray-800" onchange="changeLang(this.value)">
         <option value="zh">简体中文</option>
         <option value="zh-TW">繁體中文</option>
         <option value="en">English</option>
@@ -78,33 +25,41 @@
         <option value="de">Deutsch</option>
         <option value="ko">한국어</option>
       </select>
-      <label for="darkToggle" data-i18n="nav_theme">🌓 主题</label>
-      <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+      <label class="text-sm font-semibold mt-4" data-i18n="nav_theme">🌓 主题</label>
+      <button onclick="toggleDarkMode()" class="px-3 py-1 mt-1 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+        切换
+      </button>
     </nav>
 
     <!-- 主内容 -->
-    <div id="main-content">
-      <h1 style="display:flex;align-items:center;font-size:2em;margin:0;color:#8ecae6;">
-        <img src="./logo.png" alt="Wealth Pro Logo" style="width:48px;height:48px;border-radius:12px;margin-right:12px;object-fit:cover;">
+    <main class="flex-1 p-8 max-w-4xl">
+      <h1 class="flex items-center text-3xl font-bold text-blue-400 mb-2">
+        <img src="./logo.png" alt="Wealth Pro Logo" class="w-12 h-12 rounded-xl mr-3 object-cover">
         WealthX
       </h1>
-      <p style="margin-top: 4px;" data-i18n="welcome">
+      <p class="mb-6" data-i18n="welcome">
         欢迎使用 <strong>WealthX</strong>，一款为你量身打造的个人财务工具，帮助你轻松掌握资产、预算与收支。
       </p>
 
-      <h2 id="features" data-i18n="core_experience">🌟 核心体验</h2>
+      <h2 id="features" class="text-2xl font-semibold mb-4" data-i18n="core_experience">🌟 核心体验</h2>
 
-      <h3 data-i18n="budget_view">📊 月/季度/年 预算视图</h3>
-      <img src="./budget.png" alt="预算视图" style="width:50%;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);margin-bottom:24px;">
+      <div class="mb-6">
+        <h3 class="font-semibold mb-2" data-i18n="budget_view">📊 月/季度/年 预算视图</h3>
+        <img src="./budget.png" alt="预算视图" class="w-1/2 rounded-xl shadow mb-4">
+      </div>
 
-      <h3 data-i18n="flow_feature">🔁 交易流（Flows）</h3>
-      <img src="./flow.png" alt="交易流" style="width:50%;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);margin-bottom:24px;">
+      <div class="mb-6">
+        <h3 class="font-semibold mb-2" data-i18n="flow_feature">🔁 交易流（Flows）</h3>
+        <img src="./flow.png" alt="交易流" class="w-1/2 rounded-xl shadow mb-4">
+      </div>
 
-      <h3 data-i18n="account_feature">🏦 账户分组 ＋ 个性化图标</h3>
-      <img src="./account.png" alt="账户管理" style="width:50%;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);margin-bottom:32px;">
+      <div class="mb-6">
+        <h3 class="font-semibold mb-2" data-i18n="account_feature">🏦 账户分组 ＋ 个性化图标</h3>
+        <img src="./account.png" alt="账户管理" class="w-1/2 rounded-xl shadow mb-4">
+      </div>
 
-      <h2 id="more" data-i18n="more_highlights">🔍 更多亮点</h2>
-      <ul>
+      <h2 id="more" class="text-2xl font-semibold mb-4" data-i18n="more_highlights">🔍 更多亮点</h2>
+      <ul class="list-disc list-inside space-y-1 mb-6">
         <li data-i18n="icloud">iCloud 同步：自动跨设备保持最新数据，无需手动备份</li>
         <li data-i18n="icons">个性化图标：支持 SF Symbols、Emoji 及自定义图片，让每个账户、预算更有辨识度</li>
         <li data-i18n="grouping">多级分组管理：资产／负债、账户／预算可按组层级展开收起</li>
@@ -113,181 +68,160 @@
         <li data-i18n="alert">预算超额预警：实时查看预算完成度，一目了然</li>
       </ul>
 
-      <h2 id="support" data-i18n="support">📬 技术支持</h2>
+      <h2 id="support" class="text-2xl font-semibold mb-4" data-i18n="support">📬 技术支持</h2>
       <p data-i18n="contact_hint">如有任何问题或建议，请通过邮件与我们联系：</p>
-      <p><a href="mailto:ericdai2013@foxmail.com">ericdai2013@gmail.com</a></p>
+      <p><a href="mailto:ericdai2013@foxmail.com" class="text-blue-500 hover:underline">ericdai2013@gmail.com</a></p>
 
-      <p style="font-size:0.9em;color:#999;margin-top:40px;" data-i18n="footer"><em>本页面由 GitHub Pages 提供支持。</em></p>
-    </div>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mt-8" data-i18n="footer"><em>本页面由 GitHub Pages 提供支持。</em></p>
+    </main>
   </div>
 
   <script>
-    const i18n = {
-      zh: {
-        nav_features: "核心体验",
-        nav_more: "更多亮点",
-        nav_support: "技术支持",
-        nav_language: "🌐 语言",
-        nav_theme: "🌓 主题",
-        welcome: "欢迎使用 WealthX，一款为你量身打造的个人财务工具，帮助你轻松掌握资产、预算与收支。",
-        core_experience: "🌟 核心体验",
-        budget_view: "📊 月/季度/年 预算视图",
-        flow_feature: "🔁 交易流（Flows）",
-        account_feature: "🏦 账户分组 ＋ 个性化图标",
-        more_highlights: "🔍 更多亮点",
-        icloud: "iCloud 同步：自动跨设备保持最新数据，无需手动备份",
-        icons: "个性化图标：支持 SF Symbols、Emoji 及自定义图片，让每个账户、预算更有辨识度",
-        grouping: "多级分组管理：资产／负债、账户／预算可按组层级展开收起",
-        recurring: "循环交易：设置重复频率，自动生成定期条目",
-        gps: "GPS 定位标记：记录交易发生地，一眼回溯消费场景",
-        alert: "预算超额预警：实时查看预算完成度，一目了然",
-        support: "📬 技术支持",
-        contact_hint: "如有任何问题或建议，请通过邮件与我们联系：",
-        footer: "本页面由 GitHub Pages 提供支持。"
-      },
-      "zh-TW": {
-        nav_features: "核心體驗",
-        nav_more: "更多亮點",
-        nav_support: "技術支援",
-        nav_language: "🌐 語言",
-        nav_theme: "🌓 主題",
-        welcome: "歡迎使用 WealthX，一款為你量身打造的個人財務工具，幫助你輕鬆掌握資產、預算與收支。",
-        core_experience: "🌟 核心體驗",
-        budget_view: "📊 月/季度/年 預算視圖",
-        flow_feature: "🔁 交易流（Flows）",
-        account_feature: "🏦 帳戶分組 ＋ 個性化圖標",
-        more_highlights: "🔍 更多亮點",
-        icloud: "iCloud 同步：自動跨設備保持最新資料，無需手動備份",
-        icons: "個性化圖標：支持 SF Symbols、Emoji 及自定義圖片，讓每個帳戶、預算更有辨識度",
-        grouping: "多級分組管理：資產／負債、帳戶／預算可按組層級展開收起",
-        recurring: "循環交易：設定重複頻率，自動生成定期條目",
-        gps: "GPS 定位標記：記錄交易發生地，一眼回溯消費場景",
-        alert: "預算超額預警：即時查看預算完成度，一目了然",
-        support: "📬 技術支援",
-        contact_hint: "如有任何問題或建議，請透過郵件與我們聯繫：",
-        footer: "本頁面由 GitHub Pages 提供支持。"
-      },
-      en: {
-        nav_features: "Core Features",
-        nav_more: "Highlights",
-        nav_support: "Support",
-        nav_language: "🌐 Language",
-        nav_theme: "🌓 Theme",
-        welcome: "Welcome to WealthX, a personal finance tool designed to help you manage assets, budgets, and expenses effortlessly.",
-        core_experience: "🌟 Core Features",
-        budget_view: "📊 Monthly/Quarterly/Annual Budget View",
-        flow_feature: "🔁 Transaction Flows",
-        account_feature: "🏦 Account Groups & Custom Icons",
-        more_highlights: "🔍 More Highlights",
-        icloud: "iCloud Sync: Automatically keep your data up-to-date across devices",
-        icons: "Custom Icons: Use SF Symbols, Emoji, or your own images for better identification",
-        grouping: "Hierarchical Grouping: Organize assets/liabilities and accounts/budgets with collapsible groups",
-        recurring: "Recurring Transactions: Set frequencies to auto-generate entries",
-        gps: "GPS Tags: Record transaction locations for quick reference",
-        alert: "Budget Alerts: Track budget usage in real-time",
-        support: "📬 Support",
-        contact_hint: "For questions or feedback, contact us at:",
-        footer: "This page is powered by GitHub Pages."
-      },
-      ja: {
-        nav_features: "主要機能",
-        nav_more: "その他の特徴",
-        nav_support: "サポート",
-        nav_language: "🌐 言語",
-        nav_theme: "🌓 テーマ",
-        welcome: "WealthX へようこそ。資産・予算・収支を簡単に管理できる個人財務ツールです。",
-        core_experience: "🌟 主要機能",
-        budget_view: "📊 月／四半期／年間予算ビュー",
-        flow_feature: "🔁 トランザクションフロー",
-        account_feature: "🏦 アカウントグループ＋カスタムアイコン",
-        more_highlights: "🔍 その他の特徴",
-        icloud: "iCloud 同期：デバイス間でデータを自動更新",
-        icons: "カスタムアイコン：SF Symbols、絵文字、独自の画像に対応",
-        grouping: "階層グループ管理：資産／負債、アカウント／予算を整理",
-        recurring: "定期取引：繰り返し頻度を設定し、自動生成",
-        gps: "GPS ロケーションタグ：取引場所を記録",
-        alert: "予算アラート：予算達成状況をリアルタイムで確認",
-        support: "📬 サポート",
-        contact_hint: "ご質問やご意見はメールでご連絡ください：",
-        footer: "本ページは GitHub Pages によって提供されています。"
-      },
-      fr: {
-        nav_features: "Fonctionnalités",
-        nav_more: "Points forts",
-        nav_support: "Support",
-        nav_language: "🌐 Langue",
-        nav_theme: "🌓 Thème",
-        welcome: "Bienvenue sur WealthX, un outil de finances personnelles pour gérer vos actifs, budgets et dépenses facilement.",
-        core_experience: "🌟 Fonctionnalités",
-        budget_view: "📊 Vue mensuelle/trimestrielle/annuelle du budget",
-        flow_feature: "🔁 Flux de transactions",
-        account_feature: "🏦 Groupes de comptes & icônes personnalisées",
-        more_highlights: "🔍 Points forts",
-        icloud: "Synchronisation iCloud : données toujours à jour sur vos appareils",
-        icons: "Icônes personnalisées : SF Symbols, Emoji ou vos images",
-        grouping: "Organisation hiérarchique : actifs/passifs, comptes/budgets",
-        recurring: "Transactions récurrentes : créez des entrées automatiques",
-        gps: "Étiquettes GPS : enregistrez le lieu des transactions",
-        alert: "Alertes budget : suivez vos dépenses en temps réel",
-        support: "📬 Support",
-        contact_hint: "Pour toute question ou suggestion, contactez-nous :",
-        footer: "Cette page est propulsée par GitHub Pages."
-      },
-      de: {
-        nav_features: "Hauptfunktionen",
-        nav_more: "Highlights",
-        nav_support: "Support",
-        nav_language: "🌐 Sprache",
-        nav_theme: "🌓 Thema",
-        welcome: "Willkommen bei WealthX, dem persönlichen Finanz-Tool zur einfachen Verwaltung von Vermögen, Budgets und Ausgaben.",
-        core_experience: "🌟 Hauptfunktionen",
-        budget_view: "📊 Monats-/Quartals-/Jahresbudget-Ansicht",
-        flow_feature: "🔁 Transaktionsflüsse",
-        account_feature: "🏦 Kontogruppen & individuelle Icons",
-        more_highlights: "🔍 Highlights",
-        icloud: "iCloud-Synchronisierung: Automatisch alle Geräte aktuell halten",
-        icons: "Individuelle Icons: SF Symbols, Emoji oder eigene Bilder",
-        grouping: "Mehrstufige Gruppenverwaltung: Vermögen/Schulden, Konten/Budgets",
-        recurring: "Wiederkehrende Transaktionen: Automatische Einträge erstellen",
-        gps: "GPS-Markierung: Transaktionsorte speichern",
-        alert: "Budgetwarnungen: Echtzeitüberblick über den Budgetstatus",
-        support: "📬 Support",
-        contact_hint: "Bei Fragen oder Feedback kontaktieren Sie uns:",
-        footer: "Diese Seite wird von GitHub Pages bereitgestellt."
-      },
-      ko: {
-        nav_features: "핵심 기능",
-        nav_more: "추가 기능",
-        nav_support: "지원",
-        nav_language: "🌐 언어",
-        nav_theme: "🌓 테마",
-        welcome: "WealthX에 오신 것을 환영합니다. 자산, 예산 및 지출을 손쉽게 관리할 수 있는 개인 재무 도구입니다.",
-        core_experience: "🌟 핵심 기능",
-        budget_view: "📊 월/분기/연간 예산 보기",
-        flow_feature: "🔁 거래 플로우",
-        account_feature: "🏦 계정 그룹 + 맞춤 아이콘",
-        more_highlights: "🔍 추가 기능",
-        icloud: "iCloud 동기화: 기기 간 자동 최신 데이터 유지",
-        icons: "맞춤 아이콘: SF Symbols, 이모지, 사용자 이미지",
-        grouping: "다중 그룹 관리: 자산/부채, 계정/예산",
-        recurring: "반복 거래: 반복 주기를 설정하여 자동 생성",
-        gps: "GPS 위치 태그: 거래 발생 위치 기록",
-        alert: "예산 초과 경고: 예산 진행률 실시간 확인",
-        support: "📬 지원",
-        contact_hint: "문의사항이나 제안은 이메일로 연락해주세요:",
-        footer: "이 페이지는 GitHub Pages에서 제공됩니다."
-      }
-    };
-
+    window.i18n = {
+  zh: {
+    nav_features: "核心体验",
+    nav_more: "更多亮点",
+    nav_support: "技术支持",
+    nav_language: "🌐 语言",
+    nav_theme: "🌓 主题",
+    welcome: "欢迎使用 <strong>WealthX</strong>，一款为你量身打造的个人财务工具，帮助你轻松掌握资产、预算与收支。",
+    core_experience: "🌟 核心体验",
+    budget_view: "📊 月/季度/年 预算视图",
+    flow_feature: "🔁 交易流（Flows）",
+    account_feature: "🏦 账户分组 ＋ 个性化图标",
+    more_highlights: "🔍 更多亮点",
+    icloud: "iCloud 同步：自动跨设备保持最新数据，无需手动备份",
+    icons: "个性化图标：支持 SF Symbols、Emoji 及自定义图片，让每个账户、预算更有辨识度",
+    grouping: "多级分组管理：资产／负债、账户／预算可按组层级展开收起",
+    recurring: "循环交易：设置重复频率，自动生成定期条目",
+    gps: "GPS 定位标记：记录交易发生地，一眼回溯消费场景",
+    alert: "预算超额预警：实时查看预算完成度，一目了然",
+    support: "📬 技术支持",
+    contact_hint: "如有任何问题或建议，请通过邮件与我们联系：",
+    footer: "本页面由 GitHub Pages 提供支持。"
+  },
+  en: {
+    nav_features: "Core Features",
+    nav_more: "Highlights",
+    nav_support: "Support",
+    nav_language: "🌐 Language",
+    nav_theme: "🌓 Theme",
+    welcome: "Welcome to <strong>WealthX</strong>, a personal finance tool designed to help you manage assets, budgets, and expenses effortlessly.",
+    core_experience: "🌟 Core Features",
+    budget_view: "📊 Monthly/Quarterly/Annual Budget View",
+    flow_feature: "🔁 Transaction Flows",
+    account_feature: "🏦 Account Groups & Custom Icons",
+    more_highlights: "🔍 More Highlights",
+    icloud: "iCloud Sync: Automatically keep your data up-to-date across devices",
+    icons: "Custom Icons: Use SF Symbols, Emoji, or your own images for better identification",
+    grouping: "Hierarchical Grouping: Organize assets/liabilities and accounts/budgets with collapsible groups",
+    recurring: "Recurring Transactions: Set frequencies to auto-generate entries",
+    gps: "GPS Tags: Record transaction locations for quick reference",
+    alert: "Budget Alerts: Track budget usage in real-time",
+    support: "📬 Support",
+    contact_hint: "For questions or feedback, contact us at:",
+    footer: "This page is powered by GitHub Pages."
+  },
+  ja: {
+    nav_features: "主要機能",
+    nav_more: "その他の特徴",
+    nav_support: "サポート",
+    nav_language: "🌐 言語",
+    nav_theme: "🌓 テーマ",
+    welcome: "<strong>WealthX</strong> へようこそ。資産・予算・収支を簡単に管理できる個人財務ツールです。",
+    core_experience: "🌟 主要機能",
+    budget_view: "📊 月／四半期／年間予算ビュー",
+    flow_feature: "🔁 トランザクションフロー",
+    account_feature: "🏦 アカウントグループ＋カスタムアイコン",
+    more_highlights: "🔍 その他の特徴",
+    icloud: "iCloud 同期：デバイス間でデータを自動更新",
+    icons: "カスタムアイコン：SF Symbols、絵文字、独自の画像に対応",
+    grouping: "階層グループ管理：資産／負債、アカウント／予算を整理",
+    recurring: "定期取引：繰り返し頻度を設定し、自動生成",
+    gps: "GPS ロケーションタグ：取引場所を記録",
+    alert: "予算アラート：予算達成状況をリアルタイムで確認",
+    support: "📬 サポート",
+    contact_hint: "ご質問やご意見はメールでご連絡ください：",
+    footer: "本ページは GitHub Pages によって提供されています。"
+  },
+  fr: {
+    nav_features: "Fonctionnalités",
+    nav_more: "Points forts",
+    nav_support: "Support",
+    nav_language: "🌐 Langue",
+    nav_theme: "🌓 Thème",
+    welcome: "Bienvenue sur <strong>WealthX</strong>, un outil de finances personnelles pour gérer vos actifs, budgets et dépenses facilement.",
+    core_experience: "🌟 Fonctionnalités",
+    budget_view: "📊 Vue mensuelle/trimestrielle/annuelle du budget",
+    flow_feature: "🔁 Flux de transactions",
+    account_feature: "🏦 Groupes de comptes & icônes personnalisées",
+    more_highlights: "🔍 Points forts",
+    icloud: "Synchronisation iCloud : données toujours à jour sur vos appareils",
+    icons: "Icônes personnalisées : SF Symbols, Emoji ou vos images",
+    grouping: "Organisation hiérarchique : actifs/passifs, comptes/budgets",
+    recurring: "Transactions récurrentes : créez des entrées automatiques",
+    gps: "Étiquettes GPS : enregistrez le lieu des transactions",
+    alert: "Alertes budget : suivez vos dépenses en temps réel",
+    support: "📬 Support",
+    contact_hint: "Pour toute question ou suggestion, contactez-nous :",
+    footer: "Cette page est propulsée par GitHub Pages."
+  },
+  de: {
+    nav_features: "Hauptfunktionen",
+    nav_more: "Highlights",
+    nav_support: "Support",
+    nav_language: "🌐 Sprache",
+    nav_theme: "🌓 Thema",
+    welcome: "Willkommen bei <strong>WealthX</strong>, dem persönlichen Finanz-Tool zur einfachen Verwaltung von Vermögen, Budgets und Ausgaben.",
+    core_experience: "🌟 Hauptfunktionen",
+    budget_view: "📊 Monats-/Quartals-/Jahresbudget-Ansicht",
+    flow_feature: "🔁 Transaktionsflüsse",
+    account_feature: "🏦 Kontogruppen & individuelle Icons",
+    more_highlights: "🔍 Highlights",
+    icloud: "iCloud-Synchronisierung: Automatisch alle Geräte aktuell halten",
+    icons: "Individuelle Icons: SF Symbols, Emoji oder eigene Bilder",
+    grouping: "Mehrstufige Gruppenverwaltung: Vermögen/Schulden, Konten/Budgets",
+    recurring: "Wiederkehrende Transaktionen: Automatische Einträge erstellen",
+    gps: "GPS-Markierung: Transaktionsorte speichern",
+    alert: "Budgetwarnungen: Echtzeitüberblick über den Budgetstatus",
+    support: "📬 Support",
+    contact_hint: "Bei Fragen oder Feedback kontaktieren Sie uns:",
+    footer: "Diese Seite wird von GitHub Pages bereitgestellt."
+  },
+  ko: {
+    nav_features: "핵심 기능",
+    nav_more: "추가 기능",
+    nav_support: "지원",
+    nav_language: "🌐 언어",
+    nav_theme: "🌓 테마",
+    welcome: "<strong>WealthX</strong>에 오신 것을 환영합니다. 자산, 예산 및 지출을 손쉽게 관리할 수 있는 개인 재무 도구입니다.",
+    core_experience: "🌟 핵심 기능",
+    budget_view: "📊 월/분기/연간 예산 보기",
+    flow_feature: "🔁 거래 플로우",
+    account_feature: "🏦 계정 그룹 + 맞춤 아이콘",
+    more_highlights: "🔍 추가 기능",
+    icloud: "iCloud 동기화: 기기 간 자동 최신 데이터 유지",
+    icons: "맞춤 아이콘: SF Symbols, 이모지, 사용자 이미지",
+    grouping: "다중 그룹 관리: 자산/부채, 계정/예산",
+    recurring: "반복 거래: 반복 주기를 설정하여 자동 생성",
+    gps: "GPS 위치 태그: 거래 발생 위치 기록",
+    alert: "예산 초과 경고: 예산 진행률 실시간 확인",
+    support: "📬 지원",
+    contact_hint: "문의사항이나 제안은 이메일로 연락해주세요:",
+    footer: "이 페이지는 GitHub Pages에서 제공됩니다."
+  }
+};
+  </script>
+  <script>
     function changeLang(lang) {
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        el.innerText = i18n[lang][key] || el.innerText;
+      const dict = window.i18n[lang] || {};
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) el.innerHTML = dict[key];
       });
     }
-
     function toggleDarkMode() {
-      document.body.classList.toggle('dark');
+      document.getElementById('bodyEl').classList.toggle('dark');
     }
   </script>
 </body>
