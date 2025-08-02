@@ -1,1 +1,1 @@
-# Wealth-Pro
+# WealthX
