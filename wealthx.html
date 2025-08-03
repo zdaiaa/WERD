@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,11 +14,15 @@
       --bg: #ffffff;
       --text: #000000;
       --highlight: #007bff;
+      --sidebar-highlight: #e6f0ff;
     }
+
     [data-theme="dark"] {
       --bg: #1e1e1e;
       --text: #f0f0f0;
+      --sidebar-highlight: #003366;
     }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -25,6 +30,7 @@
       color: var(--text);
       transition: background 0.3s, color 0.3s;
     }
+
     header {
       display: flex;
       align-items: center;
@@ -32,54 +38,78 @@
       padding: 1rem 2rem;
       border-bottom: 1px solid #ccc;
     }
+
     header img {
       height: 36px;
       margin-right: 10px;
     }
+
     nav a {
       margin-left: 1.5rem;
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
     }
+
     nav a:hover {
       color: var(--highlight);
     }
+
     .theme-toggle {
       cursor: pointer;
     }
+
     .container {
       display: flex;
     }
+
     aside {
       width: 200px;
       padding: 1rem;
       border-right: 1px solid #ccc;
     }
+
     aside a {
       display: block;
       margin-bottom: 1rem;
       text-decoration: none;
       color: var(--text);
+      padding: 0.5rem;
+      border-radius: 6px;
     }
-    aside a:hover {
-      color: var(--highlight);
+
+    aside a.active {
+      background-color: var(--sidebar-highlight);
+      font-weight: bold;
     }
+
     main {
       flex: 1;
       padding: 2rem;
     }
-    h2, h3 {
+
+    h2,
+    h3 {
       margin-top: 0;
     }
+
     .logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  object-fit: cover;
-}
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div style="display: flex; align-items: center;">
@@ -97,15 +127,15 @@
 
   <div class="container">
     <aside>
-      <a href="#overview">概览</a>
-      <a href="#accounts">账户管理</a>
-      <a href="#budgets">预算管理</a>
-      <a href="#transactions">交易管理</a>
-      <a href="#visual">数据可视化</a>
-      <a href="#security">数据管理</a>
+      <a href="#overview" onclick="switchTab(event, 'overview')" class="active">概览</a>
+      <a href="#accounts" onclick="switchTab(event, 'accounts')">账户管理</a>
+      <a href="#budgets" onclick="switchTab(event, 'budgets')">预算管理</a>
+      <a href="#transactions" onclick="switchTab(event, 'transactions')">交易管理</a>
+      <a href="#visual" onclick="switchTab(event, 'visual')">数据可视化</a>
+      <a href="#security" onclick="switchTab(event, 'security')">数据管理</a>
     </aside>
     <main>
-      <section id="overview">
+      <section id="overview" class="active">
         <h2>看清钱的流动，习惯自然改变。</h2>
         <p>从现在起，和 WealthX 一起开启专属你的财务旅程。</p>
         <p>这不仅是一款记账 App，<br>更是你财务管理的智能伙伴。<br>从今天开始，<br>用 WealthX 轻松打造属于自己的财富地图。</p>
@@ -140,8 +170,27 @@
 
   <script>
     function toggleTheme() {
-      document.documentElement.toggleAttribute('data-theme', 'dark');
+      const root = document.documentElement;
+      if (root.getAttribute("data-theme") === "dark") {
+        root.removeAttribute("data-theme");
+      } else {
+        root.setAttribute("data-theme", "dark");
+      }
+    }
+
+    function switchTab(event, id) {
+      event.preventDefault();
+
+      // 切换侧边栏激活状态
+      document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
+      event.target.classList.add("active");
+
+      // 显示对应 section
+      document.querySelectorAll("main section").forEach(sec => sec.classList.remove("active"));
+      const targetSection = document.getElementById(id);
+      if (targetSection) targetSection.classList.add("active");
     }
   </script>
 </body>
+
 </html>
