@@ -1,158 +1,127 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="WERD 利用 AI 技术打造贴近人性的智能软件，帮助你减少重复劳动，回归生活本质。" />
-  <meta name="keywords" content="WERD, AI, 软件, 自动化, 生活效率, 生活助手, 个人助理" />
+  <meta name="description" content="WERD - AI赋能未来的软件公司，致力于用智能工具提升人们的生活品质。" />
+  <meta name="keywords" content="WERD, AI, 智能软件, 生活效率, WealthX" />
   <meta name="author" content="WERD Team" />
   <title>WERD - We Empower Real Dreams</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #000000;
-      --link: #3366cc;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121212;
-        --fg: #ffffff;
-        --link: #66aaff;
-      }
-    }
-
-    body.dark-mode {
-      --bg: #121212;
-      --fg: #ffffff;
-      --link: #66aaff;
-    }
-
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
     }
-
-    nav {
+    header {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      padding: 12px 24px;
-      background-color: var(--bg);
+      padding: 1rem 2rem;
       border-bottom: 1px solid #ccc;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo {
-      width: 36px;
-      height: 36px;
+    header img {
+      height: 32px;
       margin-right: 12px;
     }
-
-    .brand {
-      font-weight: 700;
-      font-size: 18px;
-    }
-
     nav a {
-      margin-left: 16px;
+      margin-left: 20px;
       text-decoration: none;
-      color: var(--link);
-      font-weight: 500;
+      color: var(--text);
     }
-
-    .theme-toggle {
-      margin-left: 16px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: none;
-      border: 1px solid var(--fg);
-      color: var(--fg);
-      font-size: 14px;
-      cursor: pointer;
+    nav a:hover {
+      text-decoration: underline;
     }
-
     .container {
       max-width: 800px;
-      margin: 32px auto;
-      padding: 0 16px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
-
     footer {
       text-align: center;
-      font-size: 14px;
-      padding: 24px;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #999;
       border-top: 1px solid #ccc;
-      color: var(--fg);
+    }
+    .theme-toggle {
+      cursor: pointer;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+    }
+    .dark {
+      --bg: #0e0e0e;
+      --text: #f2f2f2;
     }
   </style>
 </head>
+
 <body>
-  <nav>
-    <div class="nav-left">
-      <img class="logo" src="WERD.png" alt="WERD Logo" />
-      <div class="brand">WERD</div>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="WERD.png" alt="WERD Logo">
+      <h1 style="margin: 0; font-size: 1.5rem;">WERD</h1>
     </div>
-    <div class="nav-right">
-      <a href="/">首页</a>
-      <a href="/wealthx">了解 WealthX</a>
-      <a href="/privacy">隐私政策</a>
-      <a href="/contact">意见留言</a>
-      <button class="theme-toggle" onclick="toggleTheme()">切换模式</button>
-    </div>
-  </nav>
+    <nav>
+      <a href="index.html">首页</a>
+      <a href="/WERD/wealthx.html">了解 WealthX</a>
+      <a href="/WERD/privacy.html">隐私政策</a>
+      <a href="#contact">意见留言</a>
+      <span class="theme-toggle" onclick="toggleTheme()">🌓 切换模式</span>
+    </nav>
+  </header>
 
-  <div class="container">
+  <main class="container">
     <h2>🌟 WERD - We Empower Real Dreams</h2>
-
     <h3>我们的使命</h3>
     <p>AI 是你生活中的主力，让你拥有更多时间去生活、去探索、去创造。</p>
     <p>在 AI 技术飞跃发展的今天，软件的设计门槛已经大大降低。
-    一个有想法的人，不再需要庞大的开发团队，也可以借助 AI 把自己的构想变成现实。</p>
+      一个有想法的人，不再需要庞大的开发团队，也可以借助 AI 把自己的构想变成现实。</p>
     <p>WERD 正是在这样的时代背景下诞生。
-    我们相信，AI 与软件的结合，不应只是追求效率，而应真正提升生活的质量。</p>
+      我们相信，AI 与软件的结合，不应只是追求效率，而应真正提升生活的质量。</p>
     <p>WERD 利用最新的 AI 技术，打造符合直觉、贴近人性的智能工具，帮助人们从繁杂的事务中解放出来，专注于生活本身 —— 去思考、去感受、去创造。</p>
     <p>我们也乐于分享背后的设计理念：
-    我们不仅开发产品，也愿意向用户透明展示——我们如何思考功能，如何设计体验，以及如何用技术解决真实的问题。</p>
+      我们不仅开发产品，也愿意向用户透明展示——我们如何思考功能，如何设计体验，以及如何用技术解决真实的问题。</p>
 
     <h3>🌍 我们的信仰</h3>
     <ul>
-      <li><strong>让生活更智能：</strong>通过 AI 与自动化，替代重复、机械的操作，让效率成为习惯。</li>
-      <li><strong>让人们有更多时间：</strong>软件应该帮助你节省时间与精力，让你拥有自由而丰富的生活节奏。</li>
-      <li><strong>更了解自己：</strong>当人们拥有更多被 AI 解放的空间，就能更深入地理解自己，回归真正重要的选择。</li>
-      <li><strong>技术更懂人：</strong>好的软件应如懂你的朋友，简单、直觉、无须学习就能自然上手。</li>
+      <li><strong>让生活更智能，减少重复性</strong> — 通过 AI 与自动化，替代日常中那些重复、机械的操作，让效率成为习惯。</li>
+      <li><strong>让人们有更多时间去享受生活</strong> — 软件不只是工具，它应该帮助你节省时间与精力，让你拥有自由而丰富的生活节奏。</li>
+      <li><strong>让人们更了解自己，找到真正的价值</strong> — 当人们拥有更多被 AI 解放的空间，就能更深入地理解自己，回归真正重要的选择。</li>
+      <li><strong>让技术更懂人，软件成为真正的助手</strong> — 好的软件不该增加负担，而应像懂你的朋友，简单、直觉、无须学习就能自然上手。</li>
     </ul>
 
     <h3>🚀 我们的愿景</h3>
-    <p>我们正在打造一个人与技术和谐共处的未来：</p>
     <ul>
       <li>让 AI 成为真正理解你的数字助手，而不是冷冰冰的工具</li>
       <li>让人们不再被工作推着走，而是拥有选择生活方式的自由</li>
       <li>让科技回归本质 —— 服务人、解放人、提升人</li>
     </ul>
-    <p>我们相信，当 AI 与软件真正释放出人的时间与创造力，
-    生活将不再是负担，而是更丰盈、多元、自由的体验。</p>
-  </div>
+    <p>我们相信，当 AI 与软件真正释放出人的时间与创造力，生活将不再是负担，而是更丰盈、多元、自由的体验。</p>
+
+    <section id="contact">
+      <h3>📬 意见留言</h3>
+      <p>欢迎通过 GitHub Issues 与我们交流意见与建议。</p>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2025 WERD. 保留所有权利。
+    &copy; 2025 WERD. All rights reserved.
   </footer>
 
   <script>
     function toggleTheme() {
-      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle('dark');
     }
   </script>
 </body>
+
 </html>
