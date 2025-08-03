@@ -13,13 +13,14 @@
     :root {
       --bg: #ffffff;
       --text: #000000;
-      --highlight: #007bff;
+      --highlight: #69BFFF;
       --sidebar-highlight: #e6f0ff;
     }
 
     [data-theme="dark"] {
       --bg: #1e1e1e;
       --text: #f0f0f0;
+      --highlight: #69BFFF;
       --sidebar-highlight: #003366;
     }
 
@@ -88,7 +89,8 @@
       padding: 2rem;
     }
 
-    h2, h3 {
+    h2,
+    h3 {
       margin-top: 0;
     }
 
@@ -117,7 +119,7 @@
     </div>
     <nav>
       <a href="index.html">首页</a>
-      <a href="wealthx.html">WealthX</a>
+      <a href="wealthx.html">了解 WealthX</a>
       <a href="#contact">意见留言</a>
       <span class="theme-toggle" onclick="toggleTheme()">🌗 切换模式</span>
     </nav>
@@ -133,7 +135,6 @@
       <a href="#visual" onclick="switchTab(event, 'visual')">数据可视化</a>
       <a href="#security" onclick="switchTab(event, 'security')">数据管理</a>
     </aside>
-
     <main>
       <section id="overview" class="active">
         <h2>看清钱的流动，习惯自然改变。</h2>
@@ -181,27 +182,27 @@
       </section>
 
       <section id="accounts">
-        <h3>📦 账户管理</h3>
+        <h3 style="color: var(--highlight);">📦 账户管理</h3>
         <p>多账户支持，资产/负债分组，一键对账</p>
       </section>
 
       <section id="budgets">
-        <h3>📅 预算管理</h3>
+        <h3 style="color: var(--highlight);">📅 预算管理</h3>
         <p>月/季/年/项目预算，预算流向雷达图</p>
       </section>
 
       <section id="transactions">
-        <h3>🔄 交易管理</h3>
+        <h3 style="color: var(--highlight);">🔄 交易管理</h3>
         <p>高频交易流自动化，循环交易支持</p>
       </section>
 
       <section id="visual">
-        <h3>📊 数据可视化</h3>
+        <h3 style="color: var(--highlight);">📊 数据可视化</h3>
         <p>资产走势、预算进度、雷达图分析</p>
       </section>
 
       <section id="security">
-        <h3>🔐 数据管理</h3>
+        <h3 style="color: var(--highlight);">🔐 数据管理</h3>
         <p>本地数据 + 云同步，隐私优先设计</p>
       </section>
     </main>
@@ -219,8 +220,10 @@
 
     function switchTab(event, id) {
       event.preventDefault();
+
       document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
       event.target.classList.add("active");
+
       document.querySelectorAll("main section").forEach(sec => sec.classList.remove("active"));
       const targetSection = document.getElementById(id);
       if (targetSection) targetSection.classList.add("active");
