@@ -1,125 +1,141 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="WealthX 是一款智能财务管理工具，帮助用户轻松掌握收支与预算。">
-  <meta name="keywords" content="WealthX, 财务管理, 记账 App, 预算管理, 账户管理, 雷达图">
-  <meta name="author" content="WERD Team">
-  <title>WealthX - 智能财务助手</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WealthX 是你的智能记账伙伴，助你轻松管理资产、预算与消费。" />
+  <meta name="keywords" content="WealthX, 记账, 财务管理, 预算分析, 数据可视化" />
+  <meta name="author" content="WERD Team" />
+  <title>WealthX - 看清钱的流动，习惯自然改变</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --highlight: #007bff;
+    }
+    [data-theme="dark"] {
+      --bg: #1e1e1e;
+      --text: #f0f0f0;
+    }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg, #ffffff);
-      color: var(--text, #111);
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+    header img {
+      height: 36px;
+      margin-right: 10px;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: var(--highlight);
+    }
+    .theme-toggle {
+      cursor: pointer;
+    }
+    .container {
       display: flex;
     }
-
     aside {
-      width: 240px;
-      background-color: #f8f8f8;
+      width: 200px;
+      padding: 1rem;
       border-right: 1px solid #ccc;
-      padding: 1.5rem 1rem;
-      position: sticky;
-      top: 0;
-      height: 100vh;
     }
-
-    aside nav a {
+    aside a {
       display: block;
-      margin: 1rem 0;
-      color: #333;
+      margin-bottom: 1rem;
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
+      color: var(--text);
     }
-
-    aside nav a:hover {
-      color: #007aff;
+    aside a:hover {
+      color: var(--highlight);
     }
-
     main {
-      flex-grow: 1;
+      flex: 1;
       padding: 2rem;
     }
-
-    section {
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    section:nth-child(1) { animation-delay: 0.2s; }
-    section:nth-child(2) { animation-delay: 0.4s; }
-    section:nth-child(3) { animation-delay: 0.6s; }
-    section:nth-child(4) { animation-delay: 0.8s; }
-    section:nth-child(5) { animation-delay: 1.0s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      line-height: 1.6;
+    h2, h3 {
+      margin-top: 0;
     }
   </style>
 </head>
 <body>
-  <aside>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="logo.png" alt="WealthX Logo">
+      <h1 style="margin: 0; font-size: 1.5rem;">WealthX</h1>
+    </div>
     <nav>
+      <a href="index.html">首页</a>
+      <a href="wealthx.html">了解 WealthX</a>
+      <a href="privacy.html">隐私政策</a>
+      <a href="#contact">意见留言</a>
+      <span class="theme-toggle" onclick="toggleTheme()">🌗 切换模式</span>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside>
       <a href="#overview">概览</a>
       <a href="#accounts">账户管理</a>
       <a href="#budgets">预算管理</a>
       <a href="#transactions">交易管理</a>
-      <a href="#visualization">数据可视化</a>
-      <a href="#storage">数据管理</a>
-    </nav>
-  </aside>
+      <a href="#visual">数据可视化</a>
+      <a href="#security">数据管理</a>
+    </aside>
+    <main>
+      <section id="overview">
+        <h2>看清钱的流动，习惯自然改变。</h2>
+        <p>从现在起，和 WealthX 一起开启专属你的财务旅程。</p>
+        <p>这不仅是一款记账 App，<br>更是你财务管理的智能伙伴。<br>从今天开始，<br>用 WealthX 轻松打造属于自己的财富地图。</p>
+      </section>
 
-  <main>
-    <section id="overview">
-      <h2>概览</h2>
-      <p>看清钱的流动，习惯自然改变。<br>
-      从现在起，和 WealthX 一起开启专属你的财务旅程。</p>
-      <p>这不仅是一款记账 App，更是你财务管理的智能伙伴。<br>
-      从今天开始，用 WealthX 轻松打造属于自己的财富地图。</p>
-    </section>
+      <section id="accounts">
+        <h3>📦 账户管理</h3>
+        <p>多账户支持，资产/负债分组，一键对账</p>
+      </section>
 
-    <section id="accounts">
-      <h2>账户管理</h2>
-      <p>支持多账户记录、资产/负债分组、一键对账，账户概况一目了然。</p>
-    </section>
+      <section id="budgets">
+        <h3>📅 预算管理</h3>
+        <p>月/季/年/项目预算，预算流向雷达图</p>
+      </section>
 
-    <section id="budgets">
-      <h2>预算管理</h2>
-      <p>支持月/季度/年度/项目预算，结合预算流向图与分类控制，帮你掌控每笔支出。</p>
-    </section>
+      <section id="transactions">
+        <h3>🔄 交易管理</h3>
+        <p>高频交易流自动化，循环交易支持</p>
+      </section>
 
-    <section id="transactions">
-      <h2>交易管理</h2>
-      <p>交易流自动化，支持循环交易、快捷录入，为高频记账场景而生。</p>
-    </section>
+      <section id="visual">
+        <h3>📊 数据可视化</h3>
+        <p>资产走势、预算进度、雷达图分析</p>
+      </section>
 
-    <section id="visualization">
-      <h2>数据可视化</h2>
-      <p>从资产走势、预算进度、到雷达图分析，全方位呈现你的财务概况。</p>
-    </section>
+      <section id="security">
+        <h3>🔐 数据管理</h3>
+        <p>本地数据 + 云同步，隐私优先设计</p>
+      </section>
+    </main>
+  </div>
 
-    <section id="storage">
-      <h2>数据管理</h2>
-      <p>支持本地与 iCloud 数据双备份，隐私优先，数据主权由你掌控。</p>
-    </section>
-  </main>
+  <script>
+    function toggleTheme() {
+      document.documentElement.toggleAttribute('data-theme', 'dark');
+    }
+  </script>
 </body>
 </html>
