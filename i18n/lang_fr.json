@@ -1,0 +1,65 @@
+{
+  "nav_home":          "Accueil",
+  "nav_product":       "WealthX",
+  "nav_feedback":      "Retour",
+  "nav_theme_toggle":  "Changer le thème",
+  "lang_select":       "Langue",
+
+  "aside_overview":    "Présentation",
+  "aside_privacy":     "Politique de confidentialité",
+  "aside_accounts":    "Comptes",
+  "aside_budgets":     "Budgets",
+  "aside_transactions":"Transactions",
+  "aside_visual":      "Visualisations",
+  "aside_security":    "Gestion des données",
+
+  "hdr_overview":      "Visualisez vos flux de trésorerie, changez vos habitudes naturellement.",
+  "p_overview_1":      "Dès maintenant, embarquez pour votre voyage financier avec WealthX.",
+  "p_overview_2":      "Bien plus qu’une app de gestion : votre partenaire financier intelligent. Commencez aujourd’hui à créer votre carte de richesse.",
+
+  "hdr_privacy":       "Politique de confidentialité",
+  "privacy_effective": "Date d’entrée en vigueur : {date}",
+
+  "privacy_h1":        "1. Données collectées",
+  "privacy_li1":       "Données de transaction : montants, dates, notes, etc. pour les fonctionnalités principales.",
+  "privacy_li2":       "Géolocalisation (optionnel) : traitée localement, collectée uniquement avec votre permission.",
+  "privacy_li3":       "Icônes de compte et budget : seules les emoji, symboles SF ou images personnalisées choisies sont stockées.",
+  "privacy_li4":       "Synchronisation iCloud : stockage et synchronisation chiffrés via votre compte iCloud.",
+
+  "privacy_h2":        "2. Utilisation des données",
+  "privacy2_li1":      "Alimenter et optimiser les fonctionnalités : statistiques de budget, analyse actifs/passifs, transactions récurrentes.",
+  "privacy2_li2":      "Assurer la cohérence entre appareils via la synchronisation sécurisée iCloud.",
+  "privacy2_li3":      "Pas de publicité – vos données ne sont jamais utilisées pour du marketing.",
+
+  "privacy_h3":        "3. Partage et divulgation",
+  "privacy3_p":        "Nous ne vendons ni ne partageons vos données personnelles. Divulgation uniquement pour :",
+  "privacy3_li1":      "Respecter les lois ou demandes légales.",
+  "privacy3_li2":      "Protéger nos droits légaux ou la sécurité d’autrui.",
+
+  "privacy_h4":        "4. Stockage et sécurité",
+  "privacy4_p":        "Données stockées localement ou sur iCloud (optionnel). Protégées par le chiffrement et la sécurité Apple.",
+
+  "privacy_h5":        "5. Confidentialité des enfants",
+  "privacy5_p":        "WealthX s’adresse aux 4 ans et plus. Enfants de moins de 4 ans sous surveillance d’un adulte.",
+
+  "privacy_h6":        "6. Mises à jour",
+  "privacy6_p":        "La politique peut être mise à jour – la date d’entrée en vigueur sera ajustée. Merci de vérifier régulièrement.",
+
+  "privacy_h7":        "7. Contact",
+  "privacy7_p":        "Questions ou retours ? Écrivez-nous à {email}.",
+
+  "hdr_accounts":      "📦 Comptes",
+  "p_accounts":        "Support multi-comptes, regroupement Actifs/Passifs, rapprochement en un clic.",
+
+  "hdr_budgets":       "📅 Budets",
+  "p_budgets":         "Budgets mensuels/trimestriels/annuels/projets + graphiques radar.",
+
+  "hdr_transactions":  "🔄 Transactions",
+  "p_transactions":    "Automatisation haute fréquence & flux récurrents.",
+
+  "hdr_visual":        "📊 Visualisations",
+  "p_visual":          "Tendances de solde, avancement du budget, analyses radar.",
+
+  "hdr_security":      "🔐 Gestion des données",
+  "p_security":        "Local + synchronisation cloud, design axé confidentialité."
+}
