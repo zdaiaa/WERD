@@ -1,0 +1,12 @@
+{
+  "account": {
+    "zh":      ["AccountView.png"],
+    "zh-Hant": ["AccountView.png"],
+    "en":      ["AccountView.png"],
+    "de":      ["AccountView.png"],
+    "ja":      ["AccountView.png"],
+    "ko":      ["AccountView.png"],
+    "fr":      ["AccountView.png"]
+  }
+  /* 以后可以加 budget, transaction … */
+}
