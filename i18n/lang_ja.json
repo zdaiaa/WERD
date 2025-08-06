@@ -1,0 +1,65 @@
+{
+  "nav_home":          "ホーム",
+  "nav_product":       "WealthX",
+  "nav_feedback":      "フィードバック",
+  "nav_theme_toggle":  "テーマ切替",
+  "lang_select":       "言語",
+
+  "aside_overview":    "概要",
+  "aside_privacy":     "プライバシーポリシー",
+  "aside_accounts":    "アカウント管理",
+  "aside_budgets":     "予算管理",
+  "aside_transactions":"取引管理",
+  "aside_visual":      "データ可視化",
+  "aside_security":    "データ管理",
+
+  "hdr_overview":      "キャッシュフローを把握し、習慣を自然に変える。",
+  "p_overview_1":      "今日から WealthX と共に、あなただけの財務旅を始めましょう。",
+  "p_overview_2":      "単なる家計簿アプリではなく、賢いファイナンスパートナー。今日から簡単にあなたの資産マップを作成できます。",
+
+  "hdr_privacy":       "プライバシーポリシー",
+  "privacy_effective": "施行日：{date}",
+
+  "privacy_h1":        "1. 収集する情報",
+  "privacy_li1":       "取引データ：金額、日付、メモなど、主要機能のために記録。",
+  "privacy_li2":       "位置情報（オプション）：端末上で処理し、許可時のみ収集。",
+  "privacy_li3":       "アカウント & 予算アイコン：選択した絵文字、SFシンボル、カスタム画像のみ保存。",
+  "privacy_li4":       "iCloud同期：iCloudアカウント経由で暗号化して保存・同期。",
+
+  "privacy_h2":        "2. 情報の利用方法",
+  "privacy2_li1":      "予算統計、資産負債分析、定期取引などの機能を提供・最適化。",
+  "privacy2_li2":      "iCloud安全同期によりデバイス間の一貫性を確保。",
+  "privacy2_li3":      "広告なし―データはマーケティングやレコメンドには使用されません。",
+
+  "privacy_h3":        "3. 共有と開示",
+  "privacy3_p":        "個人データを販売・共有しません。以下の場合のみ開示：",
+  "privacy3_li1":      "法令または法的要請に応じるため。",
+  "privacy3_li2":      "当社または第三者の権利・安全を保護するため。",
+
+  "privacy_h4":        "4. 保存とセキュリティ",
+  "privacy4_p":        "ローカルまたはiCloudに保存（オプション）。Appleの暗号化・セキュリティ機構で保護。",
+
+  "privacy_h5":        "5. 子供のプライバシー",
+  "privacy5_p":        "WealthX は4歳以上向けです。4歳未満の場合は保護者の指導のもと使用してください。",
+
+  "privacy_h6":        "6. ポリシー更新",
+  "privacy6_p":        "ポリシーは随時更新される場合があります。施行日を確認してください。",
+
+  "privacy_h7":        "7. お問い合わせ",
+  "privacy7_p":        "ご質問・ご意見は {email} までご連絡ください。",
+
+  "hdr_accounts":      "📦 アカウント管理",
+  "p_accounts":        "複数アカウント対応、資産/負債グループ、一括照合。",
+
+  "hdr_budgets":       "📅 予算管理",
+  "p_budgets":         "月／四半期／年／プロジェクト予算 + レーダーフロー図。",
+
+  "hdr_transactions":  "🔄 取引管理",
+  "p_transactions":    "高頻度自動化＆定期取引サポート。",
+
+  "hdr_visual":        "📊 データ可視化",
+  "p_visual":          "残高推移、予算進捗、レーダー分析。",
+
+  "hdr_security":      "🔐 データ管理",
+  "p_security":        "ローカル + クラウド同期、プライバシー第一設計。"
+}
