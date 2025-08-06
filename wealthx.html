@@ -112,7 +112,7 @@
     <aside>
       <a href="#overview"    onclick="switchTab(event,'overview')" data-i18n="sidebar_overview">概览</a>
       <a href="#privacy"     onclick="switchTab(event,'privacy')"  data-i18n="sidebar_privacy">隐私政策</a>
-      <a href="#account"    onclick="switchTab(event,'account')" data-i18n="sidebar_account">账户管理</a>
+      <a href="#accounts"    onclick="switchTab(event,'accounts')" data-i18n="sidebar_accounts">账户管理</a>
       <a href="#budgets"     onclick="switchTab(event,'budgets')"  data-i18n="sidebar_budgets">预算管理</a>
       <a href="#transactions"onclick="switchTab(event,'transactions')" data-i18n="sidebar_transactions">交易管理</a>
       <a href="#visual"      onclick="switchTab(event,'visual')"   data-i18n="sidebar_visual">数据可视化</a>
@@ -175,7 +175,7 @@
         <p data-i18n="privacy_contact_p">如有疑问或建议，请发送邮件至 <a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>。</p>
       </section>
 
-      <section id="account">
+      <section id="accounts">
         <h2 style="color: var(--highlight);" data-i18n="accounts_title">📦 账户管理</h2>
         <p data-i18n="accounts_desc">多账户支持，资产/负债分组，一键对账</p>
         <div class="screenshots" data-section="account"></div>
@@ -248,22 +248,25 @@ function switchTab(event, id) {
         });
       })
       // b) 截图
-      .then(() => fetch('screenshots.json'))
-      .then(r => r.json())
-      .then(cfg => {
-        document.querySelectorAll('.screenshots').forEach(container => {
-          container.innerHTML = '';
-          const section = container.dataset.section;
-          const list = (cfg[section] || {})[lang] || [];
-          list.forEach(fname => {
-            const img = document.createElement('img');
-            img.src = `screenshot/${section}/${lang}/${fname}`;
-            // 已在 CSS 用 .screenshots img 限制大小
-            container.append(img);
-          });
-        });
-      })
-      .catch(console.error);
+.then(() => fetch('screenshots.json'))
+.then(r => r.json())
+.then(cfg => {
+  document.querySelectorAll('.screenshots').forEach(container => {
+    // 1. 清空旧图
+    container.innerHTML = '';
+    // 2. 从 data-section 拿到正确的「单数」目录名
+    const section = container.dataset.section;      // e.g. "account", "budget", "transaction", "visualization"
+    // 3. 取出对应语言的文件列表
+    const list = (cfg[section] || {})[lang] || [];
+    // 4. 依次创建 <img> 并 append
+    list.forEach(fname => {
+      const img = document.createElement('img');
+      img.src = `screenshot/${section}/${lang}/${fname}`;
+      container.append(img);
+    });
+  });
+})
+.catch(console.error);
   }
 
   // (4) 语言切换
