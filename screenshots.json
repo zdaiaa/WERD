@@ -8,5 +8,31 @@
     "ko":      ["AccountView.png"],
     "fr":      ["AccountView.png"]
   }
-
+  "budget": {
+    "zh":        ["BudgetView.png"],
+    "zh-Hant":   ["BudgetView.png"],
+    "en":        ["BudgetView.png"],
+    "ja":        ["BudgetView.png"],
+    "ko":        ["BudgetView.png"],
+    "fr":        ["BudgetView.png"],
+    "de":        ["BudgetView.png"]
+  },
+  "transaction": {
+    "zh":        ["TodayView.png"],
+    "zh-Hant":   ["TodayView.png"],
+    "en":        ["TodayView.png"],
+    "ja":        ["TodayView.png"],
+    "ko":        ["TodayView.png"],
+    "fr":        ["TodayView.png"],
+    "de":        ["TodayView.png"]
+  },
+  "visualization": {
+    "zh":        ["RadarMap.png"],
+    "zh-Hant":   ["RadarMap.png"],
+    "en":        ["RadarMap.png"],
+    "ja":        ["RadarMap.png"],
+    "ko":        ["RadarMap.png"],
+    "fr":        ["RadarMap.png"],
+    "de":        ["RadarMap.png"]
+  }
 }
