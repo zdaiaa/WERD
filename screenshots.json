@@ -8,5 +8,5 @@
     "ko":      ["AccountView.png"],
     "fr":      ["AccountView.png"]
   }
-  /* 以后可以加 budget, transaction … */
+
 }
