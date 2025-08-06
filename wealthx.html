@@ -207,7 +207,7 @@
   </div>
 
 <script>
-  // 切换主题（不变）
+  // 切主题（不动）
   function toggleTheme() {
     const root = document.documentElement;
     root.getAttribute("data-theme") === "dark"
@@ -215,32 +215,28 @@
       : root.setAttribute("data-theme", "dark");
   }
 
-  // —— 1) 切换侧栏 & Section —— 
+  // (1) 切侧栏 + section
   function switchTab(event, id) {
     event.preventDefault();
-    // 更新 URL hash（不刷新页面）
     history.replaceState(null, '', `#${id}`);
-    // 切高亮
     document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
     event.target.closest("a")?.classList.add("active");
-    // 显示对应区块
     document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
     document.getElementById(id)?.classList.add("active");
   }
 
-  // —— 2) 根据 hash 激活对应 tab —— 
+  // (2) 根据 URL hash 激活对应 tab（供初始 & 切语言后调用）
   function activateByHash() {
-    // 清除所有
     document.querySelectorAll("aside a, main section").forEach(el => el.classList.remove("active"));
     const id = location.hash.slice(1);
     if (id) {
       document.querySelector(`aside a[href="#${id}"]`)?.classList.add("active");
       document.getElementById(id)?.classList.add("active");
     }
-    // 没 hash 时，保留 HTML 里写好的 overview 默认 active
+    // 否则保留 HTML 里给 overview 的默认 active
   }
 
-  // —— 3) 加载多语言文案 + 注入截图 —— 
+  // (3) 加载文案 & 注入截图
   function loadI18nAndScreenshots() {
     // a) 文案
     fetch(`i18n/${lang}.json`)
@@ -256,13 +252,13 @@
       .then(r => r.json())
       .then(cfg => {
         document.querySelectorAll('.screenshots').forEach(container => {
-          container.innerHTML = '';             // 清旧
-          const section = container.dataset.section; // e.g. "account"
-          const list    = (cfg[section] || {})[lang] || [];
+          container.innerHTML = '';
+          const section = container.dataset.section;
+          const list = (cfg[section] || {})[lang] || [];
           list.forEach(fname => {
             const img = document.createElement('img');
-            img.src   = `screenshot/${section}/${lang}/${fname}`;
-            img.classList.add('screenshot-img');
+            img.src = `screenshot/${section}/${lang}/${fname}`;
+            // 已在 CSS 用 .screenshots img 限制大小
             container.append(img);
           });
         });
@@ -270,15 +266,14 @@
       .catch(console.error);
   }
 
-  // —— 4) 语言切换 —— 
-  const available  = ['zh','zh-Hant','en','ja','ko','fr','de'];
-  let lang          = new URLSearchParams(location.search).get('lang') || navigator.language.slice(0,2);
+  // (4) 语言切换
+  const available = ['zh','zh-Hant','en','ja','ko','fr','de'];
+  let lang = new URLSearchParams(location.search).get('lang') || navigator.language.slice(0,2);
   if (!available.includes(lang)) lang = 'zh';
   const langSwitch = document.getElementById('lang-switch');
   langSwitch.value = lang;
   langSwitch.addEventListener('change', e => {
     lang = e.target.value;
-    // 更新 URL 参数
     const url = new URL(window.location);
     url.searchParams.set('lang', lang);
     history.replaceState(null, '', url);
@@ -286,7 +281,7 @@
     activateByHash();
   });
 
-  // —— 5) 初始化 —— 
+  // (5) 页面初始化
   window.addEventListener("DOMContentLoaded", () => {
     loadI18nAndScreenshots();
     activateByHash();
