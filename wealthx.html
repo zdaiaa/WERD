@@ -256,12 +256,18 @@ function switchTab(event, id) {
     container.innerHTML = '';
     // 2. 从 data-section 拿到正确的「单数」目录名
     const section = container.dataset.section;      // e.g. "account", "budget", "transaction", "visualization"
+     console.log('→ section:', section);
+    console.log('→ screenshots.json cfg for this section:', cfg[section]);
+    console.log('→ using lang:', lang);
     // 3. 取出对应语言的文件列表
     const list = (cfg[section] || {})[lang] || [];
+        console.log('→ list of files to show:', list);
+    
     // 4. 依次创建 <img> 并 append
     list.forEach(fname => {
       const img = document.createElement('img');
       img.src = `screenshot/${section}/${lang}/${fname}`;
+           console.log('  • appending image with src:', img.src);
       container.append(img);
     });
   });
