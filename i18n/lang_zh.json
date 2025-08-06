@@ -1,0 +1,65 @@
+{
+  "nav_home":           "首页",
+  "nav_product":        "WealthX",
+  "nav_feedback":       "意见留言",
+  "nav_theme_toggle":   "切换模式",
+  "lang_select":        "语言",
+
+  "aside_overview":     "概览",
+  "aside_privacy":      "隐私政策",
+  "aside_accounts":     "账户管理",
+  "aside_budgets":      "预算管理",
+  "aside_transactions": "交易管理",
+  "aside_visual":       "数据可视化",
+  "aside_security":     "数据管理",
+
+  "hdr_overview":       "看清钱的流动，习惯自然改变。",
+  "p_overview_1":       "从现在起，和 WealthX 一起开启专属你的财务旅程。",
+  "p_overview_2":       "这不仅是一款记账 App，更是你的智能理财伙伴。今天就开始，轻松打造属于你的财富地图。",
+
+  "hdr_privacy":        "隐私政策",
+  "privacy_effective":  "生效日期：{date}",
+
+  "privacy_h1":         "1. 我们收集的信息",
+  "privacy_li1":        "交易数据：记录你的交易金额、日期、备注等，用于核心功能。",
+  "privacy_li2":        "位置信息（可选）：用于标记交易发生地，完全在设备上处理，仅在你允许时采集。",
+  "privacy_li3":        "账户与预算图标：仅存储你选择的 Emoji、SF Symbol 或自定义图片。",
+  "privacy_li4":        "iCloud 同步：开启后，你的数据会通过你的 iCloud 账户加密存储和同步。",
+
+  "privacy_h2":         "2. 我们如何使用你的数据",
+  "privacy2_li1":       "提供并优化应用功能，如预算统计、资产负债分析、循环交易等。",
+  "privacy2_li2":       "保证跨设备数据一致性，通过 iCloud 安全同步。",
+  "privacy2_li3":       "无广告投放，不会将你的数据用于营销或推荐。",
+
+  "privacy_h3":         "3. 信息的分享与披露",
+  "privacy3_p":         "WealthX 不会将你的任何个人数据出售或分享给第三方。仅在以下情况下披露：",
+  "privacy3_li1":       "遵守法律法规或司法要求。",
+  "privacy3_li2":       "保护我们的合法权益或他人安全。",
+
+  "privacy_h4":         "4. 数据存储与安全",
+  "privacy4_p":         "你的数据存储在设备本地或 iCloud（可选）。我们使用苹果提供的系统加密与安全机制，保护数据传输与存储安全。",
+
+  "privacy_h5":         "5. 儿童隐私",
+  "privacy5_p":         "WealthX 面向 4 岁及以上用户。如你未满 4 岁，请在监护人指导下使用。",
+
+  "privacy_h6":         "6. 隐私政策更新",
+  "privacy6_p":         "我们可能会不定期更新本隐私政策，页面顶部“生效日期”会相应更新。建议你定期查看。",
+
+  "privacy_h7":         "7. 联系我们",
+  "privacy7_p":         "如有疑问或建议，请发送邮件至 {email}。",
+
+  "hdr_accounts":       "📦 账户管理",
+  "p_accounts":         "多账户支持，资产/负债分组，一键对账。",
+
+  "hdr_budgets":        "📅 预算管理",
+  "p_budgets":          "月/季/年/项目预算 + 雷达流程图。",
+
+  "hdr_transactions":   "🔄 交易管理",
+  "p_transactions":     "高频交易自动化 & 循环交易支持。",
+
+  "hdr_visual":         "📊 数据可视化",
+  "p_visual":           "资产走势、预算进度、雷达分析。",
+
+  "hdr_security":       "🔐 数据管理",
+  "p_security":         "本地 + 云同步，隐私优先设计。"
+}
