@@ -228,7 +228,8 @@ function activateByHash() {
   document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
 
   // 2) 看看有没有 hash，比如 "privacy"，没有就用 "overview"➡️这里不用写才能达到预期功能
-
+  const id = location.hash.slice(1) || "overview";
+  
   // 3) 给对应的侧边栏 <a> 和 <section> 加上 active
   const link = document.querySelector(`aside a[href="#${id}"]`);
   if (link) link.classList.add("active");
