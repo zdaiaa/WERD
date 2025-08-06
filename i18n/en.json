@@ -23,10 +23,10 @@
   
   "sidebar_overview":     "Overview",
   "sidebar_privacy":      "Privacy Policy",
-  "sidebar_accounts":     "Accounts",
-  "sidebar_budgets":      "Budgets",
-  "sidebar_transactions": "Transactions",
-  "sidebar_visual":       "Visualizations",
+  "sidebar_accounts":     "Account",
+  "sidebar_budgets":      "Budget",
+  "sidebar_transactions": "Transaction",
+  "sidebar_visual":       "Visualization",
   "sidebar_security":     "Data Management",
 
   
