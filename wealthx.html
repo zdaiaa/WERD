@@ -227,13 +227,29 @@
   window.addEventListener("DOMContentLoaded", () => {
     fetch(`i18n/${lang}.json`)
       .then(r => r.json())
-      .then(dict => {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[key] != null) el.innerText = dict[key];
-        });
-        activateByHash();
-      })
+.then(dict => {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const txt = dict[key];
+    if (txt == null) return;
+    switch (el.tagName) {
+      case 'META':
+        el.setAttribute('content', txt);
+        break;
+      case 'TITLE':
+      case 'SPAN':
+      case 'H1': case 'H2': case 'H3':
+      case 'P': case 'LI': case 'BUTTON':
+      case 'A': case 'OPTION':
+        el.textContent = txt;
+        break;
+      default:
+        // 其他绝大多数情况
+        el.textContent = txt;
+    }
+  });
+  activateByHash();
+})
       .catch(console.error);
   });
 </script>
