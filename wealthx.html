@@ -214,16 +214,17 @@
       : root.setAttribute("data-theme", "dark");
   }
 
-  function switchTab(event, id) {
-    event.preventDefault();
-     history.replaceState(null, '', `#${id}`);
-    // 切换侧边栏高亮
-    document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
-    const link = event.target.closest("a");
-    if (link) link.classList.add("active");
-    // 切换内容区块显示
-    document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-    document.getElementById(id)?.classList.add("active");
+function switchTab(event, id) {
+  event.preventDefault();
+  // 1) 更新 URL hash，不刷新页面
+  history.replaceState(null, '', `#${id}`);
+  // 2) 切侧边栏高亮
+  document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
+  event.target.closest("a")?.classList.add("active");
+  // 3) 显示对应 section
+  document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id)?.classList.add("active");
+}ocument.getElementById(id)?.classList.add("active");
   }
 
   // ——— 语言切换 & 文案加载 ———
@@ -236,36 +237,32 @@
   langSwitch.value = lang;
 
 langSwitch.addEventListener('change', e => {
-  // 1) 更新浏览器地址，不跳页
+  const newLang = e.target.value;
+  // 更新 URL 参数，不刷新页面
   const url = new URL(window.location);
-  url.searchParams.set('lang', e.target.value);
+  url.searchParams.set('lang', newLang);
   history.replaceState(null, '', url);
-
-  // 2) 更新全局 lang 变量并重载文案+截图
-  lang = e.target.value;
+  // 更新全局 lang 并重载文案+截图
+  lang = newLang;
   loadI18nAndScreenshots();
-    // **新加**：保留当前 tab
+  // 保持当前 tab
   activateByHash();
+});ateByHash();
 });
 
   // 激活 hash 指向的 tab
 function activateByHash() {
-  // 先清掉所有 active
+  // 清掉所有高亮／隐藏所有区块
   document.querySelectorAll("aside a, main section").forEach(el => el.classList.remove("active"));
-  // 找到 hash
   const id = location.hash.slice(1);
   if (id) {
-    const link = document.querySelector(`aside a[href="#${id}"]`);
-    const sec  = document.getElementById(id);
-    if (link && sec) {
-      link.classList.add("active");
-      sec.classList.add("active");
-    }
+    document.querySelector(`aside a[href="#${id}"]`)?.classList.add("active");
+    document.getElementById(id)?.classList.add("active");
   }
-  // else 什么都不做 → 保留 HTML 里给 overview 的默认 active
+  // 如果不存在 hash，则保留 HTML 中默认写好的 .active
 }
 
-  function loadI18nAndScreenshots() {
+function loadI18nAndScreenshots() {
   // 1) 文案翻译
   fetch(`i18n/${lang}.json`)
     .then(r => r.json())
@@ -280,8 +277,8 @@ function activateByHash() {
     .then(r => r.json())
     .then(cfg => {
       document.querySelectorAll('.screenshots').forEach(container => {
-        container.innerHTML = '';                     // 清空旧图
-        const section = container.dataset.section;     // e.g. "account"
+        container.innerHTML = ''; // 清空旧图
+        const section = container.dataset.section; // e.g. "account"
         const list = (cfg[section] || {})[lang] || [];
         list.forEach(fname => {
           const img = document.createElement('img');
@@ -289,10 +286,6 @@ function activateByHash() {
           container.append(img);
         });
       });
-    })
-    .then(() => {
-      // **新加**：截图插好了，再把当前 hash 对应的区块 show 出来
-      activateByHash();
     })
     .catch(console.error);
 }
