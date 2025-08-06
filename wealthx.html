@@ -280,8 +280,6 @@ function activateByHash() {
         list.forEach(fname => {
           const img = document.createElement('img');
           img.src = `screenshot/${section}/${lang}/${fname}`;
-          img.style.maxWidth     = '100%';
-          img.style.marginBottom = '0.5rem';
           container.append(img);
         });
       });
