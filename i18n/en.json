@@ -1,5 +1,4 @@
 {
-  // ——— 顶栏 ———
   "app_name":           "WealthX",
   "nav_home":           "Home",
   "nav_overview":       "WealthX",
@@ -13,7 +12,6 @@
   "lang_fr":            "Français",
   "lang_de":            "Deutsch",
 
-  // ——— 侧边栏 ———
   "sidebar_overview":    "Overview",
   "sidebar_privacy":     "Privacy Policy",
   "sidebar_accounts":    "Accounts",
@@ -22,12 +20,10 @@
   "sidebar_visual":      "Visualizations",
   "sidebar_security":    "Data Management",
 
-  // ——— Overview 区 ———
   "overview_heading":    "See your cash flows, change habits naturally.",
   "overview_p1":         "From now on, embark on your personal finance journey with WealthX.",
   "overview_p2":         "More than a ledger app—your intelligent finance partner. Start today and build your own wealth map with ease.",
 
-  // ——— Privacy 区 ———
   "privacy_title":       "Privacy Policy",
   "privacy_effective":   "Effective Date:",
   "privacy_date":        "{date}",
@@ -60,23 +56,18 @@
   "privacy_sec7":        "7. Contact Us",
   "privacy_contact_p":   "Questions or feedback? Email us at {email}.",
 
-  // ——— Accounts 区 ———
   "accounts_title":      "📦 Accounts",
   "accounts_desc":       "Multi-account support, assets/liabilities grouping, one-tap reconcile.",
 
-  // ——— Budgets 区 ———
   "budgets_title":       "📅 Budgets",
   "budgets_desc":        "Monthly/quarterly/annual/project budgets + radar flow charts.",
 
-  // ——— Transactions 区 ———
   "transactions_title":  "🔄 Transactions",
   "transactions_desc":   "High-frequency automation & recurring flows support.",
 
-  // ——— Visual 区 ———
   "visual_title":        "📊 Visualizations",
   "visual_desc":         "Balance trends, budget progress, radar analyses.",
 
-  // ——— Security 区 ———
   "security_title":      "🔐 Data Management",
   "security_desc":       "Local + cloud sync, privacy-first design."
 }
