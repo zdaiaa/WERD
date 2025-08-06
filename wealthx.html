@@ -220,9 +220,9 @@ function switchTab(event, id) {
   event.preventDefault();
   history.replaceState(null, '', `#${id}`);
   document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
-  event.target.closest("a")?.classList.add("active");
+  event.target.closest("a")classList.add("active");
   document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id)?.classList.add("active");
+  document.getElementById(id)classList.add("active");
 }
 
   // (2) 根据 URL hash 激活对应 tab（供初始 & 切语言后调用）
@@ -231,7 +231,7 @@ function switchTab(event, id) {
     const id = location.hash.slice(1);
     if (id) {
       document.querySelector(`aside a[href="#${id}"]`)?.classList.add("active");
-      document.getElementById(id) classList.add("active");
+      document.getElementById(id)classList.add("active");
     }
     // 否则保留 HTML 里给 overview 的默认 active
   }
