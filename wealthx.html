@@ -223,6 +223,9 @@
     // 切换内容区块显示
     document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
     document.getElementById(id)?.classList.add("active");
+
+    // —— **新加**：确保截图逻辑和其他任何按 hash 走的逻辑也同步
+    activateByHash();
   }
 
   // ——— 语言切换 & 文案加载 ———
@@ -243,6 +246,8 @@ langSwitch.addEventListener('change', e => {
   // 2) 更新全局 lang 变量并重载文案+截图
   lang = e.target.value;
   loadI18nAndScreenshots();
+    // **新加**：保留当前 tab
+  activateByHash();
 });
 
   // 激活 hash 指向的 tab
@@ -286,6 +291,10 @@ function activateByHash() {
           container.append(img);
         });
       });
+    })
+    .then(() => {
+      // **新加**：截图插好了，再把当前 hash 对应的区块 show 出来
+      activateByHash();
     })
     .catch(console.error);
 }
