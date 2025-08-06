@@ -216,6 +216,7 @@
 
   function switchTab(event, id) {
     event.preventDefault();
+     history.replaceState(null, '', `#${id}`);
     // 切换侧边栏高亮
     document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
     const link = event.target.closest("a");
@@ -223,9 +224,6 @@
     // 切换内容区块显示
     document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
     document.getElementById(id)?.classList.add("active");
-
-    // —— **新加**：确保截图逻辑和其他任何按 hash 走的逻辑也同步
-    activateByHash();
   }
 
   // ——— 语言切换 & 文案加载 ———
