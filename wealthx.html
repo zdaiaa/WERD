@@ -228,6 +228,16 @@
       const targetSection = document.getElementById(id);
       if (targetSection) targetSection.classList.add("active");
     }
+
+      // ➤ 新增：页面载入时根据 hash 切 tab
+  window.addEventListener("DOMContentLoaded", () => {
+    const hash = location.hash.slice(1);              // e.g. "privacy"
+    if (!hash) return;                                // 没带就跳过
+    const link = document.querySelector(`aside a[href="#${hash}"]`);
+    if (link) link.classList.add("active");           // 设置侧边栏高亮
+    const sec  = document.getElementById(hash);
+    if (sec)  sec.classList.add("active");            // 展示对应的 section
+  });
   </script>
 </body>
 
