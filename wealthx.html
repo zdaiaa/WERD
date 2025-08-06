@@ -235,8 +235,9 @@ function activateByHash() {
   document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
   document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
 
-  // 2) 看看有没有 hash，比如 "privacy"，没有就用 "overview"➡️这里不用写才能达到预期功能
-  const id = location.hash.slice(1) || "overview";
+  // 2) 看看有没有 hash，比如 "privacy"
+  const id = location.hash.slice(1);
+  if (!id) return;  // 如果没有 hash 就什么都不做，保留原来的“active”状态
   
   // 3) 给对应的侧边栏 <a> 和 <section> 加上 active
   const link = document.querySelector(`aside a[href="#${id}"]`);
@@ -245,52 +246,46 @@ function activateByHash() {
   if (sec) sec.classList.add("active");
 }
 
-  window.addEventListener("DOMContentLoaded", () => {
-    // 1. 加载对应语言的 JSON
-    fetch(`i18n/${lang}.json`)
-      .then(r => r.json())
-      .then(dict => {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          const txt = dict[key];
-          if (txt == null) return;
-          switch (el.tagName) {
-            case 'META':
-              el.setAttribute('content', txt);
-              break;
-            case 'TITLE':
-            case 'SPAN':
-            case 'H1': case 'H2': case 'H3':
-            case 'P': case 'LI': case 'BUTTON':
-            case 'A': case 'OPTION':
-              el.textContent = txt;
-              break;
-            default:
-              el.textContent = txt;
-          }
-        });
-        // —— 2. 接着加载截图配置 ——  
+window.addEventListener("DOMContentLoaded", () => {
+  // 1. 加载文案
+  fetch(`i18n/${lang}.json`)
+    .then(r => r.json())
+    .then(dict => {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const txt = dict[key];
+        if (txt == null) return;
+        switch (el.tagName) {
+          case 'META':
+            el.setAttribute('content', txt);
+            break;
+          default:
+            el.textContent = txt;
+        }
+      });
+    })
+    // 2. 渲染完文案后，再去加载截图配置
     .then(() => fetch('screenshots.json'))
     .then(r => r.json())
     .then(screenshotsConfig => {
-      // 找到所有 .screenshots 容器
       document.querySelectorAll('.screenshots').forEach(container => {
-        const section = container.dataset.section;     // e.g. "account"
-        const list    = screenshotsConfig[section]?.[lang] || [];
+        const section = container.dataset.section; // e.g. "account"
+        const list = (screenshotsConfig[section] || {})[lang] || [];
         list.forEach(fname => {
           const img = document.createElement('img');
-          img.src   = `screenshot/${section}/${lang}/${fname}`;
-          img.alt   = `${section} screenshot`;
-          img.style.maxWidth     = '100%';
+          img.src = `screenshot/${section}/${lang}/${fname}`;
+          img.alt = `${section} screenshot`;
+          img.style.maxWidth = '100%';
           img.style.marginBottom = '0.5rem';
           container.append(img);
         });
       });
-        // 3. 激活 hash 对应的 tab，覆盖默认的 overview
-        activateByHash();
-      })
-      .catch(console.error);
-  });
+    })
+    // 最后再激活 hash 对应的区块
+    .then(() => activateByHash())
+    .catch(console.error);
+});
+  
 </script>
 </body>
 </html>
