@@ -9,7 +9,7 @@
   "nav_home":         "Home",
   "nav_overview":     "WealthX",
   "nav_feedback":     "Feedback",
-  "toggle_theme":     "Toggle Theme",
+  "toggle_theme":     "Display Theme",
   //（如果你想给下拉框加一个 label）
   "lang_select":      "Language",
 
@@ -39,7 +39,7 @@
   // ─── Privacy 区 ───
   "privacy_title":      "Privacy Policy",
   "privacy_effective":  "Effective Date:",
-  "privacy_date":       "{date}",
+  "privacy_date":       "2025-08-03",
 
   "privacy_sec1":       "1. Information We Collect",
   "privacy_item1":      "Transaction Data: your amounts, dates, notes, etc. for core features.",
