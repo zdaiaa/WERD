@@ -231,7 +231,7 @@ function switchTab(event, id) {
     const id = location.hash.slice(1);
     if (id) {
       document.querySelector(`aside a[href="#${id}"]`)?.classList.add("active");
-      document.getElementById(id)?.classList.add("active");
+      document.getElementById(id) classList.add("active");
     }
     // 否则保留 HTML 里给 overview 的默认 active
   }
