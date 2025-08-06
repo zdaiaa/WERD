@@ -269,7 +269,24 @@ function activateByHash() {
               el.textContent = txt;
           }
         });
-        // 2. 激活 hash 对应的 tab，覆盖默认的 overview
+        // —— 2. 接着加载截图配置 ——  
+    .then(() => fetch('screenshots.json'))
+    .then(r => r.json())
+    .then(screenshotsConfig => {
+      // 找到所有 .screenshots 容器
+      document.querySelectorAll('.screenshots').forEach(container => {
+        const section = container.dataset.section;     // e.g. "account"
+        const list    = screenshotsConfig[section]?.[lang] || [];
+        list.forEach(fname => {
+          const img = document.createElement('img');
+          img.src   = `screenshot/${section}/${lang}/${fname}`;
+          img.alt   = `${section} screenshot`;
+          img.style.maxWidth     = '100%';
+          img.style.marginBottom = '0.5rem';
+          container.append(img);
+        });
+      });
+        // 3. 激活 hash 对应的 tab，覆盖默认的 overview
         activateByHash();
       })
       .catch(console.error);
