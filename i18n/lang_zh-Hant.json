@@ -1,0 +1,65 @@
+{
+  "nav_home":          "首頁",
+  "nav_product":       "WealthX",
+  "nav_feedback":      "意見留言",
+  "nav_theme_toggle":  "切換模式",
+  "lang_select":       "語言",
+
+  "aside_overview":    "概覽",
+  "aside_privacy":     "隱私政策",
+  "aside_accounts":    "帳戶管理",
+  "aside_budgets":     "預算管理",
+  "aside_transactions":"交易管理",
+  "aside_visual":      "資料視覺化",
+  "aside_security":    "資料管理",
+
+  "hdr_overview":      "看清錢的流動，習慣自然改變。",
+  "p_overview_1":      "從現在起，和 WealthX 一起開啟專屬你的財務旅程。",
+  "p_overview_2":      "不僅是一款記帳 App──更是你的智能理財夥伴。從今天開始，輕鬆打造屬於自己的財富地圖。",
+
+  "hdr_privacy":       "隱私政策",
+  "privacy_effective": "生效日期：{date}",
+
+  "privacy_h1":        "1. 我們收集的資訊",
+  "privacy_li1":       "交易資料：記錄你的金額、日期、備註等，用於核心功能。",
+  "privacy_li2":       "位置資訊（可選）：標記交易發生地，完全在裝置上處理，僅在你同意時採集。",
+  "privacy_li3":       "帳戶與預算圖示：僅儲存你選擇的 Emoji、SF Symbol 或自訂圖片。",
+  "privacy_li4":       "iCloud 同步：透過你的 iCloud 帳號加密儲存與同步。",
+
+  "privacy_h2":        "2. 我們如何使用你的資料",
+  "privacy2_li1":      "提供並優化功能，如預算統計、資產負債分析、循環交易等。",
+  "privacy2_li2":      "透過 iCloud 安全同步，確保跨裝置資料一致。",
+  "privacy2_li3":      "無廣告投放──你的資料不會用於行銷或推薦。",
+
+  "privacy_h3":        "3. 分享與揭露",
+  "privacy3_p":        "WealthX 不會出售或分享你的個人資料。僅在以下情況揭露：",
+  "privacy3_li1":      "遵守法律或司法要求。",
+  "privacy3_li2":      "保護我們或他人的合法權益或安全。",
+
+  "privacy_h4":        "4. 儲存與安全",
+  "privacy4_p":        "資料儲存於裝置本地或 iCloud（可選）。採用 Apple 系統加密與安全機制。",
+
+  "privacy_h5":        "5. 兒童隱私",
+  "privacy5_p":        "WealthX 適用於 4 歲以上。若未滿 4 歲，請在監護人指導下使用。",
+
+  "privacy_h6":        "6. 政策更新",
+  "privacy6_p":        "本政策可能更新──生效日期將更新。建議定期查看。",
+
+  "privacy_h7":        "7. 聯絡我們",
+  "privacy7_p":        "如有疑問或建議，請寄信至 {email}。",
+
+  "hdr_accounts":      "📦 帳戶管理",
+  "p_accounts":        "多帳戶支援、資產/負債分組、一鍵對帳。",
+
+  "hdr_budgets":       "📅 預算管理",
+  "p_budgets":         "月/季/年/專案預算 + 雷達流程圖。",
+
+  "hdr_transactions":  "🔄 交易管理",
+  "p_transactions":    "高頻交易自動化 & 循環交易支援。",
+
+  "hdr_visual":        "📊 資料視覺化",
+  "p_visual":          "餘額走勢、預算進度、雷達分析。",
+
+  "hdr_security":      "🔐 資料管理",
+  "p_security":        "本地 + 雲端同步，隱私優先設計。"
+}
