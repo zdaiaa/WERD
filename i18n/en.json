@@ -1,65 +1,82 @@
 {
-  "nav_home":          "Home",
-  "nav_product":       "WealthX",
-  "nav_feedback":      "Feedback",
-  "nav_theme_toggle":  "Toggle Theme",
-  "lang_select":       "Language",
+  // ——— 顶栏 ———
+  "app_name":           "WealthX",
+  "nav_home":           "Home",
+  "nav_overview":       "WealthX",
+  "nav_feedback":       "Feedback",
+  "toggle_theme":       "Toggle Theme",
+  "lang_zh":            "简体",
+  "lang_zh-T":          "繁體",
+  "lang_en":            "EN",
+  "lang_ja":            "日本語",
+  "lang_ko":            "한국어",
+  "lang_fr":            "Français",
+  "lang_de":            "Deutsch",
 
-  "aside_overview":    "Overview",
-  "aside_privacy":     "Privacy Policy",
-  "aside_accounts":    "Accounts",
-  "aside_budgets":     "Budgets",
-  "aside_transactions":"Transactions",
-  "aside_visual":      "Visualizations",
-  "aside_security":    "Data Management",
+  // ——— 侧边栏 ———
+  "sidebar_overview":    "Overview",
+  "sidebar_privacy":     "Privacy Policy",
+  "sidebar_accounts":    "Accounts",
+  "sidebar_budgets":     "Budgets",
+  "sidebar_transactions":"Transactions",
+  "sidebar_visual":      "Visualizations",
+  "sidebar_security":    "Data Management",
 
-  "hdr_overview":      "See your cash flows, change habits naturally.",
-  "p_overview_1":      "From now on, embark on your personal finance journey with WealthX.",
-  "p_overview_2":      "More than a ledger app—your intelligent finance partner. Start today and build your own wealth map with ease.",
+  // ——— Overview 区 ———
+  "overview_heading":    "See your cash flows, change habits naturally.",
+  "overview_p1":         "From now on, embark on your personal finance journey with WealthX.",
+  "overview_p2":         "More than a ledger app—your intelligent finance partner. Start today and build your own wealth map with ease.",
 
-  "hdr_privacy":       "Privacy Policy",
-  "privacy_effective": "Effective Date: {date}",
+  // ——— Privacy 区 ———
+  "privacy_title":       "Privacy Policy",
+  "privacy_effective":   "Effective Date:",
+  "privacy_date":        "{date}",
 
-  "privacy_h1":        "1. Information We Collect",
-  "privacy_li1":       "Transaction Data: your amounts, dates, notes, etc. for core features.",
-  "privacy_li2":       "Location (optional): tagged on-device, only with your permission.",
-  "privacy_li3":       "Account & Budget Icons: only store your chosen emoji, SF Symbol or custom image.",
-  "privacy_li4":       "iCloud Sync: encrypted storage & sync via your iCloud account.",
+  "privacy_sec1":        "1. Information We Collect",
+  "privacy_item1":       "Transaction Data: your amounts, dates, notes, etc. for core features.",
+  "privacy_item2":       "Location (optional): tagged on-device, only with your permission.",
+  "privacy_item3":       "Account & Budget Icons: only store your chosen emoji, SF Symbol or custom image.",
+  "privacy_item4":       "iCloud Sync: encrypted storage & sync via your iCloud account.",
 
-  "privacy_h2":        "2. How We Use Your Data",
-  "privacy2_li1":      "Power & optimize app features like budgets, P/L analysis, recurring flows.",
-  "privacy2_li2":      "Keep consistency across devices via iCloud secure sync.",
-  "privacy2_li3":      "No ads—your data is never used for marketing or recommendations.",
+  "privacy_sec2":        "2. How We Use Your Data",
+  "privacy_use1":        "Power & optimize app features like budgets, P/L analysis, recurring flows.",
+  "privacy_use2":        "Keep consistency across devices via iCloud secure sync.",
+  "privacy_use3":        "No ads—your data is never used for marketing or recommendations.",
 
-  "privacy_h3":        "3. Sharing & Disclosure",
-  "privacy3_p":        "We do not sell or share your personal data. Disclosure only to:",
-  "privacy3_li1":      "Comply with laws or legal requests.",
-  "privacy3_li2":      "Protect our or others’ legal rights or safety.",
+  "privacy_sec3":        "3. Sharing & Disclosure",
+  "privacy_share_p":     "We do not sell or share your personal data. Disclosure only to:",
+  "privacy_share1":      "Comply with laws or legal requests.",
+  "privacy_share2":      "Protect our or others’ legal rights or safety.",
 
-  "privacy_h4":        "4. Storage & Security",
-  "privacy4_p":        "Data stored locally or in iCloud (optional). Protected by Apple’s encryption & security mechanisms.",
+  "privacy_sec4":        "4. Storage & Security",
+  "privacy_storage_p":   "Data stored locally or in iCloud (optional). Protected by Apple’s encryption & security mechanisms.",
 
-  "privacy_h5":        "5. Children’s Privacy",
-  "privacy5_p":        "WealthX is intended for ages 4+. If under 4, please use under adult supervision.",
+  "privacy_sec5":        "5. Children’s Privacy",
+  "privacy_children_p":  "WealthX is intended for ages 4+. If under 4, please use under adult supervision.",
 
-  "privacy_h6":        "6. Policy Updates",
-  "privacy6_p":        "This policy may change—effective date above will update. Please review periodically.",
+  "privacy_sec6":        "6. Policy Updates",
+  "privacy_update_p":    "This policy may change—effective date above will update. Please review periodically.",
 
-  "privacy_h7":        "7. Contact Us",
-  "privacy7_p":        "Questions or feedback? Email us at {email}.",
+  "privacy_sec7":        "7. Contact Us",
+  "privacy_contact_p":   "Questions or feedback? Email us at {email}.",
 
-  "hdr_accounts":      "📦 Accounts",
-  "p_accounts":        "Multi-account support, assets/liabilities grouping, one-tap reconcile.",
+  // ——— Accounts 区 ———
+  "accounts_title":      "📦 Accounts",
+  "accounts_desc":       "Multi-account support, assets/liabilities grouping, one-tap reconcile.",
 
-  "hdr_budgets":       "📅 Budgets",
-  "p_budgets":         "Monthly/quarterly/annual/project budgets + radar flow charts.",
+  // ——— Budgets 区 ———
+  "budgets_title":       "📅 Budgets",
+  "budgets_desc":        "Monthly/quarterly/annual/project budgets + radar flow charts.",
 
-  "hdr_transactions":  "🔄 Transactions",
-  "p_transactions":    "High-frequency automation & recurring flows support.",
+  // ——— Transactions 区 ———
+  "transactions_title":  "🔄 Transactions",
+  "transactions_desc":   "High-frequency automation & recurring flows support.",
 
-  "hdr_visual":        "📊 Visualizations",
-  "p_visual":          "Balance trends, budget progress, radar analyses.",
+  // ——— Visual 区 ———
+  "visual_title":        "📊 Visualizations",
+  "visual_desc":         "Balance trends, budget progress, radar analyses.",
 
-  "hdr_security":      "🔐 Data Management",
-  "p_security":        "Local + cloud sync, privacy-first design."
+  // ——— Security 区 ———
+  "security_title":      "🔐 Data Management",
+  "security_desc":       "Local + cloud sync, privacy-first design."
 }
