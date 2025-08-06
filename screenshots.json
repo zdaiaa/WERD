@@ -7,7 +7,7 @@
     "ja":      ["AccountView.png"],
     "ko":      ["AccountView.png"],
     "fr":      ["AccountView.png"]
-  }
+  },
   "budget": {
     "zh":        ["BudgetView.png"],
     "zh-Hant":   ["BudgetView.png"],
