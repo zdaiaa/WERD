@@ -216,14 +216,14 @@
   }
 
   // (1) 切侧栏 + section
-  function switchTab(event, id) {
-    event.preventDefault();
-    history.replaceState(null, '', `#${id}`);
-    document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
-    event.target.closest("a")?.classList.add("active");
-    document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-    document.getElementById(id)?.classList.add("active");
-  }
+function switchTab(event, id) {
+  event.preventDefault();
+  history.replaceState(null, '', `#${id}`);
+  document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
+  event.target.closest("a")?.classList.add("active");
+  document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id)?.classList.add("active");
+}
 
   // (2) 根据 URL hash 激活对应 tab（供初始 & 切语言后调用）
   function activateByHash() {
