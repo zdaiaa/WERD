@@ -221,72 +221,67 @@
   const langSwitch = document.getElementById('lang-switch');
   langSwitch.value = lang;
 
-  langSwitch.addEventListener('change', e => {
-    const currentHash = window.location.hash;           // 保存当前hash
-    const url = new URL(window.location);
-    url.searchParams.set('lang', e.target.value);
-    url.hash = currentHash;                             // 恢复原来的hash
-    window.location.href = url.toString();
-  });
+langSwitch.addEventListener('change', e => {
+  // 1) 更新浏览器地址，不跳页
+  const url = new URL(window.location);
+  url.searchParams.set('lang', e.target.value);
+  history.replaceState(null, '', url);
+
+  // 2) 更新全局 lang 变量并重载文案+截图
+  lang = e.target.value;
+  loadI18nAndScreenshots();
+});
 
   // 激活 hash 指向的 tab
 function activateByHash() {
-  // 先清掉所有高亮／隐藏所有区块
+  // 先清掉所有 active
   document.querySelectorAll("aside a, main section").forEach(el => el.classList.remove("active"));
-
+  // 找到 hash
   const id = location.hash.slice(1);
-  if (!id) {
-    // 没有 hash → 默认回到 overview
-    document.querySelector('aside a[href="#overview"]').classList.add("active");
-    document.getElementById("overview").classList.add("active");
-    return;
+  if (id) {
+    const link = document.querySelector(`aside a[href="#${id}"]`);
+    const sec  = document.getElementById(id);
+    if (link && sec) {
+      link.classList.add("active");
+      sec.classList.add("active");
+    }
   }
-
-  // 有 hash → 对应激活
-  const link = document.querySelector(`aside a[href="#${id}"]`);
-  if (link) link.classList.add("active");
-  const sec = document.getElementById(id);
-  if (sec) sec.classList.add("active");
+  // else 什么都不做 → 保留 HTML 里给 overview 的默认 active
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  // 1. 加载文案
+  function loadI18nAndScreenshots() {
+  // 1) 文案翻译
   fetch(`i18n/${lang}.json`)
     .then(r => r.json())
     .then(dict => {
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        const txt = dict[key];
-        if (txt == null) return;
-        switch (el.tagName) {
-          case 'META':
-            el.setAttribute('content', txt);
-            break;
-          default:
-            el.textContent = txt;
-        }
+        if (dict[key] != null) el.textContent = dict[key];
       });
     })
-    // 2. 渲染完文案后，再去加载截图配置
+    // 2) 加载截图配置
     .then(() => fetch('screenshots.json'))
     .then(r => r.json())
-    .then(screenshotsConfig => {
+    .then(cfg => {
       document.querySelectorAll('.screenshots').forEach(container => {
-        const section = container.dataset.section; // e.g. "account"
-        const list = (screenshotsConfig[section] || {})[lang] || [];
+        container.innerHTML = '';                     // 清空旧图
+        const section = container.dataset.section;     // e.g. "account"
+        const list = (cfg[section] || {})[lang] || [];
         list.forEach(fname => {
           const img = document.createElement('img');
           img.src = `screenshot/${section}/${lang}/${fname}`;
-          img.alt = `${section} screenshot`;
-          img.style.maxWidth = '100%';
+          img.style.maxWidth     = '100%';
           img.style.marginBottom = '0.5rem';
           container.append(img);
         });
       });
     })
-    // 最后再激活 hash 对应的区块
-    .then(() => activateByHash())
     .catch(console.error);
+}
+  
+window.addEventListener("DOMContentLoaded", () => {
+  loadI18nAndScreenshots();
+  activateByHash();
 });
   
 </script>
