@@ -10,9 +10,9 @@
   "toggle_theme":     "Thema wechseln",
   "lang_select":      "Sprache",
 
-  "lang_zh":          "简体",
-  "lang_zh-T":        "繁體",
-  "lang_en":          "EN",
+  "lang_zh":          "简体中文",
+  "lang_zh-T":        "繁體中文",
+  "lang_en":          "English",
   "lang_ja":          "日本語",
   "lang_ko":          "한국어",
   "lang_fr":          "Français",
@@ -63,7 +63,7 @@
   "privacy_update_p":   "Diese Richtlinie kann geändert werden—das oben genannte Datum wird aktualisiert。Bitte regelmäßig prüfen。",
 
   "privacy_sec7":       "7. Kontakt",
-  "privacy_contact_p":  "Fragen oder Feedback？Senden Sie uns eine E-Mail an {email}。",
+  "privacy_contact_p":  "Fragen oder Feedback？Senden Sie uns eine E-Mail an ericdai2013@gmail.com",
 
   "accounts_title":     "📦 Konten",
   "accounts_desc":      "Unterstützung mehrerer Konten, Vermögen/Verbindlichkeiten gruppieren, Abgleich mit einem Klick。",
