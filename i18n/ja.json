@@ -10,9 +10,9 @@
   "toggle_theme":     "テーマ切替",
   "lang_select":      "言語",
 
-  "lang_zh":          "简体",
-  "lang_zh-T":        "繁體",
-  "lang_en":          "EN",
+  "lang_zh":          "简体中文",
+  "lang_zh-T":        "繁體中文",
+  "lang_en":          "English",
   "lang_ja":          "日本語",
   "lang_ko":          "한국어",
   "lang_fr":          "Français",
@@ -63,7 +63,7 @@
   "privacy_update_p":   "本ポリシーは不定期に更新される場合があります。発効日が更新されますので、定期的にご確認ください。",
 
   "privacy_sec7":       "7. お問い合わせ",
-  "privacy_contact_p":  "ご質問やご意見は {email} までメールでご連絡ください。",
+  "privacy_contact_p":  "ご質問やご意見は ericdai2013@gmail.com までメールでご連絡ください。",
 
   "accounts_title":     "📦 アカウント",
   "accounts_desc":      "マルチアカウント対応、資産/負債グループ化、ワンタップで照合。",
