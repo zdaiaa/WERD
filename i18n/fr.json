@@ -10,9 +10,9 @@
   "toggle_theme":     "Changer le thème",
   "lang_select":      "Langue",
 
-  "lang_zh":          "简体",
-  "lang_zh-T":        "繁體",
-  "lang_en":          "EN",
+  "lang_zh":          "简体中文",
+  "lang_zh-T":        "繁體中文",
+  "lang_en":          "English",
   "lang_ja":          "日本語",
   "lang_ko":          "한국어",
   "lang_fr":          "Français",
@@ -63,7 +63,7 @@
   "privacy_update_p":   "Cette politique peut changer—la date d’entrée en vigueur ci-dessus sera mise à jour。Veuillez la consulter régulièrement。",
 
   "privacy_sec7":       "7. Contact",
-  "privacy_contact_p":  "Questions ou commentaires ? Envoyez un e-mail à {email}。",
+  "privacy_contact_p":  "Questions ou commentaires ? Envoyez un e-mail à ericdai2013@gmail.com",
 
   "accounts_title":     "📦 Comptes",
   "accounts_desc":      "Support multi-comptes, regroupement actifs/passifs, rapprochement en un clic。",
