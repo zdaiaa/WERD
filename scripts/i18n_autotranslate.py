@@ -4,8 +4,9 @@
 import json
 import os
 import time
+import hashlib
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, Any, Tuple
 
 from openai import OpenAI
 
@@ -15,68 +16,38 @@ I18N_DIR = ROOT / "i18n"
 SOURCE_ZH = I18N_DIR / "zh.json"
 SOURCE_EN = I18N_DIR / "en.json"
 
-# 双轨：中文 → 繁中；英文 → 其它
-ZH_TRACK = {"zh-Hant": "zh-Hant"}
-EN_TRACK = {
-    "de": "de",
-    "fr": "fr",
-    "ja": "ja",
-    "ko": "ko",
-    "es": "es",
-    "it": "it",
-    "id": "id",
-    "hi": "hi",
-    "pl": "pl",
-    "pt": "pt",
-    "sv": "sv",
-}
+# 双轨策略：
+# - zh.json 仅用于生成 zh-Hant.json
+# - en.json 用于生成除 zh/en/zh-Hant 之外的所有语言文件
+ZH_TRACK_TARGET = "zh-Hant"
 
-# 你可以在这里维护“永远不翻译/固定写法”的词表（按需扩展）
+# 永远不翻译 / 固定写法（按需扩展）
 GLOSSARY = {
     "WealthX": "WealthX",
     "Flow": "Flow",
     "Flows": "Flows",
 }
 
-MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-4.1-mini")  # 你也可以换更强的模型
+MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-4.1-mini")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def load_json(path: Path) -> Dict[str, str]:
+def load_json(path: Path) -> Dict[str, Any]:
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def save_json(path: Path, data: Dict[str, str]) -> None:
-    # 保持 key 排序，减少 diff 噪音
+def save_json(path: Path, data: Dict[str, Any]) -> None:
+    # 保持稳定输出（减少 diff 噪音）
     path.write_text(
         json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
 
 
-def diff_keys(src: Dict[str, str], dst: Dict[str, str]) -> Tuple[Dict[str, str], Dict[str, str]]:
-    """
-    返回 (needs_translate, kept)
-    needs_translate: dst 缺失 或 与 src 改动相关（我们用简单策略：src 值变了就重翻）
-    kept: 保留 dst 里已有的翻译
-    """
-    needs = {}
-    kept = dict(dst)
-
-    for k, v in src.items():
-        if k not in dst:
-            needs[k] = v
-        else:
-            # 如果源文案改了：我们标记重翻（你也可以改成“只新增不重翻”）
-            # 这里无法直接判断“源是否改过”，所以用一个很实用的做法：
-            # 在 dst 里存一个隐藏字段 _meta_source_hash 也行，但先简化。
-            # 简化策略：如果 dst[k] 为空也重翻
-            if not isinstance(dst.get(k), str) or dst.get(k).strip() == "":
-                needs[k] = v
-
-    return needs, kept
+def sha(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def apply_glossary(text: str) -> str:
@@ -85,82 +56,170 @@ def apply_glossary(text: str) -> str:
     return text
 
 
+def split_meta(d: Dict[str, Any]) -> Tuple[Dict[str, str], Dict[str, Any]]:
+    """把可翻译的 key/value（str）与 _meta 分离"""
+    meta = d.get("_meta", {})
+    core: Dict[str, str] = {}
+    for k, v in d.items():
+        if k == "_meta":
+            continue
+        if isinstance(v, str):
+            core[k] = v
+    return core, meta if isinstance(meta, dict) else {}
+
+
+def build_needs_translate(
+    src: Dict[str, str],
+    dst: Dict[str, str],
+    dst_meta: Dict[str, Any],
+) -> Dict[str, str]:
+    """
+    规则：
+    - dst 缺 key：翻译
+    - 源文字变了（hash 不同）：重翻
+    - dst[key] 为空：翻译
+    """
+    dst_hashes = (dst_meta.get("source_hashes") or {})
+    if not isinstance(dst_hashes, dict):
+        dst_hashes = {}
+
+    needs: Dict[str, str] = {}
+    for k, v in src.items():
+        src_hash = sha(v)
+        old_hash = dst_hashes.get(k)
+
+        if k not in dst:
+            needs[k] = v
+        elif not isinstance(dst.get(k), str) or dst.get(k, "").strip() == "":
+            needs[k] = v
+        elif old_hash != src_hash:
+            needs[k] = v
+
+    return needs
+
+
+def sync_deletions(src: Dict[str, str], dst_full: Dict[str, Any]) -> None:
+    """规则 1：源里删了 key，目标也删（保留 _meta）"""
+    for k in list(dst_full.keys()):
+        if k == "_meta":
+            continue
+        if k not in src:
+            dst_full.pop(k, None)
+
+
 def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
     """
-    用 OpenAI 做一次批量翻译（key 不翻译，value 翻译）
+    批量翻译：输入 JSON，输出必须是 JSON（key 不翻译，value 翻译）
+    JSON mode 需要你在提示里明确要求输出 JSON。 [oai_citation:0‡OpenAI平台](https://platform.openai.com/docs/api-reference/runs)
     """
-    # 让模型“按 App Store / 产品网站语气本地化”，避免硬翻
     system = (
         "You are a professional product localization expert for an Apple-style product website. "
-        "Translate naturally for the target locale, concise, clear, and idiomatic. "
-        "Do NOT translate brand names or glossary terms. Keep punctuation style appropriate."
+        "Translate naturally for the target locale: concise, clear, idiomatic, not literal. "
+        "Keep brand names and glossary terms unchanged. Keep URLs/emails/phone numbers unchanged. "
+        "Return ONLY a valid JSON object mapping the same keys to translated strings."
     )
 
-    # 用 JSON 输入输出，减少格式问题
-    user = {
+    user_payload = {
         "task": "translate_i18n",
         "source_language": src_lang,
         "target_language": dst_lang,
         "glossary": GLOSSARY,
         "items": items,
-        "rules": [
+        "extra_rules": [
             "Keep keys unchanged; translate only values.",
-            "Keep email/URLs/phone numbers unchanged.",
-            "Keep 'WealthX' unchanged.",
-            "If a value contains colon labels like 'Email:' keep the label idiomatic in target language.",
-            "Keep tone similar to Apple marketing pages: minimal, confident, not exaggerated."
+            "Apple-like tone: minimal, confident, not exaggerated.",
+            "Preserve punctuation style for the locale.",
         ],
-        "output_format": "JSON object mapping the same keys to translated strings"
+        "output": "JSON object only",
     }
 
-    resp = client.responses.create(
+    # 用 Chat Completions + JSON mode 保证可 parse（更稳）
+    resp = client.chat.completions.create(
         model=MODEL,
-        input=[
+        messages=[
             {"role": "system", "content": system},
-            {"role": "user", "content": json.dumps(user, ensure_ascii=False)},
+            {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
         ],
-        # 让输出稳定为 JSON（如果你用的模型支持严格 JSON，可以再加严）
+        response_format={"type": "json_object"},
+        temperature=0.2,
     )
 
-    text = resp.output_text.strip()
-    # 兜底：有些模型会包 ```json
-    if text.startswith("```"):
-        text = text.split("```", 2)[1]
-        text = text.replace("json", "", 1).strip()
-
+    text = resp.choices[0].message.content.strip()
     data = json.loads(text)
-    # glossary 再保险一次
-    return {k: apply_glossary(str(v)) for k, v in data.items()}
+
+    out: Dict[str, str] = {}
+    for k, v in data.items():
+        out[str(k)] = apply_glossary(str(v))
+    return out
 
 
-def generate_from_source(source_path: Path, targets: Dict[str, str], src_lang: str) -> None:
-    src = load_json(source_path)
+def target_langs_from_folder() -> list[str]:
+    """只看 i18n 目录现有的 *.json（按你要求）"""
+    langs = []
+    for p in I18N_DIR.glob("*.json"):
+        langs.append(p.stem)
+    # 去重排序
+    return sorted(set(langs))
 
-    for lang_code in targets.keys():
-        dst_path = I18N_DIR / f"{lang_code}.json"
-        dst = load_json(dst_path)
 
-        needs, kept = diff_keys(src, dst)
-        if not needs:
-            print(f"[skip] {lang_code}: nothing to translate")
-            continue
+def process_one_target(target_lang: str, src_lang: str, src_path: Path) -> None:
+    src_full = load_json(src_path)
+    src, _ = split_meta(src_full)
 
-        print(f"[translate] {src_lang} -> {lang_code}: {len(needs)} keys")
-        translated = translate_batch(src_lang, lang_code, needs)
+    dst_path = I18N_DIR / f"{target_lang}.json"
+    dst_full = load_json(dst_path)
+    dst, dst_meta = split_meta(dst_full)
 
-        # merge：保留旧翻译 + 覆盖新翻译
-        kept.update(translated)
-        save_json(dst_path, kept)
+    # 规则 1：同步删除
+    sync_deletions(src, dst_full)
 
-        time.sleep(0.2)  # 轻微限速
+    # 规则 2：新增/改动 -> needs translate
+    needs = build_needs_translate(src, dst, dst_meta)
+    if not needs:
+        print(f"[skip] {target_lang}: nothing to translate")
+        return
+
+    print(f"[translate] {src_lang} -> {target_lang}: {len(needs)} keys")
+    translated = translate_batch(src_lang, target_lang, needs)
+
+    # merge 写回（只写字符串 key）
+    for k, v in translated.items():
+        dst_full[k] = v
+
+    # 更新 meta hash（用于下次判断是否改动）
+    meta = dst_full.get("_meta") if isinstance(dst_full.get("_meta"), dict) else {}
+    meta.setdefault("source_hashes", {})
+    if not isinstance(meta["source_hashes"], dict):
+        meta["source_hashes"] = {}
+
+    for k, src_text in needs.items():
+        meta["source_hashes"][k] = sha(src_text)
+
+    meta["generated_by"] = "i18n_autotranslate.py"
+    meta["source_lang"] = src_lang
+    meta["target_lang"] = target_lang
+    dst_full["_meta"] = meta
+
+    save_json(dst_path, dst_full)
+    time.sleep(0.2)  # 轻微限速
 
 
 def main():
     if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError("Missing OPENAI_API_KEY env var")
 
-    generate_from_source(SOURCE_ZH, ZH_TRACK, "zh-Hans")
-    generate_from_source(SOURCE_EN, EN_TRACK, "en")
+    # 只看目录里已有语言文件
+    langs = target_langs_from_folder()
+
+    # zh -> zh-Hant
+    if ZH_TRACK_TARGET in langs:
+        process_one_target(ZH_TRACK_TARGET, "zh-Hans", SOURCE_ZH)
+
+    # en -> others（排除 zh/en/zh-Hant）
+    for lang in langs:
+        if lang in ("zh", "en", "zh-Hant"):
+            continue
+        process_one_target(lang, "en", SOURCE_EN)
 
 
 if __name__ == "__main__":
