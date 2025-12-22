@@ -6,16 +6,22 @@ import os
 import time
 import hashlib
 from pathlib import Path
-from typing import Dict, Any, Tuple, List
+from typing import Dict, Any, Tuple, List, Optional
 
 from openai import OpenAI
 
+# ----------------------------
+# Paths
+# ----------------------------
 ROOT = Path(__file__).resolve().parents[1]
 I18N_DIR = ROOT / "i18n"
 
 SOURCE_ZH = I18N_DIR / "zh.json"
 SOURCE_EN = I18N_DIR / "en.json"
 
+# ----------------------------
+# Strategy
+# ----------------------------
 # 双轨策略：
 # - zh.json 仅用于生成 zh-Hant.json
 # - en.json 用于生成除 zh/en/zh-Hant 之外的所有语言文件
@@ -26,12 +32,17 @@ GLOSSARY = {
     "WealthX": "WealthX",
     "Flow": "Flow",
     "Flows": "Flows",
+    "iCloud": "iCloud",
+    "SF Symbols": "SF Symbols",
 }
 
 MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-5-mini")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
+# ----------------------------
+# Helpers
+# ----------------------------
 def load_json(path: Path) -> Dict[str, Any]:
     if not path.exists():
         return {}
@@ -72,7 +83,6 @@ def get_source_hashes(dst_meta: Dict[str, Any]) -> Dict[str, str]:
     hashes = dst_meta.get("source_hashes")
     if not isinstance(hashes, dict):
         return {}
-    # 确保都是 str
     out: Dict[str, str] = {}
     for k, v in hashes.items():
         if isinstance(k, str) and isinstance(v, str):
@@ -80,16 +90,20 @@ def get_source_hashes(dst_meta: Dict[str, Any]) -> Dict[str, str]:
     return out
 
 
-def sync_deletions(src: Dict[str, str], dst_full: Dict[str, Any]) -> None:
+def sync_deletions(src: Dict[str, str], dst_full: Dict[str, Any]) -> bool:
     """
-    规则 1：源里删了 key，目标也删（保留 _meta）
-    同时清理 _meta.source_hashes 中已删 key 的 hash（保持 meta 干净）
+    规则：源里删了 key，目标也删（保留 _meta）
+    同时清理 _meta.source_hashes 中已删 key 的 hash
+    返回：是否发生了任何删除/清理（用于决定是否需要 save）
     """
+    changed = False
+
     meta = dst_full.get("_meta")
     hashes: Dict[str, str] = {}
     if isinstance(meta, dict):
         hashes = get_source_hashes(meta)
 
+    # 删除目标中源不存在的 key
     for k in list(dst_full.keys()):
         if k == "_meta":
             continue
@@ -97,10 +111,16 @@ def sync_deletions(src: Dict[str, str], dst_full: Dict[str, Any]) -> None:
             dst_full.pop(k, None)
             if k in hashes:
                 hashes.pop(k, None)
+            changed = True
 
+    # 回写 hashes（如果有变化）
     if isinstance(meta, dict):
-        meta["source_hashes"] = hashes
-        dst_full["_meta"] = meta
+        if meta.get("source_hashes") != hashes:
+            meta["source_hashes"] = hashes
+            dst_full["_meta"] = meta
+            changed = True
+
+    return changed
 
 
 def build_plan(
@@ -147,10 +167,7 @@ def build_plan(
     return needs_translate, needs_hash_seed
 
 
-def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
-    """
-    批量翻译：输入 JSON，输出必须是 JSON（key 不翻译，value 翻译）
-    """
+def _call_openai_translate(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
     system = (
         "You are a professional product localization expert for an Apple-style product website. "
         "Translate naturally for the target locale: concise, clear, idiomatic, not literal. "
@@ -191,3 +208,159 @@ def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict
     for k, v in data.items():
         out[str(k)] = apply_glossary(str(v))
     return out
+
+
+def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
+    """
+    批量翻译：输入 JSON，输出必须是 JSON（key 不翻译，value 翻译）
+    带简单重试（应对临时网络/429）
+    """
+    if not items:
+        return {}
+
+    max_retries = 3
+    backoff = 1.5
+    last_err: Optional[Exception] = None
+
+    for i in range(max_retries):
+        try:
+            return _call_openai_translate(src_lang, dst_lang, items)
+        except Exception as e:
+            last_err = e
+            sleep_s = backoff ** i
+            print(f"[warn] translate retry {i+1}/{max_retries} for {dst_lang}: {e}. sleep {sleep_s:.1f}s")
+            time.sleep(sleep_s)
+
+    raise RuntimeError(f"translate failed for {dst_lang}: {last_err}")
+
+
+def upsert_meta_hashes(dst_full: Dict[str, Any], updates: Dict[str, str], src_lang: str, dst_lang: str) -> None:
+    """
+    把 source_hashes 写入 _meta（updates: key -> source_text）
+    """
+    meta = dst_full.get("_meta")
+    if not isinstance(meta, dict):
+        meta = {}
+
+    meta.setdefault("source_hashes", {})
+    if not isinstance(meta["source_hashes"], dict):
+        meta["source_hashes"] = {}
+
+    for k, src_text in updates.items():
+        meta["source_hashes"][k] = sha(src_text)
+
+    meta["generated_by"] = "i18n_autotranslate.py"
+    meta["source_lang"] = src_lang
+    meta["target_lang"] = dst_lang
+    meta["updated_at_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+    dst_full["_meta"] = meta
+
+
+def process_target_file(
+    *,
+    src_lang: str,
+    dst_lang: str,
+    src_path: Path,
+    dst_path: Path,
+) -> None:
+    """
+    关键修复：
+    - 删除同步后重新 split（否则 plan 用的是旧 dst）
+    - 即使只发生 deletions / hash seed，也要 save_json
+    """
+    src_full = load_json(src_path)
+    src, _ = split_meta(src_full)
+
+    dst_full = load_json(dst_path)
+
+    # 1) 先同步删除，并拿到是否 changed
+    deleted_changed = sync_deletions(src, dst_full)
+
+    # 2) 删除后重新 split（非常关键）
+    dst, dst_meta = split_meta(dst_full)
+
+    # 3) 计算翻译计划
+    needs_translate, needs_hash_seed = build_plan(src, dst, dst_meta)
+
+    # 4) 如需翻译则翻译并写回
+    translated_any = False
+    if needs_translate:
+        translated = translate_batch(src_lang, dst_lang, needs_translate)
+        for k, v in translated.items():
+            dst_full[k] = v
+        translated_any = True
+
+    # 5) 无论是否翻译，只要需要 seed hash，也要写 meta（否则永远不会产生 diff）
+    seed_updates: Dict[str, str] = {}
+
+    for k in needs_hash_seed:
+        seed_updates[k] = src[k]
+
+    # 翻译的 key 也要写 hash
+    for k, v in needs_translate.items():
+        seed_updates[k] = v
+
+    meta_changed = False
+    if seed_updates:
+        before = json.dumps(dst_full.get("_meta", {}), ensure_ascii=False, sort_keys=True)
+        upsert_meta_hashes(dst_full, seed_updates, src_lang, dst_lang)
+        after = json.dumps(dst_full.get("_meta", {}), ensure_ascii=False, sort_keys=True)
+        meta_changed = (before != after)
+
+    # 6) 只要任何一个发生，就保存
+    if deleted_changed or translated_any or meta_changed:
+        save_json(dst_path, dst_full)
+        print(
+            f"[write] {dst_path.name}: "
+            f"translated={len(needs_translate)} "
+            f"seed={len(needs_hash_seed)} "
+            f"deleted={deleted_changed}"
+        )
+    else:
+        print(f"[skip] {dst_path.name}: no changes")
+
+
+def list_target_langs_from_folder() -> List[str]:
+    """
+    使用 i18n 目录现有文件名作为目标语言集合：
+    - 你新增一个 i18n/xx.json，就会自动被纳入管理
+    """
+    langs: List[str] = []
+    if not I18N_DIR.exists():
+        return langs
+    for p in I18N_DIR.glob("*.json"):
+        langs.append(p.stem)  # fr.json -> "fr"
+    return sorted(set(langs))
+
+
+def main() -> None:
+    if not SOURCE_EN.exists():
+        raise FileNotFoundError(f"Missing {SOURCE_EN}")
+    if not SOURCE_ZH.exists():
+        raise FileNotFoundError(f"Missing {SOURCE_ZH}")
+
+    # A) zh -> zh-Hant
+    process_target_file(
+        src_lang="zh",
+        dst_lang=ZH_TRACK_TARGET,
+        src_path=SOURCE_ZH,
+        dst_path=I18N_DIR / f"{ZH_TRACK_TARGET}.json",
+    )
+
+    # B) en -> other langs
+    targets = list_target_langs_from_folder()
+    skip = {"zh", "en", ZH_TRACK_TARGET}
+    for lang in targets:
+        if lang in skip:
+            continue
+        process_target_file(
+            src_lang="en",
+            dst_lang=lang,
+            src_path=SOURCE_EN,
+            dst_path=I18N_DIR / f"{lang}.json",
+        )
+
+
+if __name__ == "__main__":
+    main()
