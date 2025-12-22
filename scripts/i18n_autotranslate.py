@@ -6,7 +6,7 @@ import os
 import time
 import hashlib
 from pathlib import Path
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple, List
 
 from openai import OpenAI
 
@@ -28,7 +28,7 @@ GLOSSARY = {
     "Flows": "Flows",
 }
 
-MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-4.1-mini")
+MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-5-mini")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
@@ -68,49 +68,88 @@ def split_meta(d: Dict[str, Any]) -> Tuple[Dict[str, str], Dict[str, Any]]:
     return core, meta if isinstance(meta, dict) else {}
 
 
-def build_needs_translate(
-    src: Dict[str, str],
-    dst: Dict[str, str],
-    dst_meta: Dict[str, Any],
-) -> Dict[str, str]:
-    """
-    规则：
-    - dst 缺 key：翻译
-    - 源文字变了（hash 不同）：重翻
-    - dst[key] 为空：翻译
-    """
-    dst_hashes = (dst_meta.get("source_hashes") or {})
-    if not isinstance(dst_hashes, dict):
-        dst_hashes = {}
-
-    needs: Dict[str, str] = {}
-    for k, v in src.items():
-        src_hash = sha(v)
-        old_hash = dst_hashes.get(k)
-
-        if k not in dst:
-            needs[k] = v
-        elif not isinstance(dst.get(k), str) or dst.get(k, "").strip() == "":
-            needs[k] = v
-        elif old_hash != src_hash:
-            needs[k] = v
-
-    return needs
+def get_source_hashes(dst_meta: Dict[str, Any]) -> Dict[str, str]:
+    hashes = dst_meta.get("source_hashes")
+    if not isinstance(hashes, dict):
+        return {}
+    # 确保都是 str
+    out: Dict[str, str] = {}
+    for k, v in hashes.items():
+        if isinstance(k, str) and isinstance(v, str):
+            out[k] = v
+    return out
 
 
 def sync_deletions(src: Dict[str, str], dst_full: Dict[str, Any]) -> None:
-    """规则 1：源里删了 key，目标也删（保留 _meta）"""
+    """
+    规则 1：源里删了 key，目标也删（保留 _meta）
+    同时清理 _meta.source_hashes 中已删 key 的 hash（保持 meta 干净）
+    """
+    meta = dst_full.get("_meta")
+    hashes: Dict[str, str] = {}
+    if isinstance(meta, dict):
+        hashes = get_source_hashes(meta)
+
     for k in list(dst_full.keys()):
         if k == "_meta":
             continue
         if k not in src:
             dst_full.pop(k, None)
+            if k in hashes:
+                hashes.pop(k, None)
+
+    if isinstance(meta, dict):
+        meta["source_hashes"] = hashes
+        dst_full["_meta"] = meta
+
+
+def build_plan(
+    src: Dict[str, str],
+    dst: Dict[str, str],
+    dst_meta: Dict[str, Any],
+) -> Tuple[Dict[str, str], List[str]]:
+    """
+    返回 (needs_translate, needs_hash_seed)
+
+    翻译规则：
+    - dst 缺 key：翻译
+    - dst[key] 为空：翻译
+    - 如果 old_hash 存在 且 与 src_hash 不同：重翻
+    - 如果 old_hash 不存在 但 dst 已有翻译：不翻译，只补 hash（防止首次接入全量重翻）
+    """
+    dst_hashes = get_source_hashes(dst_meta)
+
+    needs_translate: Dict[str, str] = {}
+    needs_hash_seed: List[str] = []
+
+    for k, v in src.items():
+        src_hash = sha(v)
+        old_hash = dst_hashes.get(k)
+
+        if k not in dst:
+            needs_translate[k] = v
+            continue
+
+        cur = dst.get(k)
+        if not isinstance(cur, str) or cur.strip() == "":
+            needs_translate[k] = v
+            continue
+
+        # 已有翻译
+        if old_hash is None:
+            # 首次接入：不强制重翻，先补 hash
+            needs_hash_seed.append(k)
+            continue
+
+        if old_hash != src_hash:
+            needs_translate[k] = v
+
+    return needs_translate, needs_hash_seed
 
 
 def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
     """
     批量翻译：输入 JSON，输出必须是 JSON（key 不翻译，value 翻译）
-    JSON mode 需要你在提示里明确要求输出 JSON。 [oai_citation:0‡OpenAI平台](https://platform.openai.com/docs/api-reference/runs)
     """
     system = (
         "You are a professional product localization expert for an Apple-style product website. "
@@ -127,100 +166,4 @@ def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict
         "items": items,
         "extra_rules": [
             "Keep keys unchanged; translate only values.",
-            "Apple-like tone: minimal, confident, not exaggerated.",
-            "Preserve punctuation style for the locale.",
-        ],
-        "output": "JSON object only",
-    }
-
-    # 用 Chat Completions + JSON mode 保证可 parse（更稳）
-    resp = client.chat.completions.create(
-        model=MODEL,
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
-        ],
-        response_format={"type": "json_object"},
-        temperature=0.2,
-    )
-
-    text = resp.choices[0].message.content.strip()
-    data = json.loads(text)
-
-    out: Dict[str, str] = {}
-    for k, v in data.items():
-        out[str(k)] = apply_glossary(str(v))
-    return out
-
-
-def target_langs_from_folder() -> list[str]:
-    """只看 i18n 目录现有的 *.json（按你要求）"""
-    langs = []
-    for p in I18N_DIR.glob("*.json"):
-        langs.append(p.stem)
-    # 去重排序
-    return sorted(set(langs))
-
-
-def process_one_target(target_lang: str, src_lang: str, src_path: Path) -> None:
-    src_full = load_json(src_path)
-    src, _ = split_meta(src_full)
-
-    dst_path = I18N_DIR / f"{target_lang}.json"
-    dst_full = load_json(dst_path)
-    dst, dst_meta = split_meta(dst_full)
-
-    # 规则 1：同步删除
-    sync_deletions(src, dst_full)
-
-    # 规则 2：新增/改动 -> needs translate
-    needs = build_needs_translate(src, dst, dst_meta)
-    if not needs:
-        print(f"[skip] {target_lang}: nothing to translate")
-        return
-
-    print(f"[translate] {src_lang} -> {target_lang}: {len(needs)} keys")
-    translated = translate_batch(src_lang, target_lang, needs)
-
-    # merge 写回（只写字符串 key）
-    for k, v in translated.items():
-        dst_full[k] = v
-
-    # 更新 meta hash（用于下次判断是否改动）
-    meta = dst_full.get("_meta") if isinstance(dst_full.get("_meta"), dict) else {}
-    meta.setdefault("source_hashes", {})
-    if not isinstance(meta["source_hashes"], dict):
-        meta["source_hashes"] = {}
-
-    for k, src_text in needs.items():
-        meta["source_hashes"][k] = sha(src_text)
-
-    meta["generated_by"] = "i18n_autotranslate.py"
-    meta["source_lang"] = src_lang
-    meta["target_lang"] = target_lang
-    dst_full["_meta"] = meta
-
-    save_json(dst_path, dst_full)
-    time.sleep(0.2)  # 轻微限速
-
-
-def main():
-    if not os.getenv("OPENAI_API_KEY"):
-        raise RuntimeError("Missing OPENAI_API_KEY env var")
-
-    # 只看目录里已有语言文件
-    langs = target_langs_from_folder()
-
-    # zh -> zh-Hant
-    if ZH_TRACK_TARGET in langs:
-        process_one_target(ZH_TRACK_TARGET, "zh-Hans", SOURCE_ZH)
-
-    # en -> others（排除 zh/en/zh-Hant）
-    for lang in langs:
-        if lang in ("zh", "en", "zh-Hant"):
-            continue
-        process_one_target(lang, "en", SOURCE_EN)
-
-
-if __name__ == "__main__":
-    main()
+           
