@@ -1,313 +1,533 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title data-i18n="meta.title">WealthX – See your money clearly</title>
-  <meta name="description" data-i18n="meta.description"
-        content="WealthX helps you understand your money flow, budgets, and assets clearly." />
+  <!-- meta 会被 i18n 覆盖 -->
+  <meta name="description" content="WealthX is a personal finance app." data-i18n-attr="content:meta_description" />
+  <meta name="keywords" content="WealthX, budget, expense" data-i18n-attr="content:meta_keywords" />
 
-  <link rel="icon" href="favicon.ico" />
+  <title data-i18n="title">WealthX — See your money clearly.</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <style>
-    :root {
+    :root{
       --bg: #ffffff;
-      --text: #000000;
-      --secondary: #6e6e73;
-      --accent: #0071e3;
-      --border: #e5e5e7;
-      --card-bg: #f5f5f7;
+      --text: #111111;
+      --muted: rgba(60,60,67,0.72);
+      --border: rgba(60,60,67,0.16);
+      --card: rgba(242,242,247,1);
+      --shadow: 0 10px 30px rgba(0,0,0,0.06);
+      --radius: 20px;
+      --max: 1100px;
+      --navh: 64px;
     }
-
-    [data-theme="dark"] {
+    [data-theme="dark"]{
       --bg: #000000;
-      --text: #f5f5f7;
-      --secondary: #a1a1a6;
-      --accent: #0a84ff;
-      --border: #2c2c2e;
-      --card-bg: #1c1c1e;
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(235,235,245,0.60);
+      --border: rgba(235,235,245,0.16);
+      --card: rgba(28,28,30,1);
+      --shadow: 0 18px 50px rgba(0,0,0,0.45);
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                   "Helvetica Neue", Arial, sans-serif;
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display","SF Pro Text","Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    /* ---------- Header ---------- */
-
-    header {
+    /* Top nav */
+    .nav{
       position: sticky;
-      top: 0;
-      z-index: 10;
-      background: var(--bg);
+      top:0;
+      z-index: 20;
+      height: var(--navh);
+      backdrop-filter: saturate(180%) blur(18px);
+      -webkit-backdrop-filter: saturate(180%) blur(18px);
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
       border-bottom: 1px solid var(--border);
     }
-
-    .nav {
-      max-width: 1100px;
+    .nav-inner{
+      max-width: var(--max);
+      height: 100%;
       margin: 0 auto;
-      padding: 14px 24px;
+      padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 18px;
-    }
-
-    .brand img {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
       gap: 16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 180px;
+    }
+    .brand img{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .brand .name{
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color: var(--text);
       font-size: 14px;
+      opacity: 0.9;
     }
+    .nav-links a:hover{ opacity: 1; }
 
-    .nav-actions a {
-      text-decoration: none;
-      color: var(--text);
+    .nav-controls{
+      display:flex;
+      align-items:center;
+      gap: 10px;
     }
-
-    .nav-actions a:hover {
-      color: var(--accent);
-    }
-
-    select {
-      background: transparent;
-      color: var(--text);
+    .btn{
+      appearance: none;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 4px 6px;
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn:hover{ filter: brightness(1.02); }
+    select.btn{
+      padding-right: 30px;
     }
 
-    /* ---------- Layout ---------- */
-
-    main {
-      max-width: 1100px;
+    /* Layout */
+    .wrap{
+      max-width: var(--max);
       margin: 0 auto;
-      padding: 80px 24px;
+      padding: 42px 20px 80px;
     }
 
-    section {
-      margin-bottom: 120px;
-    }
-
-    /* ---------- Hero ---------- */
-
-    .hero {
+    /* Hero */
+    .hero{
+      padding: 52px 0 36px;
       text-align: center;
-      margin-bottom: 140px;
+    }
+    .hero h1{
+      margin: 0;
+      font-size: clamp(40px, 5.5vw, 72px);
+      line-height: 1.03;
+      letter-spacing: -0.04em;
+      font-weight: 750;
+    }
+    .hero p{
+      margin: 14px auto 0;
+      max-width: 760px;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 1.5;
+      color: var(--muted);
     }
 
-    .hero h1 {
-      font-size: 48px;
-      font-weight: 700;
+    /* Cards */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 18px;
       letter-spacing: -0.02em;
     }
-
-    .hero p {
-      font-size: 20px;
-      color: var(--secondary);
-      margin-top: 20px;
-    }
-
-    /* ---------- Feature Grid ---------- */
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 28px;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-    }
-
-    .card p {
+    .card p{
       margin: 0;
-      color: var(--secondary);
+      color: var(--muted);
       line-height: 1.5;
+      font-size: 14.5px;
     }
 
-    /* ---------- Privacy ---------- */
-
-    .privacy h2 {
-      margin-bottom: 20px;
+    /* Sections */
+    .section{
+      margin-top: 60px;
     }
-
-    .privacy p,
-    .privacy li {
-      color: var(--secondary);
+    .section h2{
+      margin: 0 0 12px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+    .section .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
       line-height: 1.6;
     }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--secondary);
-      font-size: 13px;
+    .divider{
+      height: 1px;
+      background: var(--border);
+      margin: 44px 0;
     }
+
+    /* Privacy text */
+    .legal{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .legal h3{
+      margin: 18px 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+    .legal h3:first-child{ margin-top: 0; }
+    .legal p, .legal li{
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .legal ul{ margin: 8px 0 0; padding-left: 18px; }
+
+    footer{
+      margin-top: 70px;
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer a{ color: inherit; }
   </style>
 </head>
 
 <body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="WealthX logo.png" alt="WealthX" />
+        <div class="name" data-i18n="app_name">WealthX</div>
+      </div>
 
-<header>
-  <div class="nav">
-    <div class="brand">
-      <img src="WealthX logo.png" alt="WealthX" />
-      <span>WealthX</span>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
+      </nav>
+
+      <div class="nav-controls">
+        <button class="btn" id="themeBtn" type="button" data-i18n="toggle_theme">Display Theme</button>
+
+        <select class="btn" id="langSwitch" aria-label="Language">
+          <option value="zh" data-i18n="lang_zh">简体中文</option>
+          <option value="zh-Hant" data-i18n="lang_zh-Hant">繁體中文</option>
+
+          <option value="en" data-i18n="lang_en">English</option>
+          <option value="en-GB" data-i18n="lang_en-GB">English (UK)</option>
+
+          <option value="ja" data-i18n="lang_ja">日本語</option>
+          <option value="ko" data-i18n="lang_ko">한국어</option>
+
+          <option value="fr" data-i18n="lang_fr">Français</option>
+          <option value="de" data-i18n="lang_de">Deutsch</option>
+
+          <!-- 你截图里还有：印地/意大利/波兰/瑞典/葡萄牙/西班牙/丹麦/阿拉伯… -->
+          <option value="es" data-i18n="lang_es">Español</option>
+          <option value="pt" data-i18n="lang_pt">Português</option>
+          <option value="it" data-i18n="lang_it">Italiano</option>
+          <option value="pl" data-i18n="lang_pl">Polski</option>
+          <option value="sv" data-i18n="lang_sv">Svenska</option>
+          <option value="da" data-i18n="lang_da">Dansk</option>
+          <option value="hi" data-i18n="lang_hi">हिन्दी</option>
+          <option value="ar" data-i18n="lang_ar">العربية</option>
+        </select>
+      </div>
     </div>
+  </header>
 
-    <div class="nav-actions">
-      <a href="#features" data-i18n="nav.features">Features</a>
-      <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+  <main class="wrap">
+    <section class="hero" id="top">
+      <h1 data-i18n="hero_title">See your money clearly.</h1>
+      <p data-i18n="hero_subtitle">Understand cash flow, budgets, and assets — effortlessly.</p>
+    </section>
 
-      <button onclick="toggleTheme()">🌗</button>
+    <section id="features" class="section">
+      <h2 data-i18n="features_title">Features</h2>
+      <p class="sub" data-i18n="features_subtitle">Build better money habits with structure and clarity.</p>
 
-      <select id="lang-switch">
-        <option value="zh">简体</option>
-        <option value="zh-Hant">繁體</option>
-        <option value="en">EN</option>
-        <option value="ja">日本語</option>
-        <option value="ko">한국어</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="it">Italiano</option>
-        <option value="es">Español</option>
-        <option value="pt">Português</option>
-        <option value="pl">Polski</option>
-        <option value="sv">Svenska</option>
-        <option value="hi">हिन्दी</option>
-        <option value="id">Bahasa</option>
-      </select>
-    </div>
-  </div>
-</header>
+      <div class="grid" role="list">
+        <div class="card" role="listitem">
+          <h3 data-i18n="card_accounts_title">Accounts</h3>
+          <p data-i18n="card_accounts_desc">Manage assets and liabilities with clarity.</p>
+        </div>
 
-<main>
+        <div class="card" role="listitem">
+          <h3 data-i18n="card_budgets_title">Budgets</h3>
+          <p data-i18n="card_budgets_desc">Monthly, yearly, and project-based budgets.</p>
+        </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1 data-i18n="hero.title">See your money clearly.</h1>
-    <p data-i18n="hero.subtitle">
-      Understand cash flow, budgets, and assets — effortlessly.
-    </p>
-  </section>
+        <div class="card" role="listitem">
+          <h3 data-i18n="card_flows_title">Flows</h3>
+          <p data-i18n="card_flows_desc">Automate recurring transactions and habits.</p>
+        </div>
 
-  <!-- Features -->
-  <section id="features">
-    <div class="features">
+        <div class="card" role="listitem">
+          <h3 data-i18n="card_insights_title">Insights</h3>
+          <p data-i18n="card_insights_desc">Visualize trends and financial health.</p>
+        </div>
+      </div>
+    </section>
 
-      <div class="card">
-        <h3 data-i18n="features.accounts.title">Accounts</h3>
-        <p data-i18n="features.accounts.desc">
-          Manage assets and liabilities with clarity.
+    <div class="divider"></div>
+
+    <section id="privacy" class="section">
+      <h2 data-i18n="privacy_title">Privacy</h2>
+      <p class="sub" data-i18n="privacy_subtitle">Your data stays with you — stored locally or in iCloud.</p>
+
+      <div class="legal">
+        <p>
+          <strong data-i18n="privacy_effective">Effective Date:</strong>
+          <span data-i18n="privacy_date">2025-08-03</span>
+        </p>
+
+        <h3 data-i18n="privacy_sec1">1. Information We Collect</h3>
+        <ul>
+          <li data-i18n="privacy_item1">Transaction data for core features.</li>
+          <li data-i18n="privacy_item2">Location (optional) for tagging spending places.</li>
+          <li data-i18n="privacy_item3">Icons you choose (emoji, SF Symbols, custom images).</li>
+          <li data-i18n="privacy_item4">iCloud sync (optional) via your own iCloud account.</li>
+        </ul>
+
+        <h3 data-i18n="privacy_sec2">2. How We Use Your Data</h3>
+        <ul>
+          <li data-i18n="privacy_use1">To provide and improve app features.</li>
+          <li data-i18n="privacy_use2">To keep data consistent across devices.</li>
+          <li data-i18n="privacy_use3">No ads — never used for marketing.</li>
+        </ul>
+
+        <h3 data-i18n="privacy_sec3">3. Sharing & Disclosure</h3>
+        <p data-i18n="privacy_share_p">We do not sell or share your data. Disclosure only when legally required.</p>
+
+        <h3 data-i18n="privacy_sec4">4. Storage & Security</h3>
+        <p data-i18n="privacy_storage_p">Data is stored locally or in iCloud (optional), protected by Apple system security.</p>
+
+        <h3 data-i18n="privacy_sec7">7. Contact</h3>
+        <p data-i18n="privacy_contact_p">
+          Questions? Email us at <a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>.
         </p>
       </div>
+    </section>
 
-      <div class="card">
-        <h3 data-i18n="features.budgets.title">Budgets</h3>
-        <p data-i18n="features.budgets.desc">
-          Monthly, yearly, and project-based budgets.
-        </p>
+    <footer>
+      <div>© <span id="year"></span> WealthX</div>
+      <div>
+        <a href="#privacy" data-i18n="footer_privacy">Privacy</a>
       </div>
+    </footer>
+  </main>
 
-      <div class="card">
-        <h3 data-i18n="features.flows.title">Flows</h3>
-        <p data-i18n="features.flows.desc">
-          Automate recurring transactions and habits.
-        </p>
-      </div>
+  <script>
+    // ---------- Utilities ----------
+    const AVAILABLE = [
+      "zh","zh-Hant",
+      "en","en-GB",
+      "ja","ko","fr","de",
+      "es","pt","it","pl","sv","da","hi","ar"
+    ];
 
-      <div class="card">
-        <h3 data-i18n="features.visuals.title">Insights</h3>
-        <p data-i18n="features.visuals.desc">
-          Visualize trends and financial health.
-        </p>
-      </div>
+    function normalizeLang(input) {
+      if (!input) return "en";
+      const raw = String(input).replace("_","-").trim();
 
-    </div>
-  </section>
+      // exact match first
+      if (AVAILABLE.includes(raw)) return raw;
 
-  <!-- Privacy -->
-  <section id="privacy" class="privacy">
-    <h2 data-i18n="privacy.title">Privacy by design</h2>
-    <p data-i18n="privacy.intro">
-      WealthX does not collect personal data. Your data stays on your device or iCloud.
-    </p>
-    <ul>
-      <li data-i18n="privacy.items.local">Local-first storage</li>
-      <li data-i18n="privacy.items.icloud">Optional iCloud sync</li>
-      <li data-i18n="privacy.items.noads">No ads. No tracking.</li>
-    </ul>
-  </section>
+      const lower = raw.toLowerCase();
 
-</main>
+      // map common variants
+      if (lower.startsWith("zh-hant") || lower === "zh-tw" || lower === "zh-hk" || lower === "zh-mo") return "zh-Hant";
+      if (lower.startsWith("zh")) return "zh";
 
-<footer>
-  © 2025 DAI ZICONG · WealthX
-</footer>
+      if (lower.startsWith("en-gb") || lower === "en-uk") return "en-GB";
+      if (lower.startsWith("en")) return "en";
 
-<script>
-  function toggleTheme() {
-    document.documentElement.toggleAttribute("data-theme", "dark");
-  }
+      // use primary subtag fallback: fr-CA -> fr
+      const primary = raw.split("-")[0];
+      if (AVAILABLE.includes(primary)) return primary;
 
-  const available = [
-    'zh','zh-Hant','en','ja','ko','fr','de','it','es','pt','pl','sv','hi','id'
-  ];
+      return "en";
+    }
 
-  let lang =
-    new URLSearchParams(location.search).get('lang') ||
-    navigator.language.slice(0,2);
+    function getLangFromURL() {
+      const sp = new URLSearchParams(location.search);
+      const v = sp.get("lang");
+      return normalizeLang(v);
+    }
 
-  if (!available.includes(lang)) lang = 'en';
+    function setLangToURL(lang) {
+      const url = new URL(location.href);
+      url.searchParams.set("lang", lang);
+      history.replaceState(null, "", url);
+    }
 
-  document.getElementById('lang-switch').value = lang;
+    function setHtmlLang(lang){
+      document.documentElement.setAttribute("lang", lang);
+      // RTL support (Arabic)
+      document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+    }
 
-  function loadI18n() {
-    fetch(`i18n/${lang}.json`)
-      .then(r => r.json())
-      .then(dict => {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.dataset.i18n;
-          if (dict[key]) el.textContent = dict[key];
-        });
+    // ---------- Theme ----------
+    const THEME_KEY = "wx_theme";
+    function initTheme() {
+      const saved = localStorage.getItem(THEME_KEY);
+      if (saved === "dark") document.documentElement.setAttribute("data-theme","dark");
+    }
+    function toggleTheme(){
+      const root = document.documentElement;
+      const isDark = root.getAttribute("data-theme") === "dark";
+      if (isDark) {
+        root.removeAttribute("data-theme");
+        localStorage.setItem(THEME_KEY,"light");
+      } else {
+        root.setAttribute("data-theme","dark");
+        localStorage.setItem(THEME_KEY,"dark");
+      }
+    }
+
+    // ---------- i18n ----------
+    let lang = "en";
+    let dictEN = null;
+
+    async function fetchJSON(url){
+      // cache busting
+      const u = url + (url.includes("?") ? "&" : "?") + "v=" + Date.now();
+      const res = await fetch(u, { cache: "no-store" });
+      if (!res.ok) throw new Error("Fetch failed: " + res.status + " " + u);
+      return await res.json();
+    }
+
+    async function loadDict(l){
+      // 你的目录是 i18n/<lang>.json
+      // 确保文件名就是：en.json / zh.json / zh-Hant.json / en-GB.json ...
+      return await fetchJSON(`i18n/${l}.json`);
+    }
+
+    function applyText(dict){
+      // 普通文本节点
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        const v = dict[key] ?? dictEN?.[key];
+        if (v == null) {
+          // 没有就保留原文，但给 warning 方便你补 key
+          console.warn("[i18n missing]", lang, key);
+          return;
+        }
+        el.textContent = v;
       });
-  }
 
-  document.getElementById('lang-switch').addEventListener('change', e => {
-    lang = e.target.value;
-    const url = new URL(location);
-    url.searchParams.set('lang', lang);
-    history.replaceState(null, '', url);
-    loadI18n();
-  });
+      // 属性类（meta 等）
+      document.querySelectorAll("[data-i18n-attr]").forEach(el => {
+        // format: "attrName:key"
+        const spec = el.getAttribute("data-i18n-attr");
+        const [attr, key] = spec.split(":").map(s => s.trim());
+        if (!attr || !key) return;
 
-  loadI18n();
-</script>
+        const v = dict[key] ?? dictEN?.[key];
+        if (v == null) {
+          console.warn("[i18n missing]", lang, key);
+          return;
+        }
+        el.setAttribute(attr, v);
+      });
 
+      // title（可选：如果你想 title 用单独 key，也可在 dict 里配）
+      const t = dict["title"] ?? dictEN?.["title"];
+      if (t) document.title = t;
+    }
+
+    async function setLanguage(nextLang){
+      lang = normalizeLang(nextLang);
+      setLangToURL(lang);
+      setHtmlLang(lang);
+
+      // 先确保英文 fallback 存在
+      if (!dictEN) {
+        try { dictEN = await loadDict("en"); }
+        catch(e){ console.error("Missing i18n/en.json", e); dictEN = {}; }
+      }
+
+      // 再加载目标语言
+      let dict = {};
+      try {
+        dict = await loadDict(lang);
+      } catch(e){
+        console.warn("Failed to load dict for", lang, e);
+        dict = dictEN || {};
+      }
+
+      applyText(dict);
+      document.getElementById("langSwitch").value = lang;
+    }
+
+    // ---------- Boot ----------
+    document.getElementById("themeBtn").addEventListener("click", toggleTheme);
+    document.getElementById("langSwitch").addEventListener("change", (e) => setLanguage(e.target.value));
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+
+    (async function boot(){
+      initTheme();
+
+      // URL lang > browser lang > default
+      const fromURL = getLangFromURL();
+      const fromBrowser = normalizeLang(navigator.language || navigator.userLanguage);
+      const initial = fromURL || fromBrowser || "en";
+
+      await setLanguage(initial);
+    })();
+
+    /*
+      ✅ 你需要在 i18n/*.json 中至少提供这些 key（新页面）：
+      meta_description, meta_keywords, title,
+      app_name, nav_features, nav_privacy, toggle_theme,
+      lang_zh, lang_zh-Hant, lang_en, lang_en-GB, lang_ja, lang_ko, lang_fr, lang_de, lang_es, lang_pt, lang_it, lang_pl, lang_sv, lang_da, lang_hi, lang_ar,
+      hero_title, hero_subtitle,
+      features_title, features_subtitle,
+      card_accounts_title, card_accounts_desc,
+      card_budgets_title, card_budgets_desc,
+      card_flows_title, card_flows_desc,
+      card_insights_title, card_insights_desc,
+      privacy_title, privacy_subtitle, privacy_effective, privacy_date,
+      privacy_sec1, privacy_item1, privacy_item2, privacy_item3, privacy_item4,
+      privacy_sec2, privacy_use1, privacy_use2, privacy_use3,
+      privacy_sec3, privacy_share_p,
+      privacy_sec4, privacy_storage_p,
+      privacy_sec7, privacy_contact_p,
+      footer_privacy
+    */
+  </script>
 </body>
 </html>
