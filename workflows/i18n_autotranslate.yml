@@ -45,4 +45,4 @@ jobs:
           git add i18n/*.json
           git diff --cached --quiet && echo "No i18n changes" && exit 0
           git commit -m "chore(i18n): auto-translate"
-          git push
+          git push origin HEAD:${GITHUB_REF_NAME}
