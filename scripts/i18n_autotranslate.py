@@ -191,15 +191,14 @@ def _call_openai_translate(src_lang: str, dst_lang: str, items: Dict[str, str]) 
         "output": "JSON object only"
     }
 
-    resp = client.chat.completions.create(
-        model=MODEL,
-        messages=[
-            {"role": "system", "content": system},
-            {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
-        ],
-        response_format={"type": "json_object"},
-        temperature=0.2,
-    )
+resp = client.chat.completions.create(
+    model=MODEL,
+    messages=[
+        {"role": "system", "content": system},
+        {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
+    ],
+    response_format={"type": "json_object"},
+)  
 
     text = resp.choices[0].message.content.strip()
     data = json.loads(text)
