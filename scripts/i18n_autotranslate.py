@@ -156,7 +156,7 @@ def generate_from_source(source_path: Path, targets: Dict[str, str], src_lang: s
 
 
 def main():
-    if not os.getenv("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"):
+    if not os.getenv("OPENAI_API_KEY"):
         raise RuntimeError("Missing OPENAI_API_KEY env var")
 
     generate_from_source(SOURCE_ZH, ZH_TRACK, "zh-Hans")
