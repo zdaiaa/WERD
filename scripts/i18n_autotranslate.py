@@ -166,4 +166,28 @@ def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict
         "items": items,
         "extra_rules": [
             "Keep keys unchanged; translate only values.",
-           
+            "Apple-like tone: minimal, confident, not exaggerated.",
+            "Preserve punctuation style for the locale.",
+            "Keep email/URLs/phone numbers unchanged.",
+            "Do not translate product/brand names such as WealthX and glossary terms."
+        ],
+        "output": "JSON object only"
+    }
+
+    resp = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
+        ],
+        response_format={"type": "json_object"},
+        temperature=0.2,
+    )
+
+    text = resp.choices[0].message.content.strip()
+    data = json.loads(text)
+
+    out: Dict[str, str] = {}
+    for k, v in data.items():
+        out[str(k)] = apply_glossary(str(v))
+    return out
