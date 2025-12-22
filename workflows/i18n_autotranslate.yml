@@ -13,9 +13,14 @@ permissions:
 
 jobs:
   translate:
+    # 防止 action 自己 commit 又触发自己
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -29,7 +34,6 @@ jobs:
       - name: Run auto-translate
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          # 可选：指定模型
           OPENAI_I18N_MODEL: gpt-4.1-mini
         run: |
           python scripts/i18n_autotranslate.py
