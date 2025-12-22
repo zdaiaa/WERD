@@ -1,0 +1,43 @@
+name: i18n auto-translate
+
+on:
+  push:
+    paths:
+      - "i18n/zh.json"
+      - "i18n/en.json"
+      - "scripts/i18n_autotranslate.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install --upgrade pip
+          pip install openai
+
+      - name: Run auto-translate
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # 可选：指定模型
+          OPENAI_I18N_MODEL: gpt-4.1-mini
+        run: |
+          python scripts/i18n_autotranslate.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "i18n-bot"
+          git config user.email "i18n-bot@users.noreply.github.com"
+          git add i18n/*.json
+          git diff --cached --quiet || git commit -m "chore(i18n): auto-translate"
+          git push
