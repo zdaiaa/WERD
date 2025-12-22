@@ -43,5 +43,6 @@ jobs:
           git config user.name "i18n-bot"
           git config user.email "i18n-bot@users.noreply.github.com"
           git add i18n/*.json
-          git diff --cached --quiet || git commit -m "chore(i18n): auto-translate"
+          git diff --cached --quiet && echo "No i18n changes" && exit 0
+          git commit -m "chore(i18n): auto-translate"
           git push
