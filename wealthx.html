@@ -3,100 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ meta 支持 i18n（下面 JS 会自动写入 content） -->
   <meta name="description" content="WealthX 是你的智能记账伙伴，助你轻松管理资产、预算与消费。" data-i18n="meta_description" />
   <meta name="keywords" content="WealthX, 记账, 财务管理, 预算分析, 数据可视化" data-i18n="meta_keywords" />
   <meta name="author" content="WERD Team" />
+
   <title data-i18n="title">WealthX - 看清钱的流动，习惯自然改变</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
   <style>
     :root {
       --bg: #ffffff;
       --text: #000000;
       --highlight: #69BFFF;
       --sidebar-highlight: #e6f0ff;
+      --border: rgba(0,0,0,0.12);
     }
     [data-theme="dark"] {
       --bg: #1e1e1e;
       --text: #f0f0f0;
       --highlight: #69BFFF;
       --sidebar-highlight: #003366;
+      --border: rgba(255,255,255,0.16);
     }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.25s ease, color 0.25s ease;
     }
+
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
     }
+
     header img { height: 36px; margin-right: 10px; }
+
     nav a {
-      margin-left: 1.5rem;
+      margin-left: 1.25rem;
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
+      opacity: 0.9;
     }
-    nav a:hover { color: var(--highlight); }
-    .theme-toggle { cursor: pointer; margin-left: 1rem; }
-    #lang-switch { margin-left: 1rem; }
+    nav a:hover { color: var(--highlight); opacity: 1; }
+
+    .theme-toggle { cursor: pointer; margin-left: 1rem; user-select: none; }
+    #lang-switch { margin-left: 1rem; padding: 0.25rem 0.4rem; border-radius: 8px; }
+
     .container { display: flex; }
+
     aside {
-      width: 200px;
+      width: 220px;
       padding: 1rem;
-      border-right: 1px solid #ccc;
+      border-right: 1px solid var(--border);
+      position: sticky;
+      top: 72px;
+      align-self: flex-start;
+      height: calc(100vh - 72px);
+      overflow: auto;
     }
+
     aside a {
       display: block;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       text-decoration: none;
       color: var(--text);
-      padding: 0.5rem;
-      border-radius: 6px;
+      padding: 0.55rem 0.6rem;
+      border-radius: 10px;
+      opacity: 0.9;
     }
+    aside a:hover { background: rgba(105,191,255,0.10); opacity: 1; }
     aside a.active {
       background-color: var(--sidebar-highlight);
-      font-weight: bold;
+      font-weight: 700;
+      opacity: 1;
     }
-    main { flex: 1; padding: 2rem; }
+
+    main { flex: 1; padding: 2rem; max-width: 980px; }
+
     h2, h3 { margin-top: 0; }
+
     .logo-img {
       width: 40px;
       height: 40px;
-      border-radius: 8px;
+      border-radius: 10px;
       object-fit: cover;
     }
-    /* 新增：限制 screenshot 大小 */
+
     .screenshots img {
       display: block;
-      max-width: 300px;
+      max-width: 320px;
       width: 100%;
       height: auto;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
-    
+
     section { display: none; }
     section.active { display: block; }
+
+    /* small screens */
+    @media (max-width: 860px) {
+      header { padding: 0.9rem 1rem; }
+      .container { display: block; }
+      aside {
+        width: auto;
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      main { padding: 1.25rem; }
+      nav a { display: none; } /* 简化：移动端先隐藏 nav 链接 */
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div style="display: flex; align-items: center;">
       <img src="WealthX logo.png" alt="WealthX Logo" class="logo-img">
       <h1 style="margin: 0; font-size: 1.5rem; color: var(--highlight);" data-i18n="app_name">WealthX</h1>
     </div>
+
     <nav>
       <a href="index.html" data-i18n="nav_home">首页</a>
       <a href="wealthx.html" data-i18n="nav_overview">WealthX</a>
       <a href="#contact" data-i18n="nav_feedback">意见留言</a>
+
       <span class="theme-toggle" onclick="toggleTheme()" data-i18n="toggle_theme">🌗 切换模式</span>
-      <select id="lang-switch">
+
+      <!-- ✅ 补齐 App 支持语言 -->
+      <select id="lang-switch" aria-label="Language Switch">
         <option value="zh"      data-i18n="lang_zh">简体</option>
         <option value="zh-Hant" data-i18n="lang_zh-T">繁體</option>
         <option value="en"      data-i18n="lang_en">EN</option>
@@ -104,13 +155,21 @@
         <option value="ko"      data-i18n="lang_ko">한국어</option>
         <option value="fr"      data-i18n="lang_fr">Français</option>
         <option value="de"      data-i18n="lang_de">Deutsch</option>
+
+        <option value="id"      data-i18n="lang_id">Bahasa Indonesia</option>
+        <option value="it"      data-i18n="lang_it">Italiano</option>
+        <option value="pl"      data-i18n="lang_pl">Polski</option>
+        <option value="sv"      data-i18n="lang_sv">Svenska</option>
+        <option value="pt"      data-i18n="lang_pt">Português</option>
+        <option value="es"      data-i18n="lang_es">Español</option>
+        <option value="hi"      data-i18n="lang_hi">हिन्दी</option>
       </select>
     </nav>
   </header>
 
   <div class="container">
     <aside>
-      <a href="#overview"    onclick="switchTab(event,'overview')" data-i18n="sidebar_overview">概览</a>
+      <a href="#overview"    onclick="switchTab(event,'overview')" data-i18n="sidebar_overview" class="active">概览</a>
       <a href="#privacy"     onclick="switchTab(event,'privacy')"  data-i18n="sidebar_privacy">隐私政策</a>
       <a href="#accounts"    onclick="switchTab(event,'accounts')" data-i18n="sidebar_accounts">账户管理</a>
       <a href="#budgets"     onclick="switchTab(event,'budgets')"  data-i18n="sidebar_budgets">预算管理</a>
@@ -120,17 +179,20 @@
     </aside>
 
     <main>
-    <section id="overview" class="active">
+      <section id="overview" class="active">
         <h2 style="color: var(--highlight);" data-i18n="overview_heading">看清钱的流动，习惯自然改变。</h2>
         <p data-i18n="overview_p1">从现在起，和 WealthX 一起开启专属你的财务旅程。</p>
-        <p data-i18n="overview_p2">这不仅是一款记账 App，<br>更是你财务管理的智能伙伴。<br>从今天开始，<br>用 WealthX 轻松打造属于自己的财富地图。</p>
 
-  <div class="overview-contact" style="margin-top: 2rem;">
-    <h3 data-i18n="overview_contact_title">联系我们</h3>
-    <p data-i18n="overview_contact_email">邮箱：ericdai2013@gmail.com</p>
-    <p data-i18n="overview_contact_whatsapp">WhatsApp：+852 95542811</p>
-  </div>
-        
+        <!-- ✅ 如果你未来想保留 <br>，可以把 dict 写成带 <br> 的 HTML，并给这个元素加 data-i18n-html -->
+        <p data-i18n="overview_p2" data-i18n-html>
+          这不仅是一款记账 App，<br>更是你财务管理的智能伙伴。<br>从今天开始，<br>用 WealthX 轻松打造属于自己的财富地图。
+        </p>
+
+        <div class="overview-contact" id="contact" style="margin-top: 2rem;">
+          <h3 data-i18n="overview_contact_title">联系我们</h3>
+          <p data-i18n="overview_contact_email">邮箱：ericdai2013@gmail.com</p>
+          <p data-i18n="overview_contact_whatsapp">WhatsApp：+852 95542811</p>
+        </div>
       </section>
 
       <section id="privacy">
@@ -172,7 +234,9 @@
         <p data-i18n="privacy_update_p">我们可能会不定期更新本隐私政策，页面顶部「生效日期」会相应更新。建议您定期查看。</p>
 
         <h3 style="color: var(--highlight);" data-i18n="privacy_sec7">7. 联系我们</h3>
-        <p data-i18n="privacy_contact_p">如有疑问或建议，请发送邮件至 <a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>。</p>
+        <p data-i18n="privacy_contact_p">
+          如有疑问或建议，请发送邮件至 <a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>。
+        </p>
       </section>
 
       <section id="accounts">
@@ -184,7 +248,7 @@
       <section id="budgets">
         <h2 style="color: var(--highlight);" data-i18n="budgets_title">📅 预算管理</h2>
         <p data-i18n="budgets_desc">月/季/年/项目预算，预算流向雷达图</p>
-         <div class="screenshots" data-section="budget"></div>
+        <div class="screenshots" data-section="budget"></div>
       </section>
 
       <section id="transactions">
@@ -196,7 +260,7 @@
       <section id="visual">
         <h2 style="color: var(--highlight);" data-i18n="visual_title">📊 数据可视化</h2>
         <p data-i18n="visual_desc">资产走势、预算进度、雷达图分析</p>
-         <div class="screenshots" data-section="visualization"></div>
+        <div class="screenshots" data-section="visualization"></div>
       </section>
 
       <section id="security">
@@ -206,102 +270,197 @@
     </main>
   </div>
 
-<script>
-  // 切主题（不动）
-  function toggleTheme() {
-    const root = document.documentElement;
-    root.getAttribute("data-theme") === "dark"
-      ? root.removeAttribute("data-theme")
-      : root.setAttribute("data-theme", "dark");
-  }
+  <script>
+    // ✅ 切主题（保持你原逻辑）
+    function toggleTheme() {
+      const root = document.documentElement;
+      root.getAttribute("data-theme") === "dark"
+        ? root.removeAttribute("data-theme")
+        : root.setAttribute("data-theme", "dark");
+    }
 
-  // (1) 切侧栏 + section
-function switchTab(event, id) {
-  event.preventDefault();
-  history.replaceState(null, '', `#${id}`);
-  document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
-  const link = event.target.closest("a");
-  if (link) link.classList.add("active");
-  
-  document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
-  
-  const sec = document.getElementById(id);
-  if (sec) sec.classList.add("active");
-}
+    // ✅ 切侧栏 + section
+    function switchTab(event, id) {
+      event.preventDefault();
+      history.replaceState(null, '', `#${id}`);
 
-  // (2) 根据 URL hash 激活对应 tab（供初始 & 切语言后调用）
-  function activateByHash() {
-    document.querySelectorAll("aside a, main section").forEach(el => el.classList.remove("active"));
-    const id = location.hash.slice(1);
-    if (id) {
-      const initialLink = document.querySelector(`aside a[href="#${id}"]`);
-      if (initialLink) initialLink.classList.add("active");
-      
+      document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
+      const link = event.target.closest("a");
+      if (link) link.classList.add("active");
+
+      document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
       const sec = document.getElementById(id);
       if (sec) sec.classList.add("active");
     }
-    // 否则保留 HTML 里给 overview 的默认 active
-  }
 
-  // (3) 加载文案 & 注入截图
-  function loadI18nAndScreenshots() {
-    // a) 文案
-    fetch(`i18n/${lang}.json`)
-      .then(r => r.json())
-      .then(dict => {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[key] != null) el.textContent = dict[key];
+    // ✅ 根据 URL hash 激活 tab（供初始 & 切语言后调用）
+    function activateByHash() {
+      const id = location.hash.slice(1);
+
+      // 先清掉
+      document.querySelectorAll("aside a").forEach(a => a.classList.remove("active"));
+      document.querySelectorAll("main section").forEach(s => s.classList.remove("active"));
+
+      // 有 hash -> 激活对应
+      if (id) {
+        const initialLink = document.querySelector(`aside a[href="#${id}"]`);
+        if (initialLink) initialLink.classList.add("active");
+
+        const sec = document.getElementById(id);
+        if (sec) sec.classList.add("active");
+        return;
+      }
+
+      // 没 hash -> 默认 overview
+      const defaultLink = document.querySelector(`aside a[href="#overview"]`);
+      if (defaultLink) defaultLink.classList.add("active");
+      const defaultSec = document.getElementById("overview");
+      if (defaultSec) defaultSec.classList.add("active");
+    }
+
+    // ✅ 支持的语言（与 i18n 文件名一致）
+    const available = ['zh','zh-Hant','en','ja','ko','fr','de','id','it','pl','sv','pt','es','hi'];
+
+    // ✅ 浏览器语言/地区语言映射到你的文件名
+    function normalizeLang(input) {
+      if (!input) return 'zh';
+      const raw = String(input).trim();
+      if (available.includes(raw)) return raw;
+
+      const map = {
+        'zh-hant': 'zh-Hant',
+        'zh-hk': 'zh-Hant',
+        'zh-tw': 'zh-Hant',
+        'zh-mo': 'zh-Hant',
+
+        'en-gb': 'en',
+        'en-au': 'en',
+        'en-nz': 'en',
+        'en-ca': 'en',
+        'en-in': 'en',
+
+        'pt-br': 'pt',
+        'pt-pt': 'pt',
+
+        'es-es': 'es',
+        'es-mx': 'es',
+
+        'id-id': 'id',
+        'it-it': 'it',
+        'pl-pl': 'pl',
+        'sv-se': 'sv',
+        'hi-in': 'hi',
+
+        'de-de': 'de',
+        'de-at': 'de',
+        'de-ch': 'de',
+
+        'fr-fr': 'fr',
+        'fr-ca': 'fr'
+      };
+
+      const lower = raw.toLowerCase();
+      if (map[lower]) return map[lower];
+
+      const base = lower.split('-')[0];
+      if (available.includes(base)) return base;
+
+      return 'zh';
+    }
+
+    // ✅ i18n 写入：支持 meta(content)、title、普通文本、以及 data-i18n-html（innerHTML）
+    function applyI18n(dict) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] == null) return;
+
+        const val = dict[key];
+
+        // meta 标签 -> 写 content
+        if (el.tagName === 'META') {
+          el.setAttribute('content', val);
+          return;
+        }
+
+        // title -> textContent
+        if (el.tagName === 'TITLE') {
+          el.textContent = val;
+          return;
+        }
+
+        // 允许 HTML（用于 <br>）
+        if (el.hasAttribute('data-i18n-html')) {
+          el.innerHTML = val;
+          return;
+        }
+
+        // 默认 text
+        el.textContent = val;
+      });
+
+      // 同步 html lang（SEO & 可访问性更好）
+      document.documentElement.setAttribute('lang', lang === 'zh-Hant' ? 'zh-Hant' : lang);
+    }
+
+    // ✅ 注入截图（保持你原逻辑）
+    function loadScreenshots() {
+      return fetch('screenshots.json')
+        .then(r => r.json())
+        .then(cfg => {
+          document.querySelectorAll('.screenshots').forEach(container => {
+            container.innerHTML = '';
+            const section = container.dataset.section;
+            const list = (cfg[section] || {})[lang] || [];
+
+            list.forEach(fname => {
+              const img = document.createElement('img');
+              img.src = `screenshot/${section}/${lang}/${fname}`;
+              img.loading = 'lazy';
+              container.append(img);
+            });
+          });
         });
-      })
-      // b) 截图
-.then(() => fetch('screenshots.json'))
-.then(r => r.json())
-.then(cfg => {
-  document.querySelectorAll('.screenshots').forEach(container => {
-    // 1. 清空旧图
-    container.innerHTML = '';
-    // 2. 从 data-section 拿到正确的「单数」目录名
-    const section = container.dataset.section;      // e.g. "account", "budget", "transaction", "visualization"
-     console.log('→ section:', section);
-    console.log('→ screenshots.json cfg for this section:', cfg[section]);
-    console.log('→ using lang:', lang);
-    // 3. 取出对应语言的文件列表
-    const list = (cfg[section] || {})[lang] || [];
-        console.log('→ list of files to show:', list);
-    
-    // 4. 依次创建 <img> 并 append
-    list.forEach(fname => {
-      const img = document.createElement('img');
-      img.src = `screenshot/${section}/${lang}/${fname}`;
-           console.log('  • appending image with src:', img.src);
-      container.append(img);
+    }
+
+    // ✅ 加载文案 + 截图
+    function loadI18nAndScreenshots() {
+      return fetch(`i18n/${lang}.json`)
+        .then(r => r.json())
+        .then(dict => applyI18n(dict))
+        .then(() => loadScreenshots())
+        .catch(console.error);
+    }
+
+    // ✅ 语言初始化 & 切换
+    let lang =
+      new URLSearchParams(location.search).get('lang') ||
+      normalizeLang(navigator.language);
+
+    if (!available.includes(lang)) lang = 'zh';
+
+    const langSwitch = document.getElementById('lang-switch');
+    if (langSwitch) langSwitch.value = lang;
+
+    langSwitch.addEventListener('change', e => {
+      lang = e.target.value;
+
+      const url = new URL(window.location);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+
+      loadI18nAndScreenshots().then(() => activateByHash());
     });
-  });
-})
-.catch(console.error);
-  }
 
-  // (4) 语言切换
-  const available = ['zh','zh-Hant','en','ja','ko','fr','de'];
-  let lang = new URLSearchParams(location.search).get('lang') || navigator.language.slice(0,2);
-  if (!available.includes(lang)) lang = 'zh';
-  const langSwitch = document.getElementById('lang-switch');
-  langSwitch.value = lang;
-  langSwitch.addEventListener('change', e => {
-    lang = e.target.value;
-    const url = new URL(window.location);
-    url.searchParams.set('lang', lang);
-    history.replaceState(null, '', url);
-    loadI18nAndScreenshots();
-    activateByHash();
-  });
+    // ✅ 页面初始化
+    window.addEventListener("DOMContentLoaded", () => {
+      activateByHash();
+      loadI18nAndScreenshots();
+    });
 
-  // (5) 页面初始化
-  window.addEventListener("DOMContentLoaded", () => {
-    loadI18nAndScreenshots();
-    activateByHash();
-  });
-</script>
+    // ✅ 用户手动改 hash 时也能同步
+    window.addEventListener("hashchange", () => {
+      activateByHash();
+    });
+  </script>
 </body>
 </html>
