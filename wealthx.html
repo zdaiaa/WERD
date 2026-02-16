@@ -158,6 +158,21 @@
       border-radius: var(--radius);
       padding: 22px;
       box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-link{
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card-link:hover{
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--text) 20%, var(--border));
+      box-shadow: 0 18px 38px rgba(0,0,0,0.14);
+    }
+    .card-link:focus-visible{
+      outline: 2px solid color-mix(in srgb, var(--text) 35%, transparent);
+      outline-offset: 2px;
     }
     .card h3{
       margin: 0 0 8px;
@@ -189,6 +204,59 @@
       height: 1px;
       background: var(--border);
       margin: 44px 0;
+    }
+
+    .detail-grid{
+      display: grid;
+      gap: 18px;
+    }
+    .feature-detail{
+      display: grid;
+      grid-template-columns: minmax(260px, 38%) 1fr;
+      gap: 18px;
+      align-items: stretch;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      scroll-margin-top: calc(var(--navh) + 20px);
+    }
+    .feature-shot{
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg) 72%, var(--card));
+    }
+    .feature-copy h3{
+      margin: 2px 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+    .feature-copy p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .feature-copy ul{
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .feature-copy li{
+      margin: 6px 0;
+      line-height: 1.55;
+      font-size: 14.5px;
+    }
+    @media (max-width: 860px){
+      .feature-detail{
+        grid-template-columns: 1fr;
+      }
+      .feature-shot{
+        max-height: 240px;
+      }
     }
 
     /* Privacy text */
@@ -271,34 +339,121 @@
 
   <main class="wrap">
     <section class="hero" id="top">
-      <h1 data-i18n="hero_title">See your money clearly.</h1>
+      <h1 data-i18n="hero_title">See your money clearly</h1>
       <p data-i18n="hero_subtitle">Understand cash flow, budgets, and assets — effortlessly.</p>
     </section>
 
     <section id="features" class="section">
       <h2 data-i18n="features_title">Features</h2>
-      <p class="sub" data-i18n="features_subtitle">Build better money habits with structure and clarity.</p>
+      <p class="sub" data-i18n="features_subtitle">Build a clear money structure, then drill into each module in detail.</p>
 
       <div class="grid" role="list">
-        <div class="card" role="listitem">
+        <a class="card card-link" role="listitem" href="#feature-accounts">
           <h3 data-i18n="card_accounts_title">Accounts</h3>
-          <p data-i18n="card_accounts_desc">Manage assets and liabilities with clarity.</p>
-        </div>
+          <p data-i18n="card_accounts_desc">Tap to open account details, running balance history, and asset/liability structure.</p>
+        </a>
 
-        <div class="card" role="listitem">
+        <a class="card card-link" role="listitem" href="#feature-budgets">
           <h3 data-i18n="card_budgets_title">Budgets</h3>
-          <p data-i18n="card_budgets_desc">Monthly, yearly, and project-based budgets.</p>
-        </div>
+          <p data-i18n="card_budgets_desc">Tap to explore monthly, yearly, and project budgets with scenario views.</p>
+        </a>
 
-        <div class="card" role="listitem">
+        <a class="card card-link" role="listitem" href="#feature-flows">
           <h3 data-i18n="card_flows_title">Flows</h3>
-          <p data-i18n="card_flows_desc">Automate recurring transactions and habits.</p>
-        </div>
+          <p data-i18n="card_flows_desc">Tap to review reusable templates, planned schedules, and quick-entry paths.</p>
+        </a>
 
-        <div class="card" role="listitem">
+        <a class="card card-link" role="listitem" href="#feature-insights">
           <h3 data-i18n="card_insights_title">Insights</h3>
-          <p data-i18n="card_insights_desc">Visualize trends and financial health.</p>
-        </div>
+          <p data-i18n="card_insights_desc">Tap to inspect trends, split views, and cashflow maps.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="feature-details" class="section">
+      <h2 data-i18n="details_title">Feature Details</h2>
+      <p class="sub" data-i18n="details_subtitle">Each card jumps to its module so you can review the workflow before downloading.</p>
+
+      <div class="detail-grid">
+        <article id="feature-accounts" class="feature-detail">
+          <img
+            class="feature-shot"
+            data-shot-feature="account"
+            src="screenshot/account/en/AccountView.png"
+            data-i18n-attr="alt:details_accounts_image_alt"
+            alt="WealthX account management screen"
+            loading="lazy"
+          />
+          <div class="feature-copy">
+            <h3 data-i18n="details_accounts_title">Accounts: Structure + Ledger</h3>
+            <p data-i18n="details_accounts_desc">Accounts in WealthX are not just a list. You can separate assets and liabilities, group related accounts, and drill into each account ledger.</p>
+            <ul>
+              <li data-i18n="details_accounts_point1">Switch between asset and liability views to keep your net position readable.</li>
+              <li data-i18n="details_accounts_point2">Open account detail to inspect transaction occurrences with running balance.</li>
+              <li data-i18n="details_accounts_point3">Add or edit transactions directly from detail screens, including transfers and refunds.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article id="feature-budgets" class="feature-detail">
+          <img
+            class="feature-shot"
+            data-shot-feature="budget"
+            src="screenshot/budget/en/BudgetView.png"
+            data-i18n-attr="alt:details_budgets_image_alt"
+            alt="WealthX budget planning screen"
+            loading="lazy"
+          />
+          <div class="feature-copy">
+            <h3 data-i18n="details_budgets_title">Budgets: Month, Year, and Project</h3>
+            <p data-i18n="details_budgets_desc">Budgeting supports different horizons with scenario context, so planning and execution stay aligned.</p>
+            <ul>
+              <li data-i18n="details_budgets_point1">Manage monthly, yearly, and project budgets from one budget workspace.</li>
+              <li data-i18n="details_budgets_point2">Use scenario switching to compare plans without rebuilding categories.</li>
+              <li data-i18n="details_budgets_point3">Open budget detail for progress visuals, amount breakdown, and linked transactions.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article id="feature-flows" class="feature-detail">
+          <img
+            class="feature-shot"
+            data-shot-feature="transaction"
+            src="screenshot/transaction/en/TodayView.png"
+            data-i18n-attr="alt:details_flows_image_alt"
+            alt="WealthX transaction flow shortcuts screen"
+            loading="lazy"
+          />
+          <div class="feature-copy">
+            <h3 data-i18n="details_flows_title">Flows: Reusable and Scheduled</h3>
+            <p data-i18n="details_flows_desc">Flows let you save common transactions as templates and run them quickly in daily bookkeeping.</p>
+            <ul>
+              <li data-i18n="details_flows_point1">Create expense, income, and transfer templates with account and budget bindings.</li>
+              <li data-i18n="details_flows_point2">Enable planned flows with weekly, biweekly, or monthly recurrence and reminder time.</li>
+              <li data-i18n="details_flows_point3">Use Today shortcuts, widgets, and smart suggestions to reduce repetitive input.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article id="feature-insights" class="feature-detail">
+          <img
+            class="feature-shot"
+            data-shot-feature="visualization"
+            src="screenshot/visualization/en/RadarMap.png"
+            data-i18n-attr="alt:details_insights_image_alt"
+            alt="WealthX insights and cashflow map screen"
+            loading="lazy"
+          />
+          <div class="feature-copy">
+            <h3 data-i18n="details_insights_title">Insights: From Summary to Cashflow Map</h3>
+            <p data-i18n="details_insights_desc">The statistics module combines overview and deep-dive charts so you can spot drift early.</p>
+            <ul>
+              <li data-i18n="details_insights_point1">Review summary, account split, budget split, net worth trend, and cashflow trend.</li>
+              <li data-i18n="details_insights_point2">Filter by time range and currency set to isolate the signal you care about.</li>
+              <li data-i18n="details_insights_point3">Open cashflow map for location-aware spending patterns when available.</li>
+            </ul>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -421,6 +576,15 @@
     // ---------- i18n ----------
     let lang = "en";
     let dictEN = null;
+    let SHOT_LANGS = ["zh","zh-Hant","en","ja","ko","fr","de"];
+    let DEFAULT_SHOT_LANG = "en";
+    let SHOTS_FALLBACK = {
+      account: "screenshot/account/en/AccountView.png",
+      budget: "screenshot/budget/en/BudgetView.png",
+      transaction: "screenshot/transaction/en/TodayView.png",
+      visualization: "screenshot/visualization/en/RadarMap.png"
+    };
+    let shotsManifest = { value: null };
 
     async function fetchJSON(url){
       // cache busting
@@ -434,6 +598,54 @@
       // 你的目录是 i18n/<lang>.json
       // 确保文件名就是：en.json / zh.json / zh-Hant.json / en-GB.json ...
       return await fetchJSON(`i18n/${l}.json`);
+    }
+
+    function normalizeShotLang(input){
+      const normalized = normalizeLang(input);
+      if (SHOT_LANGS.includes(normalized)) return normalized;
+      if (normalized === "zh-Hant") return "zh-Hant";
+      if (normalized.startsWith("zh")) return "zh";
+      return DEFAULT_SHOT_LANG;
+    }
+
+    async function loadShotsManifest(){
+      if (shotsManifest.value) return shotsManifest.value;
+      try {
+        shotsManifest.value = await fetchJSON("screenshots.json");
+      } catch (e) {
+        console.warn("Failed to load screenshots manifest", e);
+        shotsManifest.value = {};
+      }
+      return shotsManifest.value;
+    }
+
+    function resolveShotPath(manifest, feature, shotLang){
+      const fallback = SHOTS_FALLBACK[feature];
+      const featureMap = manifest?.[feature];
+      if (!featureMap || typeof featureMap !== "object") return fallback;
+
+      const byLang = featureMap[shotLang];
+      if (Array.isArray(byLang) && byLang.length > 0) {
+        return `screenshot/${feature}/${shotLang}/${byLang[0]}`;
+      }
+
+      const byEn = featureMap[DEFAULT_SHOT_LANG];
+      if (Array.isArray(byEn) && byEn.length > 0) {
+        return `screenshot/${feature}/${DEFAULT_SHOT_LANG}/${byEn[0]}`;
+      }
+
+      return fallback;
+    }
+
+    async function updateFeatureShots(activeLang){
+      const manifest = await loadShotsManifest();
+      const shotLang = normalizeShotLang(activeLang);
+      document.querySelectorAll("[data-shot-feature]").forEach(img => {
+        const feature = img.getAttribute("data-shot-feature");
+        if (!feature) return;
+        const next = resolveShotPath(manifest, feature, shotLang);
+        if (next) img.setAttribute("src", next);
+      });
     }
 
     function applyText(dict){
@@ -490,6 +702,7 @@
       }
 
       applyText(dict);
+      await updateFeatureShots(lang);
       document.getElementById("langSwitch").value = lang;
     }
 
@@ -520,6 +733,11 @@
       card_budgets_title, card_budgets_desc,
       card_flows_title, card_flows_desc,
       card_insights_title, card_insights_desc,
+      details_title, details_subtitle,
+      details_accounts_title, details_accounts_desc, details_accounts_point1, details_accounts_point2, details_accounts_point3, details_accounts_image_alt,
+      details_budgets_title, details_budgets_desc, details_budgets_point1, details_budgets_point2, details_budgets_point3, details_budgets_image_alt,
+      details_flows_title, details_flows_desc, details_flows_point1, details_flows_point2, details_flows_point3, details_flows_image_alt,
+      details_insights_title, details_insights_desc, details_insights_point1, details_insights_point2, details_insights_point3, details_insights_image_alt,
       privacy_title, privacy_subtitle, privacy_effective, privacy_date,
       privacy_sec1, privacy_item1, privacy_item2, privacy_item3, privacy_item4,
       privacy_sec2, privacy_use1, privacy_use2, privacy_use3,
