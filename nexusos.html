@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="NexusOS 官方网站：把文档、工作流和自动化能力连接成一个可执行系统。" />
+  <meta name="keywords" content="NexusOS, workflow, automation, docs, AI OS" />
+  <title>NexusOS — Build Your Execution System</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    :root{
+      --bg:#05070d;
+      --text:#edf1ff;
+      --muted:rgba(237,241,255,.74);
+      --border:rgba(255,255,255,.16);
+      --card:rgba(18,22,34,.82);
+      --brand:#6d8bff;
+      --brand2:#49d9ff;
+      --max:1120px;
+      --navh:64px;
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:radial-gradient(circle at 20% -10%, rgba(109,139,255,.32), transparent 46%),
+                 radial-gradient(circle at 85% 0, rgba(73,217,255,.24), transparent 40%),
+                 var(--bg);
+      -webkit-font-smoothing:antialiased;
+    }
+    .nav{position:sticky;top:0;z-index:10;height:var(--navh);backdrop-filter:blur(14px);background:rgba(5,7,13,.72);border-bottom:1px solid var(--border)}
+    .nav-inner{height:100%;max-width:var(--max);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-size:18px;font-weight:650;letter-spacing:-.02em}
+    .product-switch{display:flex;gap:8px;align-items:center}
+    .pill{padding:8px 14px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--text);font-size:13px;background:rgba(255,255,255,.04)}
+    .pill.active{border-color:transparent;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#071025;font-weight:650}
+
+    .wrap{max-width:var(--max);margin:0 auto;padding:52px 20px 84px}
+    .hero{padding:56px 0 36px;text-align:center}
+    .hero h1{margin:0;font-size:clamp(42px,7vw,82px);line-height:1.03;letter-spacing:-.045em}
+    .hero p{max-width:780px;margin:16px auto 0;color:var(--muted);font-size:clamp(17px,2vw,22px);line-height:1.55}
+    .cta{margin-top:26px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .btn{padding:11px 18px;border-radius:999px;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:14px}
+    .btn.primary{border:none;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#071025;font-weight:650}
+
+    .section{margin-top:52px}
+    .section h2{margin:0 0 12px;font-size:30px;letter-spacing:-.03em}
+    .section p.lead{margin:0;color:var(--muted);line-height:1.65}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+    .card h3{margin:0 0 8px;font-size:19px;letter-spacing:-.02em}
+    .card p,.card li{color:var(--muted);line-height:1.6;font-size:14.5px}
+    .card ul{margin:10px 0 0;padding-left:18px}
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+    .step{padding:16px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+    .step strong{display:block;margin-bottom:6px}
+    .footer{margin-top:70px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;color:var(--muted);font-size:13px;gap:10px;flex-wrap:wrap}
+
+    @media (max-width:950px){
+      .grid{grid-template-columns:1fr}
+      .timeline{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .timeline{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">NexusOS</div>
+      <nav class="product-switch" aria-label="Products">
+        <a class="pill" href="wealthx.html">WealthX</a>
+        <a class="pill active" href="nexusos.html" aria-current="page">NexusOS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>把文档，变成可执行系统。</h1>
+      <p>基于你现有的 Docs、脚本和流程，NexusOS 负责统一“信息 → 决策 → 执行”链路，让每个计划都能稳定落地。</p>
+      <div class="cta">
+        <a class="btn primary" href="#architecture">查看架构</a>
+        <a class="btn" href="#modules">探索模块</a>
+      </div>
+    </section>
+
+    <section id="architecture" class="section">
+      <h2>Core Architecture</h2>
+      <p class="lead">NexusOS 采用四层模型：Context、Memory、Workflow、Automation。它不是替代你的工具，而是把它们联成一套可复用操作系统。</p>
+      <div class="timeline">
+        <div class="step"><strong>1. Context</strong><span>连接项目文档、规范、配置，构建统一上下文入口。</span></div>
+        <div class="step"><strong>2. Memory</strong><span>沉淀决策记录、执行历史与常用模式，形成组织记忆。</span></div>
+        <div class="step"><strong>3. Workflow</strong><span>把“需求→开发→发布”拆成稳定步骤，减少人肉切换。</span></div>
+        <div class="step"><strong>4. Automation</strong><span>接入脚本/Agent/CI，自动完成重复任务并留痕。</span></div>
+      </div>
+    </section>
+
+    <section id="modules" class="section">
+      <h2>Platform Modules</h2>
+      <p class="lead">以下模块结构参考当前仓库中“i18n + scripts + workflows”的组织方式，强调清晰分层与可扩展性。</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Command Center</h3>
+          <p>统一入口，聚合任务状态、发布窗口、风险提示与责任人。</p>
+          <ul>
+            <li>多项目看板</li>
+            <li>版本节奏视图</li>
+            <li>异常任务追踪</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Workflow Engine</h3>
+          <p>将 SOP 固化为可编排流程，支持条件分支与回滚策略。</p>
+          <ul>
+            <li>可视化流程编辑</li>
+            <li>脚本与 API 编排</li>
+            <li>执行日志与审计</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Knowledge Graph</h3>
+          <p>把文档、决策、代码关系连通，做真正可查询的团队知识库。</p>
+          <ul>
+            <li>语义检索与关联推荐</li>
+            <li>变更影响分析</li>
+            <li>版本化知识沉淀</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Deployment Modes</h2>
+      <div class="grid">
+        <article class="card"><h3>Starter</h3><p>适用于小团队：先连接文档与基础流程，1 周内上线首个自动化闭环。</p></article>
+        <article class="card"><h3>Scale</h3><p>适用于多团队协作：统一规范、跨项目依赖管理、分层权限与审批。</p></article>
+        <article class="card"><h3>Enterprise</h3><p>支持私有部署与合规策略，提供审计追踪、密钥托管与隔离运行环境。</p></article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> NexusOS</div>
+      <div><a class="btn" href="wealthx.html">切换到 WealthX</a></div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -81,6 +81,28 @@
       letter-spacing: -0.01em;
     }
 
+    .product-switch{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .product-pill{
+      border:1px solid var(--border);
+      background: color-mix(in srgb, var(--card) 70%, transparent);
+      padding:7px 12px;
+      border-radius:999px;
+      text-decoration:none;
+      color:var(--text);
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+    .product-pill.active{
+      background: color-mix(in srgb, var(--text) 88%, var(--bg));
+      color: var(--bg);
+      border-color: transparent;
+      font-weight: 600;
+    }
+
     .nav-links{
       display:flex;
       align-items:center;
@@ -140,6 +162,7 @@
       line-height: 1.5;
       color: var(--muted);
     }
+
 
     /* Cards */
     .grid{
@@ -301,6 +324,11 @@
         <img src="WealthX logo.png" alt="WealthX" />
         <div class="name" data-i18n="app_name">WealthX</div>
       </div>
+
+      <nav class="product-switch" aria-label="Products">
+        <a class="product-pill active" href="wealthx.html" aria-current="page">WealthX</a>
+        <a class="product-pill" href="nexusos.html">NexusOS</a>
+      </nav>
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#features" data-i18n="nav_features">Features</a>
