@@ -1,22 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WealthX</title>
-
-  <!-- 1) 搜索引擎/浏览器级跳转 -->
-  <meta http-equiv="refresh" content="0; url=wealthx.html" />
-
-  <!-- 2) 更稳的 JS 跳转（防某些环境不执行 refresh） -->
-  <script>
-    window.location.replace("wealthx.html");
-  </script>
-
-  <!-- 3) canonical 指向主页面，避免 SEO 重复内容 -->
-  <link rel="canonical" href="wealthx.html" />
+  <title>Products — WealthX & NexusOS</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    :root{--bg:#f5f6fb;--text:#111;--muted:#5f6470;--card:#fff;--border:rgba(60,60,67,.16)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
+    .wrap{max-width:980px;margin:0 auto;padding:72px 20px}
+    h1{font-size:clamp(36px,6vw,62px);letter-spacing:-.04em;margin:0}
+    p{color:var(--muted);line-height:1.6;font-size:18px;max-width:700px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;min-height:220px;transition:.2s transform,.2s box-shadow}
+    .card:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(0,0,0,.08)}
+    .card h2{margin:0 0 8px;letter-spacing:-.02em}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef1ff;color:#2f3e87;font-size:12px;font-weight:600}
+    @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <p>Redirecting to WealthX… <a href="wealthx.html">Click here</a></p>
+  <main class="wrap">
+    <h1>Choose your product.</h1>
+    <p>WealthX 与 NexusOS 独立展示、独立叙事，同时保留产品间的一键切换体验。</p>
+    <section class="grid" aria-label="Product choices">
+      <a class="card" href="wealthx.html">
+        <span class="tag">Finance App</span>
+        <h2>WealthX</h2>
+        <p>个人财务管理：账户、预算、流水与洞察，可按语言切换内容与截图。</p>
+      </a>
+      <a class="card" href="nexusos.html">
+        <span class="tag">Execution OS</span>
+        <h2>NexusOS</h2>
+        <p>把文档、流程与自动化连接成可执行系统，面向团队协作与持续交付。</p>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
