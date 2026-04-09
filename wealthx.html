@@ -245,22 +245,29 @@
     }
     .feature-detail{
       display: grid;
-      grid-template-columns: minmax(260px, 38%) 1fr;
       gap: 18px;
-      align-items: stretch;
       background: rgba(255,255,255,.03);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px;
       scroll-margin-top: calc(var(--navh) + 20px);
     }
-    .feature-shot{
-      width: 100%;
-      height: 100%;
-      max-height: 300px;
-      object-fit: cover;
+    .feature-gallery{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .shot-card{
+      margin: 0;
       border-radius: 14px;
       border: 1px solid var(--border);
+      overflow: hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .shot-card img{
+      display: block;
+      width: 100%;
+      height: auto;
       background: rgba(255,255,255,.02);
     }
     .feature-copy h3{
@@ -283,13 +290,10 @@
       line-height: 1.55;
       font-size: 14.5px;
     }
-    @media (max-width: 860px){
-      .feature-detail{
-        grid-template-columns: 1fr;
-      }
-      .feature-shot{
-        max-height: 240px;
-      }
+    .gallery-note{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     /* Privacy text */
@@ -341,7 +345,7 @@
       </nav>
 
       <nav class="nav-links" aria-label="Primary">
-        <a href="#v2" data-i18n="nav_v2">2.0</a>
+        <a href="#v2" data-i18n="nav_v2">2.1</a>
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
       </nav>
@@ -351,26 +355,20 @@
 
         <select class="btn" id="langSwitch" aria-label="Language">
           <option value="zh" data-i18n="lang_zh">简体中文</option>
-          <option value="zh-Hant" data-i18n="lang_zh-Hant">繁體中文</option>
-
           <option value="en" data-i18n="lang_en">English</option>
-          <option value="en-GB" data-i18n="lang_en-GB">English (UK)</option>
-
-          <option value="ja" data-i18n="lang_ja">日本語</option>
-          <option value="ko" data-i18n="lang_ko">한국어</option>
-
-          <option value="fr" data-i18n="lang_fr">Français</option>
-          <option value="de" data-i18n="lang_de">Deutsch</option>
-
-          <!-- 你截图里还有：印地/意大利/波兰/瑞典/葡萄牙/西班牙/丹麦/阿拉伯… -->
-          <option value="es" data-i18n="lang_es">Español</option>
-          <option value="pt" data-i18n="lang_pt">Português</option>
-          <option value="it" data-i18n="lang_it">Italiano</option>
-          <option value="pl" data-i18n="lang_pl">Polski</option>
-          <option value="sv" data-i18n="lang_sv">Svenska</option>
-          <option value="da" data-i18n="lang_da">Dansk</option>
-          <option value="hi" data-i18n="lang_hi">हिन्दी</option>
-          <option value="ar" data-i18n="lang_ar">العربية</option>
+          <option value="zh-Hant" disabled>繁體中文 (Auto)</option>
+          <option value="ja" disabled>日本語 (Auto)</option>
+          <option value="ko" disabled>한국어 (Auto)</option>
+          <option value="fr" disabled>Français (Auto)</option>
+          <option value="de" disabled>Deutsch (Auto)</option>
+          <option value="es" disabled>Español (Auto)</option>
+          <option value="pt" disabled>Português (Auto)</option>
+          <option value="it" disabled>Italiano (Auto)</option>
+          <option value="pl" disabled>Polski (Auto)</option>
+          <option value="sv" disabled>Svenska (Auto)</option>
+          <option value="da" disabled>Dansk (Auto)</option>
+          <option value="hi" disabled>हिन्दी (Auto)</option>
+          <option value="ar" disabled>العربية (Auto)</option>
         </select>
       </div>
     </div>
@@ -379,143 +377,191 @@
   <main class="wrap">
     <section class="hero" id="top">
       <h1 data-i18n="hero_title">See your money clearly</h1>
-      <p data-i18n="hero_subtitle">WealthX 2.0 helps you understand cash flow, budgets, and assets — effortlessly.</p>
+      <p data-i18n="hero_subtitle">WealthX 2.1 adds Smart Budget, Goal Tracker, and a full visual walkthrough of the app’s latest workflows.</p>
       <div class="hero-cta">
-        <a class="btn primary" href="#v2" data-i18n="hero_cta_v2">Explore 2.0</a>
+        <a class="btn primary" href="#v2" data-i18n="hero_cta_v2">Explore 2.1</a>
         <a class="btn primary" href="#features" data-i18n="nav_features">Features</a>
         <a class="btn" href="#privacy" data-i18n="nav_privacy">Privacy</a>
       </div>
     </section>
 
     <section id="v2" class="section">
-      <h2 data-i18n="v2_title">What’s New in WealthX 2.0</h2>
-      <p class="sub" data-i18n="v2_subtitle">A faster planning workflow with clearer execution loops, built for daily finance decisions.</p>
+      <h2 data-i18n="v2_title">What’s New in WealthX 2.1</h2>
+      <p class="sub" data-i18n="v2_subtitle">Smarter budget guidance, dedicated saving goals, and a shared screenshot gallery that shows the real product flow.</p>
 
       <div class="grid" role="list">
         <article class="card" role="listitem">
-          <h3 data-i18n="v2_feature1_title">Smart Rules</h3>
-          <p data-i18n="v2_feature1_desc">Auto-categorize repeated transactions and keep budgets accurate without manual cleanup.</p>
+          <h3 data-i18n="v2_feature1_title">Smart Budget</h3>
+          <p data-i18n="v2_feature1_desc">See budget suggestions based on recent spending trends, progress, and inactive categories that can be cleaned up.</p>
         </article>
         <article class="card" role="listitem">
-          <h3 data-i18n="v2_feature2_title">Goal Forecast</h3>
-          <p data-i18n="v2_feature2_desc">Estimate when savings targets are reached by combining recurring flows and current balances.</p>
+          <h3 data-i18n="v2_feature2_title">Goal Tracker</h3>
+          <p data-i18n="v2_feature2_desc">Create savings goals with target amount, due date, and linked accounts, then follow progress from one detail view.</p>
         </article>
         <article class="card" role="listitem">
-          <h3 data-i18n="v2_feature3_title">Execution Queue</h3>
-          <p data-i18n="v2_feature3_desc">Review planned items in one queue, then execute or postpone with one tap.</p>
+          <h3 data-i18n="v2_feature3_title">Full Tips Gallery</h3>
+          <p data-i18n="v2_feature3_desc">Browse the latest app screenshots across accounts, budgeting, bookkeeping, insights, flows, data transfer, widgets, and investing.</p>
         </article>
       </div>
     </section>
 
     <section id="features" class="section">
-      <h2 data-i18n="features_title">Features</h2>
-      <p class="sub" data-i18n="features_subtitle">Build a clear money structure, then drill into each module in detail.</p>
+      <h2 data-i18n="features_title">Feature Gallery</h2>
+      <p class="sub" data-i18n="features_subtitle">Review the current WealthX workflows by module. The same screenshot set is shared across every web language version.</p>
 
       <div class="grid" role="list">
         <a class="card card-link" role="listitem" href="#feature-accounts">
           <h3 data-i18n="card_accounts_title">Accounts</h3>
-          <p data-i18n="card_accounts_desc">Tap to open account details, running balance history, and asset/liability structure.</p>
+          <p data-i18n="card_accounts_desc">Create, edit, swipe, and link accounts with one consolidated gallery.</p>
         </a>
 
-        <a class="card card-link" role="listitem" href="#feature-budgets">
-          <h3 data-i18n="card_budgets_title">Budgets</h3>
-          <p data-i18n="card_budgets_desc">Tap to explore monthly, yearly, and project budgets with scenario views.</p>
+        <a class="card card-link" role="listitem" href="#feature-budget-goals">
+          <h3 data-i18n="card_budget_goals_title">Budgets + Goals</h3>
+          <p data-i18n="card_budget_goals_desc">Budget creation, smart suggestions, and the new Goal Tracker live side by side in v2.1.</p>
         </a>
 
-        <a class="card card-link" role="listitem" href="#feature-flows">
-          <h3 data-i18n="card_flows_title">Flows</h3>
-          <p data-i18n="card_flows_desc">Tap to review reusable templates, planned schedules, and quick-entry paths.</p>
+        <a class="card card-link" role="listitem" href="#feature-bookkeeping">
+          <h3 data-i18n="card_bookkeeping_title">Bookkeeping</h3>
+          <p data-i18n="card_bookkeeping_desc">Normal entries, transfers, recurring transactions, and refunds are all shown with fresh screenshots.</p>
         </a>
 
-        <a class="card card-link" role="listitem" href="#feature-insights">
-          <h3 data-i18n="card_insights_title">Insights</h3>
-          <p data-i18n="card_insights_desc">Tap to inspect trends, split views, and cashflow maps.</p>
+        <a class="card card-link" role="listitem" href="#feature-insights-scenarios">
+          <h3 data-i18n="card_insights_scenarios_title">Insights + Scenarios</h3>
+          <p data-i18n="card_insights_scenarios_desc">Show trend analysis, map views, pie charts, and scenario switching in one place.</p>
+        </a>
+
+        <a class="card card-link" role="listitem" href="#feature-flows-widgets">
+          <h3 data-i18n="card_flows_widgets_title">Flows + Widgets</h3>
+          <p data-i18n="card_flows_widgets_desc">Reusable flows and home-screen widgets help daily execution stay quick.</p>
+        </a>
+
+        <a class="card card-link" role="listitem" href="#feature-data-investing">
+          <h3 data-i18n="card_data_investing_title">Data + Investing</h3>
+          <p data-i18n="card_data_investing_desc">Import, export, and investing workflows now sit in the same customer-facing gallery.</p>
         </a>
       </div>
     </section>
 
     <section id="feature-details" class="section">
-      <h2 data-i18n="details_title">Feature Details</h2>
-      <p class="sub" data-i18n="details_subtitle">Each card jumps to its module so you can review the workflow before downloading.</p>
+      <h2 data-i18n="details_title">Tips Gallery</h2>
+      <p class="sub" data-i18n="details_subtitle">Every gallery below uses the latest shared screenshot set from the app. English and Simplified Chinese are active; other languages stay as placeholders on the web for later automation.</p>
+      <p class="gallery-note" data-i18n="details_note">Screenshots switch between light and dark variants when you change the page theme.</p>
 
       <div class="detail-grid">
         <article id="feature-accounts" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="account"
-            src="screenshot/account/en/AccountView.png"
-            data-i18n-attr="alt:details_accounts_image_alt"
-            alt="WealthX account management screen"
-            loading="lazy"
-          />
           <div class="feature-copy">
-            <h3 data-i18n="details_accounts_title">Accounts: Structure + Ledger</h3>
-            <p data-i18n="details_accounts_desc">Accounts in WealthX are not just a list. You can separate assets and liabilities, group related accounts, and drill into each account ledger.</p>
+            <h3 data-i18n="details_accounts_title">Accounts: Setup and Daily Maintenance</h3>
+            <p data-i18n="details_accounts_desc">WealthX keeps account structure visible from the first screen, then lets you edit balances, swipe for quick actions, and manage grouped accounts without leaving the flow.</p>
             <ul>
-              <li data-i18n="details_accounts_point1">Switch between asset and liability views to keep your net position readable.</li>
-              <li data-i18n="details_accounts_point2">Open account detail to inspect transaction occurrences with running balance.</li>
-              <li data-i18n="details_accounts_point3">Add or edit transactions directly from detail screens, including transfers and refunds.</li>
+              <li data-i18n="details_accounts_point1">Create account groups or standalone accounts from the same entry point.</li>
+              <li data-i18n="details_accounts_point2">Update balances and notes directly inside account detail.</li>
+              <li data-i18n="details_accounts_point3">Use swipe actions and link management to keep the structure clean over time.</li>
             </ul>
+          </div>
+          <div class="feature-gallery">
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/account-manage-create-light.png" data-shot-dark="screenshot/tips/account-manage-create-dark.png" src="screenshot/tips/account-manage-create-light.png" data-i18n-attr="alt:details_accounts_image_alt" alt="WealthX account screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/account-manage-edit-balance-light.png" data-shot-dark="screenshot/tips/account-manage-edit-balance-dark.png" src="screenshot/tips/account-manage-edit-balance-light.png" data-i18n-attr="alt:details_accounts_image_alt" alt="WealthX account screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/account-manage-swipe-light.png" data-shot-dark="screenshot/tips/account-manage-swipe-dark.png" src="screenshot/tips/account-manage-swipe-light.png" data-i18n-attr="alt:details_accounts_image_alt" alt="WealthX account screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/account-manage-link-unlink-light.png" data-shot-dark="screenshot/tips/account-manage-link-unlink-dark.png" src="screenshot/tips/account-manage-link-unlink-light.png" data-i18n-attr="alt:details_accounts_image_alt" alt="WealthX account screenshots" loading="lazy" /></figure>
           </div>
         </article>
 
-        <article id="feature-budgets" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="budget"
-            src="screenshot/budget/en/BudgetView.png"
-            data-i18n-attr="alt:details_budgets_image_alt"
-            alt="WealthX budget planning screen"
-            loading="lazy"
-          />
+        <article id="feature-budget-goals" class="feature-detail">
           <div class="feature-copy">
-            <h3 data-i18n="details_budgets_title">Budgets: Month, Year, and Project</h3>
-            <p data-i18n="details_budgets_desc">Budgeting supports different horizons with scenario context, so planning and execution stay aligned.</p>
+            <h3 data-i18n="details_budget_goals_title">Budgets + Goals: Planning That Adapts</h3>
+            <p data-i18n="details_budget_goals_desc">Version 2.1 combines classic budget management with Smart Budget suggestions and a dedicated Goal Tracker so planning and progress live together.</p>
             <ul>
-              <li data-i18n="details_budgets_point1">Manage monthly, yearly, and project budgets from one budget workspace.</li>
-              <li data-i18n="details_budgets_point2">Use scenario switching to compare plans without rebuilding categories.</li>
-              <li data-i18n="details_budgets_point3">Open budget detail for progress visuals, amount breakdown, and linked transactions.</li>
+              <li data-i18n="details_budget_goals_point1">Manage monthly, yearly, and project budgets from one workspace.</li>
+              <li data-i18n="details_budget_goals_point2">Review Smart Budget suggestions before adjusting or archiving budget items.</li>
+              <li data-i18n="details_budget_goals_point3">Track saving goals with target amount, due date, linked accounts, and progress detail.</li>
             </ul>
+          </div>
+          <div class="feature-gallery">
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/budget-manage-create-light.png" data-shot-dark="screenshot/tips/budget-manage-create-dark.png" src="screenshot/tips/budget-manage-create-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/budget-manage-edit-update-light.png" data-shot-dark="screenshot/tips/budget-manage-edit-update-dark.png" src="screenshot/tips/budget-manage-edit-update-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/budget-manage-swipe-light.png" data-shot-dark="screenshot/tips/budget-manage-swipe-dark.png" src="screenshot/tips/budget-manage-swipe-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/budget-manage-link-unlink-light.png" data-shot-dark="screenshot/tips/budget-manage-link-unlink-dark.png" src="screenshot/tips/budget-manage-link-unlink-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/budget-manage-smart-budget-light.png" data-shot-dark="screenshot/tips/budget-manage-smart-budget-dark.png" src="screenshot/tips/budget-manage-smart-budget-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/goal-tracker-create-light.png" data-shot-dark="screenshot/tips/goal-tracker-create-dark.png" src="screenshot/tips/goal-tracker-create-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/goal-tracker-detail-light.png" data-shot-dark="screenshot/tips/goal-tracker-detail-dark.png" src="screenshot/tips/goal-tracker-detail-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/goal-tracker-edit-light.png" data-shot-dark="screenshot/tips/goal-tracker-edit-dark.png" src="screenshot/tips/goal-tracker-edit-light.png" data-i18n-attr="alt:details_budget_goals_image_alt" alt="WealthX budget and goal screenshots" loading="lazy" /></figure>
           </div>
         </article>
 
-        <article id="feature-flows" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="transaction"
-            src="screenshot/transaction/en/TodayView.png"
-            data-i18n-attr="alt:details_flows_image_alt"
-            alt="WealthX transaction flow shortcuts screen"
-            loading="lazy"
-          />
+        <article id="feature-bookkeeping" class="feature-detail">
           <div class="feature-copy">
-            <h3 data-i18n="details_flows_title">Flows: Reusable and Scheduled</h3>
-            <p data-i18n="details_flows_desc">Flows let you save common transactions as templates and run them quickly in daily bookkeeping.</p>
+            <h3 data-i18n="details_bookkeeping_title">Bookkeeping: Normal, Transfer, Recurring, Refund</h3>
+            <p data-i18n="details_bookkeeping_desc">Daily bookkeeping stays flexible across standard transactions, transfers, recurring entries, and refund or return handling.</p>
             <ul>
-              <li data-i18n="details_flows_point1">Create expense, income, and transfer templates with account and budget bindings.</li>
-              <li data-i18n="details_flows_point2">Enable planned flows with weekly, biweekly, or monthly recurrence and reminder time.</li>
-              <li data-i18n="details_flows_point3">Use Today shortcuts, widgets, and smart suggestions to reduce repetitive input.</li>
+              <li data-i18n="details_bookkeeping_point1">Start from the Today screen and move between transaction types without leaving the entry flow.</li>
+              <li data-i18n="details_bookkeeping_point2">Recurring logic helps repeated bills and income stay predictable.</li>
+              <li data-i18n="details_bookkeeping_point3">Refund actions are available from transaction shortcuts and detail screens.</li>
             </ul>
+          </div>
+          <div class="feature-gallery">
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/bookkeeping-normal-light.png" data-shot-dark="screenshot/tips/bookkeeping-normal-dark.png" src="screenshot/tips/bookkeeping-normal-light.png" data-i18n-attr="alt:details_bookkeeping_image_alt" alt="WealthX bookkeeping screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/bookkeeping-transfer-light.png" data-shot-dark="screenshot/tips/bookkeeping-transfer-dark.png" src="screenshot/tips/bookkeeping-transfer-light.png" data-i18n-attr="alt:details_bookkeeping_image_alt" alt="WealthX bookkeeping screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/bookkeeping-recurring-light.png" data-shot-dark="screenshot/tips/bookkeeping-recurring-dark.png" src="screenshot/tips/bookkeeping-recurring-light.png" data-i18n-attr="alt:details_bookkeeping_image_alt" alt="WealthX bookkeeping screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/bookkeeping-refund-light.png" data-shot-dark="screenshot/tips/bookkeeping-refund-dark.png" src="screenshot/tips/bookkeeping-refund-light.png" data-i18n-attr="alt:details_bookkeeping_image_alt" alt="WealthX bookkeeping screenshots" loading="lazy" /></figure>
           </div>
         </article>
 
-        <article id="feature-insights" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="visualization"
-            src="screenshot/visualization/en/RadarMap.png"
-            data-i18n-attr="alt:details_insights_image_alt"
-            alt="WealthX insights and cashflow map screen"
-            loading="lazy"
-          />
+        <article id="feature-insights-scenarios" class="feature-detail">
           <div class="feature-copy">
-            <h3 data-i18n="details_insights_title">Insights: From Summary to Cashflow Map</h3>
-            <p data-i18n="details_insights_desc">The statistics module combines overview and deep-dive charts so you can spot drift early.</p>
+            <h3 data-i18n="details_insights_scenarios_title">Insights + Scenarios: Compare, Filter, Explain</h3>
+            <p data-i18n="details_insights_scenarios_desc">Charts and scenario switching work together so customers can see both the current result and the planning context behind it.</p>
             <ul>
-              <li data-i18n="details_insights_point1">Review summary, account split, budget split, net worth trend, and cashflow trend.</li>
-              <li data-i18n="details_insights_point2">Filter by time range and currency set to isolate the signal you care about.</li>
-              <li data-i18n="details_insights_point3">Open cashflow map for location-aware spending patterns when available.</li>
+              <li data-i18n="details_insights_scenarios_point1">Review overview, map, trend, and pie perspectives from the same statistics area.</li>
+              <li data-i18n="details_insights_scenarios_point2">Use scenarios to compare alternate plans without rebuilding your structure.</li>
+              <li data-i18n="details_insights_scenarios_point3">Keep customer-facing visuals focused on drift, allocation, and cashflow movement.</li>
             </ul>
+          </div>
+          <div class="feature-gallery">
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/charts-overview-light.png" data-shot-dark="screenshot/tips/charts-overview-dark.png" src="screenshot/tips/charts-overview-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/charts-map-light.png" data-shot-dark="screenshot/tips/charts-map-dark.png" src="screenshot/tips/charts-map-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/charts-trend-light.png" data-shot-dark="screenshot/tips/charts-trend-dark.png" src="screenshot/tips/charts-trend-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/charts-pie-light.png" data-shot-dark="screenshot/tips/charts-pie-dark.png" src="screenshot/tips/charts-pie-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/scenario-create-light.png" data-shot-dark="screenshot/tips/scenario-create-dark.png" src="screenshot/tips/scenario-create-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/scenario-edit-light.png" data-shot-dark="screenshot/tips/scenario-edit-dark.png" src="screenshot/tips/scenario-edit-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/scenario-switch-light.png" data-shot-dark="screenshot/tips/scenario-switch-dark.png" src="screenshot/tips/scenario-switch-light.png" data-i18n-attr="alt:details_insights_scenarios_image_alt" alt="WealthX insights and scenario screenshots" loading="lazy" /></figure>
+          </div>
+        </article>
+
+        <article id="feature-flows-widgets" class="feature-detail">
+          <div class="feature-copy">
+            <h3 data-i18n="details_flows_widgets_title">Flows + Widgets: Faster Daily Execution</h3>
+            <p data-i18n="details_flows_widgets_desc">Reusable flows reduce repeated input, and widgets keep important actions and summaries visible before the app is opened.</p>
+            <ul>
+              <li data-i18n="details_flows_widgets_point1">Create and manage flow templates for repeated actions.</li>
+              <li data-i18n="details_flows_widgets_point2">Launch quick-entry paths from the app and the home screen.</li>
+              <li data-i18n="details_flows_widgets_point3">Pair flows with widgets to shorten the gap between planning and execution.</li>
+            </ul>
+          </div>
+          <div class="feature-gallery">
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/flow-manage-create-light.png" data-shot-dark="screenshot/tips/flow-manage-create-dark.png" src="screenshot/tips/flow-manage-create-light.png" data-i18n-attr="alt:details_flows_widgets_image_alt" alt="WealthX flows and widgets screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/flow-manage-manage-light.png" data-shot-dark="screenshot/tips/flow-manage-manage-dark.png" src="screenshot/tips/flow-manage-manage-light.png" data-i18n-attr="alt:details_flows_widgets_image_alt" alt="WealthX flows and widgets screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/flow-manage-use-light.png" data-shot-dark="screenshot/tips/flow-manage-use-dark.png" src="screenshot/tips/flow-manage-use-light.png" data-i18n-attr="alt:details_flows_widgets_image_alt" alt="WealthX flows and widgets screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/widgets-light.png" data-shot-dark="screenshot/tips/widgets-dark.png" src="screenshot/tips/widgets-light.png" data-i18n-attr="alt:details_flows_widgets_image_alt" alt="WealthX flows and widgets screenshots" loading="lazy" /></figure>
+          </div>
+        </article>
+
+        <article id="feature-data-investing" class="feature-detail">
+          <div class="feature-copy">
+            <h3 data-i18n="details_data_investing_title">Data + Investing: Bring More of Your Finance Stack In</h3>
+            <p data-i18n="details_data_investing_desc">The website now shows the current import, export, and investment views instead of the older 2.0 poster images.</p>
+            <ul>
+              <li data-i18n="details_data_investing_point1">Import and export workflows keep data portable.</li>
+              <li data-i18n="details_data_investing_point2">Investment screens cover overview, data source, deposit or withdraw, and buy or sell actions.</li>
+              <li data-i18n="details_data_investing_point3">These screenshots now match the app tips catalog instead of the older marketing set.</li>
+            </ul>
+          </div>
+          <div class="feature-gallery">
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/data-transfer-import-light.png" data-shot-dark="screenshot/tips/data-transfer-import-dark.png" src="screenshot/tips/data-transfer-import-light.png" data-i18n-attr="alt:details_data_investing_image_alt" alt="WealthX data transfer and investing screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/data-transfer-export-light.png" data-shot-dark="screenshot/tips/data-transfer-export-dark.png" src="screenshot/tips/data-transfer-export-light.png" data-i18n-attr="alt:details_data_investing_image_alt" alt="WealthX data transfer and investing screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/investment-overview-light.png" data-shot-dark="screenshot/tips/investment-overview-dark.png" src="screenshot/tips/investment-overview-light.png" data-i18n-attr="alt:details_data_investing_image_alt" alt="WealthX data transfer and investing screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/investment-data-source-light.png" data-shot-dark="screenshot/tips/investment-data-source-dark.png" src="screenshot/tips/investment-data-source-light.png" data-i18n-attr="alt:details_data_investing_image_alt" alt="WealthX data transfer and investing screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/investment-deposit-withdraw-light.png" data-shot-dark="screenshot/tips/investment-deposit-withdraw-dark.png" src="screenshot/tips/investment-deposit-withdraw-light.png" data-i18n-attr="alt:details_data_investing_image_alt" alt="WealthX data transfer and investing screenshots" loading="lazy" /></figure>
+            <figure class="shot-card"><img data-shot-light="screenshot/tips/investment-buy-sell-light.png" data-shot-dark="screenshot/tips/investment-buy-sell-dark.png" src="screenshot/tips/investment-buy-sell-light.png" data-i18n-attr="alt:details_data_investing_image_alt" alt="WealthX data transfer and investing screenshots" loading="lazy" /></figure>
           </div>
         </article>
       </div>
@@ -571,32 +617,18 @@
 
   <script>
     // ---------- Utilities ----------
-    const AVAILABLE = [
-      "zh","zh-Hant",
-      "en","en-GB",
-      "ja","ko","fr","de",
-      "es","pt","it","pl","sv","da","hi","ar"
-    ];
+    const AVAILABLE = ["zh", "en"];
 
     function normalizeLang(input) {
       if (!input) return "en";
       const raw = String(input).replace("_","-").trim();
 
-      // exact match first
       if (AVAILABLE.includes(raw)) return raw;
 
       const lower = raw.toLowerCase();
 
-      // map common variants
-      if (lower.startsWith("zh-hant") || lower === "zh-tw" || lower === "zh-hk" || lower === "zh-mo") return "zh-Hant";
       if (lower.startsWith("zh")) return "zh";
-
-      if (lower.startsWith("en-gb") || lower === "en-uk") return "en-GB";
       if (lower.startsWith("en")) return "en";
-
-      // use primary subtag fallback: fr-CA -> fr
-      const primary = raw.split("-")[0];
-      if (AVAILABLE.includes(primary)) return primary;
 
       return "en";
     }
@@ -615,8 +647,7 @@
 
     function setHtmlLang(lang){
       document.documentElement.setAttribute("lang", lang);
-      // RTL support (Arabic)
-      document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+      document.documentElement.dir = "ltr";
     }
 
     // ---------- Theme ----------
@@ -625,30 +656,31 @@
       const saved = localStorage.getItem(THEME_KEY);
       if (saved === "dark") document.documentElement.setAttribute("data-theme","dark");
     }
+    function isDarkTheme() {
+      return document.documentElement.getAttribute("data-theme") === "dark";
+    }
+    function updateThemeShots() {
+      const dark = isDarkTheme();
+      document.querySelectorAll("[data-shot-light][data-shot-dark]").forEach(img => {
+        const next = dark ? img.getAttribute("data-shot-dark") : img.getAttribute("data-shot-light");
+        if (next) img.setAttribute("src", next);
+      });
+    }
     function toggleTheme(){
       const root = document.documentElement;
-      const isDark = root.getAttribute("data-theme") === "dark";
-      if (isDark) {
+      if (isDarkTheme()) {
         root.removeAttribute("data-theme");
         localStorage.setItem(THEME_KEY,"light");
       } else {
         root.setAttribute("data-theme","dark");
         localStorage.setItem(THEME_KEY,"dark");
       }
+      updateThemeShots();
     }
 
     // ---------- i18n ----------
     let lang = "en";
     let dictEN = null;
-    let SHOT_LANGS = ["zh","zh-Hant","en","ja","ko","fr","de"];
-    let DEFAULT_SHOT_LANG = "en";
-    let SHOTS_FALLBACK = {
-      account: "screenshot/account/en/AccountView.png",
-      budget: "screenshot/budget/en/BudgetView.png",
-      transaction: "screenshot/transaction/en/TodayView.png",
-      visualization: "screenshot/visualization/en/RadarMap.png"
-    };
-    let shotsManifest = { value: null };
 
     async function fetchJSON(url){
       // cache busting
@@ -659,57 +691,7 @@
     }
 
     async function loadDict(l){
-      // 你的目录是 i18n/<lang>.json
-      // 确保文件名就是：en.json / zh.json / zh-Hant.json / en-GB.json ...
       return await fetchJSON(`i18n/${l}.json`);
-    }
-
-    function normalizeShotLang(input){
-      const normalized = normalizeLang(input);
-      if (SHOT_LANGS.includes(normalized)) return normalized;
-      if (normalized === "zh-Hant") return "zh-Hant";
-      if (normalized.startsWith("zh")) return "zh";
-      return DEFAULT_SHOT_LANG;
-    }
-
-    async function loadShotsManifest(){
-      if (shotsManifest.value) return shotsManifest.value;
-      try {
-        shotsManifest.value = await fetchJSON("screenshots.json");
-      } catch (e) {
-        console.warn("Failed to load screenshots manifest", e);
-        shotsManifest.value = {};
-      }
-      return shotsManifest.value;
-    }
-
-    function resolveShotPath(manifest, feature, shotLang){
-      const fallback = SHOTS_FALLBACK[feature];
-      const featureMap = manifest?.[feature];
-      if (!featureMap || typeof featureMap !== "object") return fallback;
-
-      const byLang = featureMap[shotLang];
-      if (Array.isArray(byLang) && byLang.length > 0) {
-        return `screenshot/${feature}/${shotLang}/${byLang[0]}`;
-      }
-
-      const byEn = featureMap[DEFAULT_SHOT_LANG];
-      if (Array.isArray(byEn) && byEn.length > 0) {
-        return `screenshot/${feature}/${DEFAULT_SHOT_LANG}/${byEn[0]}`;
-      }
-
-      return fallback;
-    }
-
-    async function updateFeatureShots(activeLang){
-      const manifest = await loadShotsManifest();
-      const shotLang = normalizeShotLang(activeLang);
-      document.querySelectorAll("[data-shot-feature]").forEach(img => {
-        const feature = img.getAttribute("data-shot-feature");
-        if (!feature) return;
-        const next = resolveShotPath(manifest, feature, shotLang);
-        if (next) img.setAttribute("src", next);
-      });
     }
 
     function applyText(dict){
@@ -766,7 +748,7 @@
       }
 
       applyText(dict);
-      await updateFeatureShots(lang);
+      updateThemeShots();
       document.getElementById("langSwitch").value = lang;
     }
 
@@ -778,7 +760,6 @@
     (async function boot(){
       initTheme();
 
-      // URL lang > browser lang > default
       const fromURL = getLangFromURL();
       const fromBrowser = normalizeLang(navigator.language || navigator.userLanguage);
       const initial = fromURL || fromBrowser || "en";
@@ -786,30 +767,6 @@
       await setLanguage(initial);
     })();
 
-    /*
-      ✅ 你需要在 i18n/*.json 中至少提供这些 key（新页面）：
-      meta_description, meta_keywords, title,
-      app_name, nav_features, nav_privacy, toggle_theme,
-      lang_zh, lang_zh-Hant, lang_en, lang_en-GB, lang_ja, lang_ko, lang_fr, lang_de, lang_es, lang_pt, lang_it, lang_pl, lang_sv, lang_da, lang_hi, lang_ar,
-      hero_title, hero_subtitle,
-      features_title, features_subtitle,
-      card_accounts_title, card_accounts_desc,
-      card_budgets_title, card_budgets_desc,
-      card_flows_title, card_flows_desc,
-      card_insights_title, card_insights_desc,
-      details_title, details_subtitle,
-      details_accounts_title, details_accounts_desc, details_accounts_point1, details_accounts_point2, details_accounts_point3, details_accounts_image_alt,
-      details_budgets_title, details_budgets_desc, details_budgets_point1, details_budgets_point2, details_budgets_point3, details_budgets_image_alt,
-      details_flows_title, details_flows_desc, details_flows_point1, details_flows_point2, details_flows_point3, details_flows_image_alt,
-      details_insights_title, details_insights_desc, details_insights_point1, details_insights_point2, details_insights_point3, details_insights_image_alt,
-      privacy_title, privacy_subtitle, privacy_effective, privacy_date,
-      privacy_sec1, privacy_item1, privacy_item2, privacy_item3, privacy_item4,
-      privacy_sec2, privacy_use1, privacy_use2, privacy_use3,
-      privacy_sec3, privacy_share_p,
-      privacy_sec4, privacy_storage_p,
-      privacy_sec7, privacy_contact_p,
-      footer_privacy
-    */
   </script>
 </body>
 </html>
