@@ -1,0 +1,77 @@
+# WealthX Web Tips v2.1
+
+Shared website screenshot bundle generated from `TipShot_en`.
+
+- Use the same images for English, Simplified Chinese, and placeholder languages on the web.
+- Source catalog: `财富/Assets.xcassets/TipShot/TipShot_en`.
+- Exported at: 2026-04-09 12:55:07 +0800
+- Total files: 66
+
+## Files
+
+- `account-manage-create-dark.png` <= `TipShot_AccountManage_Create_en.imageset/WealthX_开启你的创意之旅_20260301_013259_1800x1800.png`
+- `account-manage-create-light.png` <= `TipShot_AccountManage_Create_en.imageset/WealthX_开启你的创意之旅_20260301_013340_1800x1800.png`
+- `account-manage-edit-balance-dark.png` <= `TipShot_AccountManage_EditBalance_en.imageset/WealthX_开启你的创意之旅_20260301_014115_1800x1800.png`
+- `account-manage-edit-balance-light.png` <= `TipShot_AccountManage_EditBalance_en.imageset/WealthX_开启你的创意之旅_20260301_014057_1800x1800.png`
+- `account-manage-link-unlink-dark.png` <= `TipShot_AccountManage_LinkUnlink_en.imageset/WealthX_开启你的创意之旅_20260301_014811_1800x2400.png`
+- `account-manage-link-unlink-light.png` <= `TipShot_AccountManage_LinkUnlink_en.imageset/WealthX_开启你的创意之旅_20260301_014746_1800x2400.png`
+- `account-manage-swipe-dark.png` <= `TipShot_AccountManage_Swipe_en.imageset/WealthX_开启你的创意之旅_20260301_014247_1800x2400.png`
+- `account-manage-swipe-light.png` <= `TipShot_AccountManage_Swipe_en.imageset/WealthX_开启你的创意之旅_20260301_014532_1800x2400.png`
+- `bookkeeping-normal-dark.png` <= `TipShot_Bookkeeping_Normal_en.imageset/WealthX_开启你的创意之旅_20260301_015730_1800x2400.png`
+- `bookkeeping-normal-light.png` <= `TipShot_Bookkeeping_Normal_en.imageset/WealthX_开启你的创意之旅_20260301_015746_1800x2400.png`
+- `bookkeeping-recurring-dark.png` <= `TipShot_Bookkeeping_Recurring_en.imageset/WealthX_开启你的创意之旅_20260301_015923_1800x2400.png`
+- `bookkeeping-recurring-light.png` <= `TipShot_Bookkeeping_Recurring_en.imageset/WealthX_开启你的创意之旅_20260301_015941_1800x2400.png`
+- `bookkeeping-refund-dark.png` <= `TipShot_Bookkeeping_Refund_en.imageset/WealthX_预算_副本_副本_20260409_120550_600x800.png`
+- `bookkeeping-refund-light.png` <= `TipShot_Bookkeeping_Refund_en.imageset/WealthX_预算_副本_副本_20260409_120619_600x800.png`
+- `bookkeeping-transfer-dark.png` <= `TipShot_Bookkeeping_Transfer_en.imageset/WealthX_开启你的创意之旅_20260301_015923_1800x2400.png`
+- `bookkeeping-transfer-light.png` <= `TipShot_Bookkeeping_Transfer_en.imageset/WealthX_开启你的创意之旅_20260301_015941_1800x2400.png`
+- `budget-manage-create-dark.png` <= `TipShot_BudgetManage_Create_en.imageset/WealthX_开启你的创意之旅_20260301_040127_1800x1800.png`
+- `budget-manage-create-light.png` <= `TipShot_BudgetManage_Create_en.imageset/WealthX_开启你的创意之旅_20260301_040145_1800x1800.png`
+- `budget-manage-edit-update-dark.png` <= `TipShot_BudgetManage_EditUpdate_en.imageset/WealthX_开启你的创意之旅_20260301_040624_1800x1800.png`
+- `budget-manage-edit-update-light.png` <= `TipShot_BudgetManage_EditUpdate_en.imageset/WealthX_开启你的创意之旅_20260301_040606_1800x1800.png`
+- `budget-manage-link-unlink-dark.png` <= `TipShot_BudgetManage_LinkUnlink_en.imageset/WealthX_开启你的创意之旅_20260301_041145_1800x2400.png`
+- `budget-manage-link-unlink-light.png` <= `TipShot_BudgetManage_LinkUnlink_en.imageset/WealthX_开启你的创意之旅_20260301_041125_1800x2400.png`
+- `budget-manage-smart-budget-dark.png` <= `TipShot_BudgetManage_SmartBudget_en.imageset/WealthX_预算_副本_副本_20260409_115648_600x800.png`
+- `budget-manage-smart-budget-light.png` <= `TipShot_BudgetManage_SmartBudget_en.imageset/WealthX_预算_副本_副本_20260409_115630_600x800.png`
+- `budget-manage-swipe-dark.png` <= `TipShot_BudgetManage_Swipe_en.imageset/WealthX_开启你的创意之旅_20260301_040843_1800x2400.png`
+- `budget-manage-swipe-light.png` <= `TipShot_BudgetManage_Swipe_en.imageset/WealthX_开启你的创意之旅_20260301_040901_1800x2400.png`
+- `charts-map-dark.png` <= `TipShot_Charts_Map_en.imageset/WealthX_开启你的创意之旅_20260301_031011_1800x2400.png`
+- `charts-map-light.png` <= `TipShot_Charts_Map_en.imageset/WealthX_开启你的创意之旅_20260301_031112_1800x2400.png`
+- `charts-overview-dark.png` <= `TipShot_Charts_Overview_en.imageset/WealthX_开启你的创意之旅_20260301_030953_1800x2400.png`
+- `charts-overview-light.png` <= `TipShot_Charts_Overview_en.imageset/WealthX_开启你的创意之旅_20260301_031055_1800x2400.png`
+- `charts-pie-dark.png` <= `TipShot_Charts_Pie_en.imageset/WealthX_开启你的创意之旅_20260301_031036_1800x2400.png`
+- `charts-pie-light.png` <= `TipShot_Charts_Pie_en.imageset/WealthX_开启你的创意之旅_20260301_031135_1800x2400.png`
+- `charts-trend-dark.png` <= `TipShot_Charts_Trend_en.imageset/WealthX_开启你的创意之旅_20260301_031024_1800x2400.png`
+- `charts-trend-light.png` <= `TipShot_Charts_Trend_en.imageset/WealthX_开启你的创意之旅_20260301_031123_1800x2400.png`
+- `data-transfer-export-dark.png` <= `TipShot_DataTransfer_Export_en.imageset/WealthX_开启你的创意之旅_20260301_025248_1800x2400.png`
+- `data-transfer-export-light.png` <= `TipShot_DataTransfer_Export_en.imageset/WealthX_开启你的创意之旅_20260301_025217_1800x2400.png`
+- `data-transfer-import-dark.png` <= `TipShot_DataTransfer_Import_en.imageset/WealthX_开启你的创意之旅_20260301_025301_1800x2400.png`
+- `data-transfer-import-light.png` <= `TipShot_DataTransfer_Import_en.imageset/WealthX_开启你的创意之旅_20260301_025230_1800x2400.png`
+- `flow-manage-create-dark.png` <= `TipShot_FlowManage_Create_en.imageset/WealthX_开启你的创意之旅_20260301_035329_1800x2400.png`
+- `flow-manage-create-light.png` <= `TipShot_FlowManage_Create_en.imageset/WealthX_开启你的创意之旅_20260301_035252_1800x2400.png`
+- `flow-manage-manage-dark.png` <= `TipShot_FlowManage_Manage_en.imageset/WealthX_开启你的创意之旅_20260301_035345_1800x2400.png`
+- `flow-manage-manage-light.png` <= `TipShot_FlowManage_Manage_en.imageset/WealthX_开启你的创意之旅_20260301_035305_1800x2400.png`
+- `flow-manage-use-dark.png` <= `TipShot_FlowManage_Use_en.imageset/WealthX_开启你的创意之旅_20260301_035358_1800x2400.png`
+- `flow-manage-use-light.png` <= `TipShot_FlowManage_Use_en.imageset/WealthX_开启你的创意之旅_20260301_035317_1800x2400.png`
+- `goal-tracker-create-dark.png` <= `TipShot_GoalTracker_Create_en.imageset/WealthX_预算_副本_副本_20260409_115521_600x800.png`
+- `goal-tracker-create-light.png` <= `TipShot_GoalTracker_Create_en.imageset/WealthX_预算_副本_副本_20260409_115542_600x800.png`
+- `goal-tracker-detail-dark.png` <= `TipShot_GoalTracker_Detail_en.imageset/WealthX_预算_副本_副本_20260409_115909_600x800.png`
+- `goal-tracker-detail-light.png` <= `TipShot_GoalTracker_Detail_en.imageset/WealthX_预算_副本_副本_20260409_115850_600x800.png`
+- `goal-tracker-edit-dark.png` <= `TipShot_GoalTracker_Edit_en.imageset/WealthX_预算_副本_副本_20260409_115756_600x800.png`
+- `goal-tracker-edit-light.png` <= `TipShot_GoalTracker_Edit_en.imageset/WealthX_预算_副本_副本_20260409_115816_600x800.png`
+- `investment-buy-sell-dark.png` <= `TipShot_Investment_BuySell_en.imageset/WealthX_开启你的创意之旅_20260301_042118_2400x1800.png`
+- `investment-buy-sell-light.png` <= `TipShot_Investment_BuySell_en.imageset/WealthX_开启你的创意之旅_20260301_042145_2400x1800.png`
+- `investment-data-source-dark.png` <= `TipShot_Investment_DataSource_en.imageset/WealthX_开启你的创意之旅_20260301_042350_1800x2400.png`
+- `investment-data-source-light.png` <= `TipShot_Investment_DataSource_en.imageset/WealthX_开启你的创意之旅_20260301_042339_1800x2400.png`
+- `investment-deposit-withdraw-dark.png` <= `TipShot_Investment_DepositWithdraw_en.imageset/WealthX_开启你的创意之旅_20260301_041846_2400x1800.png`
+- `investment-deposit-withdraw-light.png` <= `TipShot_Investment_DepositWithdraw_en.imageset/WealthX_开启你的创意之旅_20260301_041912_2400x1800.png`
+- `investment-overview-dark.png` <= `TipShot_Investment_Overview_en.imageset/WealthX_开启你的创意之旅_20260301_042410_1800x2400.png`
+- `investment-overview-light.png` <= `TipShot_Investment_Overview_en.imageset/WealthX_开启你的创意之旅_20260301_042328_1800x2400.png`
+- `scenario-create-dark.png` <= `TipShot_Scenario_Create_en.imageset/WealthX_开启你的创意之旅_20260301_034739_1800x2400.png`
+- `scenario-create-light.png` <= `TipShot_Scenario_Create_en.imageset/WealthX_开启你的创意之旅_20260301_034709_1800x2400.png`
+- `scenario-edit-dark.png` <= `TipShot_Scenario_Edit_en.imageset/WealthX_开启你的创意之旅_20260301_034755_1800x2400.png`
+- `scenario-edit-light.png` <= `TipShot_Scenario_Edit_en.imageset/WealthX_开启你的创意之旅_20260301_034725_1800x2400.png`
+- `scenario-switch-dark.png` <= `TipShot_Scenario_Switch_en.imageset/WealthX_开启你的创意之旅_20260301_034823_1800x2400.png`
+- `scenario-switch-light.png` <= `TipShot_Scenario_Switch_en.imageset/WealthX_开启你的创意之旅_20260301_034843_1800x2400.png`
+- `widgets-dark.png` <= `TipShot_Widgets_en.imageset/WealthX_开启你的创意之旅_20260301_024258_1800x2400.png`
+- `widgets-light.png` <= `TipShot_Widgets_en.imageset/WealthX_开启你的创意之旅_20260301_024311_1800x2400.png`
