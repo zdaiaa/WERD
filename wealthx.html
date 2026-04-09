@@ -341,7 +341,7 @@
       </nav>
 
       <nav class="nav-links" aria-label="Primary">
-        <a href="#v2" data-i18n="nav_v2">2.0</a>
+        <a href="#v2" data-i18n="nav_v2">2.1</a>
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
       </nav>
@@ -356,21 +356,21 @@
           <option value="en" data-i18n="lang_en">English</option>
           <option value="en-GB" data-i18n="lang_en-GB">English (UK)</option>
 
-          <option value="ja" data-i18n="lang_ja">日本語</option>
-          <option value="ko" data-i18n="lang_ko">한국어</option>
+          <option value="ja" data-i18n="lang_ja" disabled>日本語</option>
+          <option value="ko" data-i18n="lang_ko" disabled>한국어</option>
 
-          <option value="fr" data-i18n="lang_fr">Français</option>
-          <option value="de" data-i18n="lang_de">Deutsch</option>
+          <option value="fr" data-i18n="lang_fr" disabled>Français</option>
+          <option value="de" data-i18n="lang_de" disabled>Deutsch</option>
 
-          <!-- 你截图里还有：印地/意大利/波兰/瑞典/葡萄牙/西班牙/丹麦/阿拉伯… -->
-          <option value="es" data-i18n="lang_es">Español</option>
-          <option value="pt" data-i18n="lang_pt">Português</option>
-          <option value="it" data-i18n="lang_it">Italiano</option>
-          <option value="pl" data-i18n="lang_pl">Polski</option>
-          <option value="sv" data-i18n="lang_sv">Svenska</option>
-          <option value="da" data-i18n="lang_da">Dansk</option>
-          <option value="hi" data-i18n="lang_hi">हिन्दी</option>
-          <option value="ar" data-i18n="lang_ar">العربية</option>
+          <!-- placeholders for auto translation pipeline -->
+          <option value="es" data-i18n="lang_es" disabled>Español</option>
+          <option value="pt" data-i18n="lang_pt" disabled>Português</option>
+          <option value="it" data-i18n="lang_it" disabled>Italiano</option>
+          <option value="pl" data-i18n="lang_pl" disabled>Polski</option>
+          <option value="sv" data-i18n="lang_sv" disabled>Svenska</option>
+          <option value="da" data-i18n="lang_da" disabled>Dansk</option>
+          <option value="hi" data-i18n="lang_hi" disabled>हिन्दी</option>
+          <option value="ar" data-i18n="lang_ar" disabled>العربية</option>
         </select>
       </div>
     </div>
@@ -379,30 +379,30 @@
   <main class="wrap">
     <section class="hero" id="top">
       <h1 data-i18n="hero_title">See your money clearly</h1>
-      <p data-i18n="hero_subtitle">WealthX 2.0 helps you understand cash flow, budgets, and assets — effortlessly.</p>
+      <p data-i18n="hero_subtitle">WealthX 2.1 introduces Smart Budget and Goal Tracker so you can plan and hit targets faster.</p>
       <div class="hero-cta">
-        <a class="btn primary" href="#v2" data-i18n="hero_cta_v2">Explore 2.0</a>
+        <a class="btn primary" href="#v2" data-i18n="hero_cta_v2">Explore 2.1</a>
         <a class="btn primary" href="#features" data-i18n="nav_features">Features</a>
         <a class="btn" href="#privacy" data-i18n="nav_privacy">Privacy</a>
       </div>
     </section>
 
     <section id="v2" class="section">
-      <h2 data-i18n="v2_title">What’s New in WealthX 2.0</h2>
-      <p class="sub" data-i18n="v2_subtitle">A faster planning workflow with clearer execution loops, built for daily finance decisions.</p>
+      <h2 data-i18n="v2_title">What’s New in WealthX 2.1</h2>
+      <p class="sub" data-i18n="v2_subtitle">Smart Budget and Goal Tracker combine planning, tracking, and action in one simple loop.</p>
 
       <div class="grid" role="list">
         <article class="card" role="listitem">
-          <h3 data-i18n="v2_feature1_title">Smart Rules</h3>
-          <p data-i18n="v2_feature1_desc">Auto-categorize repeated transactions and keep budgets accurate without manual cleanup.</p>
+          <h3 data-i18n="v2_feature1_title">Smart Budget</h3>
+          <p data-i18n="v2_feature1_desc">Get adaptive limits and suggestions based on your spending history and recurring patterns.</p>
         </article>
         <article class="card" role="listitem">
-          <h3 data-i18n="v2_feature2_title">Goal Forecast</h3>
-          <p data-i18n="v2_feature2_desc">Estimate when savings targets are reached by combining recurring flows and current balances.</p>
+          <h3 data-i18n="v2_feature2_title">Goal Tracker</h3>
+          <p data-i18n="v2_feature2_desc">Track savings goals with milestones, expected completion dates, and progress alerts.</p>
         </article>
         <article class="card" role="listitem">
-          <h3 data-i18n="v2_feature3_title">Execution Queue</h3>
-          <p data-i18n="v2_feature3_desc">Review planned items in one queue, then execute or postpone with one tap.</p>
+          <h3 data-i18n="v2_feature3_title">Tips Gallery</h3>
+          <p data-i18n="v2_feature3_desc">Show all latest tip images on one page so customers can instantly see the new experience.</p>
         </article>
       </div>
     </section>
@@ -572,10 +572,7 @@
   <script>
     // ---------- Utilities ----------
     const AVAILABLE = [
-      "zh","zh-Hant",
-      "en","en-GB",
-      "ja","ko","fr","de",
-      "es","pt","it","pl","sv","da","hi","ar"
+      "zh","zh-Hant","en"
     ];
 
     function normalizeLang(input) {
@@ -640,7 +637,7 @@
     // ---------- i18n ----------
     let lang = "en";
     let dictEN = null;
-    let SHOT_LANGS = ["zh","zh-Hant","en","ja","ko","fr","de"];
+    let SHOT_LANGS = ["zh","zh-Hant","en"];
     let DEFAULT_SHOT_LANG = "en";
     let SHOTS_FALLBACK = {
       account: "screenshot/account/en/AccountView.png",
