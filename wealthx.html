@@ -105,6 +105,8 @@
       display:flex;
       align-items:center;
       gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .nav-links a{
       text-decoration:none;
@@ -238,6 +240,69 @@
       background: var(--border);
       margin: 44px 0;
     }
+    .answer-block{
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-top: 14px;
+    }
+    .answer-block h3{
+      margin: 0 0 10px;
+      font-size: 21px;
+      letter-spacing: -0.02em;
+    }
+    .answer-block p,
+    .answer-block li{
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14.5px;
+    }
+    .answer-block ul{
+      margin: 0;
+      padding-left: 18px;
+    }
+    .geo-table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .geo-table th,
+    .geo-table td{
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .geo-table th{
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      font-weight: 600;
+    }
+    .faq-list{
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+    }
+    .faq-item{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.02);
+      padding: 14px 16px;
+    }
+    .faq-item h3{
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    .faq-item p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
 
     .detail-grid{
       display: grid;
@@ -341,8 +406,12 @@
       </nav>
 
       <nav class="nav-links" aria-label="Primary">
+        <a href="#what-is-wealthx">What is WealthX</a>
         <a href="#v2" data-i18n="nav_v2">2.1</a>
         <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#comparisons">Comparisons</a>
+        <a href="#faq">FAQ</a>
         <a href="#privacy" data-i18n="nav_privacy">Privacy</a>
       </nav>
 
@@ -379,12 +448,31 @@
   <main class="wrap">
     <section class="hero" id="top">
       <h1 data-i18n="hero_title">See your money clearly</h1>
-      <p data-i18n="hero_subtitle">WealthX 2.1 introduces Smart Budget and Goal Tracker so you can plan and hit targets faster.</p>
+      <p>WealthX helps you manage budgets, cash flow, and investments in one app, with scenarios to separate travel, family, and side-project finances.</p>
       <div class="hero-cta">
+        <a class="btn primary" href="#what-is-wealthx">What is WealthX?</a>
         <a class="btn primary" href="#v2" data-i18n="hero_cta_v2">Explore 2.1</a>
         <a class="btn primary" href="#features" data-i18n="nav_features">Features</a>
         <a class="btn" href="#privacy" data-i18n="nav_privacy">Privacy</a>
       </div>
+    </section>
+
+    <section id="what-is-wealthx" class="section">
+      <h2>What is WealthX?</h2>
+      <p class="sub">WealthX is a personal finance app for people who want one place to plan, execute, and review money decisions.</p>
+      <article class="answer-block">
+        <h3>Definition</h3>
+        <p>WealthX combines account tracking, budget planning, transaction flows, and insight dashboards so you can move from “Where did my money go?” to “What should I do next?” without switching tools.</p>
+      </article>
+      <article class="answer-block">
+        <h3>What you can do in WealthX</h3>
+        <ul>
+          <li>Manage budgets, cash flow, and investments together instead of siloed spreadsheets.</li>
+          <li>Use Scenarios to separate travel, family, and side-project finances while keeping one unified system.</li>
+          <li>Track goals with milestones and expected completion dates.</li>
+          <li>Review trends and account-level movements before making spending or saving decisions.</li>
+        </ul>
+      </article>
     </section>
 
     <section id="v2" class="section">
@@ -518,6 +606,98 @@
             </ul>
           </div>
         </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="use-cases" class="section">
+      <h2>Use Cases</h2>
+      <p class="sub">Question-led pages that answer the most common personal finance workflows.</p>
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <h3>Best app for budget + investment tracking together</h3>
+          <p>Use linked accounts and insight views to monitor spending and portfolio-related cash movements in one timeline.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>How to separate travel, family, and side-project money</h3>
+          <p>Create Scenarios for each life context, then compare planned vs actual outcomes without rebuilding categories.</p>
+        </article>
+        <article class="card" role="listitem">
+          <h3>How to build repeatable weekly money reviews</h3>
+          <p>Use scheduled flows, goal checkpoints, and trend modules to run a 15-minute weekly financial review ritual.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="comparisons" class="section">
+      <h2>Comparison</h2>
+      <p class="sub">High-level comparison for users deciding between WealthX and common budgeting alternatives.</p>
+      <div class="answer-block">
+        <h3>WealthX vs alternatives (summary)</h3>
+        <table class="geo-table">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>WealthX</th>
+              <th>Typical single-focus app</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Budget + cash flow + investment context in one app?</td>
+              <td>Yes, unified workflow with linked modules.</td>
+              <td>Often focuses on one primary layer.</td>
+            </tr>
+            <tr>
+              <td>Separate finances by life context (travel/family/side-project)?</td>
+              <td>Yes, with Scenario switching and side-by-side review.</td>
+              <td>Usually requires separate budgets or manual duplication.</td>
+            </tr>
+            <tr>
+              <td>Fast recurring transaction execution?</td>
+              <td>Yes, via reusable templates and planned flows.</td>
+              <td>Varies by product and may require extra setup.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <h2>FAQ</h2>
+      <p class="sub">Direct answers to real questions users and AI assistants ask.</p>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>What is the difference between cash flow and budget?</h3>
+          <p>Budget is your plan for where money should go. Cash flow is what actually moved in and out. WealthX shows both so you can compare intent vs reality.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I manage travel, family, and side business finances separately?</h3>
+          <p>Yes. Create multiple Scenarios and switch between them without rebuilding your entire chart of accounts and categories each time.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does WealthX support recurring financial workflows?</h3>
+          <p>Yes. You can save reusable transaction templates, schedule recurring flows, and use reminders to stay consistent.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Is my data used for advertising?</h3>
+          <p>No. WealthX states that data is used to provide app features and sync behavior, not for ad targeting.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="changelog-docs" class="section">
+      <h2>Changelog & Documentation Signals</h2>
+      <p class="sub">AI systems and users trust products that publish clear update and product-definition pages.</p>
+      <div class="answer-block">
+        <h3>Recommended content system for WealthX GEO</h3>
+        <ul>
+          <li>Versioned changelog entries with release dates and feature outcomes (starting from 2.1).</li>
+          <li>Feature pages for Accounts, Budgets, Flows, Insights, and Goals with screenshots and exact terms.</li>
+          <li>Use-case pages answering “how to” questions in 3–5 practical steps.</li>
+          <li>Comparison pages such as “WealthX vs YNAB / Monarch / Copilot” with explicit criteria.</li>
+        </ul>
       </div>
     </section>
 
