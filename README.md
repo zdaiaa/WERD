@@ -1,6 +1,12 @@
 # WealthX / NexusOS
 
-这个仓库现在已经可以直接部署到 Render，并提供 Stripe webhook 接口。
+这个仓库已支持部署到 Render，并提供 Stripe 订阅所需的后端接口。
+
+## 提供的接口
+
+- `GET /api/health`：健康检查
+- `POST /api/stripe/create-checkout-session`：创建订阅 Checkout Session（`plan` 传 `monthly` 或 `yearly`）
+- `POST /api/stripe/webhook`：接收并验证 Stripe webhook
 
 ## 本地运行
 
@@ -11,40 +17,48 @@ npm start
 
 默认端口：`3000`
 
-- 首页：`http://localhost:3000/`
-- 健康检查：`http://localhost:3000/api/health`
-- Stripe webhook：`http://localhost:3000/api/stripe/webhook`
-
-## Render 部署（私有 GitHub 仓库）
-
-### 方式 A：使用 `render.yaml`（推荐）
+## Render 部署（GitHub 私有仓库）
 
 1. 把代码推送到 GitHub 私有仓库。
 2. 在 Render 选择 **New +** → **Blueprint**。
-3. 连接该仓库并创建服务。
-4. 在 Render 的服务环境变量中配置：
+3. 连接该仓库并选择默认分支（仓库根目录有 `render.yaml` 即可自动识别）。
+4. 在 Render 环境变量里设置：
    - `STRIPE_SECRET_KEY`
    - `STRIPE_WEBHOOK_SECRET`
-5. 部署完成后会拿到 URL：`https://<your-service>.onrender.com`
+   - `WEALTHX_STRIPE_MONTHLY_PRICE_ID`
+   - `WEALTHX_STRIPE_YEARLY_PRICE_ID`
+   - `WEALTHX_PUBLIC_BASE_URL`
+5. 先部署一次，得到公网地址（例：`https://xxx.onrender.com`）。
+6. 将 `WEALTHX_PUBLIC_BASE_URL` 更新为这个公网地址后，再部署一次。
 
-Webhook 地址填写：
+## Stripe webhook 设置
+
+在 Stripe Workbench 创建 webhook endpoint：
 
 ```text
-https://<your-service>.onrender.com/api/stripe/webhook
+https://xxx.onrender.com/api/stripe/webhook
 ```
 
-### 方式 B：手动创建 Web Service
+建议只订阅这 3 个核心事件：
 
-- Environment: `Node`
-- Build Command: `npm install`
-- Start Command: `npm start`
+- `checkout.session.completed`
+- `customer.subscription.updated`
+- `customer.subscription.deleted`
 
-同样需要配置：
+将 Stripe 返回的 `whsec_...` 写入 Render 的 `STRIPE_WEBHOOK_SECRET`，然后重新部署。
 
-- `STRIPE_SECRET_KEY`
-- `STRIPE_WEBHOOK_SECRET`
+## 本地 App 配置
 
-## Stripe webhook 验签说明
+本地应用应把：
 
-- 若同时配置了 `STRIPE_SECRET_KEY` 与 `STRIPE_WEBHOOK_SECRET`，服务会对 webhook 进行签名验证。
-- 若未配置，服务仍会接收 webhook 并返回 `{"received": true}`，但不会验签（仅建议调试使用）。
+- `WEALTHX_STRIPE_API_BASE_URL`
+
+设置为：
+
+```text
+https://xxx.onrender.com
+```
+
+## 安全提醒
+
+如果曾经泄露过 `sk_live_...`，必须先在 Stripe 后台 rotate key，再替换成新 key，旧 key 不应继续使用。
