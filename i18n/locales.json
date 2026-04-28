@@ -1,0 +1,189 @@
+{
+  "aliases": {
+    "de": "de-DE",
+    "en": "en-US",
+    "es": "es-ES",
+    "fr": "fr-FR",
+    "pt": "pt-PT",
+    "zh": "zh-Hans",
+    "zh-CN": "zh-Hans",
+    "zh-HK": "zh-Hant",
+    "zh-SG": "zh-Hans",
+    "zh-TW": "zh-Hant"
+  },
+  "default_locale": "en-US",
+  "locales": [
+    {
+      "code": "cs",
+      "dir": "ltr",
+      "label": "Čeština",
+      "source": "en-US"
+    },
+    {
+      "code": "da",
+      "dir": "ltr",
+      "label": "Dansk",
+      "source": "en-US"
+    },
+    {
+      "code": "de-DE",
+      "dir": "ltr",
+      "label": "Deutsch (Deutschland)",
+      "source": "en-US"
+    },
+    {
+      "code": "en-AU",
+      "dir": "ltr",
+      "label": "English (Australia)",
+      "source": "en-US"
+    },
+    {
+      "code": "en-CA",
+      "dir": "ltr",
+      "label": "English (Canada)",
+      "source": "en-US"
+    },
+    {
+      "code": "en-GB",
+      "dir": "ltr",
+      "label": "English (UK)",
+      "source": "en-US"
+    },
+    {
+      "code": "en-US",
+      "dir": "ltr",
+      "label": "English (US)",
+      "source": "en-US"
+    },
+    {
+      "code": "es-ES",
+      "dir": "ltr",
+      "label": "Español (España)",
+      "source": "en-US"
+    },
+    {
+      "code": "fi",
+      "dir": "ltr",
+      "label": "Suomi",
+      "source": "en-US"
+    },
+    {
+      "code": "fr-CA",
+      "dir": "ltr",
+      "label": "Français (Canada)",
+      "source": "en-US"
+    },
+    {
+      "code": "fr-FR",
+      "dir": "ltr",
+      "label": "Français (France)",
+      "source": "en-US"
+    },
+    {
+      "code": "hi",
+      "dir": "ltr",
+      "label": "हिन्दी",
+      "source": "en-US"
+    },
+    {
+      "code": "id",
+      "dir": "ltr",
+      "label": "Bahasa Indonesia",
+      "source": "en-US"
+    },
+    {
+      "code": "it",
+      "dir": "ltr",
+      "label": "Italiano",
+      "source": "en-US"
+    },
+    {
+      "code": "ja",
+      "dir": "ltr",
+      "label": "日本語",
+      "source": "en-US"
+    },
+    {
+      "code": "ko",
+      "dir": "ltr",
+      "label": "한국어",
+      "source": "en-US"
+    },
+    {
+      "code": "ms",
+      "dir": "ltr",
+      "label": "Bahasa Melayu",
+      "source": "en-US"
+    },
+    {
+      "code": "nl-NL",
+      "dir": "ltr",
+      "label": "Nederlands",
+      "source": "en-US"
+    },
+    {
+      "code": "no",
+      "dir": "ltr",
+      "label": "Norsk",
+      "source": "en-US"
+    },
+    {
+      "code": "pl",
+      "dir": "ltr",
+      "label": "Polski",
+      "source": "en-US"
+    },
+    {
+      "code": "pt-PT",
+      "dir": "ltr",
+      "label": "Português (Portugal)",
+      "source": "en-US"
+    },
+    {
+      "code": "ro",
+      "dir": "ltr",
+      "label": "Română",
+      "source": "en-US"
+    },
+    {
+      "code": "sv",
+      "dir": "ltr",
+      "label": "Svenska",
+      "source": "en-US"
+    },
+    {
+      "code": "th",
+      "dir": "ltr",
+      "label": "ไทย",
+      "source": "en-US"
+    },
+    {
+      "code": "tr",
+      "dir": "ltr",
+      "label": "Türkçe",
+      "source": "en-US"
+    },
+    {
+      "code": "vi",
+      "dir": "ltr",
+      "label": "Tiếng Việt",
+      "source": "en-US"
+    },
+    {
+      "code": "zh-Hans",
+      "dir": "ltr",
+      "label": "简体中文",
+      "source": "zh-Hans"
+    },
+    {
+      "code": "zh-Hant",
+      "dir": "ltr",
+      "label": "繁體中文",
+      "source": "zh-Hans"
+    }
+  ],
+  "source_locales": [
+    "en-US",
+    "zh-Hans"
+  ]
+}

@@ -3,8 +3,9 @@ name: i18n auto-translate
 on:
   push:
     paths:
-      - "i18n/zh.json"
-      - "i18n/en.json"
+      - "i18n/en-US.json"
+      - "i18n/zh-Hans.json"
+      - "i18n/locales.json"
       - "scripts/i18n_autotranslate.py"
   workflow_dispatch:
 
@@ -13,7 +14,6 @@ permissions:
 
 jobs:
   translate:
-    # 防止 action 自己 commit 又触发自己
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
@@ -28,8 +28,8 @@ jobs:
 
       - name: Install deps
         run: |
-          pip install --upgrade pip
-          pip install openai
+          python -m pip install --upgrade pip
+          python -m pip install openai
 
       - name: Run auto-translate
         env:
@@ -38,7 +38,17 @@ jobs:
         run: |
           python scripts/i18n_autotranslate.py
 
-      - name: Commit changes
+      - name: Validate JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in sorted(Path("i18n").glob("*.json")):
+              json.loads(path.read_text(encoding="utf-8"))
+              print(path)
+          PY
+
+      - name: Commit translated locales
         run: |
           git config user.name "i18n-bot"
           git config user.email "i18n-bot@users.noreply.github.com"

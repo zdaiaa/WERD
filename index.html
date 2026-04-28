@@ -1,36 +1,473 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en-US">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WealthX — See your money clearly</title>
+  <meta name="description" content="WERD product home. WealthX is the current personal finance product." data-i18n-attr="content:home_meta_description" />
+  <title data-i18n="home_title">WERD - Products</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    :root{--bg:#f5f6fb;--text:#111;--muted:#5f6470;--card:#fff;--border:rgba(60,60,67,.16)}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
-    .wrap{max-width:780px;margin:0 auto;padding:72px 20px}
-    h1{font-size:clamp(36px,6vw,62px);letter-spacing:0;margin:0}
-    p{color:var(--muted);line-height:1.6;font-size:18px;max-width:700px}
-    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
-    .card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;min-height:220px;transition:.2s transform,.2s box-shadow}
-    .card:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(0,0,0,.08)}
-    .card h2{margin:0 0 8px;letter-spacing:-.02em}
-    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef1ff;color:#2f3e87;font-size:12px;font-weight:600}
-    @media (max-width:760px){.grid{grid-template-columns:1fr}}
+    :root {
+      --bg: #f5f5f7;
+      --paper: #ffffff;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0, 0, 0, 0.12);
+      --blue: #0066cc;
+      --green: #0066cc;
+      --amber: #bf4800;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+      --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --max: 1100px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #000000;
+      --paper: #161617;
+      --ink: #f5f5f7;
+      --muted: #a1a1a6;
+      --line: rgba(255, 255, 255, 0.18);
+      --blue: #2997ff;
+      --green: #2997ff;
+      --amber: #ff9f0a;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-text);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; }
+    .shell {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 22px 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 48px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: #1d1d1f;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    [data-theme="dark"] .brand-mark { background: #f5f5f7; color: #000000; }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .control {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.38);
+      color: var(--ink);
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    [data-theme="dark"] .control { background: rgba(255, 255, 255, 0.05); }
+    button.control { cursor: pointer; }
+    .control:focus-visible, .product-link:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .intro {
+      padding: 86px 0 42px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+      gap: 46px;
+      align-items: end;
+    }
+
+    .kicker {
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 16px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-family: var(--font-display);
+      font-size: clamp(44px, 7.8vw, 80px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .intro-copy {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.6;
+      margin: 18px 0 0;
+      max-width: 690px;
+    }
+
+    .status-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .status-panel strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .status-panel p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+      margin-top: 22px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 36px);
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .product-link {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: transform 160ms ease, border-color 160ms ease;
+    }
+
+    .product-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(49, 95, 186, 0.42);
+    }
+
+    .product-icon {
+      width: 82px;
+      height: 82px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+
+    .product-copy h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 25px;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .product-copy p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 15px;
+      max-width: 760px;
+    }
+
+    .product-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: var(--muted);
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    [data-theme="dark"] .pill { background: rgba(255, 255, 255, 0.05); }
+
+    .arrow {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 20px;
+    }
+
+    .future {
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      max-width: 760px;
+    }
+
+    footer {
+      margin-top: 70px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .shell { padding: 20px 16px 46px; }
+      .topbar { align-items: flex-start; }
+      .controls { width: min-content; }
+      .intro {
+        padding: 58px 0 30px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .product-link {
+        grid-template-columns: 58px minmax(0, 1fr);
+        padding: 16px;
+      }
+      .product-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 14px;
+      }
+      .arrow { display: none; }
+      .product-copy h3 { font-size: 21px; }
+      .section-head { display: block; }
+    }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <h1>WealthX</h1>
-    <p>个人财务管理主页：账户、预算、流水、目标与洞察集中展示，帮助用户看清每一笔钱。</p>
-    <section class="grid" aria-label="WealthX entry">
-      <a class="card" href="wealthx.html">
-        <span class="tag">Finance App</span>
-        <h2>WealthX</h2>
-        <p>个人财务管理：账户、预算、流水与洞察，可按语言切换核心内容。</p>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="WERD home">
+        <span class="brand-mark" aria-hidden="true">W</span>
+        <span>WERD</span>
       </a>
-    </section>
-  </main>
+      <div class="controls">
+        <select class="control" id="language-select" aria-label="Language"></select>
+        <button class="control" id="theme-toggle" type="button" data-i18n="theme_dark">Dark</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="home-heading">
+        <div>
+          <p class="kicker" data-i18n="home_kicker">Product home</p>
+          <h1 id="home-heading" data-i18n="home_hero_title">One home for current and future WERD products.</h1>
+          <p class="intro-copy" data-i18n="home_hero_subtitle">WealthX is the current product. This page keeps the product entry structure ready for more apps without mixing discontinued projects back in.</p>
+        </div>
+        <aside class="status-panel" aria-labelledby="home-status-title">
+          <strong id="home-status-title" data-i18n="home_current_title">Current product</strong>
+          <p data-i18n="home_current_body">WealthX 2.1.4 is the active homepage focus. Discontinued projects are not part of this site.</p>
+        </aside>
+      </section>
+
+      <section aria-labelledby="products-heading">
+        <div class="section-head">
+          <h2 id="products-heading" data-i18n="home_products_title">Products</h2>
+        </div>
+        <div class="product-grid">
+          <a class="product-link" id="wealthx-link" href="wealthx.html">
+            <img class="product-icon" src="WealthX logo.png" alt="" />
+            <div class="product-copy">
+              <h3>WealthX</h3>
+              <p data-i18n="home_wealthx_desc">A manual-first iOS personal finance workspace for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export.</p>
+              <div class="product-meta" aria-label="Product tags">
+                <span class="pill" data-i18n="home_wealthx_tag1">Personal finance</span>
+                <span class="pill" data-i18n="home_wealthx_tag2">iOS</span>
+                <span class="pill" data-i18n="home_wealthx_tag3">Version 2.1.4</span>
+              </div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <p class="future" data-i18n="home_future_note">When a new product is ready, it can be added here as a separate product entry instead of being mixed into the WealthX page.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span data-i18n="footer_copyright">© 2026 WERD. All rights reserved.</span>
+      <a id="privacy-link" href="wealthx.html#privacy" data-i18n="nav_privacy">Privacy</a>
+    </footer>
+  </div>
+
+  <script>
+    const DEFAULT_LOCALE = "en-US";
+    let activeLocale = DEFAULT_LOCALE;
+    let messages = {};
+    let localeConfig = { locales: [], aliases: {} };
+
+    function normalizeLocale(raw) {
+      if (!raw) return DEFAULT_LOCALE;
+      const clean = String(raw).trim();
+      return localeConfig.aliases[clean] || clean;
+    }
+
+    function t(key) {
+      return messages[key] || key;
+    }
+
+    async function fetchJson(path) {
+      const response = await fetch(path, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Failed to load ${path}`);
+      return response.json();
+    }
+
+    function preferredLocale() {
+      const params = new URLSearchParams(window.location.search);
+      const fromUrl = normalizeLocale(params.get("lang"));
+      const codes = new Set(localeConfig.locales.map((item) => item.code));
+      if (codes.has(fromUrl)) return fromUrl;
+      const nav = normalizeLocale(navigator.language);
+      if (codes.has(nav)) return nav;
+      const base = nav.split("-")[0];
+      for (const item of localeConfig.locales) {
+        if (item.code.split("-")[0] === base) return item.code;
+      }
+      return DEFAULT_LOCALE;
+    }
+
+    async function loadMessages(locale) {
+      try {
+        return await fetchJson(`i18n/${locale}.json`);
+      } catch (error) {
+        if (locale !== DEFAULT_LOCALE) return fetchJson(`i18n/${DEFAULT_LOCALE}.json`);
+        throw error;
+      }
+    }
+
+    function applyI18n() {
+      document.documentElement.lang = activeLocale;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        node.textContent = t(node.dataset.i18n);
+      });
+      document.querySelectorAll("[data-i18n-attr]").forEach((node) => {
+        node.dataset.i18nAttr.split(",").forEach((pair) => {
+          const [attr, key] = pair.split(":").map((part) => part.trim());
+          if (attr && key) node.setAttribute(attr, t(key));
+        });
+      });
+      document.title = t("home_title");
+      const suffix = `?lang=${encodeURIComponent(activeLocale)}`;
+      document.getElementById("wealthx-link").href = `wealthx.html${suffix}`;
+      document.getElementById("privacy-link").href = `wealthx.html${suffix}#privacy`;
+    }
+
+    function updateUrl(locale) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", locale);
+      window.history.replaceState({}, "", url);
+    }
+
+    function buildLanguageSelect() {
+      const select = document.getElementById("language-select");
+      select.innerHTML = "";
+      localeConfig.locales.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.code;
+        option.textContent = item.label;
+        select.appendChild(option);
+      });
+      select.value = activeLocale;
+      select.addEventListener("change", async () => {
+        activeLocale = normalizeLocale(select.value);
+        messages = await loadMessages(activeLocale);
+        updateUrl(activeLocale);
+        applyI18n();
+      });
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      localStorage.setItem("werd-theme", theme);
+      document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
+    }
+
+    async function init() {
+      localeConfig = await fetchJson("i18n/locales.json");
+      activeLocale = preferredLocale();
+      messages = await loadMessages(activeLocale);
+      buildLanguageSelect();
+      applyI18n();
+      applyTheme(localStorage.getItem("werd-theme") || "light");
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+      });
+    }
+
+    init().catch((error) => {
+      console.error(error);
+    });
+  </script>
 </body>
 </html>

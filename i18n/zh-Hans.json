@@ -1,10 +1,8 @@
 {
   "_meta": {
-    "locale": "zh-Hant",
-    "pending_translation": true,
-    "source_lang": "zh-Hans",
-    "status": "pending_auto_translate",
-    "target_lang": "zh-Hant"
+    "locale": "zh-Hans",
+    "source_locale": true,
+    "status": "source"
   },
   "app_store_url": "https://apps.apple.com/app/id6749512735",
   "app_version": "2.1.4",
