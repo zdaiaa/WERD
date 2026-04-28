@@ -41,6 +41,8 @@ FORCE_COPY_KEYS = {
     "terms_url",
 }
 
+FALLBACK_KEYS: Dict[str, List[str]] = {}
+
 
 class MissingKeysError(RuntimeError):
     def __init__(self, dst_lang: str, translated: Dict[str, str], missing: List[str]) -> None:
@@ -83,6 +85,13 @@ def source_hashes(meta: Dict[str, Any]) -> Dict[str, str]:
     if not isinstance(raw, dict):
         return {}
     return {str(key): str(value) for key, value in raw.items()}
+
+
+def fallback_keys(meta: Dict[str, Any]) -> set[str]:
+    raw = meta.get("fallback_keys")
+    if not isinstance(raw, list):
+        return set()
+    return {str(key) for key in raw}
 
 
 def chunks(items: Dict[str, str], size: int = OPENAI_BATCH_SIZE) -> Iterable[Dict[str, str]]:
@@ -129,6 +138,7 @@ def call_openai_translate(client: Any, src_lang: str, dst_lang: str, items: Dict
             "Do not translate URLs, email addresses, version numbers, WealthX, WERD, iCloud, iOS, App Store, Flow, or Flows.",
             "Use a calm product-marketing tone, not literal machine translation.",
             "Keep privacy wording conservative and do not imply zero risk.",
+            "Return every provided key exactly once. Never rename, omit, or merge keys.",
         ],
     }
     response = client.chat.completions.create(
@@ -154,6 +164,14 @@ def call_openai_translate(client: Any, src_lang: str, dst_lang: str, items: Dict
         raise MissingKeysError(dst_lang, output, missing)
 
     return {key: output[key] for key in items}
+
+
+def fallback_translation(dst_lang: str, items: Dict[str, str], reason: Optional[Exception]) -> Dict[str, str]:
+    keys = sorted(items)
+    current = FALLBACK_KEYS.setdefault(dst_lang, [])
+    current.extend(keys)
+    print(f"[fallback] {dst_lang}: keeping source text for {keys} after {reason}")
+    return {key: apply_glossary(value) for key, value in items.items()}
 
 
 def translate_items(client: Any, src_lang: str, dst_lang: str, items: Dict[str, str], depth: int = 0) -> Dict[str, str]:
@@ -188,7 +206,7 @@ def translate_items(client: Any, src_lang: str, dst_lang: str, items: Dict[str, 
         output.update(translate_items(client, src_lang, dst_lang, right, depth + 1))
         return output
 
-    raise RuntimeError(f"{dst_lang}: translation failed for {list(items)}: {last_error}") from last_error
+    return fallback_translation(dst_lang, items, last_error)
 
 
 def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
@@ -214,6 +232,7 @@ def build_target(src_lang: str, dst_lang: str, src_full: Dict[str, Any], dst_ful
     src_core, _ = split_meta(src_full)
     dst_core, dst_meta = split_meta(dst_full)
     hashes = source_hashes(dst_meta)
+    retry_fallbacks = fallback_keys(dst_meta)
     pending = dst_meta.get("pending_translation") is True
 
     next_full: Dict[str, Any] = dict(dst_full)
@@ -238,6 +257,9 @@ def build_target(src_lang: str, dst_lang: str, src_full: Dict[str, Any], dst_ful
             continue
 
         current_value = dst_core.get(key)
+        if key in retry_fallbacks:
+            needs_translate[key] = source_value
+            continue
         if pending or current_value is None or not str(current_value).strip():
             needs_translate[key] = source_value
             continue
@@ -255,6 +277,12 @@ def build_target(src_lang: str, dst_lang: str, src_full: Dict[str, Any], dst_ful
     for key, source_hash in seed_hashes.items():
         next_full["_meta"].setdefault("source_hashes", {})
         next_full["_meta"]["source_hashes"][key] = source_hash
+
+    locale_fallbacks = sorted(set(FALLBACK_KEYS.get(dst_lang, [])))
+    if locale_fallbacks:
+        next_full["_meta"]["fallback_keys"] = locale_fallbacks
+    else:
+        next_full["_meta"].pop("fallback_keys", None)
 
     next_full["_meta"].update(
         {
@@ -274,6 +302,7 @@ def build_target(src_lang: str, dst_lang: str, src_full: Dict[str, Any], dst_ful
         "translated": len(needs_translate),
         "seeded": len(seed_hashes) - len(needs_translate),
         "force": force_updates,
+        "fallback": len(locale_fallbacks),
     }
     return next_full, changed, stats
 
