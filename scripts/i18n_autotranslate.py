@@ -17,6 +17,7 @@ SOURCE_ZH = "zh-Hans"
 ZH_HANT = "zh-Hant"
 MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-5-mini")
 OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "90"))
+OPENAI_BATCH_SIZE = int(os.getenv("OPENAI_I18N_BATCH_SIZE", "16"))
 
 GLOSSARY = {
     "WealthX": "WealthX",
@@ -39,6 +40,14 @@ FORCE_COPY_KEYS = {
     "support_url",
     "terms_url",
 }
+
+
+class MissingKeysError(RuntimeError):
+    def __init__(self, dst_lang: str, translated: Dict[str, str], missing: List[str]) -> None:
+        self.dst_lang = dst_lang
+        self.translated = translated
+        self.missing = missing
+        super().__init__(f"{dst_lang}: translation response missing keys: {missing[:8]}")
 
 
 def load_json(path: Path) -> Dict[str, Any]:
@@ -76,7 +85,7 @@ def source_hashes(meta: Dict[str, Any]) -> Dict[str, str]:
     return {str(key): str(value) for key, value in raw.items()}
 
 
-def chunks(items: Dict[str, str], size: int = 60) -> Iterable[Dict[str, str]]:
+def chunks(items: Dict[str, str], size: int = OPENAI_BATCH_SIZE) -> Iterable[Dict[str, str]]:
     batch: Dict[str, str] = {}
     for key, value in items.items():
         batch[key] = value
@@ -132,12 +141,54 @@ def call_openai_translate(client: Any, src_lang: str, dst_lang: str, items: Dict
     )
     content = response.choices[0].message.content or "{}"
     translated = json.loads(content)
+    if not isinstance(translated, dict):
+        raise RuntimeError(f"{dst_lang}: translation response is not a JSON object")
 
-    missing = set(items) - set(translated)
+    output = {
+        key: apply_glossary(str(translated[key]))
+        for key in items
+        if key in translated and translated[key] is not None and str(translated[key]).strip()
+    }
+    missing = sorted(set(items) - set(output))
     if missing:
-        raise RuntimeError(f"{dst_lang}: translation response missing keys: {sorted(missing)[:8]}")
+        raise MissingKeysError(dst_lang, output, missing)
 
-    return {key: apply_glossary(str(translated[key])) for key in items}
+    return {key: output[key] for key in items}
+
+
+def translate_items(client: Any, src_lang: str, dst_lang: str, items: Dict[str, str], depth: int = 0) -> Dict[str, str]:
+    if not items:
+        return {}
+
+    last_error: Optional[Exception] = None
+    for attempt in range(3):
+        try:
+            return call_openai_translate(client, src_lang, dst_lang, items)
+        except MissingKeysError as exc:
+            last_error = exc
+            if exc.translated:
+                missing_items = {key: items[key] for key in exc.missing if key in items}
+                print(f"[warn] {dst_lang}: partial response kept {len(exc.translated)} keys; retry {len(missing_items)} missing keys")
+                patched = dict(exc.translated)
+                patched.update(translate_items(client, src_lang, dst_lang, missing_items, depth + 1))
+                return patched
+        except Exception as exc:
+            last_error = exc
+        delay = 1.6 ** attempt
+        print(f"[warn] {dst_lang}: retry {attempt + 1}/3 after {last_error}; sleep {delay:.1f}s")
+        time.sleep(delay)
+
+    if len(items) > 1:
+        values = list(items.items())
+        mid = max(1, len(values) // 2)
+        print(f"[warn] {dst_lang}: splitting {len(items)} keys after repeated failures")
+        left = dict(values[:mid])
+        right = dict(values[mid:])
+        output = translate_items(client, src_lang, dst_lang, left, depth + 1)
+        output.update(translate_items(client, src_lang, dst_lang, right, depth + 1))
+        return output
+
+    raise RuntimeError(f"{dst_lang}: translation failed for {list(items)}: {last_error}") from last_error
 
 
 def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
@@ -147,19 +198,7 @@ def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict
     client = openai_client()
     output: Dict[str, str] = {}
     for batch in chunks(items):
-        last_error: Optional[Exception] = None
-        for attempt in range(3):
-            try:
-                output.update(call_openai_translate(client, src_lang, dst_lang, batch))
-                last_error = None
-                break
-            except Exception as exc:
-                last_error = exc
-                delay = 1.6 ** attempt
-                print(f"[warn] {dst_lang}: retry {attempt + 1}/3 after {exc}; sleep {delay:.1f}s")
-                time.sleep(delay)
-        if last_error is not None:
-            raise RuntimeError(f"{dst_lang}: translation failed: {last_error}") from last_error
+        output.update(translate_items(client, src_lang, dst_lang, batch))
     return output
 
 
