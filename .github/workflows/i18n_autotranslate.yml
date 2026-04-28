@@ -41,7 +41,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_I18N_MODEL: gpt-5-mini
           OPENAI_TIMEOUT_SECONDS: "90"
-          OPENAI_I18N_BATCH_SIZE: "16"
+          OPENAI_I18N_BATCH_SIZE: "60"
+          OPENAI_I18N_MAX_ATTEMPTS: "2"
           PYTHONUNBUFFERED: "1"
         run: |
           python scripts/i18n_autotranslate.py

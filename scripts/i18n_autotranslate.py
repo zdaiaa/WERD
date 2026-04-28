@@ -18,6 +18,7 @@ ZH_HANT = "zh-Hant"
 MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-5-mini")
 OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "90"))
 OPENAI_BATCH_SIZE = int(os.getenv("OPENAI_I18N_BATCH_SIZE", "16"))
+OPENAI_MAX_ATTEMPTS = int(os.getenv("OPENAI_I18N_MAX_ATTEMPTS", "2"))
 
 GLOSSARY = {
     "WealthX": "WealthX",
@@ -150,9 +151,7 @@ def call_openai_translate(client: Any, src_lang: str, dst_lang: str, items: Dict
         ],
     )
     content = response.choices[0].message.content or "{}"
-    translated = json.loads(content)
-    if not isinstance(translated, dict):
-        raise RuntimeError(f"{dst_lang}: translation response is not a JSON object")
+    translated = pick_translation_object(json.loads(content), items)
 
     output = {
         key: apply_glossary(str(translated[key]))
@@ -174,39 +173,54 @@ def fallback_translation(dst_lang: str, items: Dict[str, str], reason: Optional[
     return {key: apply_glossary(value) for key, value in items.items()}
 
 
+def pick_translation_object(data: Any, item_keys: Iterable[str]) -> Dict[str, Any]:
+    if not isinstance(data, dict):
+        raise RuntimeError("translation response is not a JSON object")
+
+    keys = set(item_keys)
+    candidates = [data]
+    for value in data.values():
+        if isinstance(value, dict):
+            candidates.append(value)
+
+    return max(candidates, key=lambda candidate: len(keys & set(candidate.keys())))
+
+
 def translate_items(client: Any, src_lang: str, dst_lang: str, items: Dict[str, str], depth: int = 0) -> Dict[str, str]:
     if not items:
         return {}
 
+    pending: Dict[str, str] = dict(items)
+    output: Dict[str, str] = {}
     last_error: Optional[Exception] = None
-    for attempt in range(3):
+    for attempt in range(OPENAI_MAX_ATTEMPTS):
         try:
-            return call_openai_translate(client, src_lang, dst_lang, items)
+            output.update(call_openai_translate(client, src_lang, dst_lang, pending))
+            pending = {}
+            break
         except MissingKeysError as exc:
             last_error = exc
             if exc.translated:
-                missing_items = {key: items[key] for key in exc.missing if key in items}
-                print(f"[warn] {dst_lang}: partial response kept {len(exc.translated)} keys; retry {len(missing_items)} missing keys")
-                patched = dict(exc.translated)
-                patched.update(translate_items(client, src_lang, dst_lang, missing_items, depth + 1))
-                return patched
+                output.update(exc.translated)
+                pending = {key: items[key] for key in exc.missing if key in items}
+                print(f"[warn] {dst_lang}: partial response kept {len(exc.translated)} keys; retry {len(pending)} missing keys")
         except Exception as exc:
             last_error = exc
-        delay = 1.6 ** attempt
-        print(f"[warn] {dst_lang}: retry {attempt + 1}/3 after {last_error}; sleep {delay:.1f}s")
+        if not pending:
+            break
+        if attempt + 1 >= OPENAI_MAX_ATTEMPTS:
+            break
+        delay = 1.4 ** attempt
+        print(f"[warn] {dst_lang}: retry {attempt + 1}/{OPENAI_MAX_ATTEMPTS} after {last_error}; sleep {delay:.1f}s")
         time.sleep(delay)
 
-    if len(items) > 1:
-        values = list(items.items())
-        mid = max(1, len(values) // 2)
-        print(f"[warn] {dst_lang}: splitting {len(items)} keys after repeated failures")
-        left = dict(values[:mid])
-        right = dict(values[mid:])
-        output = translate_items(client, src_lang, dst_lang, left, depth + 1)
-        output.update(translate_items(client, src_lang, dst_lang, right, depth + 1))
-        return output
+    if pending:
+        output.update(fallback_translation(dst_lang, pending, last_error))
 
-    return fallback_translation(dst_lang, items, last_error)
+    missing = {key: value for key, value in items.items() if key not in output}
+    if missing:
+        output.update(fallback_translation(dst_lang, missing, last_error))
+    return {key: output[key] for key in items}
 
 
 def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
