@@ -227,13 +227,18 @@
     }
 
     [data-theme="dark"] .hero-stage {
-      opacity: 0.72;
+      opacity: 0.9;
+    }
+
+    [data-theme="dark"] .hero-stage img {
+      box-shadow: 0 28px 82px rgba(0, 0, 0, 0.42);
+      filter: saturate(1.2) contrast(1.14) brightness(1.16);
     }
 
     [data-theme="dark"] .hero::after {
       background:
-        linear-gradient(90deg, var(--paper-2) 0%, color-mix(in srgb, var(--paper-2) 88%, transparent) 44%, color-mix(in srgb, var(--paper-2) 34%, transparent) 100%),
-        linear-gradient(180deg, color-mix(in srgb, var(--paper-2) 48%, transparent) 0%, transparent 45%, color-mix(in srgb, var(--paper-2) 64%, transparent) 100%);
+        linear-gradient(90deg, var(--paper-2) 0%, color-mix(in srgb, var(--paper-2) 92%, transparent) 43%, color-mix(in srgb, var(--paper-2) 18%, transparent) 64%, transparent 100%),
+        linear-gradient(180deg, color-mix(in srgb, var(--paper-2) 24%, transparent) 0%, transparent 48%, color-mix(in srgb, var(--paper-2) 36%, transparent) 100%);
     }
 
     .hero-inner {
@@ -699,8 +704,8 @@
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-stage" aria-hidden="true">
-        <img src="assets/tips/investment-overview-light.png" alt="" />
-        <img src="assets/tips/charts-map-light.png" alt="" />
+        <img class="theme-shot" src="assets/tips/investment-overview-light.png" data-light-src="assets/tips/investment-overview-light.png" data-dark-src="assets/tips/investment-overview-dark.png" alt="" />
+        <img class="theme-shot" src="assets/tips/charts-map-light.png" data-light-src="assets/tips/charts-map-light.png" data-dark-src="assets/tips/charts-map-dark.png" alt="" />
       </div>
       <div class="hero-inner">
         <div class="hero-copy">
