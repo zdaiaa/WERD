@@ -12,10 +12,15 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: i18n-autotranslate-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   translate:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 90
 
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +40,8 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_I18N_MODEL: gpt-5-mini
+          OPENAI_TIMEOUT_SECONDS: "90"
+          PYTHONUNBUFFERED: "1"
         run: |
           python scripts/i18n_autotranslate.py
 
@@ -55,4 +62,5 @@ jobs:
           git add i18n/*.json
           git diff --cached --quiet && echo "No i18n changes" && exit 0
           git commit -m "chore(i18n): auto-translate"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin HEAD:${GITHUB_REF_NAME}

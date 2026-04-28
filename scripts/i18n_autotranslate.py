@@ -16,6 +16,7 @@ SOURCE_EN = "en-US"
 SOURCE_ZH = "zh-Hans"
 ZH_HANT = "zh-Hant"
 MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-5-mini")
+OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "90"))
 
 GLOSSARY = {
     "WealthX": "WealthX",
@@ -98,7 +99,7 @@ def openai_client():
         raise RuntimeError("OPENAI_API_KEY is required when translations are needed")
     from openai import OpenAI
 
-    return OpenAI(api_key=api_key)
+    return OpenAI(api_key=api_key, timeout=OPENAI_TIMEOUT_SECONDS, max_retries=2)
 
 
 def call_openai_translate(client: Any, src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
