@@ -13,6 +13,17 @@
   <link rel="canonical" href="https://zdaiaa.github.io/WERD/wealthx.html" />
   <title data-i18n="title">WealthX - A clearer structure for personal finance</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script>
+    (() => {
+      try {
+        const storedTheme = localStorage.getItem("werd-theme");
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -1186,17 +1197,40 @@
       items.forEach((item) => observer.observe(item));
     }
 
-    function applyTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      localStorage.setItem("werd-theme", theme);
-      document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
+    function preferredTheme() {
+      let storedTheme = "";
+      try {
+        storedTheme = localStorage.getItem("werd-theme") || "";
+      } catch (error) {
+        storedTheme = "";
+      }
+      const preset = document.documentElement.dataset.theme || storedTheme;
+      if (preset === "dark" || preset === "light") return preset;
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    function syncThemeShots(theme) {
       document.querySelectorAll(".theme-shot").forEach((img) => {
         const next = theme === "dark" ? img.dataset.darkSrc : img.dataset.lightSrc;
         if (next && img.getAttribute("src") !== next) img.setAttribute("src", next);
       });
     }
 
+    function applyTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      try {
+        localStorage.setItem("werd-theme", theme);
+      } catch (error) {
+        // Theme still applies for the current page even if storage is unavailable.
+      }
+      document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
+      syncThemeShots(theme);
+    }
+
     async function init() {
+      const initialTheme = preferredTheme();
+      document.documentElement.dataset.theme = initialTheme;
+      syncThemeShots(initialTheme);
       localeConfig = await fetchJson("i18n/locales.json");
       fallbackMessages = await fetchJson(`i18n/${DEFAULT_LOCALE}.json`);
       activeLocale = preferredLocale();
@@ -1204,7 +1238,7 @@
       buildLanguageSelect();
       applyI18n();
       setupScrollReveal();
-      applyTheme(localStorage.getItem("werd-theme") || "light");
+      applyTheme(initialTheme);
       document.getElementById("theme-toggle").addEventListener("click", () => {
         applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
       });
