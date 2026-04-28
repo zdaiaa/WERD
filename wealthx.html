@@ -79,28 +79,6 @@
       letter-spacing: -0.01em;
     }
 
-    .product-switch{
-      display:flex;
-      align-items:center;
-      gap:8px;
-    }
-    .product-pill{
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      padding:8px 14px;
-      border-radius:999px;
-      text-decoration:none;
-      color:var(--text);
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .product-pill.active{
-      background: linear-gradient(135deg,var(--brand),var(--brand2));
-      color: #071025;
-      border-color: transparent;
-      font-weight: 650;
-    }
-
     .nav-links{
       display:flex;
       align-items:center;
@@ -309,24 +287,11 @@
       gap: 18px;
     }
     .feature-detail{
-      display: grid;
-      grid-template-columns: minmax(260px, 38%) 1fr;
-      gap: 18px;
-      align-items: stretch;
       background: rgba(255,255,255,.03);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 18px;
       scroll-margin-top: calc(var(--navh) + 20px);
-    }
-    .feature-shot{
-      width: 100%;
-      height: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
     }
     .feature-copy h3{
       margin: 2px 0 10px;
@@ -348,15 +313,6 @@
       line-height: 1.55;
       font-size: 14.5px;
     }
-    @media (max-width: 860px){
-      .feature-detail{
-        grid-template-columns: 1fr;
-      }
-      .feature-shot{
-        max-height: 240px;
-      }
-    }
-
     /* Privacy text */
     .legal{
       background: var(--card);
@@ -399,11 +355,6 @@
         <img src="WealthX logo.png" alt="WealthX" />
         <div class="name" data-i18n="app_name">WealthX</div>
       </div>
-
-      <nav class="product-switch" aria-label="Products">
-        <a class="product-pill active" href="wealthx.html" aria-current="page">WealthX</a>
-        <a class="product-pill" href="nexusos.html">NexusOS</a>
-      </nav>
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#what-is-wealthx">What is WealthX</a>
@@ -528,14 +479,6 @@
 
       <div class="detail-grid">
         <article id="feature-accounts" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="account"
-            src="screenshot/account/en/AccountView.png"
-            data-i18n-attr="alt:details_accounts_image_alt"
-            alt="WealthX account management screen"
-            loading="lazy"
-          />
           <div class="feature-copy">
             <h3 data-i18n="details_accounts_title">Accounts: Structure + Ledger</h3>
             <p data-i18n="details_accounts_desc">Accounts in WealthX are not just a list. You can separate assets and liabilities, group related accounts, and drill into each account ledger.</p>
@@ -548,14 +491,6 @@
         </article>
 
         <article id="feature-budgets" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="budget"
-            src="screenshot/budget/en/BudgetView.png"
-            data-i18n-attr="alt:details_budgets_image_alt"
-            alt="WealthX budget planning screen"
-            loading="lazy"
-          />
           <div class="feature-copy">
             <h3 data-i18n="details_budgets_title">Budgets: Month, Year, and Project</h3>
             <p data-i18n="details_budgets_desc">Budgeting supports different horizons with scenario context, so planning and execution stay aligned.</p>
@@ -568,14 +503,6 @@
         </article>
 
         <article id="feature-flows" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="transaction"
-            src="screenshot/transaction/en/TodayView.png"
-            data-i18n-attr="alt:details_flows_image_alt"
-            alt="WealthX transaction flow shortcuts screen"
-            loading="lazy"
-          />
           <div class="feature-copy">
             <h3 data-i18n="details_flows_title">Flows: Reusable and Scheduled</h3>
             <p data-i18n="details_flows_desc">Flows let you save common transactions as templates and run them quickly in daily bookkeeping.</p>
@@ -588,14 +515,6 @@
         </article>
 
         <article id="feature-insights" class="feature-detail">
-          <img
-            class="feature-shot"
-            data-shot-feature="visualization"
-            src="screenshot/visualization/en/RadarMap.png"
-            data-i18n-attr="alt:details_insights_image_alt"
-            alt="WealthX insights and cashflow map screen"
-            loading="lazy"
-          />
           <div class="feature-copy">
             <h3 data-i18n="details_insights_title">Insights: From Summary to Cashflow Map</h3>
             <p data-i18n="details_insights_desc">The statistics module combines overview and deep-dive charts so you can spot drift early.</p>
@@ -694,7 +613,7 @@
         <h3>Recommended content system for WealthX GEO</h3>
         <ul>
           <li>Versioned changelog entries with release dates and feature outcomes (starting from 2.1).</li>
-          <li>Feature pages for Accounts, Budgets, Flows, Insights, and Goals with screenshots and exact terms.</li>
+          <li>Feature pages for Accounts, Budgets, Flows, Insights, and Goals with exact terms and current workflows.</li>
           <li>Use-case pages answering “how to” questions in 3–5 practical steps.</li>
           <li>Comparison pages such as “WealthX vs YNAB / Monarch / Copilot” with explicit criteria.</li>
         </ul>
@@ -817,16 +736,6 @@
     // ---------- i18n ----------
     let lang = "en";
     let dictEN = null;
-    let SHOT_LANGS = ["zh","zh-Hant","en"];
-    let DEFAULT_SHOT_LANG = "en";
-    let SHOTS_FALLBACK = {
-      account: "screenshot/account/en/AccountView.png",
-      budget: "screenshot/budget/en/BudgetView.png",
-      transaction: "screenshot/transaction/en/TodayView.png",
-      visualization: "screenshot/visualization/en/RadarMap.png"
-    };
-    let shotsManifest = { value: null };
-
     async function fetchJSON(url){
       // cache busting
       const u = url + (url.includes("?") ? "&" : "?") + "v=" + Date.now();
@@ -839,54 +748,6 @@
       // 你的目录是 i18n/<lang>.json
       // 确保文件名就是：en.json / zh.json / zh-Hant.json / en-GB.json ...
       return await fetchJSON(`i18n/${l}.json`);
-    }
-
-    function normalizeShotLang(input){
-      const normalized = normalizeLang(input);
-      if (SHOT_LANGS.includes(normalized)) return normalized;
-      if (normalized === "zh-Hant") return "zh-Hant";
-      if (normalized.startsWith("zh")) return "zh";
-      return DEFAULT_SHOT_LANG;
-    }
-
-    async function loadShotsManifest(){
-      if (shotsManifest.value) return shotsManifest.value;
-      try {
-        shotsManifest.value = await fetchJSON("screenshots.json");
-      } catch (e) {
-        console.warn("Failed to load screenshots manifest", e);
-        shotsManifest.value = {};
-      }
-      return shotsManifest.value;
-    }
-
-    function resolveShotPath(manifest, feature, shotLang){
-      const fallback = SHOTS_FALLBACK[feature];
-      const featureMap = manifest?.[feature];
-      if (!featureMap || typeof featureMap !== "object") return fallback;
-
-      const byLang = featureMap[shotLang];
-      if (Array.isArray(byLang) && byLang.length > 0) {
-        return `screenshot/${feature}/${shotLang}/${byLang[0]}`;
-      }
-
-      const byEn = featureMap[DEFAULT_SHOT_LANG];
-      if (Array.isArray(byEn) && byEn.length > 0) {
-        return `screenshot/${feature}/${DEFAULT_SHOT_LANG}/${byEn[0]}`;
-      }
-
-      return fallback;
-    }
-
-    async function updateFeatureShots(activeLang){
-      const manifest = await loadShotsManifest();
-      const shotLang = normalizeShotLang(activeLang);
-      document.querySelectorAll("[data-shot-feature]").forEach(img => {
-        const feature = img.getAttribute("data-shot-feature");
-        if (!feature) return;
-        const next = resolveShotPath(manifest, feature, shotLang);
-        if (next) img.setAttribute("src", next);
-      });
     }
 
     function applyText(dict){
@@ -943,7 +804,6 @@
       }
 
       applyText(dict);
-      await updateFeatureShots(lang);
       document.getElementById("langSwitch").value = lang;
     }
 
@@ -975,10 +835,10 @@
       card_flows_title, card_flows_desc,
       card_insights_title, card_insights_desc,
       details_title, details_subtitle,
-      details_accounts_title, details_accounts_desc, details_accounts_point1, details_accounts_point2, details_accounts_point3, details_accounts_image_alt,
-      details_budgets_title, details_budgets_desc, details_budgets_point1, details_budgets_point2, details_budgets_point3, details_budgets_image_alt,
-      details_flows_title, details_flows_desc, details_flows_point1, details_flows_point2, details_flows_point3, details_flows_image_alt,
-      details_insights_title, details_insights_desc, details_insights_point1, details_insights_point2, details_insights_point3, details_insights_image_alt,
+      details_accounts_title, details_accounts_desc, details_accounts_point1, details_accounts_point2, details_accounts_point3,
+      details_budgets_title, details_budgets_desc, details_budgets_point1, details_budgets_point2, details_budgets_point3,
+      details_flows_title, details_flows_desc, details_flows_point1, details_flows_point2, details_flows_point3,
+      details_insights_title, details_insights_desc, details_insights_point1, details_insights_point2, details_insights_point3,
       privacy_title, privacy_subtitle, privacy_effective, privacy_date,
       privacy_sec1, privacy_item1, privacy_item2, privacy_item3, privacy_item4,
       privacy_sec2, privacy_use1, privacy_use2, privacy_use3,
