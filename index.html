@@ -3,19 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="WERD product home. WealthX is the current personal finance product." data-i18n-attr="content:home_meta_description" />
-  <title data-i18n="home_title">WERD - Products</title>
+  <meta name="description" content="WERD home for WealthX and Eric Dai biography." data-i18n-attr="content:home_meta_description" />
+  <title data-i18n="home_title">WERD - Products & Biography</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
     :root {
+      color-scheme: light;
       --bg: #f5f5f7;
       --paper: #ffffff;
       --ink: #1d1d1f;
       --muted: #6e6e73;
       --line: rgba(0, 0, 0, 0.12);
       --blue: #0066cc;
-      --green: #0066cc;
-      --amber: #bf4800;
       --shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
       --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
       --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
@@ -23,14 +22,13 @@
     }
 
     [data-theme="dark"] {
+      color-scheme: dark;
       --bg: #000000;
       --paper: #161617;
       --ink: #f5f5f7;
       --muted: #a1a1a6;
       --line: rgba(255, 255, 255, 0.18);
       --blue: #2997ff;
-      --green: #2997ff;
-      --amber: #ff9f0a;
       --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
     }
 
@@ -46,6 +44,8 @@
     }
 
     a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
     .shell {
       max-width: var(--max);
       margin: 0 auto;
@@ -105,7 +105,7 @@
 
     [data-theme="dark"] .control { background: rgba(255, 255, 255, 0.05); }
     button.control { cursor: pointer; }
-    .control:focus-visible, .product-link:focus-visible {
+    .control:focus-visible, .entry-link:focus-visible {
       outline: 2px solid var(--blue);
       outline-offset: 3px;
     }
@@ -119,19 +119,20 @@
     }
 
     .kicker {
-      color: var(--green);
+      color: var(--blue);
       font-size: 14px;
       font-weight: 600;
       margin: 0 0 16px;
     }
 
+    h1, h2, h3, p { letter-spacing: 0; }
+    h1, h2, h3 { font-family: var(--font-display); }
+
     h1 {
       margin: 0;
-      max-width: 820px;
-      font-family: var(--font-display);
+      max-width: 840px;
       font-size: clamp(44px, 7.8vw, 80px);
       line-height: 1.04;
-      letter-spacing: 0;
       font-weight: 700;
     }
 
@@ -140,7 +141,7 @@
       font-size: 19px;
       line-height: 1.6;
       margin: 18px 0 0;
-      max-width: 690px;
+      max-width: 710px;
     }
 
     .status-panel {
@@ -176,20 +177,18 @@
 
     .section-head h2 {
       margin: 0;
-      font-family: var(--font-display);
       font-size: clamp(24px, 4vw, 36px);
-      letter-spacing: 0;
       font-weight: 700;
     }
 
-    .product-grid {
+    .entry-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       gap: 16px;
       margin-top: 22px;
     }
 
-    .product-link {
+    .entry-link {
       display: grid;
       grid-template-columns: 88px minmax(0, 1fr) auto;
       gap: 20px;
@@ -204,36 +203,56 @@
       transition: transform 160ms ease, border-color 160ms ease;
     }
 
-    .product-link:hover {
+    .entry-link:hover {
       transform: translateY(-2px);
-      border-color: rgba(49, 95, 186, 0.42);
+      border-color: color-mix(in srgb, var(--blue) 42%, var(--line));
     }
 
-    .product-icon {
+    .entry-visual {
       width: 82px;
       height: 82px;
       border-radius: 18px;
-      object-fit: cover;
       border: 1px solid var(--line);
+      overflow: hidden;
+      flex: none;
     }
 
-    .product-copy h3 {
-      margin: 0;
+    .entry-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bio-mark {
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #f5f5f7, #e7e7ea);
+      color: #1d1d1f;
       font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .bio-mark {
+      background: linear-gradient(145deg, #1f1f22, #0b0b0d);
+      color: #f5f5f7;
+    }
+
+    .entry-copy h3 {
+      margin: 0;
       font-size: 25px;
-      letter-spacing: 0;
       font-weight: 600;
     }
 
-    .product-copy p {
+    .entry-copy p {
       margin: 8px 0 0;
       color: var(--muted);
       line-height: 1.55;
       font-size: 15px;
-      max-width: 760px;
+      max-width: 780px;
     }
 
-    .product-meta {
+    .entry-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -282,6 +301,12 @@
       font-size: 13px;
     }
 
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 760px) {
       .shell { padding: 20px 16px 46px; }
       .topbar { align-items: flex-start; }
@@ -291,17 +316,18 @@
         grid-template-columns: 1fr;
         gap: 24px;
       }
-      .product-link {
+      .entry-link {
         grid-template-columns: 58px minmax(0, 1fr);
         padding: 16px;
       }
-      .product-icon {
+      .entry-visual {
         width: 58px;
         height: 58px;
         border-radius: 14px;
       }
+      .bio-mark { font-size: 17px; }
       .arrow { display: none; }
-      .product-copy h3 { font-size: 21px; }
+      .entry-copy h3 { font-size: 21px; }
       .section-head { display: block; }
     }
   </style>
@@ -322,27 +348,29 @@
     <main>
       <section class="intro" aria-labelledby="home-heading">
         <div>
-          <p class="kicker" data-i18n="home_kicker">Product home</p>
-          <h1 id="home-heading" data-i18n="home_hero_title">One home for current and future WERD products.</h1>
-          <p class="intro-copy" data-i18n="home_hero_subtitle">WealthX is the current product. This page keeps the product entry structure ready for more apps without mixing discontinued projects back in.</p>
+          <p class="kicker" data-i18n="home_kicker">WERD home</p>
+          <h1 id="home-heading" data-i18n="home_hero_title">Products and biography, kept in one clear place.</h1>
+          <p class="intro-copy" data-i18n="home_hero_subtitle">Explore the current WERD product, WealthX, or read Eric Dai's biography across supply chain planning, logistics execution, analytics automation, and product building.</p>
         </div>
         <aside class="status-panel" aria-labelledby="home-status-title">
-          <strong id="home-status-title" data-i18n="home_current_title">Current product</strong>
-          <p data-i18n="home_current_body">WealthX 2.1.4 is the active homepage focus. Discontinued projects are not part of this site.</p>
+          <strong id="home-status-title" data-i18n="home_current_title">Current entries</strong>
+          <p data-i18n="home_current_body">WealthX and Eric Dai Biography are peer entries. Future products can be added here without mixing product pages and personal background.</p>
         </aside>
       </section>
 
-      <section aria-labelledby="products-heading">
+      <section aria-labelledby="entries-heading">
         <div class="section-head">
-          <h2 id="products-heading" data-i18n="home_products_title">Products</h2>
+          <h2 id="entries-heading" data-i18n="home_entries_title">Products & Biography</h2>
         </div>
-        <div class="product-grid">
-          <a class="product-link" id="wealthx-link" href="wealthx.html">
-            <img class="product-icon" src="WealthX logo.png" alt="" />
-            <div class="product-copy">
+        <div class="entry-grid">
+          <a class="entry-link" id="wealthx-link" href="wealthx.html">
+            <span class="entry-visual">
+              <img class="entry-icon" src="WealthX logo.png" alt="" />
+            </span>
+            <div class="entry-copy">
               <h3>WealthX</h3>
               <p data-i18n="home_wealthx_desc">A manual-first iOS personal finance workspace for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export.</p>
-              <div class="product-meta" aria-label="Product tags">
+              <div class="entry-meta" aria-label="WealthX tags">
                 <span class="pill" data-i18n="home_wealthx_tag1">Personal finance</span>
                 <span class="pill" data-i18n="home_wealthx_tag2">iOS</span>
                 <span class="pill" data-i18n="home_wealthx_tag3">Version 2.1.4</span>
@@ -350,60 +378,119 @@
             </div>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
+
+          <a class="entry-link" id="bio-link" href="bio.html">
+            <span class="entry-visual bio-mark" aria-hidden="true">ED</span>
+            <div class="entry-copy">
+              <h3 data-i18n="home_bio_title">Eric Dai Biography</h3>
+              <p data-i18n="home_bio_desc">Supply chain and logistics planner with Apple and IKEA experience, combining execution discipline with analytics automation and hands-on product building.</p>
+              <div class="entry-meta" aria-label="Biography tags">
+                <span class="pill" data-i18n="home_bio_tag1">Supply chain</span>
+                <span class="pill" data-i18n="home_bio_tag2">Logistics</span>
+                <span class="pill" data-i18n="home_bio_tag3">Automation</span>
+              </div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
-        <p class="future" data-i18n="home_future_note">When a new product is ready, it can be added here as a separate product entry instead of being mixed into the WealthX page.</p>
+        <p class="future" data-i18n="home_future_note">This page stays as the entry layer. WealthX and Biography each keep their own detail page.</p>
       </section>
     </main>
 
     <footer>
       <span data-i18n="footer_copyright">© 2026 WERD. All rights reserved.</span>
-      <a id="privacy-link" href="wealthx.html#privacy" data-i18n="nav_privacy">Privacy</a>
+      <div class="footer-links">
+        <a id="footer-bio-link" href="bio.html" data-i18n="footer_bio">Biography</a>
+        <a id="privacy-link" href="wealthx.html#privacy" data-i18n="nav_privacy">Privacy</a>
+      </div>
     </footer>
   </div>
 
   <script>
     const DEFAULT_LOCALE = "en-US";
+    const SUPPORTED_LOCALES = [
+      { code: "en-US", label: "English (US)" },
+      { code: "zh-Hans", label: "简体中文" }
+    ];
+    const LOCALE_ALIASES = {
+      en: "en-US",
+      "en-US": "en-US",
+      zh: "zh-Hans",
+      "zh-CN": "zh-Hans",
+      "zh-Hans": "zh-Hans",
+      "zh-SG": "zh-Hans"
+    };
+    const MESSAGES = {
+      "en-US": {
+        footer_bio: "Biography",
+        footer_copyright: "© 2026 WERD. All rights reserved.",
+        home_bio_desc: "Supply chain and logistics planner with Apple and IKEA experience, combining execution discipline with analytics automation and hands-on product building.",
+        home_bio_tag1: "Supply chain",
+        home_bio_tag2: "Logistics",
+        home_bio_tag3: "Automation",
+        home_bio_title: "Eric Dai Biography",
+        home_current_body: "WealthX and Eric Dai Biography are peer entries. Future products can be added here without mixing product pages and personal background.",
+        home_current_title: "Current entries",
+        home_entries_title: "Products & Biography",
+        home_future_note: "This page stays as the entry layer. WealthX and Biography each keep their own detail page.",
+        home_hero_subtitle: "Explore the current WERD product, WealthX, or read Eric Dai's biography across supply chain planning, logistics execution, analytics automation, and product building.",
+        home_hero_title: "Products and biography, kept in one clear place.",
+        home_kicker: "WERD home",
+        home_meta_description: "WERD home for WealthX and Eric Dai biography.",
+        home_title: "WERD - Products & Biography",
+        home_wealthx_desc: "A manual-first iOS personal finance workspace for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export.",
+        home_wealthx_tag1: "Personal finance",
+        home_wealthx_tag2: "iOS",
+        home_wealthx_tag3: "Version 2.1.4",
+        nav_privacy: "Privacy",
+        theme_dark: "Dark",
+        theme_light: "Light"
+      },
+      "zh-Hans": {
+        footer_bio: "个人简介",
+        footer_copyright: "© 2026 WERD。保留所有权利。",
+        home_bio_desc: "具备 Apple 与 IKEA 供应链/物流规划经验，擅长把运营执行、数据可视化和自动化工具结合起来。",
+        home_bio_tag1: "供应链",
+        home_bio_tag2: "物流",
+        home_bio_tag3: "自动化",
+        home_bio_title: "Eric Dai 个人简介",
+        home_current_body: "WealthX 与 Eric Dai 个人简介是同级入口。未来新产品也可以加入这里，而不混入已有产品页面。",
+        home_current_title: "当前入口",
+        home_entries_title: "产品与个人简介",
+        home_future_note: "这个页面保持入口层定位。WealthX 和个人简介分别保留自己的详情页。",
+        home_hero_subtitle: "查看当前 WERD 产品 WealthX，或阅读 Eric Dai 在供应链规划、物流执行、数据自动化和产品构建方面的个人简介。",
+        home_hero_title: "把产品与个人简介放在同一个清晰入口。",
+        home_kicker: "WERD 主页",
+        home_meta_description: "WERD 主页，包含 WealthX 与 Eric Dai 个人简介入口。",
+        home_title: "WERD - 产品与个人简介",
+        home_wealthx_desc: "一款手动优先的 iOS 个人财务工作台，用于管理账户、预算、交易、投资、目标、场景、交易流、组件与导入导出。",
+        home_wealthx_tag1: "个人财务",
+        home_wealthx_tag2: "iOS",
+        home_wealthx_tag3: "版本 2.1.4",
+        nav_privacy: "隐私",
+        theme_dark: "深色",
+        theme_light: "浅色"
+      }
+    };
+
     let activeLocale = DEFAULT_LOCALE;
-    let messages = {};
-    let localeConfig = { locales: [], aliases: {} };
+    let messages = MESSAGES[DEFAULT_LOCALE];
 
     function normalizeLocale(raw) {
       if (!raw) return DEFAULT_LOCALE;
       const clean = String(raw).trim();
-      return localeConfig.aliases[clean] || clean;
+      if (LOCALE_ALIASES[clean]) return LOCALE_ALIASES[clean];
+      return DEFAULT_LOCALE;
     }
 
     function t(key) {
-      return messages[key] || key;
-    }
-
-    async function fetchJson(path) {
-      const response = await fetch(path, { cache: "no-store" });
-      if (!response.ok) throw new Error(`Failed to load ${path}`);
-      return response.json();
+      return messages[key] || MESSAGES[DEFAULT_LOCALE][key] || key;
     }
 
     function preferredLocale() {
       const params = new URLSearchParams(window.location.search);
-      const fromUrl = normalizeLocale(params.get("lang"));
-      const codes = new Set(localeConfig.locales.map((item) => item.code));
-      if (codes.has(fromUrl)) return fromUrl;
-      const nav = normalizeLocale(navigator.language);
-      if (codes.has(nav)) return nav;
-      const base = nav.split("-")[0];
-      for (const item of localeConfig.locales) {
-        if (item.code.split("-")[0] === base) return item.code;
-      }
-      return DEFAULT_LOCALE;
-    }
-
-    async function loadMessages(locale) {
-      try {
-        return await fetchJson(`i18n/${locale}.json`);
-      } catch (error) {
-        if (locale !== DEFAULT_LOCALE) return fetchJson(`i18n/${DEFAULT_LOCALE}.json`);
-        throw error;
-      }
+      if (params.has("lang")) return normalizeLocale(params.get("lang"));
+      return normalizeLocale(navigator.language);
     }
 
     function applyI18n() {
@@ -420,6 +507,8 @@
       document.title = t("home_title");
       const suffix = `?lang=${encodeURIComponent(activeLocale)}`;
       document.getElementById("wealthx-link").href = `wealthx.html${suffix}`;
+      document.getElementById("bio-link").href = `bio.html${suffix}`;
+      document.getElementById("footer-bio-link").href = `bio.html${suffix}`;
       document.getElementById("privacy-link").href = `wealthx.html${suffix}#privacy`;
     }
 
@@ -432,42 +521,54 @@
     function buildLanguageSelect() {
       const select = document.getElementById("language-select");
       select.innerHTML = "";
-      localeConfig.locales.forEach((item) => {
+      SUPPORTED_LOCALES.forEach((item) => {
         const option = document.createElement("option");
         option.value = item.code;
         option.textContent = item.label;
         select.appendChild(option);
       });
       select.value = activeLocale;
-      select.addEventListener("change", async () => {
+      select.addEventListener("change", () => {
         activeLocale = normalizeLocale(select.value);
-        messages = await loadMessages(activeLocale);
+        messages = MESSAGES[activeLocale] || MESSAGES[DEFAULT_LOCALE];
         updateUrl(activeLocale);
         applyI18n();
+        applyTheme(document.documentElement.dataset.theme || "light");
       });
+    }
+
+    function preferredTheme() {
+      try {
+        const storedTheme = localStorage.getItem("werd-theme");
+        if (storedTheme === "dark" || storedTheme === "light") return storedTheme;
+      } catch (error) {
+        return "light";
+      }
+      return "light";
     }
 
     function applyTheme(theme) {
       document.documentElement.dataset.theme = theme;
-      localStorage.setItem("werd-theme", theme);
+      try {
+        localStorage.setItem("werd-theme", theme);
+      } catch (error) {
+        // Theme still applies for this page even if storage is unavailable.
+      }
       document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
     }
 
-    async function init() {
-      localeConfig = await fetchJson("i18n/locales.json");
+    function init() {
       activeLocale = preferredLocale();
-      messages = await loadMessages(activeLocale);
+      messages = MESSAGES[activeLocale] || MESSAGES[DEFAULT_LOCALE];
       buildLanguageSelect();
       applyI18n();
-      applyTheme(localStorage.getItem("werd-theme") || "light");
+      applyTheme(preferredTheme());
       document.getElementById("theme-toggle").addEventListener("click", () => {
         applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
       });
     }
 
-    init().catch((error) => {
-      console.error(error);
-    });
+    init();
   </script>
 </body>
 </html>
