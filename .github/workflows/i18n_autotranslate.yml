@@ -7,6 +7,7 @@ on:
       - "i18n/zh-Hans.json"
       - "i18n/locales.json"
       - "scripts/i18n_autotranslate.py"
+      - ".github/workflows/i18n_autotranslate.yml"
   workflow_dispatch:
 
 permissions:
@@ -20,7 +21,7 @@ jobs:
   translate:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 360
 
     steps:
       - uses: actions/checkout@v4
