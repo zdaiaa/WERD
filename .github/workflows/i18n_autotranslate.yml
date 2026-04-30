@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 180
     strategy:
       fail-fast: false
-      max-parallel: 3
+      max-parallel: 1
       matrix:
         include:
           - batch: english-variants
@@ -60,8 +60,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_I18N_MODEL: gpt-5-mini
           OPENAI_TIMEOUT_SECONDS: "120"
-          OPENAI_I18N_BATCH_SIZE: "20"
-          OPENAI_I18N_MAX_ATTEMPTS: "4"
+          OPENAI_I18N_BATCH_SIZE: "8"
+          OPENAI_I18N_MAX_ATTEMPTS: "3"
           OPENAI_I18N_LOCALES: ${{ matrix.locales }}
           PYTHONUNBUFFERED: "1"
         run: |

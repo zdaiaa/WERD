@@ -44,6 +44,17 @@ FORCE_COPY_KEYS = {
 }
 
 FALLBACK_KEYS: Dict[str, List[str]] = {}
+COPY_SOURCE_LOCALES = {
+    "en-AU",
+    "en-CA",
+    "en-GB",
+}
+FATAL_OPENAI_ERROR_MARKERS = (
+    "insufficient_quota",
+    "invalid_api_key",
+    "incorrect api key",
+    "billing details",
+)
 
 
 class MissingKeysError(RuntimeError):
@@ -174,6 +185,11 @@ def fallback_translation(dst_lang: str, items: Dict[str, str], reason: Optional[
     return {key: apply_glossary(value) for key, value in items.items()}
 
 
+def is_fatal_openai_error(error: Exception) -> bool:
+    message = str(error).lower()
+    return any(marker in message for marker in FATAL_OPENAI_ERROR_MARKERS)
+
+
 def pick_translation_object(data: Any, item_keys: Iterable[str]) -> Dict[str, Any]:
     if not isinstance(data, dict):
         raise RuntimeError("translation response is not a JSON object")
@@ -206,6 +222,10 @@ def translate_items(client: Any, src_lang: str, dst_lang: str, items: Dict[str, 
                 pending = {key: items[key] for key in exc.missing if key in items}
                 print(f"[warn] {dst_lang}: partial response kept {len(exc.translated)} keys; retry {len(pending)} missing keys")
         except Exception as exc:
+            if is_fatal_openai_error(exc):
+                raise RuntimeError(
+                    f"{dst_lang}: OpenAI translation stopped because the API key, billing, or quota is not usable"
+                ) from exc
             last_error = exc
         if not pending:
             break
@@ -227,6 +247,9 @@ def translate_items(client: Any, src_lang: str, dst_lang: str, items: Dict[str, 
 def translate_batch(src_lang: str, dst_lang: str, items: Dict[str, str]) -> Dict[str, str]:
     if not items:
         return {}
+
+    if src_lang == SOURCE_EN and dst_lang in COPY_SOURCE_LOCALES:
+        return {key: apply_glossary(value) for key, value in items.items()}
 
     client = openai_client()
     output: Dict[str, str] = {}
