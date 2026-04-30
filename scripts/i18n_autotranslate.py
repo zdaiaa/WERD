@@ -44,6 +44,8 @@ FORCE_COPY_KEYS = {
 }
 
 FALLBACK_KEYS: Dict[str, List[str]] = {}
+
+# English regional variants intentionally reuse the en-US website copy.
 COPY_SOURCE_LOCALES = {
     "en-AU",
     "en-CA",
