@@ -19,6 +19,7 @@ MODEL = os.getenv("OPENAI_I18N_MODEL", "gpt-5-mini")
 OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "90"))
 OPENAI_BATCH_SIZE = int(os.getenv("OPENAI_I18N_BATCH_SIZE", "16"))
 OPENAI_MAX_ATTEMPTS = int(os.getenv("OPENAI_I18N_MAX_ATTEMPTS", "2"))
+OPENAI_I18N_LOCALES = os.getenv("OPENAI_I18N_LOCALES", "")
 
 GLOSSARY = {
     "WealthX": "WealthX",
@@ -342,6 +343,13 @@ def validate_locale_config(config: Dict[str, Any]) -> List[Dict[str, Any]]:
     return out
 
 
+def requested_locale_codes() -> set[str]:
+    raw = OPENAI_I18N_LOCALES.strip()
+    if not raw:
+        return set()
+    return {part.strip() for part in raw.split(",") if part.strip()}
+
+
 def validate_output_files(locale_entries: List[Dict[str, Any]]) -> None:
     for entry in locale_entries:
         code = entry["code"]
@@ -361,6 +369,17 @@ def validate_output_files(locale_entries: List[Dict[str, Any]]) -> None:
 def main() -> None:
     config = load_json(LOCALES_PATH)
     locale_entries = validate_locale_config(config)
+    requested = requested_locale_codes()
+    if requested:
+        available = {entry["code"] for entry in locale_entries}
+        unknown = requested - available
+        if unknown:
+            raise RuntimeError(f"Unknown requested locales: {sorted(unknown)}")
+        locale_entries = [
+            entry for entry in locale_entries
+            if entry["code"] in requested or entry["code"] in {SOURCE_EN, SOURCE_ZH}
+        ]
+        print(f"[targets] {', '.join(entry['code'] for entry in locale_entries if entry['code'] in requested)}")
 
     source_files = {
         SOURCE_EN: load_json(I18N_DIR / f"{SOURCE_EN}.json"),
