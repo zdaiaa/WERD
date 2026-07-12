@@ -61,21 +61,30 @@
     .shell {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 26px 22px 64px;
+      padding: 0 22px 64px;
     }
 
     .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      min-height: 48px;
+      gap: 12px;
+      min-height: 56px;
+      margin: 0 -22px;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       font-family: var(--font-display);
       font-weight: 600;
       letter-spacing: 0;
@@ -83,14 +92,14 @@
     }
 
     .brand-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
       display: grid;
       place-items: center;
       color: white;
       background: #1d1d1f;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
     }
 
@@ -99,20 +108,20 @@
     .controls {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 2px;
+      flex-wrap: nowrap;
       justify-content: flex-end;
     }
 
     .nav-link, .control {
-      min-height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.38);
+      min-height: 32px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
       color: var(--ink);
-      padding: 8px 10px;
+      padding: 6px 8px;
       font: inherit;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .nav-link {
@@ -125,10 +134,10 @@
 
     .nav-link:hover {
       color: var(--ink);
-      border-color: color-mix(in srgb, var(--blue) 34%, var(--line));
+      background: color-mix(in srgb, var(--ink) 6%, transparent);
     }
 
-    [data-theme="dark"] .control { background: rgba(255, 255, 255, 0.05); }
+    .control:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
     button.control { cursor: pointer; }
     .nav-link:focus-visible, .control:focus-visible, .entry-link:focus-visible {
       outline: 2px solid var(--blue);
@@ -318,9 +327,21 @@
     }
 
     @media (max-width: 760px) {
-      .shell { padding: 20px 16px 46px; }
-      .topbar { align-items: flex-start; }
-      .controls { width: min-content; }
+      .shell { padding: 0 16px 46px; }
+      .topbar {
+        min-height: 0;
+        margin: 0 -16px;
+        padding: 9px 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .controls {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 4px;
+      }
+      .controls .control { width: 100%; }
       .intro {
         padding: 58px 0 30px;
         grid-template-columns: 1fr;
