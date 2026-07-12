@@ -13,6 +13,16 @@
   <link rel="canonical" href="https://zdaiaa.github.io/WERD/wealthx.html" />
   <title data-i18n="title">WealthX - A clearer structure for personal finance</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/wealthx-refresh.css" />
+  <noscript>
+    <style>
+      .wx-story { min-height: auto; padding: 72px 0; }
+      .wx-story-inner { position: static; min-height: auto; }
+      .wx-device-stage img { opacity: 1; transform: none; }
+      .wx-device-stage.dual img:first-child { transform: translateX(-20%); }
+      .wx-device-stage img + img { transform: translateX(25%); }
+    </style>
+  </noscript>
   <script>
     (() => {
       try {
@@ -686,7 +696,7 @@
     }
   </style>
 </head>
-<body>
+<body class="wealthx-page">
   <header class="nav">
     <div class="nav-inner">
       <a class="brand" id="home-link" href="index.html">
@@ -726,7 +736,8 @@
           </div>
         </div>
         <div class="hero-stage" aria-hidden="true">
-          <img class="theme-shot" src="assets/tips/charts-map-light.png" data-light-src="assets/tips/charts-map-light.png" data-dark-src="assets/tips/charts-map-dark.png" alt="" />
+          <img data-product-shot="charts-overview" data-product-priority="high" alt="" />
+          <noscript><img src="assets/wealthx/devices/charts-overview.en-US.light.webp" alt="" /></noscript>
         </div>
       </div>
     </section>
@@ -784,141 +795,129 @@
     </section>
 
     <section class="section compact" aria-labelledby="details-title">
-      <div class="section-head">
-        <div>
+      <div class="wx-story-shell">
+        <div class="wx-story-intro">
           <p class="eyebrow" data-i18n="details_kicker">Product details</p>
           <h2 id="details-title" data-i18n="details_title">A personal finance workspace, not just a spending log.</h2>
+          <p data-i18n="details_subtitle">WealthX keeps account structure, budget planning, recurring money flows, goals, investments, charts, widgets, and data transfer in one place.</p>
         </div>
-        <p class="section-lede" data-i18n="details_subtitle">WealthX keeps account structure, budget planning, recurring money flows, goals, investments, charts, widgets, and data transfer in one place.</p>
+
+        <article class="wx-story" id="budget" data-scroll-story>
+          <div class="wx-story-inner">
+            <div class="wx-story-copy">
+              <div class="label" data-i18n="feature_budget_label">Budgets</div>
+              <h3 data-i18n="feature_budget_title">Flexible budgets for months, quarters, years, and projects.</h3>
+              <p data-i18n="feature_budget_body">Budgets are not limited to one flat monthly view. WealthX helps you plan across the periods and contexts that match how your money is actually used.</p>
+              <ul>
+                <li data-i18n="feature_budget_point1">Review budget progress by different time frames.</li>
+                <li data-i18n="feature_scenarios_point1">Switch between scenarios without rebuilding your records.</li>
+                <li data-i18n="feature_scenarios_point2">Keep context-specific budgets and insights readable.</li>
+              </ul>
+              <div class="wx-supporting-card" id="scenarios">
+                <div class="label" data-i18n="feature_scenarios_label">Scenarios</div>
+                <h3 data-i18n="feature_scenarios_title">Keep each life context separate when it should be.</h3>
+                <p data-i18n="feature_scenarios_body">Travel, family, side projects, pets, education, or personal growth can have their own scenario, so budgets, accounts, and insights do not collapse into one noisy view.</p>
+              </div>
+            </div>
+            <div class="wx-device-stage dual">
+              <img data-product-shot="smart-budget" data-i18n-attr="alt:feature_budget_alt" alt="WealthX smart budget screen" />
+              <img data-product-shot="scenario-switch" data-i18n-attr="alt:feature_scenarios_alt" alt="WealthX scenario switch screen" />
+              <noscript><img src="assets/wealthx/devices/smart-budget.en-US.light.webp" alt="WealthX smart budget screen" /></noscript>
+              <noscript><img src="assets/wealthx/devices/scenario-switch.en-US.light.webp" alt="WealthX scenario switch screen" /></noscript>
+            </div>
+          </div>
+        </article>
+
+        <article class="wx-story" id="flows" data-scroll-story>
+          <div class="wx-story-inner">
+            <div class="wx-story-copy">
+              <div class="label" data-i18n="feature_flows_label">Flows</div>
+              <h3 data-i18n="feature_flows_title">Reusable patterns for money you track again and again.</h3>
+              <p data-i18n="feature_flows_body">Flows speed up common expenses, income, transfers, refunds, and recurring bills without turning WealthX into a bank-sync app.</p>
+              <ul>
+                <li data-i18n="feature_flows_point1">Save repeated entries as structured templates.</li>
+                <li data-i18n="feature_flows_point2">Use planned Flows for recurring bills that still need manual review.</li>
+                <li data-i18n="feature_flows_point3">Reduce repeated input while keeping control over each record.</li>
+              </ul>
+            </div>
+            <div class="wx-device-stage">
+              <img data-product-shot="flow-use" data-i18n-attr="alt:feature_flows_alt" alt="WealthX Flow management screen" />
+              <noscript><img src="assets/wealthx/devices/flow-use.en-US.light.webp" alt="WealthX Flow management screen" /></noscript>
+            </div>
+          </div>
+        </article>
+
+        <article class="wx-story" id="goals" data-scroll-story>
+          <div class="wx-story-inner">
+            <div class="wx-story-copy">
+              <div class="label" data-i18n="feature_goals_label">Goal Tracker</div>
+              <h3 data-i18n="feature_goals_title">Turn longer-term targets into visible progress.</h3>
+              <p data-i18n="feature_goals_body">Goal Tracker helps you follow savings goals and financial targets with linked accounts, milestones, and progress views.</p>
+              <ul>
+                <li data-i18n="feature_goals_point2">Link goals with accounts to keep status grounded in records.</li>
+                <li data-i18n="feature_investments_point1">Review holdings and account value in one place.</li>
+                <li data-i18n="feature_investments_point3">Understand long-term assets alongside budgets and goals.</li>
+              </ul>
+              <div class="wx-supporting-card" id="investments">
+                <div class="label" data-i18n="feature_investments_label">Investments</div>
+                <h3 data-i18n="feature_investments_title">Investment records beside everyday finances.</h3>
+                <p data-i18n="feature_investments_body">WealthX tracks investment accounts, holdings, trades, deposits, withdrawals, buys, sells, market value, and performance views without presenting investment advice.</p>
+              </div>
+            </div>
+            <div class="wx-device-stage dual">
+              <img data-product-shot="goal-detail" data-i18n-attr="alt:feature_goals_alt" alt="WealthX goal tracker detail screen" />
+              <img data-product-shot="investment-overview" data-i18n-attr="alt:feature_investments_alt" alt="WealthX investment overview screen" />
+              <noscript><img src="assets/wealthx/devices/goal-detail.en-US.light.webp" alt="WealthX goal tracker detail screen" /></noscript>
+              <noscript><img src="assets/wealthx/devices/investment-overview.en-US.light.webp" alt="WealthX investment overview screen" /></noscript>
+            </div>
+          </div>
+        </article>
+
+        <article class="wx-story" id="insights" data-scroll-story>
+          <div class="wx-story-inner">
+            <div class="wx-story-copy">
+              <div class="label" data-i18n="feature_insights_label">Insights and Cashflow Map</div>
+              <h3 data-i18n="feature_insights_title">See patterns without rebuilding spreadsheets.</h3>
+              <p data-i18n="feature_insights_body">Search, trends, distributions, and Cashflow Map make it easier to understand spending habits, budget progress, and money movement at a glance.</p>
+              <ul>
+                <li data-i18n="feature_insights_point1">Search across transactions, accounts, budgets, holdings, and Flows.</li>
+                <li data-i18n="feature_insights_point2">Use charts to inspect trends and distributions.</li>
+                <li data-i18n="feature_insights_point3">Use Cashflow Map when location permission is granted.</li>
+              </ul>
+            </div>
+            <div class="wx-device-stage dual">
+              <img data-product-shot="charts-overview" data-i18n-attr="alt:feature_insights_alt" alt="WealthX chart overview screen" />
+              <img data-product-shot="cashflow-map" data-i18n-attr="alt:feature_insights_alt" alt="WealthX Cashflow Map screen" />
+              <noscript><img src="assets/wealthx/devices/charts-overview.en-US.light.webp" alt="WealthX chart overview screen" /></noscript>
+              <noscript><img src="assets/wealthx/devices/cashflow-map.en-US.light.webp" alt="WealthX Cashflow Map screen" /></noscript>
+            </div>
+          </div>
+        </article>
+
+        <article class="wx-story" id="data" data-scroll-story>
+          <div class="wx-story-inner">
+            <div class="wx-story-copy">
+              <div class="label" data-i18n="feature_data_label">Import, export, and privacy</div>
+              <h3 data-i18n="feature_data_title">Long-term records need an exit path.</h3>
+              <p data-i18n="feature_data_body">WealthX supports import and export workflows so personal finance records can remain portable over time.</p>
+              <ul>
+                <li data-i18n="feature_data_point1">Use data transfer workflows for migration and backup habits.</li>
+                <li data-i18n="feature_data_point2">Keep manual records understandable outside a single screen.</li>
+                <li data-i18n="feature_data_point3">Use privacy-conscious Apple-platform storage and optional iCloud sync.</li>
+              </ul>
+              <div class="wx-supporting-card" id="widgets">
+                <div class="label" data-i18n="feature_widgets_label">Widgets</div>
+                <h3 data-i18n="feature_widgets_title">Finance status in the places you check every day.</h3>
+                <p data-i18n="feature_widgets_body">Widgets help surface selected budgets, reminders, and financial status without requiring you to open the app for every glance.</p>
+              </div>
+            </div>
+            <div class="wx-device-stage">
+              <img data-product-shot="data-export" data-i18n-attr="alt:feature_data_alt" alt="WealthX data export screen" />
+              <noscript><img src="assets/wealthx/devices/data-export.en-US.light.webp" alt="WealthX data export screen" /></noscript>
+            </div>
+          </div>
+        </article>
       </div>
-
-      <article class="feature-detail" id="budget">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_budget_label">Budgets</div>
-          <h3 data-i18n="feature_budget_title">Flexible budgets for months, quarters, years, and projects.</h3>
-          <p data-i18n="feature_budget_body">Budgets are not limited to one flat monthly view. WealthX helps you plan across the periods and contexts that match how your money is actually used.</p>
-          <ul>
-            <li data-i18n="feature_budget_point1">Review budget progress by different time frames.</li>
-            <li data-i18n="feature_budget_point2">Separate daily spending from project-like plans.</li>
-            <li data-i18n="feature_budget_point3">Connect budgets with goals and spending patterns.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/budget-manage-smart-budget-light.png" data-light-src="assets/tips/budget-manage-smart-budget-light.png" data-dark-src="assets/tips/budget-manage-smart-budget-dark.png" data-i18n-attr="alt:feature_budget_alt" loading="lazy" alt="WealthX smart budget screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="scenarios">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_scenarios_label">Scenarios</div>
-          <h3 data-i18n="feature_scenarios_title">Keep each life context separate when it should be.</h3>
-          <p data-i18n="feature_scenarios_body">Travel, family, side projects, pets, education, or personal growth can have their own scenario, so budgets, accounts, and insights do not collapse into one noisy view.</p>
-          <ul>
-            <li data-i18n="feature_scenarios_point1">Switch between scenarios without rebuilding your records.</li>
-            <li data-i18n="feature_scenarios_point2">Keep context-specific budgets and insights readable.</li>
-            <li data-i18n="feature_scenarios_point3">Use one app while preserving separate views for different needs.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/scenario-switch-light.png" data-light-src="assets/tips/scenario-switch-light.png" data-dark-src="assets/tips/scenario-switch-dark.png" data-i18n-attr="alt:feature_scenarios_alt" loading="lazy" alt="WealthX scenario switch screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="flows">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_flows_label">Flows</div>
-          <h3 data-i18n="feature_flows_title">Reusable patterns for money you track again and again.</h3>
-          <p data-i18n="feature_flows_body">Flows speed up common expenses, income, transfers, refunds, and recurring bills without turning WealthX into a bank-sync app.</p>
-          <ul>
-            <li data-i18n="feature_flows_point1">Save repeated entries as structured templates.</li>
-            <li data-i18n="feature_flows_point2">Use planned Flows for recurring bills that still need manual review.</li>
-            <li data-i18n="feature_flows_point3">Reduce repeated input while keeping control over each record.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/flow-manage-use-light.png" data-light-src="assets/tips/flow-manage-use-light.png" data-dark-src="assets/tips/flow-manage-use-dark.png" data-i18n-attr="alt:feature_flows_alt" loading="lazy" alt="WealthX Flow management screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="investments">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_investments_label">Investments</div>
-          <h3 data-i18n="feature_investments_title">Investment records beside everyday finances.</h3>
-          <p data-i18n="feature_investments_body">WealthX tracks investment accounts, holdings, trades, deposits, withdrawals, buys, sells, market value, and performance views without presenting investment advice.</p>
-          <ul>
-            <li data-i18n="feature_investments_point1">Review holdings and account value in one place.</li>
-            <li data-i18n="feature_investments_point2">Record buys, sells, deposits, and withdrawals.</li>
-            <li data-i18n="feature_investments_point3">Understand long-term assets alongside budgets and goals.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/investment-overview-light.png" data-light-src="assets/tips/investment-overview-light.png" data-dark-src="assets/tips/investment-overview-dark.png" data-i18n-attr="alt:feature_investments_alt" loading="lazy" alt="WealthX investment overview screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="goals">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_goals_label">Goal Tracker</div>
-          <h3 data-i18n="feature_goals_title">Turn longer-term targets into visible progress.</h3>
-          <p data-i18n="feature_goals_body">Goal Tracker helps you follow savings goals and financial targets with linked accounts, milestones, and progress views.</p>
-          <ul>
-            <li data-i18n="feature_goals_point1">Track progress toward savings and planning targets.</li>
-            <li data-i18n="feature_goals_point2">Link goals with accounts to keep status grounded in records.</li>
-            <li data-i18n="feature_goals_point3">Review how budgets and daily choices connect to progress.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/goal-tracker-detail-light.png" data-light-src="assets/tips/goal-tracker-detail-light.png" data-dark-src="assets/tips/goal-tracker-detail-dark.png" data-i18n-attr="alt:feature_goals_alt" loading="lazy" alt="WealthX goal tracker detail screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="insights">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_insights_label">Insights and Cashflow Map</div>
-          <h3 data-i18n="feature_insights_title">See patterns without rebuilding spreadsheets.</h3>
-          <p data-i18n="feature_insights_body">Search, trends, distributions, and Cashflow Map make it easier to understand spending habits, budget progress, and money movement at a glance.</p>
-          <ul>
-            <li data-i18n="feature_insights_point1">Search across transactions, accounts, budgets, holdings, and Flows.</li>
-            <li data-i18n="feature_insights_point2">Use charts to inspect trends and distributions.</li>
-            <li data-i18n="feature_insights_point3">Use Cashflow Map when location permission is granted.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/charts-map-light.png" data-light-src="assets/tips/charts-map-light.png" data-dark-src="assets/tips/charts-map-dark.png" data-i18n-attr="alt:feature_insights_alt" loading="lazy" alt="WealthX Cashflow Map screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="widgets">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_widgets_label">Widgets</div>
-          <h3 data-i18n="feature_widgets_title">Finance status in the places you check every day.</h3>
-          <p data-i18n="feature_widgets_body">Widgets help surface selected budgets, reminders, and financial status without requiring you to open the app for every glance.</p>
-          <ul>
-            <li data-i18n="feature_widgets_point1">Keep important budget signals close to daily routines.</li>
-            <li data-i18n="feature_widgets_point2">Use widgets as lightweight reminders, not financial advice.</li>
-            <li data-i18n="feature_widgets_point3">Connect app structure with system-level visibility.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/widgets-light.png" data-light-src="assets/tips/widgets-light.png" data-dark-src="assets/tips/widgets-dark.png" data-i18n-attr="alt:feature_widgets_alt" loading="lazy" alt="WealthX widgets screen" />
-        </div>
-      </article>
-
-      <article class="feature-detail" id="data">
-        <div class="feature-copy">
-          <div class="label" data-i18n="feature_data_label">Import, export, and privacy</div>
-          <h3 data-i18n="feature_data_title">Long-term records need an exit path.</h3>
-          <p data-i18n="feature_data_body">WealthX supports import and export workflows so personal finance records can remain portable over time.</p>
-          <ul>
-            <li data-i18n="feature_data_point1">Use data transfer workflows for migration and backup habits.</li>
-            <li data-i18n="feature_data_point2">Keep manual records understandable outside a single screen.</li>
-            <li data-i18n="feature_data_point3">Use privacy-conscious Apple-platform storage and optional iCloud sync.</li>
-          </ul>
-        </div>
-        <div class="asset-panel">
-          <img class="theme-shot" src="assets/tips/data-transfer-export-light.png" data-light-src="assets/tips/data-transfer-export-light.png" data-dark-src="assets/tips/data-transfer-export-dark.png" data-i18n-attr="alt:feature_data_alt" loading="lazy" alt="WealthX data export screen" />
-        </div>
-      </article>
     </section>
 
     <section class="section" id="questions" aria-labelledby="questions-title">
@@ -1272,5 +1271,6 @@
       console.error(error);
     });
   </script>
+  <script src="assets/wealthx-refresh.js" defer></script>
 </body>
 </html>
