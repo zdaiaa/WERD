@@ -51,7 +51,7 @@
       --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
       --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
       --max: 1160px;
-      --navh: 66px;
+      --navh: 56px;
     }
 
     [data-theme="dark"] {
@@ -89,9 +89,9 @@
       z-index: 20;
       min-height: var(--navh);
       border-bottom: 1px solid var(--line);
-      background: color-mix(in srgb, var(--bg) 90%, transparent);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
 
     .nav-inner {
@@ -99,16 +99,17 @@
       min-height: var(--navh);
       margin: 0 auto;
       padding: 0 22px;
-      display: flex;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
+      gap: 9px;
+      justify-self: start;
       min-width: max-content;
       text-decoration: none;
       font-family: var(--font-display);
@@ -117,9 +118,9 @@
     }
 
     .brand img {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       object-fit: cover;
       border: 1px solid var(--line);
     }
@@ -128,9 +129,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 22px;
       flex-wrap: wrap;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--muted);
     }
 
@@ -145,8 +146,9 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 10px;
-      flex-wrap: wrap;
+      justify-self: end;
+      gap: 2px;
+      flex-wrap: nowrap;
     }
 
     .control, .button {
@@ -166,15 +168,29 @@
     }
 
     button.control { cursor: pointer; }
-    .button.primary {
+    .nav-controls .control,
+    .nav-controls .button {
+      min-height: 32px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+    .nav-controls .control:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+    .nav-controls #language-select { min-width: 142px; }
+    .nav-controls .button.primary {
       border-color: transparent;
-      background: var(--ink);
-      color: var(--paper);
+      border-radius: 999px;
+      background: var(--blue);
+      color: #ffffff;
       font-weight: 600;
+      padding-left: 12px;
+      padding-right: 12px;
     }
 
-    [data-theme="dark"] .button.primary {
-      background: #f5f5f7;
+    [data-theme="dark"] .nav-controls .button.primary {
+      background: var(--blue);
       color: #000000;
     }
 
@@ -632,7 +648,7 @@
     }
 
     @media (max-width: 980px) {
-      .nav-inner { align-items: flex-start; padding-top: 14px; padding-bottom: 14px; }
+      .nav-inner { align-items: center; }
       .nav-links { display: none; }
       .section-head, .feature-detail, .final-cta {
         grid-template-columns: 1fr;
@@ -664,9 +680,22 @@
       .nav-inner {
         display: grid;
         grid-template-columns: 1fr;
+        gap: 6px;
+        padding-top: 9px;
+        padding-bottom: 9px;
       }
       .nav-controls {
-        justify-content: flex-start;
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        gap: 4px;
+      }
+      .nav-controls .control,
+      .nav-controls .button {
+        width: 100%;
+      }
+      .nav-controls #language-select {
+        min-width: 0;
       }
       .hero {
         min-height: 640px;
@@ -720,24 +749,24 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow" data-i18n="hero_kicker">WealthX 2.1.4 for iOS</p>
-          <h1 id="hero-title" data-i18n="hero_title">Money, clearly structured.</h1>
-          <p data-i18n="hero_subtitle">WealthX brings accounts, budgets, transactions, investments, goals, and cash flow into one organized iOS workspace, so everyday spending and long-term plans stay connected.</p>
+          <p class="eyebrow" data-i18n="hero_kicker">WealthX 2.3 for iOS</p>
+          <h1 id="hero-title" data-i18n="hero_title">A clearer structure for personal finance.</h1>
+          <p data-i18n="hero_subtitle">Accounts, budgets, transactions, investments, goals, and cash flow—organized in one iOS workspace, so everyday decisions and long-term plans stay connected.</p>
           <div class="hero-actions">
             <a class="button primary" href="https://apps.apple.com/app/id6749512735" data-i18n="cta_app_store">View on the App Store</a>
             <a class="button" href="#features" data-i18n="cta_features">Explore features</a>
             <a class="button" href="#privacy" data-i18n="cta_privacy">Read privacy policy</a>
           </div>
-          <div class="proof-row" aria-label="WealthX proof points">
-            <span class="proof" data-i18n="proof_manual">Manual-first finance app</span>
-            <span class="proof" data-i18n="proof_budget_investment">Budget + investment tracking</span>
-            <span class="proof" data-i18n="proof_flows">Recurring money flows</span>
-            <span class="proof" data-i18n="proof_portable">Import and export workflows</span>
-          </div>
         </div>
         <div class="hero-stage" aria-hidden="true">
           <img data-product-shot="charts-overview" data-product-priority="high" alt="" />
           <noscript><img src="assets/wealthx/devices/charts-overview.en-US.light.webp" alt="" /></noscript>
+        </div>
+        <div class="proof-row" aria-label="WealthX proof points">
+          <span class="proof" data-i18n="proof_manual">Manual-first finance app</span>
+          <span class="proof" data-i18n="proof_budget_investment">Budget + investment tracking</span>
+          <span class="proof" data-i18n="proof_flows">Recurring money flows</span>
+          <span class="proof" data-i18n="proof_portable">Import and export workflows</span>
         </div>
       </div>
     </section>
@@ -746,9 +775,9 @@
       <div class="section-head">
         <div>
           <p class="eyebrow" data-i18n="features_kicker">Feature map</p>
-          <h2 id="features-title" data-i18n="features_title">Organize money around real life.</h2>
+          <h2 id="features-title" data-i18n="features_title">Different jobs for money. One clear system.</h2>
         </div>
-        <p class="section-lede" data-i18n="features_subtitle">Daily spending, travel, family, side projects, long-term goals, and investments can stay separate where needed while still belonging to one system.</p>
+        <p class="section-lede" data-i18n="features_subtitle">Daily spending, travel, family, side projects, long-term goals, and investments can keep their own boundaries while still belonging to one system.</p>
       </div>
       <div class="feature-grid" aria-label="Feature shortcuts">
         <a class="feature-card" href="#budget">
@@ -798,15 +827,15 @@
       <div class="wx-story-shell">
         <div class="wx-story-intro">
           <p class="eyebrow" data-i18n="details_kicker">Product details</p>
-          <h2 id="details-title" data-i18n="details_title">A personal finance workspace, not just a spending log.</h2>
-          <p data-i18n="details_subtitle">WealthX keeps account structure, budget planning, recurring money flows, goals, investments, charts, widgets, and data transfer in one place.</p>
+          <h2 id="details-title" data-i18n="details_title">Built for the whole financial picture.</h2>
+          <p data-i18n="details_subtitle">Daily records, recurring patterns, long-term goals, investments, and portable data stay connected without collapsing into one noisy view.</p>
         </div>
 
         <article class="wx-story" id="budget" data-scroll-story>
           <div class="wx-story-inner">
             <div class="wx-story-copy">
               <div class="label" data-i18n="feature_budget_label">Budgets</div>
-              <h3 data-i18n="feature_budget_title">Flexible budgets for months, quarters, years, and projects.</h3>
+              <h3 data-i18n="feature_budget_title">Shape a budget around the job it needs to do.</h3>
               <p data-i18n="feature_budget_body">Budgets are not limited to one flat monthly view. WealthX helps you plan across the periods and contexts that match how your money is actually used.</p>
               <ul>
                 <li data-i18n="feature_budget_point1">Review budget progress by different time frames.</li>
@@ -815,7 +844,7 @@
               </ul>
               <div class="wx-supporting-card" id="scenarios">
                 <div class="label" data-i18n="feature_scenarios_label">Scenarios</div>
-                <h3 data-i18n="feature_scenarios_title">Keep each life context separate when it should be.</h3>
+                <h3 data-i18n="feature_scenarios_title">Give each part of life its own context.</h3>
                 <p data-i18n="feature_scenarios_body">Travel, family, side projects, pets, education, or personal growth can have their own scenario, so budgets, accounts, and insights do not collapse into one noisy view.</p>
               </div>
             </div>
@@ -832,7 +861,7 @@
           <div class="wx-story-inner">
             <div class="wx-story-copy">
               <div class="label" data-i18n="feature_flows_label">Flows</div>
-              <h3 data-i18n="feature_flows_title">Reusable patterns for money you track again and again.</h3>
+              <h3 data-i18n="feature_flows_title">Reuse the pattern. Confirm the real amount.</h3>
               <p data-i18n="feature_flows_body">Flows speed up common expenses, income, transfers, refunds, and recurring bills without turning WealthX into a bank-sync app.</p>
               <ul>
                 <li data-i18n="feature_flows_point1">Save repeated entries as structured templates.</li>
@@ -851,7 +880,7 @@
           <div class="wx-story-inner">
             <div class="wx-story-copy">
               <div class="label" data-i18n="feature_goals_label">Goal Tracker</div>
-              <h3 data-i18n="feature_goals_title">Turn longer-term targets into visible progress.</h3>
+              <h3 data-i18n="feature_goals_title">Keep today’s records connected to tomorrow’s plans.</h3>
               <p data-i18n="feature_goals_body">Goal Tracker helps you follow savings goals and financial targets with linked accounts, milestones, and progress views.</p>
               <ul>
                 <li data-i18n="feature_goals_point2">Link goals with accounts to keep status grounded in records.</li>
@@ -860,7 +889,7 @@
               </ul>
               <div class="wx-supporting-card" id="investments">
                 <div class="label" data-i18n="feature_investments_label">Investments</div>
-                <h3 data-i18n="feature_investments_title">Investment records beside everyday finances.</h3>
+                <h3 data-i18n="feature_investments_title">See investments beside everyday money.</h3>
                 <p data-i18n="feature_investments_body">WealthX tracks investment accounts, holdings, trades, deposits, withdrawals, buys, sells, market value, and performance views without presenting investment advice.</p>
               </div>
             </div>
@@ -877,7 +906,7 @@
           <div class="wx-story-inner">
             <div class="wx-story-copy">
               <div class="label" data-i18n="feature_insights_label">Insights and Cashflow Map</div>
-              <h3 data-i18n="feature_insights_title">See patterns without rebuilding spreadsheets.</h3>
+              <h3 data-i18n="feature_insights_title">See the same money from more than one angle.</h3>
               <p data-i18n="feature_insights_body">Search, trends, distributions, and Cashflow Map make it easier to understand spending habits, budget progress, and money movement at a glance.</p>
               <ul>
                 <li data-i18n="feature_insights_point1">Search across transactions, accounts, budgets, holdings, and Flows.</li>
@@ -898,7 +927,7 @@
           <div class="wx-story-inner">
             <div class="wx-story-copy">
               <div class="label" data-i18n="feature_data_label">Import, export, and privacy</div>
-              <h3 data-i18n="feature_data_title">Long-term records need an exit path.</h3>
+              <h3 data-i18n="feature_data_title">Your records should be able to leave with you.</h3>
               <p data-i18n="feature_data_body">WealthX supports import and export workflows so personal finance records can remain portable over time.</p>
               <ul>
                 <li data-i18n="feature_data_point1">Use data transfer workflows for migration and backup habits.</li>
@@ -907,7 +936,7 @@
               </ul>
               <div class="wx-supporting-card" id="widgets">
                 <div class="label" data-i18n="feature_widgets_label">Widgets</div>
-                <h3 data-i18n="feature_widgets_title">Finance status in the places you check every day.</h3>
+                <h3 data-i18n="feature_widgets_title">Keep the right status within reach.</h3>
                 <p data-i18n="feature_widgets_body">Widgets help surface selected budgets, reminders, and financial status without requiring you to open the app for every glance.</p>
               </div>
             </div>
@@ -991,7 +1020,7 @@
       <div class="privacy-block">
         <div class="privacy-meta">
           <span><span data-i18n="privacy_effective_label">Effective date:</span> <span data-i18n="privacy_date">2025-12-22</span></span>
-          <span><span data-i18n="privacy_version_label">App version:</span> <span data-i18n="app_version">2.1.4</span></span>
+          <span><span data-i18n="privacy_version_label">App version:</span> <span data-i18n="app_version">2.3</span></span>
         </div>
 
         <h3 data-i18n="privacy_sec1_title">1. Information you enter or enable</h3>
@@ -1025,8 +1054,8 @@
     <section class="section compact" aria-label="Download">
       <div class="final-cta">
         <div>
-          <h2 data-i18n="final_title">Start with a clearer structure.</h2>
-          <p data-i18n="final_body">Use WealthX when your money no longer fits one simple monthly budget and you want daily spending, goals, investments, scenarios, and recurring money flows in one iOS workspace.</p>
+      <h2 data-i18n="final_title">Give your money a clearer structure.</h2>
+      <p data-i18n="final_body">Bring daily spending, goals, investments, scenarios, and recurring money flows into one iOS workspace without giving up the boundaries that keep them understandable.</p>
         </div>
         <a class="button" href="https://apps.apple.com/app/id6749512735" data-i18n="cta_app_store">View on the App Store</a>
       </div>
@@ -1045,7 +1074,7 @@
   </footer>
 
   <script id="schema-json" type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"WERD","url":"https://zdaiaa.github.io/WERD/"},{"@type":"SoftwareApplication","name":"WealthX","operatingSystem":"iOS","applicationCategory":"FinanceApplication","softwareVersion":"2.1.4","url":"https://zdaiaa.github.io/WERD/wealthx.html","description":"WealthX is an iOS personal finance app for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export."}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"WERD","url":"https://zdaiaa.github.io/WERD/"},{"@type":"SoftwareApplication","name":"WealthX","operatingSystem":"iOS","applicationCategory":"FinanceApplication","softwareVersion":"2.3","url":"https://zdaiaa.github.io/WERD/wealthx.html","description":"WealthX is an iOS personal finance app for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export."}]}
   </script>
 
   <script>
@@ -1250,6 +1279,18 @@
       syncThemeShots(theme);
     }
 
+    function restoreHashTarget() {
+      if (!window.location.hash) return;
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      const target = document.getElementById(id);
+      if (!target) return;
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          target.scrollIntoView({ block: "start", behavior: "auto" });
+        });
+      });
+    }
+
     async function init() {
       const initialTheme = preferredTheme();
       document.documentElement.dataset.theme = initialTheme;
@@ -1265,6 +1306,8 @@
       document.getElementById("theme-toggle").addEventListener("click", () => {
         applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
       });
+      window.addEventListener("hashchange", restoreHashTarget);
+      restoreHashTarget();
     }
 
     init().catch((error) => {
