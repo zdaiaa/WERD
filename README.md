@@ -18,8 +18,9 @@ git@github.com:zdaiaa/WERD.git
 
 | 页面 | 文件 | 当前状态 | 用途 |
 | --- | --- | --- | --- |
-| WERD 产品入口页 | `index.html` | active | 当前主要指向 WealthX，并保留个人介绍入口 |
+| WERD 产品入口页 | `index.html` | active | 当前展示 WealthX 与 Daxhboard，并保留个人介绍入口 |
 | WealthX landing page | `wealthx.html` | active | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA |
+| Daxhboard 介绍/隐私页 | `daxhboard.html` | active | 展示 Daxhboard 产品范围、数据边界和隐私声明 |
 | Personal biography | `bio.html` | active | 展示 Eric Dai 的个人介绍、经历信号和工作方式 |
 
 ## 未来可承载页面
@@ -37,6 +38,7 @@ WERD 未来可以继续承载：
 
 - `Control Center`：管理 portfolio 层状态、策略、同步和审计；WERD 应被 `Control Center/Portfolio` 引用。
 - `WealthX`：产品事实、版本号、隐私政策、App Store 链接和截图来源应回到 WealthX 源文件确认；WERD 负责页面呈现。
+- `Daxhboard`：产品范围、平台、数据与隐私边界应回到 Daxhboard 源文件确认；WERD 负责页面呈现。
 - `TravelX`：未来可加入独立 landing page，route、文案、截图和 CTA 待确认。
 - `Metro Planner`：未来可加入独立 landing page，route、文案、视觉资产和公开范围待确认。
 - Personal branding：`bio.html` 承载个人介绍内容，涉及经历、定位和联系信息时需要用户确认。
@@ -45,10 +47,10 @@ WERD 未来可以继续承载：
 
 基于当前目录观察，WERD 是静态网站项目：
 
-- HTML：`index.html`、`wealthx.html`、`bio.html`
+- HTML：`index.html`、`wealthx.html`、`daxhboard.html`、`bio.html`
 - 样式与交互：页面内 CSS + vanilla JavaScript
 - 多语言：`i18n/*.json` 和页面内文案对象并存
-- 视觉资产：`assets/tips/*.png`、`WealthX logo.png`、`favicon.ico`
+- 视觉资产：`assets/tips/*.png`、`WealthX logo.png`、`Daxhboard logo.svg`、`favicon.ico`
 - 网站规则：`docs/website-style.md`
 
 目前未发现 `package.json`、Vite、Next.js、Astro、Vercel、Netlify 或 Cloudflare Pages 配置。
@@ -68,6 +70,7 @@ python3 -m http.server 8000
 ```text
 http://127.0.0.1:8000/
 http://127.0.0.1:8000/wealthx.html
+http://127.0.0.1:8000/daxhboard.html
 http://127.0.0.1:8000/bio.html
 ```
 

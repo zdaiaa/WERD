@@ -1,6 +1,6 @@
 # WERD Project Context
 
-更新时间：2026-05-05
+更新时间：2026-07-13
 
 ## 项目定位
 
@@ -19,6 +19,7 @@ git@github.com:zdaiaa/WERD.git
 - `Control Center`：portfolio 层管理、项目总览、策略、同步和审计。
 - `WERD`：对外展示层，承载跨项目主页、App landing page 和个人介绍页。
 - `WealthX`：当前已有独立 landing page，由 WERD 发布和维护页面表现，产品事实应回到 WealthX 项目源文件确认。
+- `Daxhboard`：当前已有独立介绍/隐私页，页面事实应回到 Daxhboard 项目源文件确认。
 - `TravelX`：未来可新增 landing page，当前页面状态待确认。
 - `Metro Planner`：未来可新增 landing page，当前页面状态待确认。
 
@@ -26,8 +27,9 @@ WERD 应被 `Control Center/Portfolio` 引用，但 WERD 自身作为独立 repo
 
 ## 当前承载内容
 
-- `index.html`：WERD 产品入口页，目前主要指向 WealthX，并保留个人介绍入口。
+- `index.html`：WERD 产品入口页，当前承载 WealthX 与 Daxhboard，并保留个人介绍入口。
 - `wealthx.html`：WealthX landing page，包含产品介绍、功能区、FAQ、隐私政策、App Store 链接和多语言加载逻辑。
+- `daxhboard.html`：Daxhboard 产品介绍与隐私说明页。
 - `bio.html`：Eric Dai 个人介绍页，承载 personal branding。
 - `docs/website-style.md`：现有网站视觉和内容规则。
 - `i18n/*.json`：WealthX 页面多语言文案源。
@@ -50,6 +52,7 @@ WERD 应被 `Control Center/Portfolio` 引用，但 WERD 自身作为独立 repo
 以下内容属于具体 App marketing，需要回到对应项目确认事实：
 
 - WealthX 产品定位、功能描述、版本号、App Store 链接、隐私政策和截图。
+- Daxhboard 产品定位、平台范围、隐私声明和对外链接。
 - 未来 TravelX landing page 的产品定位、功能范围、截图、路线规划能力和发布状态。
 - 未来 Metro Planner landing page 的产品定位、视觉资产、平台状态和发布范围。
 - 其他 App 的 landing page、CTA、SEO 文案、截图和法律/隐私内容。
@@ -96,7 +99,8 @@ Codex 默认不应修改：
 7. `wealthx.html`
 8. `bio.html`
 9. `i18n/locales.json`
-10. `.github/workflows/i18n_autotranslate.yml`
+10. `daxhboard.html`
+11. `.github/workflows/i18n_autotranslate.yml`
 
 ## 需要用户确认的操作
 
@@ -115,4 +119,4 @@ Codex 默认不应修改：
 - GitHub Pages 当前发布源是否为 repo root、`docs/`、GitHub Actions artifact，或其他方式。
 - `workflows/eod.yml` 是否仍属于 WERD 当前职责。
 - `scripts/parse_hist_all.py` 与 `docs/latest.json` 数据工作流是否仍有效。
-- README 是否应更新为 WERD 总入口说明。当前 `README.md` 只包含 `# WealthX`。
+- Daxhboard 的产品源文件与 WERD 之间的长期同步责任尚待明确。

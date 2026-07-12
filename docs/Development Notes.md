@@ -1,12 +1,12 @@
 # WERD Development Notes
 
-更新时间：2026-05-05
+更新时间：2026-07-13
 
 ## 当前技术栈初步判断
 
 基于只读观察，WERD 当前是静态网站项目：
 
-- 根目录包含 `index.html`、`wealthx.html`、`bio.html`。
+- 根目录包含 `index.html`、`wealthx.html`、`daxhboard.html`、`bio.html`。
 - 页面使用 HTML + inline CSS + vanilla JavaScript。
 - 未发现 `package.json`、Vite、Next.js、Astro、Vercel、Netlify 或 Cloudflare Pages 配置。
 - `wealthx.html` 使用 `fetch("i18n/locales.json")` 和 `fetch("i18n/<locale>.json")` 加载多语言 JSON。
@@ -21,8 +21,10 @@
 ├── README.md
 ├── index.html
 ├── wealthx.html
+├── daxhboard.html
 ├── bio.html
 ├── WealthX logo.png
+├── Daxhboard logo.svg
 ├── favicon.ico
 ├── assets/
 │   └── tips/
@@ -51,6 +53,7 @@ python3 -m http.server 8000
 ```text
 http://127.0.0.1:8000/
 http://127.0.0.1:8000/wealthx.html
+http://127.0.0.1:8000/daxhboard.html
 http://127.0.0.1:8000/bio.html
 ```
 
@@ -81,7 +84,7 @@ http://127.0.0.1:8000/bio.html
 
 ## 代码风险
 
-- `README.md` 当前只写 `# WealthX`，与 WERD 作为 Portfolio Web Hub 的定位不匹配。本轮不修改，因为同名文件已存在且用户要求不覆盖。
+- `README.md` 已更新为 WERD Portfolio Web Hub 入口，并需随新增产品页持续校正页面清单。
 - `docs/` 目录为小写；用户目标路径写作 `Docs/`。当前不做大小写重命名，避免移动现有文件。
 - `wealthx.html` 是大型单文件页面，结构、样式、脚本和内容耦合较高。
 - `bio.html` 与 `index.html` 使用页面内翻译对象，而 `wealthx.html` 使用外部 i18n JSON，国际化机制不完全一致。
@@ -101,25 +104,13 @@ http://127.0.0.1:8000/bio.html
 
 仍缺：
 
-- README 更新：需要把现有 `README.md` 从 WealthX-only 改为 WERD 项目入口。
 - 部署审计记录：需要确认 GitHub Pages source 和实际发布流程。
 - Landing page 新增流程模板：新增 TravelX / Metro Planner 页面前需要创建。
 - i18n 维护规则：需要明确哪些页面使用外部 JSON，哪些页面仍是内嵌对象。
 
-## README 更新建议
-
-由于 `README.md` 已存在，本轮没有覆盖。建议下一轮经用户确认后，把 README 改为：
-
-- WERD 是 Portfolio Web Hub / 共享网站承载层。
-- 当前承载 WealthX 主页和个人介绍主页。
-- 未来可承载 TravelX、Metro Planner 和其他 App landing page。
-- 说明本地预览方式、构建方式待确认、部署方式待确认。
-- 说明日常维护流程：先更新内容地图，再修改页面，再验证 route / assets / i18n / metadata。
-
 ## 下一步建议
 
-1. 确认是否允许更新现有 `README.md`。
-2. 只读审计 GitHub Pages 当前 source 与实际部署入口。
-3. 决定 `workflows/eod.yml` 是否仍属于 WERD。
-4. 为 TravelX / Metro Planner landing page 建立创建前检查清单。
-5. 建立轻量脚本或检查流程，验证 route、asset、i18n key 和 Content Map 一致性。
+1. 只读审计 GitHub Pages 当前 source 与实际部署入口。
+2. 决定 `workflows/eod.yml` 是否仍属于 WERD。
+3. 为 TravelX / Metro Planner landing page 建立创建前检查清单。
+4. 建立轻量脚本或检查流程，验证 route、asset、i18n key 和 Content Map 一致性。

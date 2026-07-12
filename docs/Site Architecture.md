@@ -1,6 +1,6 @@
 # WERD Site Architecture
 
-更新时间：2026-05-05
+更新时间：2026-07-13
 
 ## 定位
 
@@ -14,6 +14,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 /
 ├── index.html        # WERD 产品入口页
 ├── wealthx.html      # WealthX landing page
+├── daxhboard.html    # Daxhboard 介绍/隐私页
 ├── bio.html          # Personal homepage / biography
 ├── assets/           # 产品截图和共享资产
 ├── i18n/             # 多语言文案
@@ -55,6 +56,22 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 - 不得承诺投资收益、保证省钱、银行级安全或完全自动银行同步。
 - 修改页面内容时同步更新 `docs/Content Map.md`。
 
+## Daxhboard Page
+
+当前页面：
+
+- `daxhboard.html`
+
+职责：
+
+- 承载 Daxhboard 产品介绍、平台范围、数据边界和隐私声明。
+- 使用 `Daxhboard logo.svg` 作为产品识别资产。
+
+维护规则：
+
+- 产品事实、支持平台、iCloud 同步与隐私表述必须从 Daxhboard 源文件或用户确认中获取。
+- 修改页面内容时同步更新 `docs/Content Map.md`。
+
 ## Future Apps Landing Pages
 
 未来可承载：
@@ -92,6 +109,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 - `favicon.ico`
 - `WealthX logo.png`
+- `Daxhboard logo.svg`
 - `assets/tips/*.png`
 
 规则：
@@ -120,6 +138,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 - `/WERD/` 或 `/WERD/index.html`：产品入口页，实际发布路径待确认。
 - `/WERD/wealthx.html`：WealthX landing page。
+- `/WERD/daxhboard.html`：Daxhboard 介绍/隐私页。
 - `/WERD/bio.html`：个人介绍页。
 
 未来 route：
