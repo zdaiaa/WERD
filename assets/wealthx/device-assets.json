@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-13",
+  "product": "WealthX",
+  "source_repository": "WealthX local source-of-truth repository",
+  "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/craftshot-exports",
+  "output_root": "assets/wealthx/devices",
+  "source_size": [1800, 2400],
+  "output_size": [1200, 1600],
+  "output_format": "lossless WebP with alpha",
+  "transformation": "deterministic connected-canvas removal using the English light variant as the per-topic mask master; device frame, side controls, and natural shadow retained",
+  "locale_routing": {
+    "zh-Hans": "zh-Hans",
+    "zh-Hant": "zh-Hans",
+    "default": "en-US"
+  },
+  "appearance_variants": ["light", "dark"],
+  "filename_pattern": "{topic}.{source_locale}.{appearance}.webp",
+  "qa_status": "automated_pass_visual_pending_user",
+  "items": [
+    {
+      "topic": "charts-overview",
+      "proof": "Hero overview and visual system clarity",
+      "intended_sections": ["index-featured-product", "wealthx-hero"],
+      "sources": {
+        "en-US": "TipShot_Charts_Overview_en.png",
+        "zh-Hans": "TipShot_Charts_Overview_zhHans.png"
+      }
+    },
+    {
+      "topic": "smart-budget",
+      "proof": "Flexible budget structure",
+      "intended_sections": ["wealthx-budget-scenario"],
+      "sources": {
+        "en-US": "TipShot_BudgetManage_SmartBudget_en.png",
+        "zh-Hans": "TipShot_BudgetManage_SmartBudget_zhHans.png"
+      }
+    },
+    {
+      "topic": "scenario-switch",
+      "proof": "Separate money contexts without losing one system",
+      "intended_sections": ["wealthx-budget-scenario"],
+      "sources": {
+        "en-US": "TipShot_Scenario_Switch_en.png",
+        "zh-Hans": "TipShot_Scenario_Switch_zhHans.png"
+      }
+    },
+    {
+      "topic": "flow-use",
+      "proof": "Reusable transaction patterns with user confirmation",
+      "intended_sections": ["wealthx-flow"],
+      "sources": {
+        "en-US": "TipShot_FlowManage_Use_en.png",
+        "zh-Hans": "TipShot_FlowManage_Use_zhHans.png"
+      }
+    },
+    {
+      "topic": "goal-detail",
+      "proof": "Long-term goals visible beside daily finance",
+      "intended_sections": ["wealthx-goals-investments"],
+      "sources": {
+        "en-US": "TipShot_GoalTracker_Detail_en.png",
+        "zh-Hans": "TipShot_GoalTracker_Detail_zhHans.png"
+      }
+    },
+    {
+      "topic": "investment-overview",
+      "proof": "Investment records in the same organization system",
+      "intended_sections": ["wealthx-goals-investments"],
+      "sources": {
+        "en-US": "TipShot_Investment_Overview_en.png",
+        "zh-Hans": "TipShot_Investment_Overview_zhHans.png"
+      }
+    },
+    {
+      "topic": "cashflow-map",
+      "proof": "Multiple views for understanding money movement",
+      "intended_sections": ["wealthx-insights"],
+      "sources": {
+        "en-US": "TipShot_Charts_Map_en.png",
+        "zh-Hans": "TipShot_Charts_Map_zhHans.png"
+      }
+    },
+    {
+      "topic": "data-export",
+      "proof": "Portable records and a conservative trust close",
+      "intended_sections": ["wealthx-trust"],
+      "sources": {
+        "en-US": "TipShot_DataTransfer_Export_en.png",
+        "zh-Hans": "TipShot_DataTransfer_Export_zhHans.png"
+      }
+    }
+  ]
+}

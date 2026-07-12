@@ -6,6 +6,18 @@
   <meta name="description" content="WERD home for WealthX, Daxhboard, and related pages." data-i18n-attr="content:home_meta_description" />
   <title data-i18n="home_title">WERD - Products</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script>
+    (() => {
+      try {
+        const storedTheme = localStorage.getItem("werd-theme");
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/wealthx-refresh.css" />
   <style>
     :root {
       color-scheme: light;
@@ -329,7 +341,7 @@
     }
   </style>
 </head>
-<body>
+<body class="portfolio-home">
   <div class="shell">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="WERD home">
@@ -350,10 +362,10 @@
           <h1 id="home-heading" data-i18n="home_hero_title">One clear entry for WERD products.</h1>
           <p class="intro-copy" data-i18n="home_hero_subtitle">Explore WealthX and Daxhboard. Supporting site pages stay available through the navigation when needed.</p>
         </div>
-        <aside class="status-panel" aria-labelledby="home-status-title">
-          <strong id="home-status-title" data-i18n="home_current_title">Current products</strong>
-          <p data-i18n="home_current_body">WealthX and Daxhboard have independent product pages, with supporting information kept in one WERD home.</p>
-        </aside>
+        <div class="home-product-stage" aria-hidden="true">
+          <img data-product-shot="charts-overview" data-product-priority="high" alt="" />
+          <noscript><img src="assets/wealthx/devices/charts-overview.en-US.light.webp" alt="" /></noscript>
+        </div>
       </section>
 
       <section aria-labelledby="entries-heading">
@@ -408,19 +420,9 @@
 
   <script>
     const DEFAULT_LOCALE = "en-US";
-    const SUPPORTED_LOCALES = [
-      { code: "en-US", label: "English (US)" },
-      { code: "zh-Hans", label: "简体中文" }
-    ];
-    const LOCALE_ALIASES = {
-      en: "en-US",
-      "en-US": "en-US",
-      zh: "zh-Hans",
-      "zh-CN": "zh-Hans",
-      "zh-Hans": "zh-Hans",
-      "zh-SG": "zh-Hans"
-    };
-    const MESSAGES = {
+    let localeConfig = { locales: [], aliases: {} };
+    let fallbackMessages = {};
+    const PAGE_FALLBACKS = {
       "en-US": {
         footer_bio: "Biography",
         footer_copyright: "© 2026 WERD. All rights reserved.",
@@ -478,23 +480,44 @@
     };
 
     let activeLocale = DEFAULT_LOCALE;
-    let messages = MESSAGES[DEFAULT_LOCALE];
+    let messages = PAGE_FALLBACKS[DEFAULT_LOCALE];
 
     function normalizeLocale(raw) {
       if (!raw) return DEFAULT_LOCALE;
       const clean = String(raw).trim();
-      if (LOCALE_ALIASES[clean]) return LOCALE_ALIASES[clean];
-      return DEFAULT_LOCALE;
+      return localeConfig.aliases[clean] || clean;
     }
 
     function t(key) {
-      return messages[key] || MESSAGES[DEFAULT_LOCALE][key] || key;
+      return messages[key] || fallbackMessages[key] || PAGE_FALLBACKS[DEFAULT_LOCALE][key] || key;
+    }
+
+    async function fetchJson(path) {
+      const response = await fetch(path, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Failed to load ${path}`);
+      return response.json();
+    }
+
+    async function loadMessages(locale) {
+      let external = {};
+      try {
+        external = await fetchJson(`i18n/${locale}.json`);
+      } catch (error) {
+        external = fallbackMessages;
+      }
+      const sourceGroup = locale === "zh-Hans" || locale === "zh-Hant" ? "zh-Hans" : DEFAULT_LOCALE;
+      return { ...PAGE_FALLBACKS[sourceGroup], ...external };
     }
 
     function preferredLocale() {
       const params = new URLSearchParams(window.location.search);
-      if (params.has("lang")) return normalizeLocale(params.get("lang"));
-      return normalizeLocale(navigator.language);
+      const codes = new Set(localeConfig.locales.map((item) => item.code));
+      const requested = normalizeLocale(params.get("lang"));
+      if (codes.has(requested)) return requested;
+      const browserLocale = normalizeLocale(navigator.language);
+      if (codes.has(browserLocale)) return browserLocale;
+      const base = browserLocale.split("-")[0];
+      return localeConfig.locales.find((item) => item.code.split("-")[0] === base)?.code || DEFAULT_LOCALE;
     }
 
     function applyI18n() {
@@ -527,16 +550,16 @@
     function buildLanguageSelect() {
       const select = document.getElementById("language-select");
       select.innerHTML = "";
-      SUPPORTED_LOCALES.forEach((item) => {
+      localeConfig.locales.forEach((item) => {
         const option = document.createElement("option");
         option.value = item.code;
         option.textContent = item.label;
         select.appendChild(option);
       });
       select.value = activeLocale;
-      select.addEventListener("change", () => {
+      select.addEventListener("change", async () => {
         activeLocale = normalizeLocale(select.value);
-        messages = MESSAGES[activeLocale] || MESSAGES[DEFAULT_LOCALE];
+        messages = await loadMessages(activeLocale);
         updateUrl(activeLocale);
         applyI18n();
         applyTheme(document.documentElement.dataset.theme || "light");
@@ -563,9 +586,11 @@
       document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
     }
 
-    function init() {
+    async function init() {
+      localeConfig = await fetchJson("i18n/locales.json");
+      fallbackMessages = await fetchJson(`i18n/${DEFAULT_LOCALE}.json`);
       activeLocale = preferredLocale();
-      messages = MESSAGES[activeLocale] || MESSAGES[DEFAULT_LOCALE];
+      messages = await loadMessages(activeLocale);
       buildLanguageSelect();
       applyI18n();
       applyTheme(preferredTheme());
@@ -574,7 +599,10 @@
       });
     }
 
-    init();
+    init().catch((error) => {
+      console.error(error);
+    });
   </script>
+  <script src="assets/wealthx-refresh.js" defer></script>
 </body>
 </html>
