@@ -93,7 +93,21 @@
 .wealthx-page .hero-inner {
   max-width: var(--wx-content);
   grid-template-columns: minmax(0, 0.96fr) minmax(400px, 0.74fr);
-  align-items: center;
+  align-items: stretch;
+  row-gap: 0;
+}
+
+.wealthx-page .hero-copy {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+}
+
+.wealthx-page .hero-inner > .proof-row {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  margin-top: 24px;
 }
 
 .wealthx-page .hero-copy h1 {
@@ -103,6 +117,9 @@
 }
 
 .wealthx-page .hero-stage {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
   min-height: 720px;
   border: 0;
   background: transparent;
@@ -260,7 +277,20 @@
   .portfolio-home .home-product-stage { min-height: 480px; }
   .portfolio-home .entry-grid { grid-template-columns: 1fr; }
   .wealthx-page .hero { min-height: auto; }
-  .wealthx-page .hero-stage { min-height: 560px; }
+  .wealthx-page .hero-copy,
+  .wealthx-page .hero-stage,
+  .wealthx-page .hero-inner > .proof-row {
+    grid-column: 1;
+  }
+  .wealthx-page .hero-copy { grid-row: 1; }
+  .wealthx-page .hero-stage {
+    grid-row: 2;
+    min-height: 560px;
+  }
+  .wealthx-page .hero-inner > .proof-row {
+    grid-row: 3;
+    margin-top: 0;
+  }
 
   .wx-story {
     min-height: auto;
@@ -278,9 +308,11 @@
 
 @media (max-width: 560px) {
   .portfolio-home .intro h1,
-  .wealthx-page .hero-copy h1 { font-size: clamp(44px, 14vw, 64px); }
+  .wealthx-page .hero-copy h1 { font-size: clamp(42px, 12vw, 54px); }
   .portfolio-home .home-product-stage { min-height: 420px; }
+  .wealthx-page .hero-inner { row-gap: 16px; }
   .wealthx-page .hero-stage { min-height: 490px; }
+  .wealthx-page .hero-inner > .proof-row { margin-top: 2px; }
   .wx-story-shell { padding: 64px 20px 88px; }
   .wx-story-intro { padding-bottom: 40px; }
   .wx-device-stage { min-height: 520px; border-radius: 24px; }
