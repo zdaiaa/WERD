@@ -146,6 +146,7 @@
   position: relative;
   min-height: 180vh;
   border-top: 1px solid var(--wx-line);
+  scroll-margin-top: calc(var(--navh, 66px) + 24px);
 }
 
 .wx-story-inner {
@@ -245,6 +246,7 @@
   border: 1px solid var(--wx-line);
   border-radius: 24px;
   background: var(--wx-surface-solid);
+  scroll-margin-top: calc(var(--navh, 66px) + 24px);
 }
 
 @media (max-width: 899px), (max-height: 720px) {
