@@ -6,6 +6,8 @@
   --wx-muted: #6e6e73;
   --wx-line: rgba(29, 29, 31, 0.12);
   --wx-accent: #0071e3;
+  --wx-media-glow: rgba(0, 113, 227, 0.12);
+  --wx-media-shadow: rgba(0, 0, 0, 0.16);
   --wx-radius: 32px;
   --wx-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
   --wx-content: 1180px;
@@ -19,6 +21,8 @@
   --wx-muted: #a1a1a6;
   --wx-line: rgba(255, 255, 255, 0.14);
   --wx-accent: #2997ff;
+  --wx-media-glow: rgba(41, 151, 255, 0.16);
+  --wx-media-shadow: rgba(0, 0, 0, 0.34);
   --wx-shadow: 0 30px 90px rgba(0, 0, 0, 0.46);
 }
 
@@ -55,18 +59,15 @@
   display: grid;
   place-items: center;
   min-height: 560px;
-  overflow: hidden;
-  border: 1px solid var(--wx-line);
-  border-radius: var(--wx-radius);
-  background:
-    radial-gradient(circle at 50% 22%, rgba(0, 113, 227, 0.18), transparent 48%),
-    var(--wx-surface);
-  box-shadow: var(--wx-shadow);
+  overflow: clip;
+  overflow-clip-margin: 28px;
+  background: radial-gradient(ellipse at 50% 45%, var(--wx-media-glow), transparent 66%);
+  isolation: isolate;
 }
 
 .portfolio-home .home-product-stage img {
   width: min(88%, 430px);
-  filter: drop-shadow(0 28px 36px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 24px 32px var(--wx-media-shadow));
   transform: translateY(7%);
 }
 
@@ -224,13 +225,10 @@
   display: grid;
   place-items: center;
   min-height: min(720px, calc(100vh - 130px));
-  overflow: hidden;
-  border: 1px solid var(--wx-line);
-  border-radius: var(--wx-radius);
-  background:
-    radial-gradient(circle at 50% 25%, rgba(0, 113, 227, 0.18), transparent 46%),
-    var(--wx-surface);
-  box-shadow: var(--wx-shadow);
+  overflow: clip;
+  overflow-clip-margin: 28px;
+  background: radial-gradient(ellipse at 50% 45%, var(--wx-media-glow), transparent 66%);
+  isolation: isolate;
 }
 
 .wx-device-stage img {
@@ -238,7 +236,7 @@
   width: min(76%, 420px);
   max-height: 88%;
   object-fit: contain;
-  filter: drop-shadow(0 30px 38px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 24px 32px var(--wx-media-shadow));
   opacity: calc(1 - var(--shot-shift, 0));
   transform: translate3d(0, calc((0.5 - var(--story-progress, 0.5)) * 52px), 0)
     scale(calc(0.96 + var(--story-progress, 0.5) * 0.04));
@@ -315,7 +313,7 @@
   .wealthx-page .hero-inner > .proof-row { margin-top: 2px; }
   .wx-story-shell { padding: 64px 20px 88px; }
   .wx-story-intro { padding-bottom: 40px; }
-  .wx-device-stage { min-height: 520px; border-radius: 24px; }
+  .wx-device-stage { min-height: 520px; }
   .wx-device-stage img { width: 84%; }
   .wx-device-stage img + img { width: 74%; }
 }
