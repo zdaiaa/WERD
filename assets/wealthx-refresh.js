@@ -17,7 +17,8 @@
   }
 
   function shotPath(img) {
-    return `assets/wealthx/devices/${img.dataset.productShot}.${sourceLocale()}.${activeTheme()}.webp`;
+    const assetGroup = img.dataset.productShotType === "widget" ? "widgets" : "devices";
+    return `assets/wealthx/${assetGroup}/${img.dataset.productShot}.${sourceLocale()}.${activeTheme()}.webp`;
   }
 
   function syncProductShots() {
