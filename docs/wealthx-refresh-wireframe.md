@@ -73,7 +73,7 @@
 
 ### Scene 6 — Widgets / 随手可见的状态
 
-- 使用 `widgets-home` 与 `widgets-today` 两张确定性裁切的真实组件截图。
+- 使用 `widgets-pair` 一张确定性透明背景的完整双设备构图，在两台 iPhone 内呈现主屏与 Today View。
 - 用主屏与 Today View 证明：预算信号、交易流、收支日历和目标状态可以在不打开 App 的情况下被看见。
 - 导入/导出的可迁移性与保守隐私表述保留在功能卡、FAQ、Privacy、Terms、联系方式和 App Store URL 中，不再与组件主视觉混用。
 

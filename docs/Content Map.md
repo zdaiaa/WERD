@@ -37,7 +37,7 @@
 - 当前目的：WealthX 主 landing page。
 - 当前内容：hero、feature map、五个桌面 sticky 产品场景（Budget + Scenario、Flow、Goals + Investments、Charts + Cashflow Map、Widgets）、FAQ、privacy policy、App Store CTA。导入、导出与隐私承诺保留在功能卡、FAQ 与隐私政策中。
 - 响应式：桌面使用滚动进度叙事；移动端、短 viewport 与 reduced-motion 使用正常文档流。
-- 图片契约：`data-product-shot` + `{topic}.{source-locale}.{theme}.webp`；默认设备图位于 `assets/wealthx/devices/`，标记 `data-product-shot-type="widget"` 的组件图位于 `assets/wealthx/widgets/`。中文 locale 使用 `zh-Hans` 图片组，其余使用 `en-US` 图片组。
+- 图片契约：`data-product-shot` + `{topic}.{source-locale}.{theme}.webp`；所有当前页面产品图均位于 `assets/wealthx/devices/`。Widgets 使用成对完整设备图 `widgets-pair`，在两台 iPhone 内分别展示主屏与 Today View。中文 locale 使用 `zh-Hans` 图片组，其余使用 `en-US` 图片组。
 - 维护注意：隐私政策、App Store URL、版本号、SEO 和产品承诺需要确认。
 
 ### `daxhboard.html`
