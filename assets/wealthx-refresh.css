@@ -225,8 +225,11 @@
   display: grid;
   place-items: center;
   min-height: min(720px, calc(100vh - 130px));
-  overflow: clip;
-  overflow-clip-margin: 28px;
+  /* Keep the full device silhouette and shadow visible. The source captures
+     intentionally reach their canvas bottom, so a clipped stage makes the
+     otherwise-transparent composition read as a hard rectangular crop. */
+  padding: 20px 32px 36px;
+  overflow: visible;
   background: radial-gradient(ellipse at 50% 45%, var(--wx-media-glow), transparent 66%);
   isolation: isolate;
 }

@@ -1275,7 +1275,9 @@
       } catch (error) {
         // Theme still applies for the current page even if storage is unavailable.
       }
-      document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
+      const themeToggle = document.getElementById("theme-toggle");
+      themeToggle.textContent = theme === "dark" ? t("theme_dark") : t("theme_light");
+      themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
       syncThemeShots(theme);
     }
 

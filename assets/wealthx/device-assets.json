@@ -8,7 +8,7 @@
   "source_size": [1800, 2400],
   "output_size": [1200, 1600],
   "output_format": "lossless WebP with alpha",
-  "transformation": "deterministic connected-canvas removal using the English light variant as the per-topic mask master; device frame, side controls, and natural shadow retained",
+  "transformation": "deterministic connected-canvas removal using the English light variant as the per-topic mask master; device frame, side controls, and natural shadow retained; website-only alpha finishing blends source captures that end at the lower canvas edge into the page background",
   "locale_routing": {
     "zh-Hans": "zh-Hans",
     "zh-Hant": "zh-Hans",
