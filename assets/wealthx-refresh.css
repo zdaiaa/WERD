@@ -38,6 +38,41 @@
   -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
+#theme-toggle {
+  display: inline-grid;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+}
+
+#theme-toggle .theme-toggle-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+#theme-toggle .theme-toggle-icon--moon { display: none; }
+[data-theme="dark"] #theme-toggle .theme-toggle-icon--sun { display: none; }
+[data-theme="dark"] #theme-toggle .theme-toggle-icon--moon { display: block; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .portfolio-home .intro {
   min-height: min(760px, 78vh);
   align-items: center;
@@ -225,8 +260,11 @@
   display: grid;
   place-items: center;
   min-height: min(720px, calc(100vh - 130px));
-  overflow: clip;
-  overflow-clip-margin: 28px;
+  /* Keep the full device silhouette and shadow visible. The source captures
+     intentionally reach their canvas bottom, so a clipped stage makes the
+     otherwise-transparent composition read as a hard rectangular crop. */
+  padding: 20px 32px 36px;
+  overflow: visible;
   background: radial-gradient(ellipse at 50% 45%, var(--wx-media-glow), transparent 66%);
   isolation: isolate;
 }

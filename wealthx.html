@@ -587,8 +587,9 @@
       padding: 34px;
       border-radius: 8px;
       border: 1px solid var(--line);
-      background: var(--ink);
-      color: var(--bg);
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow);
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 22px;
@@ -601,17 +602,19 @@
     }
 
     .final-cta p {
-      color: color-mix(in srgb, var(--bg) 72%, transparent);
+      color: var(--muted);
       margin: 12px 0 0;
       line-height: 1.62;
       max-width: 720px;
     }
 
     .final-cta .button {
-      background: var(--bg);
-      color: var(--ink);
+      background: var(--blue);
+      color: #ffffff;
       border-color: transparent;
     }
+
+    [data-theme="dark"] .final-cta .button { color: #000000; }
 
     footer {
       margin-top: 82px;
@@ -739,7 +742,11 @@
       </nav>
       <div class="nav-controls">
         <select class="control" id="language-select" aria-label="Language"></select>
-        <button class="control" id="theme-toggle" type="button" data-i18n="theme_dark">Dark</button>
+        <button class="control" id="theme-toggle" type="button" aria-pressed="false" title="Dark">
+          <svg class="theme-toggle-icon theme-toggle-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+          <svg class="theme-toggle-icon theme-toggle-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"></path></svg>
+          <span class="visually-hidden" data-theme-toggle-label>Dark</span>
+        </button>
         <a class="button primary" href="https://apps.apple.com/app/id6749512735" data-i18n="nav_app_store">App Store</a>
       </div>
     </div>
@@ -1275,7 +1282,12 @@
       } catch (error) {
         // Theme still applies for the current page even if storage is unavailable.
       }
-      document.getElementById("theme-toggle").textContent = theme === "dark" ? t("theme_light") : t("theme_dark");
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeLabel = theme === "dark" ? t("theme_dark") : t("theme_light");
+      themeToggle.querySelector("[data-theme-toggle-label]").textContent = themeLabel;
+      themeToggle.setAttribute("aria-label", themeLabel);
+      themeToggle.title = themeLabel;
+      themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
       syncThemeShots(theme);
     }
 
