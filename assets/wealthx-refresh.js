@@ -17,8 +17,7 @@
   }
 
   function shotPath(img) {
-    const assetGroup = img.dataset.productShotType === "widget" ? "widgets" : "devices";
-    return `assets/wealthx/${assetGroup}/${img.dataset.productShot}.${sourceLocale()}.${activeTheme()}.webp`;
+    return `assets/wealthx/devices/${img.dataset.productShot}.${sourceLocale()}.${activeTheme()}.webp`;
   }
 
   function syncProductShots() {

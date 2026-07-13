@@ -305,20 +305,13 @@
 }
 
 .wx-widget-stage img {
-  position: absolute;
-  width: min(72%, 410px);
-  max-height: 78%;
-  border-radius: 30px;
+  position: relative;
+  width: min(92%, 610px);
+  max-height: 94%;
   object-fit: contain;
-  box-shadow: 0 24px 48px var(--wx-media-shadow);
-  transform: translate3d(-18%, calc((0.5 - var(--story-progress, 0.5)) * 34px), 0)
-    rotate(-2deg);
-}
-
-.wx-widget-stage img + img {
-  width: min(64%, 360px);
-  transform: translate3d(26%, calc((0.5 - var(--story-progress, 0.5)) * -30px + 12%), 0)
-    rotate(2deg);
+  filter: drop-shadow(0 26px 44px var(--wx-media-shadow));
+  transform: translate3d(3%, calc((0.5 - var(--story-progress, 0.5)) * 28px), 0)
+    scale(calc(0.96 + var(--story-progress, 0.5) * 0.04));
 }
 
 .wx-supporting-card {
@@ -385,8 +378,7 @@
   .wx-device-stage img { width: 84%; }
   .wx-device-stage img + img { width: 74%; }
   .wx-widget-stage { padding: 20px; }
-  .wx-widget-stage img { width: 78%; }
-  .wx-widget-stage img + img { width: 70%; }
+  .wx-widget-stage img { width: min(108%, 470px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -402,6 +394,5 @@
   }
   .wx-device-stage.dual img:first-child { transform: translateX(-20%); }
   .wx-device-stage img + img { transform: translateX(25%); }
-  .wx-widget-stage img { transform: translateX(-18%) rotate(-2deg); }
-  .wx-widget-stage img + img { transform: translate(26%, 12%) rotate(2deg); }
+  .wx-widget-stage img { transform: translateX(3%); }
 }
