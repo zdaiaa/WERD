@@ -372,7 +372,11 @@
       <div class="controls">
         <a class="nav-link" id="header-bio-link" href="bio.html" data-i18n="nav_bio">Biography</a>
         <select class="control" id="language-select" aria-label="Language"></select>
-        <button class="control" id="theme-toggle" type="button" data-i18n="theme_dark">Dark</button>
+        <button class="control" id="theme-toggle" type="button" aria-pressed="false" title="Dark">
+          <svg class="theme-toggle-icon theme-toggle-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+          <svg class="theme-toggle-icon theme-toggle-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"></path></svg>
+          <span class="visually-hidden" data-theme-toggle-label>Dark</span>
+        </button>
       </div>
     </header>
 
@@ -605,7 +609,10 @@
         // Theme still applies for this page even if storage is unavailable.
       }
       const themeToggle = document.getElementById("theme-toggle");
-      themeToggle.textContent = theme === "dark" ? t("theme_dark") : t("theme_light");
+      const themeLabel = theme === "dark" ? t("theme_dark") : t("theme_light");
+      themeToggle.querySelector("[data-theme-toggle-label]").textContent = themeLabel;
+      themeToggle.setAttribute("aria-label", themeLabel);
+      themeToggle.title = themeLabel;
       themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
     }
 
