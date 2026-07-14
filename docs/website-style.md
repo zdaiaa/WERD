@@ -30,6 +30,7 @@ The WERD website should follow an Apple-style product-page baseline.
 - Website-derived device images live in `assets/wealthx/devices/`; Craftshot exports remain read-only source material outside this directory.
 - Stable filename: `{topic}.{source-locale}.{theme}.webp`, where `source-locale` is `en-US` or `zh-Hans` and `theme` is `light` or `dark`.
 - Mark product images with `data-product-shot="{topic}"`. Shared JavaScript selects only the active locale/theme file.
+- Widgets 使用 `assets/wealthx/devices/widgets-pair.*.webp`：由已批准的 Craftshot 双设备构图确定性去除画布背景，保留两台 iPhone 的完整边框、侧键和自然阴影；不生成或重绘 UI。
 - `zh-Hans` and `zh-Hant` use the Chinese source group; all other locales use the English source group.
 - Only the first/hero device image is eager and high priority. Remaining images use native lazy loading.
 - Source mapping, dimensions, alpha status, intended use, and QA state are recorded in `assets/wealthx/device-assets.json`.

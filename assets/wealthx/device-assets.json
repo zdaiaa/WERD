@@ -7,7 +7,7 @@
   "output_root": "assets/wealthx/devices",
   "source_size": [1800, 2400],
   "output_size": [1200, 1600],
-  "output_format": "lossless WebP with alpha",
+  "output_format": "lossless WebP with alpha; complete device silhouettes retain their approved frame, side controls, and natural shadow",
   "transformation": "deterministic connected-canvas removal using the English light variant as the per-topic mask master; device frame, side controls, and natural shadow retained; website-only alpha finishing blends source captures that end at the lower canvas edge into the page background",
   "locale_routing": {
     "zh-Hans": "zh-Hans",
@@ -88,6 +88,56 @@
       "sources": {
         "en-US": "TipShot_DataTransfer_Export_en.png",
         "zh-Hans": "TipShot_DataTransfer_Export_zhHans.png"
+      }
+    },
+    {
+      "topic": "widgets-pair",
+      "asset_type": "device-pair",
+      "proof": "Home Screen and Today View widgets remain visible as complete iPhone product surfaces",
+      "intended_sections": ["wealthx-widgets"],
+      "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/craftshot-exports",
+      "source_capture": "TipShot_Widgets_{locale}.png",
+      "source_size": [1800, 2400],
+      "output_size": [1200, 1600],
+      "transformation": "deterministic connected-canvas removal using the en-US light device pair as the mask master; complete device frames, side controls, and natural shadow retained; no UI regeneration or source overwrite",
+      "qa_status": "automated_pass_visual_checked",
+      "sources": {
+        "en-US": "TipShot_Widgets_en.png",
+        "zh-Hans": "TipShot_Widgets_zhHans.png"
+      }
+    },
+    {
+      "topic": "widgets-home",
+      "asset_type": "widget",
+      "proof": "Home Screen widgets surface selected finance status in daily routines",
+      "intended_sections": ["wealthx-widgets"],
+      "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/raw-simulator",
+      "source_capture": "TipShot_Widgets_{locale}/home-screen.png",
+      "source_size": [1320, 2868],
+      "output_size": [960, 1097],
+      "crop": [84, 282, 1236, 1598],
+      "transformation": "deterministic crop and downsample; no UI regeneration or source overwrite",
+      "qa_status": "automated_pass_visual_checked",
+      "sources": {
+        "en-US": "TipShot_Widgets_en/home-screen.png",
+        "zh-Hans": "TipShot_Widgets_zhHans/home-screen.png"
+      }
+    },
+    {
+      "topic": "widgets-today",
+      "asset_type": "widget",
+      "proof": "Today View widgets keep calendar and goal status visible",
+      "intended_sections": ["wealthx-widgets"],
+      "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/raw-simulator",
+      "source_capture": "TipShot_Widgets_{locale}/today-view.png",
+      "source_size": [1320, 2868],
+      "output_size": [960, 1587],
+      "crop": [84, 256, 1236, 2160],
+      "transformation": "deterministic crop and downsample; no UI regeneration or source overwrite",
+      "qa_status": "automated_pass_visual_checked",
+      "sources": {
+        "en-US": "TipShot_Widgets_en/today-view.png",
+        "zh-Hans": "TipShot_Widgets_zhHans/today-view.png"
       }
     }
   ]

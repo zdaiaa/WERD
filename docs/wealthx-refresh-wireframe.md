@@ -71,15 +71,15 @@
 - 用地图与图表证明“同一套记录可以回答不同问题”。
 - 地理位置表述保持权限与真实功能边界。
 
-### Scene 6 — Portability + Trust / 保留出口
+### Scene 6 — Widgets / 随手可见的状态
 
-- 使用 `data-export`。
-- 结束顺序：manual-first 掌控 → 可审查记录 → import/export 可迁移性 → 保守隐私表述。
-- 保留现有 Privacy、Terms、联系方式和 App Store URL。
+- 使用 `widgets-pair` 一张确定性透明背景的完整双设备构图，在两台 iPhone 内呈现主屏与 Today View。
+- 用主屏与 Today View 证明：预算信号、交易流、收支日历和目标状态可以在不打开 App 的情况下被看见。
+- 导入/导出的可迁移性与保守隐私表述保留在功能卡、FAQ、Privacy、Terms、联系方式和 App Store URL 中，不再与组件主视觉混用。
 
 ### Supporting content
 
-- 保留 FAQ、Privacy 和必要的功能覆盖；将 Widgets、Search 等次要能力收敛到辅助网格，不与六个主场景争夺层级。
+- 保留 FAQ、Privacy 和必要的功能覆盖；Widgets 为独立主场景，Search 等次要能力继续收敛到辅助网格，不与核心叙事争夺层级。
 
 ## Motion 规格
 

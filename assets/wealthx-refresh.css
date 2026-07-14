@@ -293,6 +293,27 @@
     scale(calc(0.92 + var(--story-progress, 0.5) * 0.04));
 }
 
+.wx-widget-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: min(720px, calc(100vh - 130px));
+  padding: 36px;
+  overflow: visible;
+  background: radial-gradient(ellipse at 50% 45%, var(--wx-media-glow), transparent 68%);
+  isolation: isolate;
+}
+
+.wx-widget-stage img {
+  position: relative;
+  width: min(92%, 610px);
+  max-height: 94%;
+  object-fit: contain;
+  filter: drop-shadow(0 26px 44px var(--wx-media-shadow));
+  transform: translate3d(3%, calc((0.5 - var(--story-progress, 0.5)) * 28px), 0)
+    scale(calc(0.96 + var(--story-progress, 0.5) * 0.04));
+}
+
 .wx-supporting-card {
   margin-top: 40px;
   padding: 34px;
@@ -339,7 +360,8 @@
     padding: 0;
   }
 
-  .wx-device-stage { min-height: 620px; }
+  .wx-device-stage,
+  .wx-widget-stage { min-height: 620px; }
 }
 
 @media (max-width: 560px) {
@@ -351,9 +373,12 @@
   .wealthx-page .hero-inner > .proof-row { margin-top: 2px; }
   .wx-story-shell { padding: 64px 20px 88px; }
   .wx-story-intro { padding-bottom: 40px; }
-  .wx-device-stage { min-height: 520px; }
+  .wx-device-stage,
+  .wx-widget-stage { min-height: 520px; }
   .wx-device-stage img { width: 84%; }
   .wx-device-stage img + img { width: 74%; }
+  .wx-widget-stage { padding: 20px; }
+  .wx-widget-stage img { width: min(108%, 470px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -369,4 +394,5 @@
   }
   .wx-device-stage.dual img:first-child { transform: translateX(-20%); }
   .wx-device-stage img + img { transform: translateX(25%); }
+  .wx-widget-stage img { transform: translateX(3%); }
 }
