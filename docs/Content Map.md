@@ -1,6 +1,6 @@
 # WERD Content Map
 
-更新时间：2026-07-13
+更新时间：2026-07-14
 
 ## 页面地图
 
@@ -38,6 +38,7 @@
 - 当前内容：hero、feature map、五个桌面 sticky 产品场景（Budget + Scenario、Flow、Goals + Investments、Charts + Cashflow Map、Data Export + Widgets）、FAQ、privacy policy、App Store CTA。
 - 响应式：桌面使用滚动进度叙事；移动端、短 viewport 与 reduced-motion 使用正常文档流。
 - 图片契约：`data-product-shot` + `{topic}.{source-locale}.{theme}.webp`；中文 locale 使用 `zh-Hans` 图片组，其余使用 `en-US` 图片组。
+- 隐私政策：2026-07-14 已统一为 iOS 与 macOS 共用政策，明确 iOS 可选 iCloud、Mac Pro 强制 CloudKit、财务记录不进入 WealthX backend、账户/Apple/Stripe entitlement 元数据处理、服务提供方、锁定与账户删除边界。`en-US` 与 `zh-Hans` 是 source locale；其余 locale 由现有 i18n workflow 在后续 push 后同步，当前未触发自动翻译或发布。
 - 维护注意：隐私政策、App Store URL、版本号、SEO 和产品承诺需要确认。
 
 ### `daxhboard.html`
