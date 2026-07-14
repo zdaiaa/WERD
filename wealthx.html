@@ -1005,7 +1005,7 @@
         </article>
         <article class="qa">
           <h3 data-i18n="faq8_q">How does WealthX approach privacy?</h3>
-          <p data-i18n="faq8_a">WealthX uses a privacy-conscious Apple-platform workflow with local storage and optional iCloud sync. Some features, such as Cashflow Map, use optional permissions only when enabled.</p>
+          <p data-i18n="faq8_a">WealthX keeps finance records on your device or in your private iCloud database. iCloud sync is optional on iOS and required for WealthX Pro on macOS; WealthX services process only the limited account and subscription metadata needed to verify access.</p>
         </article>
       </div>
     </section>
@@ -1016,39 +1016,54 @@
           <p class="eyebrow" data-i18n="privacy_kicker">Data and control</p>
           <h2 id="privacy-title" data-i18n="privacy_title">Privacy Policy</h2>
         </div>
-        <p class="section-lede" data-i18n="privacy_subtitle">WealthX is designed around user-controlled personal finance records, local Apple-platform storage, optional iCloud sync, and clear data transfer workflows.</p>
+        <p class="section-lede" data-i18n="privacy_subtitle">This policy covers WealthX on iOS and macOS. Your finance records remain under your control; WealthX services process only the limited account and subscription metadata needed to verify access.</p>
       </div>
 
       <div class="privacy-block">
         <div class="privacy-meta">
-          <span><span data-i18n="privacy_effective_label">Effective date:</span> <span data-i18n="privacy_date">2025-12-22</span></span>
-          <span><span data-i18n="privacy_version_label">App version:</span> <span data-i18n="app_version">2.3</span></span>
+          <span><span data-i18n="privacy_effective_label">Effective date:</span> <span data-i18n="privacy_date">2026-07-14</span></span>
+          <span><span data-i18n="privacy_scope_label">Applies to:</span> <span data-i18n="privacy_scope">WealthX for iOS and macOS</span></span>
         </div>
 
-        <h3 data-i18n="privacy_sec1_title">1. Information you enter or enable</h3>
+        <h3 data-i18n="privacy_sec1_title">1. Finance records and optional permissions</h3>
         <p data-i18n="privacy_sec1_body">WealthX works with personal finance records that you create or import, including accounts, transactions, budgets, scenarios, Flows, investments, goals, chart settings, icons, and related notes.</p>
         <ul>
-          <li data-i18n="privacy_sec1_item1">Location is optional and is used for Cashflow Map only when permission is granted.</li>
-          <li data-i18n="privacy_sec1_item2">Custom images, emoji, and system symbols may be used for personalization when you choose them.</li>
-          <li data-i18n="privacy_sec1_item3">iCloud sync is optional and uses your Apple account and Apple platform infrastructure.</li>
+          <li data-i18n="privacy_sec1_item1">Finance records are stored on your device or in your private iCloud/CloudKit database. They are not uploaded to the WealthX account and subscription service.</li>
+          <li data-i18n="privacy_sec1_item2">Location is optional and is used for Cashflow Map only when you grant permission.</li>
+          <li data-i18n="privacy_sec1_item3">Custom images, emoji, and system symbols are used for personalization only when you choose them.</li>
+          <li data-i18n="privacy_sec1_item4">On iOS, you can choose whether to enable iCloud sync. On macOS, WealthX Pro requires an available iCloud account and keeps CloudKit sync enabled while the workspace is unlocked.</li>
         </ul>
 
-        <h3 data-i18n="privacy_sec2_title">2. How WealthX uses data</h3>
-        <p data-i18n="privacy_sec2_body">Data is used to provide app features such as bookkeeping, budgets, goals, investments, charts, search, widgets, import/export, and optional sync. WealthX does not operate advertising targeting inside the app.</p>
+        <h3 data-i18n="privacy_sec2_title">2. Account and subscription information</h3>
+        <p data-i18n="privacy_sec2_body">To verify WealthX Pro access and support entitlements across supported platforms, WealthX processes limited account and subscription metadata.</p>
+        <ul>
+          <li data-i18n="privacy_sec2_item1">Account metadata may include an internal WealthX user ID, an Apple-verified App Transaction identifier, a SHA-256 one-way digest derived from the current CloudKit user record identifier, an app account token, a hashed session token, platform, and verification timestamps.</li>
+          <li data-i18n="privacy_sec2_item2">Subscription metadata may include Apple or Stripe purchase and subscription identifiers, product, plan, status, expiry, trial state, verification timestamps, and a Stripe customer identifier when Stripe applies.</li>
+          <li data-i18n="privacy_sec2_item3">The raw CloudKit user record identifier and signed App Transaction are processed to verify the account but are not retained in raw form.</li>
+          <li data-i18n="privacy_sec2_item4">WealthX does not receive payment-card or bank-account details entered with Apple or Stripe.</li>
+        </ul>
 
-        <h3 data-i18n="privacy_sec3_title">3. Sharing and disclosure</h3>
-        <p data-i18n="privacy_sec3_body">We do not sell personal finance data. We may disclose information only if required by law, necessary to protect rights and safety, or requested by you for support or data transfer.</p>
+        <h3 data-i18n="privacy_sec3_title">3. How this information is used</h3>
+        <p data-i18n="privacy_sec3_body">Account and subscription metadata is used only to authenticate sessions, verify or restore Pro access across supported platforms, prevent conflicting account claims, maintain entitlement status, provide account support, and carry out account deletion. WealthX does not use this information for advertising or tracking.</p>
 
-        <h3 data-i18n="privacy_sec4_title">4. Storage and security</h3>
-        <p data-i18n="privacy_sec4_body">WealthX uses local Apple-platform storage and optional iCloud sync. Apple account, device, and iCloud settings affect storage and sync behavior. No digital system should be treated as risk-free.</p>
+        <h3 data-i18n="privacy_sec4_title">4. Service providers and disclosure</h3>
+        <p data-i18n="privacy_sec4_body">Apple provides App Store, StoreKit, and iCloud/CloudKit services. Stripe processes Stripe subscriptions when applicable. Render hosts the WealthX account and subscription service and may process network request metadata. We do not sell personal finance data or account metadata. Information is disclosed only as needed to operate these services, when required by law, to protect rights and safety, or at your request.</p>
 
-        <h3 data-i18n="privacy_sec5_title">5. Import, export, and deletion</h3>
-        <p data-i18n="privacy_sec5_body">You control import and export workflows inside WealthX. You can remove records in the app and manage app data through Apple platform settings where applicable.</p>
+        <h3 data-i18n="privacy_sec5_title">5. Storage, security, and retention</h3>
+        <p data-i18n="privacy_sec5_body">Finance records remain on your device or in your private iCloud database. WealthX limits the account and subscription metadata it stores, and hashes tokens or encrypts credentials where appropriate. This metadata is retained while your WealthX account exists or as reasonably needed to operate and secure the service, meet legal obligations, or resolve disputes. No digital system should be treated as risk-free.</p>
 
-        <h3 data-i18n="privacy_sec6_title">6. Children</h3>
-        <p data-i18n="privacy_sec6_body">WealthX is not intended for children under the age required by local law to manage personal finance records without appropriate consent.</p>
+        <h3 data-i18n="privacy_sec6_title">6. Import, export, locking, and deletion</h3>
+        <p data-i18n="privacy_sec6_body">You control import and export workflows. Locking WealthX hides finance data and stops app access to CloudKit, but does not delete the underlying records. After a confirmed WealthX account deletion succeeds, WealthX removes the server-side account, sessions, entitlement records, App Transaction/CloudKit binding, applicable legacy installation mapping, and pending Stripe Checkout state.</p>
+        <ul>
+          <li data-i18n="privacy_sec6_item1">Deleting a WealthX account does not cancel an Apple or Stripe subscription. Manage or cancel each subscription through its billing provider.</li>
+          <li data-i18n="privacy_sec6_item2">Local and private-iCloud finance records remain after account deletion. You can manage or remove them separately in WealthX or through Apple platform settings where applicable.</li>
+          <li data-i18n="privacy_sec6_item3">Files you export are external copies under your control. Locking or deleting WealthX does not remove those files.</li>
+        </ul>
 
-        <h3 data-i18n="privacy_sec7_title">7. Contact</h3>
+        <h3 data-i18n="privacy_sec7_title">7. Children</h3>
+        <p data-i18n="privacy_sec7_body">WealthX is not intended for children below the age required by local law to manage personal finance records without appropriate consent.</p>
+
+        <h3 data-i18n="privacy_sec8_title">8. Contact</h3>
         <p><span data-i18n="privacy_contact_body">For privacy questions, contact us at</span> <a class="legal-link" id="privacy-email" href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>.</p>
       </div>
     </section>
