@@ -1,6 +1,8 @@
 # WERD Content Map
 
-更新时间：2026-07-14
+更新时间：2026-07-19
+
+> 迁移说明（2026-07-19）：Sites 已成为 WERD 主站：`https://werd-portfolio.eric-dai.chatgpt.site/`。GitHub Pages 首页保留为兼容入口，原有 WealthX、Daxhboard 与 Biography 深层页面继续可用。
 
 ## 页面地图
 
