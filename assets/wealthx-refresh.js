@@ -1,15 +1,55 @@
 (() => {
   const root = document.documentElement;
+  const deviceAssetVersion = "20260826-en-usd-dark";
   const shots = Array.from(document.querySelectorAll("[data-product-shot]"));
   const stories = Array.from(document.querySelectorAll("[data-scroll-story]"));
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const chinese30Topics = new Set([
+    "insights-overview",
+    "cashflow-structure",
+    "cashflow-structure-ipad",
+    "split-bill",
+    "smart-flows",
+    "goal-list",
+    "smart-budget-3",
+    "scenario-detail",
+    "refund-actions",
+    "investment-overview-3",
+    "account-overview",
+    "theme-selector",
+    "widgets-calendar",
+    "widgets-insights",
+  ]);
+  const chineseDarkTopics = new Set([
+    "insights-overview",
+    "cashflow-structure",
+    "cashflow-structure-ipad",
+    "split-bill",
+    "smart-flows",
+    "goal-list",
+    "smart-budget-3",
+    "scenario-detail",
+    "refund-actions",
+    "investment-overview-3",
+    "account-overview",
+    "theme-selector",
+    "widgets-calendar",
+    "widgets-insights",
+  ]);
 
-  function sourceLocale() {
+  function requestedLocale() {
     const requested = new URLSearchParams(window.location.search).get("lang");
-    const locale = (requested || root.lang || navigator.language || "en-US").toLowerCase();
-    return locale === "zh-hans" || locale === "zh-hant" || locale.startsWith("zh-")
-      ? "zh-Hans"
-      : "en-US";
+    return (requested || root.lang || navigator.language || "en-US").toLowerCase();
+  }
+
+  function isChineseLocale() {
+    const locale = requestedLocale();
+    return locale === "zh-hans" || locale === "zh-hant" || locale.startsWith("zh-");
+  }
+
+  function sourceLocale(img) {
+    if (!isChineseLocale()) return "en-US";
+    return chinese30Topics.has(img.dataset.productShot) ? "zh-Hans" : null;
   }
 
   function activeTheme() {
@@ -17,17 +57,45 @@
   }
 
   function shotPath(img) {
-    return `assets/wealthx/devices/${img.dataset.productShot}.${sourceLocale()}.${activeTheme()}.webp`;
+    const locale = sourceLocale(img);
+    if (!locale) return null;
+    if (isChineseLocale() && activeTheme() === "dark" && !chineseDarkTopics.has(img.dataset.productShot)) {
+      return null;
+    }
+    const appearance = activeTheme();
+    return `assets/wealthx/devices/${img.dataset.productShot}.${locale}.${appearance}.webp?v=${deviceAssetVersion}`;
+  }
+
+  function syncStageAvailability() {
+    document.querySelectorAll(".hero-stage, .wx-device-stage, .wx-widget-stage").forEach((stage) => {
+      const stageShots = Array.from(stage.querySelectorAll("[data-product-shot]"));
+      const visibleShots = stageShots.filter((img) => !img.hidden);
+      stage.classList.toggle("is-empty", stageShots.length > 0 && visibleShots.length === 0);
+      stage.classList.toggle("is-single", visibleShots.length === 1);
+      const story = stage.closest(".wx-story");
+      if (story) story.classList.toggle("is-visual-empty", visibleShots.length === 0);
+    });
   }
 
   function syncProductShots() {
     shots.forEach((img, index) => {
       const next = shotPath(img);
+      img.hidden = !next;
+      if (!next) {
+        img.removeAttribute("src");
+        return;
+      }
       img.decoding = "async";
       img.loading = img.dataset.productPriority === "high" || index === 0 ? "eager" : "lazy";
       if (img.dataset.productPriority === "high" || index === 0) img.fetchPriority = "high";
+      img.onerror = () => {
+        img.hidden = true;
+        img.removeAttribute("src");
+        syncStageAvailability();
+      };
       if (img.getAttribute("src") !== next) img.setAttribute("src", next);
     });
+    syncStageAvailability();
   }
 
   let frame = 0;

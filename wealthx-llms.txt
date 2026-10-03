@@ -1,0 +1,37 @@
+# WealthX 3.0
+
+WealthX is a structured personal finance system for iPhone and iPad. It is designed to make precise financial organization feel clear and intuitive while keeping financial decisions under the user's control.
+
+## Product scope
+
+- Accounts: cash, bank accounts, digital wallets, credit cards, investment accounts, assets, liabilities, multiple accounts, and multiple currencies.
+- Budgets and Scenarios: different time frames and life contexts. Scenarios express context through budgets and do not bind directly to Accounts.
+- Transactions and Flows: income, expenses, transfers, refunds, recurring transactions, reusable Flows, and planned Flows.
+- Split Bill and follow-up records: one actual payment can be allocated across multiple budgets; repayments, reimbursements, and full or partial refunds can stay linked to the original transaction. This is not collaboration or automated settlement.
+- Goals: savings, debt repayment, and asset-purchase goals with linked accounts and milestones.
+- Investments: accounts, holdings, trades, deposits, withdrawals, buys, sells, and market value for records and context only.
+- Search and data control: search across key record types plus currently supported import, export, and backup paths.
+- Insights: trends, distributions, Change, Concentration, Cashflow Structure, charts, Cashflow Map, and widgets. Cashflow Map requires location permission.
+
+## WealthX 3.0
+
+- Smart Flows use recent activity and spending frequency to bring likely Flows forward. The user chooses a Flow, enters the amount, and confirms the record.
+- Smart Budget analyzes historical transactions and current budgets to suggest future category amounts or time-frame changes. Suggestions apply only after user confirmation.
+- Cashflow Calendar and Spending Heatmap widgets are available to Free users.
+- System, Light, and Dark themes are free. Extended themes require the corresponding access.
+- Most pages were redesigned with clearer focus, distinct transaction-status symbols, consistent menu icons, and personalized themes.
+- WealthX 3.0 requires iOS 26 or iPadOS 26 or later.
+
+## Boundaries
+
+- WealthX does not provide investment advice, predictions, or return guarantees.
+- WealthX does not silently apply Smart Budget suggestions or modify financial records without user confirmation.
+- FinanceKit, Intelligent Reconciliation, and Spreadsheet Sync are not presented as WealthX 3.0 website capabilities.
+- Storage and sync behavior depend on platform and settings; no digital system should be treated as risk-free.
+
+## Links
+
+- Product: https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US
+- Privacy: https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US#privacy
+- App Store: https://apps.apple.com/app/id6749512735
+- App Store ID: 6749512735

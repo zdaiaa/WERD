@@ -1,5 +1,11 @@
 # WERD Site Architecture
 
+## 当前发布结构 — 2026-10-04
+
+已核实 GitHub Pages 从 `main` 分支根目录发布，站点前缀为 `/WERD/`。直接保留 `index.html`、`wealthx.html`、`daxhboard.html`、`bio.html` 及其相对资源路径；WealthX 继续使用 `wealthx.html?lang=<locale>#privacy` 作为本地化隐私地址。
+
+本次内容来自 Sites 已发布版本 15 的 `public/` 静态目录，只适配托管 URL，不迁入应用服务器、Sites 凭据或框架配置。现有 Pages 设置、workflow、路由名称与 `.nojekyll` 保留。整站公开内容在 GitHub 上独立提供，访问者无需转跳到原 Sites 域名。
+
 更新时间：2026-07-13
 
 ## 定位

@@ -1,144 +1,217 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-07-13",
+  "schema_version": 2,
+  "generated_at": "2026-08-26",
   "product": "WealthX",
-  "source_repository": "WealthX local source-of-truth repository",
-  "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/craftshot-exports",
+  "release": "3.0",
   "output_root": "assets/wealthx/devices",
-  "source_size": [1800, 2400],
-  "output_size": [1200, 1600],
-  "output_format": "lossless WebP with alpha; complete device silhouettes retain their approved frame, side controls, and natural shadow",
-  "transformation": "deterministic connected-canvas removal using the English light variant as the per-topic mask master; device frame, side controls, and natural shadow retained; website-only alpha finishing blends source captures that end at the lower canvas edge into the page background",
-  "locale_routing": {
-    "zh-Hans": "zh-Hans",
-    "zh-Hant": "zh-Hans",
-    "default": "en-US"
-  },
-  "appearance_variants": ["light", "dark"],
+  "output_format": "lossless WebP with alpha",
+  "cache_version": "20260826-en-usd-dark",
   "filename_pattern": "{topic}.{source_locale}.{appearance}.webp",
-  "qa_status": "automated_pass_visual_pending_user",
+  "transformation": "matching light-canvas alpha geometry for framed devices; connected-canvas removal only for widget canvases; complete frame, controls, and natural shadow retained; no UI regeneration",
+  "locale_routing": {
+    "default": "en-US light/dark",
+    "zh-Hans": "only semantically matching 3.0 zh-Hans light captures",
+    "zh-Hant": "uses matching zh-Hans 3.0 product captures; localized page copy remains Traditional Chinese",
+    "missing_chinese_policy": "hide and compact the visual stage; never fall back to 2.3 or English UI"
+  },
+  "source_sets": [
+    {
+      "locale": "en-US",
+      "source_root": "operations/assets/generated-screenshots/tipshot-3.0-full-refresh-20260823-r2-emoji/craftshot-exports/en-US",
+      "source_size": [1800, 2400],
+      "appearances": ["light", "dark"],
+      "output_size": [1200, 1600],
+      "qa_status": "dimensions_alpha_and_visual_checked"
+    },
+    {
+      "locale": "zh-Hans",
+      "source_root": "tmp/wealthx-website-3.0-zh-posters",
+      "upstream_root": "operations/assets/generated-screenshots/asc-3.0-craftshot-source-20260824/craftshot-import/iphone/zh-Hans",
+      "source_size": [1800, 2400],
+      "appearances": ["light"],
+      "output_size": [1200, 1600],
+      "qa_status": "dimensions_alpha_and_visual_checked"
+    },
+    {
+      "locales": ["en-US", "zh-Hans"],
+      "source_root": "operations/image-asset",
+      "source_size": [3200, 1800],
+      "appearances": ["light", "dark"],
+      "output_size": [1600, 900],
+      "device": "iPad Pro 13 landscape",
+      "canvas": "16:9 white",
+      "qa_status": "dimensions_alpha_and_visual_checked"
+    },
+    {
+      "locales": ["en-US", "zh-Hans"],
+      "source_root": "operations/assets/generated-screenshots/wealthx-website-3.0-craftshot-prep-20260825/craftshot-exports/iphone-website",
+      "source_size": [1800, 3200],
+      "appearances": ["light", "dark"],
+      "output_size": [1200, 2133],
+      "device": "iPhone 16 Pro Max standard frame",
+      "canvas": "9:16; white for non-widget light captures, black for dark captures and all widget captures",
+      "qa_status": "all dimensions checked; alpha and visual QA passed; framed variants checked on light, dark, and neutral backgrounds"
+    }
+  ],
   "items": [
     {
-      "topic": "charts-overview",
-      "proof": "Hero overview and visual system clarity",
-      "intended_sections": ["index-featured-product", "wealthx-hero"],
-      "sources": {
-        "en-US": "TipShot_Charts_Overview_en.png",
-        "zh-Hans": "TipShot_Charts_Overview_zhHans.png"
+      "locale": "en-US",
+      "topics": [
+        "insights-overview",
+        "account-overview",
+        "budget-overview-3",
+        "scenario-detail",
+        "refund-actions",
+        "split-bill",
+        "goal-list",
+        "investment-overview-3",
+        "smart-flows",
+        "smart-budget-3",
+        "cashflow-trend",
+        "cashflow-map-3",
+        "cashflow-structure"
+      ],
+      "appearances": ["light", "dark"]
+    },
+    {
+      "locale": "zh-Hans",
+      "topics": [
+        "insights-overview",
+        "cashflow-structure",
+        "split-bill",
+        "smart-flows",
+        "budget-overview-3",
+        "goal-list"
+      ],
+      "appearances": ["light"],
+      "source_mapping": {
+        "insights-overview": "01-cashflow-structure-zh-Hans-1800x2400.png",
+        "cashflow-structure": "01-cashflow-structure-zh-Hans-1800x2400.png",
+        "split-bill": "02-split-bill-zh-Hans-1800x2400.png",
+        "smart-flows": "03-smart-flows-zh-Hans-1800x2400.png",
+        "budget-overview-3": "04-budget-overview-zh-Hans-1800x2400.png",
+        "goal-list": "05-goal-tracker-zh-Hans-1800x2400.png"
       }
     },
     {
-      "topic": "smart-budget",
-      "proof": "Flexible budget structure",
-      "intended_sections": ["wealthx-budget-scenario"],
-      "sources": {
-        "en-US": "TipShot_BudgetManage_SmartBudget_en.png",
-        "zh-Hans": "TipShot_BudgetManage_SmartBudget_zhHans.png"
-      }
+      "locale": "en-US",
+      "topics": [
+        "insights-overview",
+        "smart-flows",
+        "split-bill",
+        "goal-list"
+      ],
+      "appearances": ["dark"],
+      "release": "3.0 locale-matched English demo data",
+      "demo_spec": "en-US__pro_user",
+      "currency": "USD",
+      "source_root": "operations/assets/generated-screenshots/wealthx-website-3.0-craftshot-prep-20260825/craftshot-exports/iphone-website",
+      "source_size": [1800, 3200],
+      "craftshot_pages": [55, 56, 57, 58],
+      "source_mapping": {
+        "insights-overview": "insights-overview.en-US.dark.png",
+        "smart-flows": "smart-flows.en-US.dark.png",
+        "split-bill": "split-bill.en-US.dark.png",
+        "goal-list": "goal-list.en-US.dark.png"
+      },
+      "cutout_method": "apply the matching en-US light device alpha geometry after resizing to 1200 x 2133; preserve the black frame, side controls, and shadow",
+      "qa_status": "English UI, English demo content, USD amounts, dimensions, alpha, and white-black-neutral background QA passed"
     },
     {
-      "topic": "scenario-switch",
-      "proof": "Separate money contexts without losing one system",
-      "intended_sections": ["wealthx-budget-scenario"],
-      "sources": {
-        "en-US": "TipShot_Scenario_Switch_en.png",
-        "zh-Hans": "TipShot_Scenario_Switch_zhHans.png"
-      }
+      "locale": "zh-Hans",
+      "topics": [
+        "insights-overview",
+        "cashflow-structure",
+        "split-bill",
+        "smart-flows",
+        "goal-list"
+      ],
+      "appearances": ["dark"],
+      "release": "3.0 Demo data",
+      "source_root": "operations/assets/generated-screenshots/wealthx-website-3.0-craftshot-prep-20260825/craftshot-exports/iphone-website",
+      "source_size": [1800, 3200],
+      "craftshot_pages": [39, 40, 41, 42],
+      "source_mapping": {
+        "insights-overview": "insights-overview.zh-Hans.dark.png",
+        "cashflow-structure": "insights-overview.zh-Hans.dark.png",
+        "split-bill": "split-bill.zh-Hans.dark.png",
+        "smart-flows": "smart-flows.zh-Hans.dark.png",
+        "goal-list": "goal-list.zh-Hans.dark.png"
+      },
+      "cutout_method": "remove only RGB max <= 2 exterior connected to all four canvas edges; preserve device frame, controls, shadow, and screen pixels",
+      "qa_status": "source_content_dimensions_alpha_and_visual_checked"
     },
     {
-      "topic": "flow-use",
-      "proof": "Reusable transaction patterns with user confirmation",
-      "intended_sections": ["wealthx-flow"],
-      "sources": {
-        "en-US": "TipShot_FlowManage_Use_en.png",
-        "zh-Hans": "TipShot_FlowManage_Use_zhHans.png"
-      }
-    },
-    {
-      "topic": "goal-detail",
-      "proof": "Long-term goals visible beside daily finance",
-      "intended_sections": ["wealthx-goals-investments"],
-      "sources": {
-        "en-US": "TipShot_GoalTracker_Detail_en.png",
-        "zh-Hans": "TipShot_GoalTracker_Detail_zhHans.png"
-      }
-    },
-    {
-      "topic": "investment-overview",
-      "proof": "Investment records in the same organization system",
-      "intended_sections": ["wealthx-goals-investments"],
-      "sources": {
-        "en-US": "TipShot_Investment_Overview_en.png",
-        "zh-Hans": "TipShot_Investment_Overview_zhHans.png"
-      }
-    },
-    {
-      "topic": "cashflow-map",
-      "proof": "Multiple views for understanding money movement",
-      "intended_sections": ["wealthx-insights"],
-      "sources": {
-        "en-US": "TipShot_Charts_Map_en.png",
-        "zh-Hans": "TipShot_Charts_Map_zhHans.png"
-      }
-    },
-    {
-      "topic": "data-export",
-      "proof": "Portable records and a conservative trust close",
-      "intended_sections": ["wealthx-trust"],
-      "sources": {
-        "en-US": "TipShot_DataTransfer_Export_en.png",
-        "zh-Hans": "TipShot_DataTransfer_Export_zhHans.png"
-      }
-    },
-    {
+      "locale": "en-US",
       "topic": "widgets-pair",
-      "asset_type": "device-pair",
-      "proof": "Home Screen and Today View widgets remain visible as complete iPhone product surfaces",
-      "intended_sections": ["wealthx-widgets"],
-      "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/craftshot-exports",
-      "source_capture": "TipShot_Widgets_{locale}.png",
-      "source_size": [1800, 2400],
-      "output_size": [1200, 1600],
-      "transformation": "deterministic connected-canvas removal using the en-US light device pair as the mask master; complete device frames, side controls, and natural shadow retained; no UI regeneration or source overwrite",
-      "qa_status": "automated_pass_visual_checked",
-      "sources": {
-        "en-US": "TipShot_Widgets_en.png",
-        "zh-Hans": "TipShot_Widgets_zhHans.png"
-      }
+      "release": "2.3 verified legacy proof",
+      "appearances": ["light", "dark"],
+      "usage": "Retained as an unreferenced legacy proof only; the WealthX 3.0 page must not load this asset"
     },
     {
-      "topic": "widgets-home",
-      "asset_type": "widget",
-      "proof": "Home Screen widgets surface selected finance status in daily routines",
-      "intended_sections": ["wealthx-widgets"],
-      "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/raw-simulator",
-      "source_capture": "TipShot_Widgets_{locale}/home-screen.png",
-      "source_size": [1320, 2868],
-      "output_size": [960, 1097],
-      "crop": [84, 282, 1236, 1598],
-      "transformation": "deterministic crop and downsample; no UI regeneration or source overwrite",
-      "qa_status": "automated_pass_visual_checked",
-      "sources": {
-        "en-US": "TipShot_Widgets_en/home-screen.png",
-        "zh-Hans": "TipShot_Widgets_zhHans/home-screen.png"
-      }
+      "locales": ["en-US", "zh-Hans"],
+      "topics": ["widgets-calendar", "widgets-insights"],
+      "release": "3.0 Demo data",
+      "appearances": ["light", "dark"],
+      "source_root": "operations/assets/generated-screenshots/wealthx-website-3.0-craftshot-prep-20260825/craftshot-exports/iphone-website",
+      "source_size": [1800, 3200],
+      "craftshot_pages": [30, 31, 32, 33, 34, 35, 36, 37],
+      "craftshot_canvas": "black for both light and dark app appearances",
+      "cutout_method": "remove only near-black exterior connected to all four canvas edges; preserve device frame, controls, shadow, and screen pixels",
+      "usage": "Replacement source set for the website widget section; Calendar and Insights are kept as separate single-screenshot assets"
     },
     {
-      "topic": "widgets-today",
-      "asset_type": "widget",
-      "proof": "Today View widgets keep calendar and goal status visible",
-      "intended_sections": ["wealthx-widgets"],
-      "source_root": "operations/assets/generated-screenshots/tipshot-full-refresh-20260708/raw-simulator",
-      "source_capture": "TipShot_Widgets_{locale}/today-view.png",
-      "source_size": [1320, 2868],
-      "output_size": [960, 1587],
-      "crop": [84, 256, 1236, 2160],
-      "transformation": "deterministic crop and downsample; no UI regeneration or source overwrite",
-      "qa_status": "automated_pass_visual_checked",
-      "sources": {
-        "en-US": "TipShot_Widgets_en/today-view.png",
-        "zh-Hans": "TipShot_Widgets_zhHans/today-view.png"
-      }
+      "topic": "cashflow-structure-ipad",
+      "locales": ["en-US", "zh-Hans"],
+      "appearances": ["light", "dark"],
+      "release": "3.0 Demo data",
+      "device": "iPad Pro 13 landscape",
+      "source_mapping": {
+        "en-US.light": "wealthx-3.0-cashflow-structure-ipad-en-US-light.png",
+        "en-US.dark": "wealthx-3.0-cashflow-structure-ipad-en-US-deep-purple-dark.png",
+        "zh-Hans.light": "wealthx-3.0-cashflow-structure-ipad-zh-Hans-light.png",
+        "zh-Hans.dark": "wealthx-3.0-cashflow-structure-ipad-zh-Hans-deep-purple-dark.png"
+      },
+      "usage": "WealthX 3.0 insights section; single-device proof"
     }
-  ]
+  ],
+  "pending_craftshot_sources": {
+    "source_root": "operations/assets/generated-screenshots/wealthx-website-3.0-craftshot-prep-20260825/craftshot-ready/iphone-website",
+    "source_type": "raw iPhone 17 Pro Max Simulator screenshots",
+    "source_size": [
+      1320,
+      2868
+    ],
+    "craftshot_output_size": [
+      1800,
+      3200
+    ],
+    "craftshot_canvas": "9:16 portrait; widget topics use black external canvas for both app appearances",
+    "page_rule": "one screenshot per Craftshot page",
+    "ready_topics": [
+      "smart-budget-3",
+      "scenario-detail",
+      "refund-actions",
+      "investment-overview-3",
+      "account-overview",
+      "theme-selector"
+      ,
+      "widgets-calendar",
+      "widgets-insights"
+    ],
+    "pending_topics": [],
+    "locales": [
+      "en-US",
+      "zh-Hans"
+    ],
+    "appearances": [
+      "light",
+      "dark"
+    ],
+    "craftshot_project": "WealthX Website Assets",
+    "craftshot_page_range": "6-16 and 18-58; page 17 rejected, page 38 is its replacement; pages 43-54 repair full-device framing; pages 55-58 repair English dark demo-data identity",
+    "craftshot_page_audit": "Prepared pages use 9:16, image-only, one source, standard iPhone frame, 100% image scale, and platform badge off",
+    "status": "All required exports archived; pages 55-58 replace the four English dark captures that previously mixed English UI with Chinese demo data"
+  },
+  "known_chinese_gaps": []
 }

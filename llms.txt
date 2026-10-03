@@ -1,0 +1,26 @@
+# WERD
+
+WERD is the public product and biography hub for WealthX, Daxhboard, and Eric Dai.
+
+## Products
+
+- [WealthX 3.0](https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US): A structured personal finance system for iPhone and iPad.
+- [Daxhboard](https://zdaiaa.github.io/WERD/daxhboard.html): A read-only Apple-platform quota and status tool.
+
+## WealthX facts
+
+- App Store ID: 6749512735
+- Current website product version: 3.0
+- WealthX 3.0 requires iOS 26 or iPadOS 26 or later.
+- WealthX organizes accounts, assets and liabilities, multiple currencies, budgets, Scenarios, transactions, Flows, Split Bill records, repayments, reimbursements, refunds, goals, investments, search, insights, Cashflow Map, widgets, and supported data-transfer paths.
+- Smart Flows bring likely Flows forward from recent activity and spending frequency. The user selects a Flow and enters the amount.
+- Smart Budget suggestions are reviewable and apply only after user confirmation.
+- WealthX investment information is for records and context only. It does not provide investment advice, predictions, or return guarantees.
+- Depending on platform and settings, financial records stay on the device or in the user's private iCloud database.
+
+## Primary sources
+
+- [WealthX product page](https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US)
+- [WealthX privacy policy](https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US#privacy)
+- [WealthX on the App Store](https://apps.apple.com/app/id6749512735)
+- [WealthX machine-readable product summary](https://zdaiaa.github.io/WERD/wealthx-llms.txt)

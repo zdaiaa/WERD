@@ -8,6 +8,7 @@
   --wx-accent: #0071e3;
   --wx-media-glow: rgba(0, 113, 227, 0.12);
   --wx-media-shadow: rgba(0, 0, 0, 0.16);
+  --wx-device-edge: rgba(255, 255, 255, 0);
   --wx-radius: 32px;
   --wx-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
   --wx-content: 1180px;
@@ -23,6 +24,7 @@
   --wx-accent: #2997ff;
   --wx-media-glow: rgba(41, 151, 255, 0.16);
   --wx-media-shadow: rgba(0, 0, 0, 0.34);
+  --wx-device-edge: rgba(255, 255, 255, 0.34);
   --wx-shadow: 0 30px 90px rgba(0, 0, 0, 0.46);
 }
 
@@ -30,6 +32,15 @@
 .wealthx-page {
   background: var(--wx-canvas);
   color: var(--wx-ink);
+}
+
+.nav-controls #language-select {
+  color-scheme: light;
+}
+
+.nav-controls #language-select option {
+  background: #ffffff;
+  color: #1d1d1f;
 }
 
 .portfolio-home .topbar,
@@ -102,7 +113,8 @@
 
 .portfolio-home .home-product-stage img {
   width: min(88%, 430px);
-  filter: drop-shadow(0 24px 32px var(--wx-media-shadow));
+  filter: drop-shadow(0 0 1px var(--wx-device-edge))
+    drop-shadow(0 24px 32px var(--wx-media-shadow));
   transform: translateY(7%);
 }
 
@@ -274,22 +286,56 @@
   width: min(76%, 420px);
   max-height: 88%;
   object-fit: contain;
-  filter: drop-shadow(0 24px 32px var(--wx-media-shadow));
+  filter: drop-shadow(0 0 1px var(--wx-device-edge))
+    drop-shadow(0 24px 32px var(--wx-media-shadow));
   opacity: calc(1 - var(--shot-shift, 0));
   transform: translate3d(0, calc((0.5 - var(--story-progress, 0.5)) * 52px), 0)
     scale(calc(0.96 + var(--story-progress, 0.5) * 0.04));
   transition: opacity 280ms ease;
 }
 
+[data-product-shot][hidden],
+.wx-device-stage.is-empty,
+.wx-widget-stage.is-empty {
+  display: none !important;
+}
+
+.wx-device-stage.is-single img:not([hidden]),
+.wx-device-stage.is-single.dual img:first-child:not([hidden]),
+.wx-device-stage.is-single img + img:not([hidden]) {
+  width: min(76%, 420px);
+  transform: translate3d(0, calc((0.5 - var(--story-progress, 0.5)) * 40px), 0)
+    scale(calc(0.96 + var(--story-progress, 0.5) * 0.04));
+}
+
+.wx-story.is-visual-empty .wx-story-inner {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+}
+
 .wx-device-stage img + img {
   --shot-shift: 0;
   width: min(68%, 380px);
-  transform: translate3d(32%, calc((0.5 - var(--story-progress, 0.5)) * -42px), 0)
+  z-index: 2;
+  transform: translate3d(24%, calc(12px + (0.5 - var(--story-progress, 0.5)) * -42px), 0)
     scale(calc(0.9 + var(--story-progress, 0.5) * 0.05));
 }
 
+.wx-device-stage.landscape {
+  min-height: min(620px, calc(100vh - 150px));
+  padding-inline: 0;
+}
+
+.wx-device-stage.landscape img,
+.wx-device-stage.landscape.is-single img:not([hidden]) {
+  width: 122%;
+  max-width: 860px;
+  max-height: 86%;
+}
+
 .wx-device-stage.dual img:first-child {
-  transform: translate3d(-24%, calc((0.5 - var(--story-progress, 0.5)) * 48px), 0)
+  z-index: 1;
+  transform: translate3d(-20%, calc(-8px + (0.5 - var(--story-progress, 0.5)) * 48px), 0)
     scale(calc(0.92 + var(--story-progress, 0.5) * 0.04));
 }
 
@@ -362,6 +408,13 @@
 
   .wx-device-stage,
   .wx-widget-stage { min-height: 620px; }
+
+  .wx-device-stage.landscape { min-height: 500px; }
+  .wx-device-stage.landscape img,
+  .wx-device-stage.landscape.is-single img:not([hidden]) {
+    width: 100%;
+    max-width: 860px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -377,6 +430,12 @@
   .wx-widget-stage { min-height: 520px; }
   .wx-device-stage img { width: 84%; }
   .wx-device-stage img + img { width: 74%; }
+  .wx-device-stage.is-single img:not([hidden]),
+  .wx-device-stage.is-single.dual img:first-child:not([hidden]),
+  .wx-device-stage.is-single img + img:not([hidden]) { width: 84%; }
+  .wx-device-stage.landscape { min-height: 330px; padding: 0; }
+  .wx-device-stage.landscape img,
+  .wx-device-stage.landscape.is-single img:not([hidden]) { width: 108%; }
   .wx-widget-stage { padding: 20px; }
   .wx-widget-stage img { width: min(108%, 470px); }
 }
@@ -392,7 +451,10 @@
     transform: none;
     transition: none;
   }
-  .wx-device-stage.dual img:first-child { transform: translateX(-20%); }
-  .wx-device-stage img + img { transform: translateX(25%); }
+  .wx-device-stage.dual img:first-child { transform: translate3d(-20%, -8px, 0); }
+  .wx-device-stage img + img { transform: translate3d(24%, 12px, 0); }
+  .wx-device-stage.is-single img:not([hidden]),
+  .wx-device-stage.is-single.dual img:first-child:not([hidden]),
+  .wx-device-stage.is-single img + img:not([hidden]) { transform: none; }
   .wx-widget-stage img { transform: translateX(3%); }
 }

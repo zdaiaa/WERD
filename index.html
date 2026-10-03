@@ -4,6 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="WERD home for WealthX, Daxhboard, and related pages." data-i18n-attr="content:home_meta_description" />
+  <meta property="og:title" content="WERD - Products" data-i18n-attr="content:home_title" />
+  <meta property="og:description" content="WERD home for WealthX, Daxhboard, and related pages." data-i18n-attr="content:home_meta_description" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zdaiaa.github.io/WERD/" />
+  <meta property="og:image" content="https://zdaiaa.github.io/WERD/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://zdaiaa.github.io/WERD/og.png" />
+  <link rel="canonical" href="https://zdaiaa.github.io/WERD/" />
   <title data-i18n="home_title">WERD - Products</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <script>
@@ -17,7 +25,7 @@
       }
     })();
   </script>
-  <link rel="stylesheet" href="assets/wealthx-refresh.css" />
+  <link rel="stylesheet" href="assets/wealthx-refresh.css?v=20260826-en-usd-dark" />
   <style>
     :root {
       color-scheme: light;
@@ -360,31 +368,10 @@
       .entry-copy h3 { font-size: 21px; }
       .section-head { display: block; }
     }
-
-    .site-move-notice {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 42px;
-      padding: 9px 16px;
-      background: #0066cc;
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-decoration: none;
-    }
-    .site-move-notice:hover { background: #0055aa; }
-    .site-move-notice:focus-visible {
-      outline: 3px solid #ffffff;
-      outline-offset: -5px;
-    }
   </style>
+  <link rel="stylesheet" href="assets/werd-premium.css" />
 </head>
 <body class="portfolio-home">
-  <a class="site-move-notice" href="https://werd-portfolio.eric-dai.chatgpt.site/">
-    <span>WERD 新站 · Visit the new WERD site</span><span aria-hidden="true">→</span>
-  </a>
   <div class="shell">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="WERD home">
@@ -410,8 +397,7 @@
           <p class="intro-copy" data-i18n="home_hero_subtitle">Explore WealthX and Daxhboard. Supporting site pages stay available through the navigation when needed.</p>
         </div>
         <div class="home-product-stage" aria-hidden="true">
-          <img data-product-shot="charts-overview" data-product-priority="high" alt="" />
-          <noscript><img src="assets/wealthx/devices/charts-overview.en-US.light.webp" alt="" /></noscript>
+          <img data-product-shot="insights-overview" data-product-priority="high" alt="" />
         </div>
       </section>
 
@@ -426,11 +412,11 @@
             </span>
             <div class="entry-copy">
               <h3>WealthX</h3>
-              <p data-i18n="home_wealthx_desc">A manual-first iOS personal finance workspace for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export.</p>
+              <p data-i18n="home_wealthx_desc">A precise, intuitive personal finance system for accounts, budgets, transactions, goals, investments, cashflow insights, widgets, and portable records.</p>
               <div class="entry-meta" aria-label="WealthX tags">
                 <span class="pill" data-i18n="home_wealthx_tag1">Personal finance</span>
                 <span class="pill" data-i18n="home_wealthx_tag2">iOS</span>
-                <span class="pill" data-i18n="home_wealthx_tag3">Version 2.3</span>
+                <span class="pill" data-i18n="home_wealthx_tag3">Version 3.0</span>
               </div>
             </div>
             <span class="arrow" aria-hidden="true">→</span>
@@ -482,10 +468,10 @@
         home_kicker: "WERD home",
         home_meta_description: "WERD home for WealthX, Daxhboard, and related pages.",
         home_title: "WERD - Products",
-        home_wealthx_desc: "A manual-first iOS personal finance workspace for accounts, budgets, transactions, investments, goals, scenarios, Flows, widgets, and import/export.",
+        home_wealthx_desc: "A precise, intuitive personal finance system for accounts, budgets, transactions, goals, investments, cashflow insights, widgets, and portable records.",
         home_wealthx_tag1: "Personal finance",
         home_wealthx_tag2: "iOS",
-        home_wealthx_tag3: "Version 2.3",
+        home_wealthx_tag3: "Version 3.0",
         home_daxhboard_desc: "A read-only Apple-platform quota and status tool that syncs minimized snapshots through your own iCloud account.",
         home_daxhboard_tag1: "AI quota status",
         home_daxhboard_tag2: "Apple platforms",
@@ -509,10 +495,10 @@
         home_kicker: "WERD 主页",
         home_meta_description: "WERD 主页，包含 WealthX、Daxhboard 与相关页面入口。",
         home_title: "WERD - 产品",
-        home_wealthx_desc: "一款手动优先的 iOS 个人财务工作台，用于管理账户、预算、交易、投资、目标、场景、交易流、组件与导入导出。",
+        home_wealthx_desc: "一个精密而直觉的个人财务系统，把账户、预算、交易、目标、投资、现金流洞察、小组件与可携带的数据放在一起。",
         home_wealthx_tag1: "个人财务",
         home_wealthx_tag2: "iOS",
-        home_wealthx_tag3: "版本 2.3",
+        home_wealthx_tag3: "版本 3.0",
         home_daxhboard_desc: "一款只读的 Apple 平台 AI 额度与状态工具，通过用户自己的 iCloud Account 同步最小化快照。",
         home_daxhboard_tag1: "AI 额度状态",
         home_daxhboard_tag2: "Apple 平台",
@@ -655,6 +641,6 @@
       console.error(error);
     });
   </script>
-  <script src="assets/wealthx-refresh.js" defer></script>
+  <script src="assets/wealthx-refresh.js?v=20260826-en-usd-dark" defer></script>
 </body>
 </html>

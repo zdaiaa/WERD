@@ -1,5 +1,17 @@
 # WERD
 
+## 当前网站与维护方式 — 2026-10-04
+
+GitHub Pages 直接承载当前公开网站：
+
+- 产品入口：`https://zdaiaa.github.io/WERD/`
+- WealthX 支持/产品页：`https://zdaiaa.github.io/WERD/wealthx.html`
+- WealthX 隐私政策：`https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US#privacy`
+
+当前页面和资源来自已发布的 Sites 版本 15，内容迁移时仅适配托管地址。以后用 Codex 在本仓库修改静态页面、`assets/` 和 `i18n/`，经本地检查后按用户授权发布到 `main`。已核实 Pages 发布源为分支根目录，无需迁入 Sites 的应用框架、服务器、凭据或配置。
+
+修改语言源文件会触发现有自动翻译 workflow。本次迁移已包含完整 28 语言成品，因此使用 `[skip ci]` 提交并显式请求 Pages 构建，避免重新生成已有翻译。现有部署和翻译配置保持原样。
+
 WERD 是 Portfolio Web Hub / 共享网站承载层。
 
 它用于承载跨项目主页、App landing page 和个人介绍页，把已经确认的项目内容以网页方式对外展示。WERD 不是独立业务线，也不是 WealthX-only marketing 子项目。

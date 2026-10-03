@@ -1,8 +1,10 @@
 # WERD Content Map
 
-更新时间：2026-07-19
+更新时间：2026-10-04
 
-> 迁移说明（2026-07-19）：Sites 已成为 WERD 主站：`https://werd-portfolio.eric-dai.chatgpt.site/`。GitHub Pages 首页保留为兼容入口，原有 WealthX、Daxhboard 与 Biography 深层页面继续可用。
+> 当前迁移（2026-10-04）：用户确认将 Sites 已发布版本 15 的公开内容迁回 GitHub Pages。`/WERD/`、`wealthx.html`、`daxhboard.html` 和 `bio.html` 直接提供页面；WealthX 支持/隐私地址保持已填写的 GitHub 地址，保留 `?lang=` 和 `#privacy`。页面、图片、脚本、28 语言 JSON、社交预览及 sitemap 统一使用 GitHub Pages 托管地址。
+
+> 历史说明（2026-07-19）：当时 Sites 为主站，GitHub Pages 首页作为兼容入口。该发布方向已由上述用户决定替代。
 
 ## 页面地图
 

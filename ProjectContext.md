@@ -1,6 +1,16 @@
 # WERD Project Context
 
-更新时间：2026-07-13
+更新时间：2026-10-04
+
+## 当前网站发布 checkpoint — 2026-10-04
+
+- 用户确认把当前 Sites 网站的公开内容迁回 GitHub Pages，直接替换现有页面，不设置跳转桥接。
+- 内容基线是 Sites 已成功发布的版本 15，源码 commit `7adb2a4901a4671f3cd4a8463749ac5d488dbbef`；复制其 `public/` 下的页面、截图、样式、脚本和 28 种语言资源。
+- 当前公开入口为 `https://zdaiaa.github.io/WERD/`，WealthX 支持页为 `https://zdaiaa.github.io/WERD/wealthx.html`，隐私页沿用同一地址的 `#privacy`。保留每个语言的 `?lang=` 参数。
+- GitHub Pages 的已核实发布源为 `main` 分支根目录（legacy），HTTPS 已启用；现有 `.nojekyll` 和部署/翻译 workflow 不变。
+- 本次仅迁移已发布文案和资源，并适配 canonical、Open Graph、语言链接、结构化数据和 sitemap 的托管地址。当前文案的产品版本、App Store CTA、隐私承诺和个人经历不重新改写。
+- 本次沿用完整的 28 语言翻译，提交跳过 push 自动翻译，再显式请求 Pages 构建。网站维护以后以本 GitHub 仓库为源；Sites 原站作为保留的历史副本，不自动同步。
+- 迁移前 GitHub 基线为 `7fbb6c4f6ce648e6d0b5ee154f8f8b4484e834f5`，可通过 Git 历史恢复。原本地仓库的未提交修改独立保留。
 
 ## 项目定位
 

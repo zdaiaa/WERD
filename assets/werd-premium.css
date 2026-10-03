@@ -1,0 +1,424 @@
+:root {
+  --werd-rail: 1180px;
+  --werd-reading: 68ch;
+  --werd-radius-sm: 14px;
+  --werd-radius-md: 22px;
+  --werd-radius-lg: 30px;
+  --werd-space-1: 8px;
+  --werd-space-2: 14px;
+  --werd-space-3: 22px;
+  --werd-space-4: 34px;
+  --werd-space-5: 56px;
+  --werd-space-6: 88px;
+  --werd-space-7: 124px;
+  --werd-shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+  --werd-shadow-soft: 0 28px 90px rgba(0, 0, 0, 0.36);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+.topbar,
+.nav {
+  border-bottom-color: color-mix(in srgb, var(--line) 66%, transparent);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: saturate(160%) blur(24px);
+  -webkit-backdrop-filter: saturate(160%) blur(24px);
+}
+
+.control,
+.button,
+.home-link,
+.nav-link {
+  border-radius: 999px;
+}
+
+.button,
+.control,
+.home-link,
+.nav-link,
+.entry-link {
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:focus-visible,
+.control:focus-visible,
+.home-link:focus-visible,
+.nav-link:focus-visible,
+.entry-link:focus-visible,
+a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--blue) 72%, transparent);
+  outline-offset: 4px;
+}
+
+/* Portfolio home */
+.portfolio-home .shell {
+  max-width: var(--werd-rail);
+  padding-bottom: var(--werd-space-6);
+}
+
+.portfolio-home .intro {
+  min-height: min(760px, calc(100svh - 56px));
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.82fr);
+  align-items: center;
+  gap: clamp(42px, 7vw, 96px);
+  padding: var(--werd-space-6) 0;
+}
+
+.portfolio-home h1 {
+  max-width: 760px;
+  font-size: clamp(48px, 7.2vw, 78px);
+  line-height: 1.015;
+  letter-spacing: -0.035em;
+}
+
+.portfolio-home .intro-copy {
+  max-width: 640px;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.55;
+}
+
+.portfolio-home .home-product-stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: 440px;
+  place-items: center;
+}
+
+.portfolio-home .home-product-stage::before {
+  position: absolute;
+  z-index: -1;
+  width: min(42vw, 480px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--blue) 15%, transparent) 0%, transparent 68%);
+  content: "";
+}
+
+.portfolio-home .home-product-stage img {
+  width: min(100%, 390px);
+  filter: drop-shadow(0 34px 48px rgba(0, 0, 0, 0.16));
+}
+
+.portfolio-home .section-head {
+  padding-top: var(--werd-space-4);
+  margin-top: 0;
+}
+
+.portfolio-home .entry-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
+  gap: var(--werd-space-3);
+  margin-top: var(--werd-space-4);
+}
+
+.portfolio-home .entry-link {
+  position: relative;
+  min-height: 280px;
+  align-content: center;
+  border-color: color-mix(in srgb, var(--line) 82%, transparent);
+  border-radius: var(--werd-radius-lg);
+  padding: clamp(26px, 4vw, 42px);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.portfolio-home .entry-link:first-child {
+  grid-template-columns: 104px minmax(0, 1fr) auto;
+}
+
+.portfolio-home .entry-link:nth-child(2) {
+  grid-template-columns: 72px minmax(0, 1fr);
+}
+
+.portfolio-home .entry-link:nth-child(2) .arrow {
+  position: absolute;
+  right: 28px;
+  bottom: 28px;
+}
+
+.portfolio-home .entry-link:hover {
+  border-color: color-mix(in srgb, var(--blue) 34%, var(--line));
+  transform: translateY(-4px);
+  box-shadow: var(--werd-shadow-soft);
+}
+
+.portfolio-home .entry-visual {
+  border-radius: 24px;
+}
+
+.portfolio-home .entry-link:first-child .entry-visual {
+  width: 96px;
+  height: 96px;
+}
+
+.portfolio-home .entry-link:nth-child(2) .entry-visual {
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
+}
+
+.portfolio-home .entry-copy p {
+  max-width: 62ch;
+}
+
+.portfolio-home .pill {
+  background: transparent;
+  padding: 6px 10px;
+}
+
+/* WealthX product page */
+.wealthx-page .nav-inner,
+.wealthx-page .section,
+.wealthx-page .hero-inner,
+.wealthx-page .footer-inner {
+  max-width: var(--werd-rail);
+}
+
+.wealthx-page .hero {
+  min-height: min(820px, calc(100svh - var(--navh)));
+}
+
+.wealthx-page .hero-inner {
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.62fr);
+  gap: clamp(42px, 7vw, 104px);
+}
+
+.wealthx-page h1 {
+  max-width: 820px;
+  font-size: clamp(48px, 7.2vw, 78px);
+  line-height: 1.015;
+  letter-spacing: -0.035em;
+}
+
+.wealthx-page .hero-stage {
+  position: relative;
+  isolation: isolate;
+  width: min(34vw, 460px);
+}
+
+.wealthx-page .hero-stage::before {
+  position: absolute;
+  z-index: -1;
+  inset: 8% -18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--blue) 13%, transparent) 0%, transparent 70%);
+  content: "";
+}
+
+.wealthx-page .proof {
+  background: transparent;
+}
+
+.wealthx-page .section {
+  padding-top: var(--werd-space-7);
+}
+
+.wealthx-page .section-head {
+  grid-template-columns: minmax(0, 0.82fr) minmax(280px, 0.42fr);
+  gap: var(--werd-space-5);
+}
+
+.wealthx-page .section-lede {
+  max-width: var(--werd-reading);
+  font-size: 17px;
+}
+
+.wealthx-page .feature-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  border-radius: var(--werd-radius-md);
+  background: var(--line);
+  overflow: hidden;
+}
+
+.wealthx-page .feature-card {
+  min-height: 178px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.wealthx-page .feature-card:hover {
+  z-index: 1;
+  border-color: transparent;
+  background: color-mix(in srgb, var(--paper) 90%, var(--blue) 10%);
+  transform: none;
+}
+
+.wealthx-page .geo-block,
+.wealthx-page .qa,
+.wealthx-page .privacy-block,
+.wealthx-page .final-cta {
+  border-radius: var(--werd-radius-md);
+  box-shadow: none;
+}
+
+.wealthx-page .geo-grid {
+  gap: var(--werd-space-3);
+}
+
+.wealthx-page .qa {
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  padding: 24px 0;
+}
+
+.wealthx-page .final-cta {
+  padding: clamp(28px, 5vw, 52px);
+}
+
+/* Daxhboard trust page */
+body:not(.portfolio-home):not(.wealthx-page) .policy {
+  border-radius: var(--werd-radius-lg);
+  box-shadow: none;
+}
+
+body:not(.portfolio-home):not(.wealthx-page) main {
+  padding-top: var(--werd-space-6);
+}
+
+body:not(.portfolio-home):not(.wealthx-page) .lede {
+  max-width: var(--werd-reading);
+}
+
+body:not(.portfolio-home):not(.wealthx-page) .policy p,
+body:not(.portfolio-home):not(.wealthx-page) .policy li {
+  max-width: var(--werd-reading);
+}
+
+/* Biography */
+.signal-board {
+  border-radius: var(--werd-radius-md);
+  box-shadow: none;
+}
+
+.signal-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--werd-space-5);
+}
+
+.signal-card {
+  min-height: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  padding: 26px 0 30px;
+}
+
+.body-copy {
+  max-width: var(--werd-reading);
+}
+
+@media (max-width: 900px) {
+  .portfolio-home .intro,
+  .portfolio-home .entry-grid,
+  .wealthx-page .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-home .intro {
+    min-height: auto;
+    padding-top: var(--werd-space-6);
+  }
+
+  .portfolio-home .home-product-stage {
+    min-height: 360px;
+  }
+
+  .portfolio-home .entry-link,
+  .portfolio-home .entry-link:first-child,
+  .portfolio-home .entry-link:nth-child(2) {
+    grid-template-columns: 76px minmax(0, 1fr) auto;
+    min-height: 0;
+  }
+
+  .wealthx-page .hero-stage {
+    width: min(64vw, 430px);
+  }
+
+  .wealthx-page .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --werd-space-6: 64px;
+    --werd-space-7: 82px;
+  }
+
+  .portfolio-home h1,
+  .wealthx-page h1 {
+    font-size: clamp(42px, 12.5vw, 58px);
+    letter-spacing: -0.03em;
+  }
+
+  .portfolio-home .home-product-stage {
+    min-height: 300px;
+  }
+
+  .portfolio-home .entry-link,
+  .portfolio-home .entry-link:first-child,
+  .portfolio-home .entry-link:nth-child(2) {
+    grid-template-columns: 58px minmax(0, 1fr);
+    border-radius: var(--werd-radius-md);
+    padding: 22px;
+  }
+
+  .portfolio-home .entry-link .arrow {
+    display: none;
+  }
+
+  .portfolio-home .entry-link:first-child .entry-visual,
+  .portfolio-home .entry-link:nth-child(2) .entry-visual {
+    width: 56px;
+    height: 56px;
+    border-radius: 15px;
+  }
+
+  .wealthx-page .feature-grid,
+  .signal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wealthx-page .feature-card {
+    min-height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
