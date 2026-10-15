@@ -21,7 +21,7 @@
         const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
       } catch (error) {
-        document.documentElement.dataset.theme = "light";
+        document.documentElement.dataset.theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
     })();
   </script>
@@ -370,7 +370,7 @@
     }
   </style>
   <link rel="stylesheet" href="assets/werd-premium.css" />
-  <link rel="stylesheet" href="assets/wealthx/20261015/hub.css" />
+  <link rel="stylesheet" href="assets/wealthx/20261015/hub.css?v=20261015-mobile" />
 </head>
 <body class="portfolio-home">
   <div class="shell">
@@ -605,9 +605,9 @@
         const storedTheme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("werd-theme");
         if (storedTheme === "dark" || storedTheme === "light") return storedTheme;
       } catch (error) {
-        return "light";
+        // Follow the system when a saved preference is unavailable.
       }
-      return "light";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
 
     function applyTheme(theme) {
@@ -623,6 +623,9 @@
       themeToggle.setAttribute("aria-label", themeLabel);
       themeToggle.title = themeLabel;
       themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+      const url = new URL(window.location.href);
+      url.searchParams.set("theme", theme);
+      window.history.replaceState({}, "", url);
     }
 
     async function init() {

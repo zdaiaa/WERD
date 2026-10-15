@@ -11,3 +11,11 @@
 @media(max-width:760px){.portfolio-home .home-product-stage{min-height:540px}.portfolio-home .home-product-stage img{width:255px}.wealthx-entry-main{grid-template-columns:58px minmax(0,1fr);gap:16px}.portfolio-home .sharing-link{margin-left:74px;font-size:14px}.portfolio-home .intro h1{overflow-wrap:anywhere}}
 @media(max-width:380px){.portfolio-home .sharing-link{margin-left:0}}
 @media(prefers-reduced-motion:reduce){.portfolio-home *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.portfolio-home .brand,.portfolio-home .nav-link,.portfolio-home .control{min-height:44px}
+.portfolio-home #theme-toggle{width:44px;min-width:44px;flex:0 0 44px}
+.portfolio-home .controls select{min-width:0;max-width:100%}
+.portfolio-home footer a{display:inline-flex;align-items:center;min-width:44px;min-height:44px}
+@media(max-width:760px){
+  html[lang=ja] .portfolio-home .intro h1{font-size:clamp(30px,9.5vw,38px);line-height:1.35;overflow-wrap:normal;line-break:strict}
+}
