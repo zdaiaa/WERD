@@ -17,7 +17,7 @@
   <script>
     (() => {
       try {
-        const storedTheme = localStorage.getItem("werd-theme");
+        const storedTheme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("werd-theme");
         const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
       } catch (error) {
@@ -370,6 +370,7 @@
     }
   </style>
   <link rel="stylesheet" href="assets/werd-premium.css" />
+  <link rel="stylesheet" href="assets/wealthx/20261015/hub.css" />
 </head>
 <body class="portfolio-home">
   <div class="shell">
@@ -380,7 +381,7 @@
       </a>
       <div class="controls">
         <a class="nav-link" id="header-bio-link" href="bio.html" data-i18n="nav_bio">Biography</a>
-        <select class="control" id="language-select" aria-label="Language"></select>
+        <select class="control" id="language-select" aria-label="Language" data-i18n-attr="aria-label:wx_language"></select>
         <button class="control" id="theme-toggle" type="button" aria-pressed="false" title="Dark">
           <svg class="theme-toggle-icon theme-toggle-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
           <svg class="theme-toggle-icon theme-toggle-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"></path></svg>
@@ -392,12 +393,12 @@
     <main>
       <section class="intro" aria-labelledby="home-heading">
         <div>
-          <p class="kicker" data-i18n="home_kicker">WERD home</p>
-          <h1 id="home-heading" data-i18n="home_hero_title">One clear entry for WERD products.</h1>
-          <p class="intro-copy" data-i18n="home_hero_subtitle">Explore WealthX and Daxhboard. Supporting site pages stay available through the navigation when needed.</p>
+          <p class="kicker">WealthX</p>
+          <h1 id="home-heading" data-i18n="hero_title">See every detail. Plan what comes next.</h1>
+          <p class="intro-copy" data-i18n="home_wealthx_desc">Bring everyday spending, shared expenses, budgets, and long-term plans into one clear view.</p><a class="home-wealthx-cta" id="wealthx-hero-link" href="wealthx.html#sharing"><span data-i18n="wx_sharing_cta">Explore sharing</span><span aria-hidden="true">↗</span></a>
         </div>
         <div class="home-product-stage" aria-hidden="true">
-          <img data-product-shot="insights-overview" data-product-priority="high" alt="" />
+          <img data-product-shot="overview" width="1000" height="2000" fetchpriority="high" decoding="async" alt="" /><noscript><img src="assets/wealthx/20261015/devices/overview.en-US.light.png" width="1000" height="2000" alt="" /></noscript>
         </div>
       </section>
 
@@ -406,21 +407,22 @@
           <h2 id="entries-heading" data-i18n="home_entries_title">Products</h2>
         </div>
         <div class="entry-grid">
-          <a class="entry-link" id="wealthx-link" href="wealthx.html">
+          <article class="entry-link wealthx-entry"><a class="wealthx-entry-main" id="wealthx-link" href="wealthx.html">
             <span class="entry-visual">
-              <img class="entry-icon" src="WealthX logo.png" alt="" />
+              <img class="entry-icon" data-wealthx-icon src="assets/wealthx/20261015/icon-light.png" alt="" />
             </span>
             <div class="entry-copy">
               <h3>WealthX</h3>
-              <p data-i18n="home_wealthx_desc">A precise, intuitive personal finance system for accounts, budgets, transactions, goals, investments, cashflow insights, widgets, and portable records.</p>
+              <p data-i18n="home_wealthx_desc">Bring everyday spending, shared expenses, budgets, and long-term plans into one clear view.</p>
               <div class="entry-meta" aria-label="WealthX tags">
                 <span class="pill" data-i18n="home_wealthx_tag1">Personal finance</span>
                 <span class="pill" data-i18n="home_wealthx_tag2">iOS</span>
-                <span class="pill" data-i18n="home_wealthx_tag3">Version 3.0</span>
+                <span class="pill" data-i18n="home_wealthx_tag3">Expense Sharing</span>
               </div>
             </div>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
+<a id="wealthx-sharing-link" class="sharing-link" href="wealthx.html#sharing"><span data-i18n="wx_home_sharing_cta" >See Expense Sharing</span><span aria-hidden="true">↗</span></a></article>
           <a class="entry-link" id="daxhboard-link" href="daxhboard.html">
             <span class="entry-visual">
               <img class="entry-icon" src="Daxhboard logo.svg" alt="" />
@@ -437,7 +439,6 @@
             <span class="arrow" aria-hidden="true">→</span>
           </a>
         </div>
-        <p class="future" data-i18n="home_future_note">This page stays as the product entry layer. New products can be added here as independent product pages.</p>
       </section>
     </main>
 
@@ -468,10 +469,10 @@
         home_kicker: "WERD home",
         home_meta_description: "WERD home for WealthX, Daxhboard, and related pages.",
         home_title: "WERD - Products",
-        home_wealthx_desc: "A precise, intuitive personal finance system for accounts, budgets, transactions, goals, investments, cashflow insights, widgets, and portable records.",
+        home_wealthx_desc: "Bring everyday spending, shared expenses, budgets, and long-term plans into one clear view.",
         home_wealthx_tag1: "Personal finance",
         home_wealthx_tag2: "iOS",
-        home_wealthx_tag3: "Version 3.0",
+        home_wealthx_tag3: "Expense Sharing",
         home_daxhboard_desc: "A read-only Apple-platform quota and status tool that syncs minimized snapshots through your own iCloud account.",
         home_daxhboard_tag1: "AI quota status",
         home_daxhboard_tag2: "Apple platforms",
@@ -498,7 +499,7 @@
         home_wealthx_desc: "一个精密而直觉的个人财务系统，把账户、预算、交易、目标、投资、现金流洞察、小组件与可携带的数据放在一起。",
         home_wealthx_tag1: "个人财务",
         home_wealthx_tag2: "iOS",
-        home_wealthx_tag3: "版本 3.0",
+        home_wealthx_tag3: "项目分摊",
         home_daxhboard_desc: "一款只读的 Apple 平台 AI 额度与状态工具，通过用户自己的 iCloud Account 同步最小化快照。",
         home_daxhboard_tag1: "AI 额度状态",
         home_daxhboard_tag2: "Apple 平台",
@@ -601,7 +602,7 @@
 
     function preferredTheme() {
       try {
-        const storedTheme = localStorage.getItem("werd-theme");
+        const storedTheme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("werd-theme");
         if (storedTheme === "dark" || storedTheme === "light") return storedTheme;
       } catch (error) {
         return "light";
@@ -641,6 +642,6 @@
       console.error(error);
     });
   </script>
-  <script src="assets/wealthx-refresh.js?v=20260826-en-usd-dark" defer></script>
+  <script src="assets/wealthx/20261015/hub.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+.portfolio-home .home-product-stage{background:transparent;min-height:610px;overflow:visible;border:0;box-shadow:none;display:flex;align-items:center;justify-content:center}
+.portfolio-home .home-product-stage::before,.portfolio-home .home-product-stage::after{display:none}
+.portfolio-home .home-product-stage img{width:290px;max-width:100%;height:auto;aspect-ratio:1/2;object-fit:contain;transform:none;position:static;filter:drop-shadow(0 22px 28px rgba(0,0,0,.08))}
+.portfolio-home .home-product-stage img:not([src]){display:none}
+.portfolio-home .wealthx-entry{display:block;min-width:0}
+.wealthx-entry-main{display:grid;grid-template-columns:82px minmax(0,1fr) auto;align-items:center;gap:22px;color:inherit;text-decoration:none}
+.portfolio-home .sharing-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin:18px 0 0 104px;color:var(--blue);font-size:15px;line-height:1.6}
+.sharing-link:hover span:first-child{text-decoration:underline}
+.portfolio-home .entry-copy,.portfolio-home .entry-meta{min-width:0}
+.portfolio-home .intro h1{font-size:clamp(44px,4.65vw,66px);line-height:1.14;letter-spacing:-.035em;max-width:640px}.portfolio-home .home-wealthx-cta{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:24px;font-size:16px;color:var(--blue)}.home-wealthx-cta:hover span:first-child{text-decoration:underline}
+@media(max-width:760px){.portfolio-home .home-product-stage{min-height:540px}.portfolio-home .home-product-stage img{width:255px}.wealthx-entry-main{grid-template-columns:58px minmax(0,1fr);gap:16px}.portfolio-home .sharing-link{margin-left:74px;font-size:14px}.portfolio-home .intro h1{overflow-wrap:anywhere}}
+@media(max-width:380px){.portfolio-home .sharing-link{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.portfolio-home *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

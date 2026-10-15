@@ -1,8 +1,10 @@
 # WERD Content Map
 
-更新时间：2026-10-04
+更新时间：2026-10-15
 
 > 当前迁移（2026-10-04）：用户确认将 Sites 已发布版本 15 的公开内容迁回 GitHub Pages。`/WERD/`、`wealthx.html`、`daxhboard.html` 和 `bio.html` 直接提供页面；WealthX 支持/隐私地址保持已填写的 GitHub 地址，保留 `?lang=` 和 `#privacy`。页面、图片、脚本、28 语言 JSON、社交预览及 sitemap 统一使用 GitHub Pages 托管地址。
+
+> 本次更新（2026-10-15）：保留 GitHub Pages 路由与部署配置，更新 WealthX 产品页与总首页入口。截图来自最新中、英、日 Tips Raw，经 LaunchCanvas 原生设备渲染；其他语言使用英文截图，中文语言组使用中文截图。场景统一称为「场景」，不引入私人/共享场景区分。
 
 > 历史说明（2026-07-19）：当时 Sites 为主站，GitHub Pages 首页作为兼容入口。该发布方向已由上述用户决定替代。
 
@@ -10,8 +12,8 @@
 
 | 页面名称 | URL / route | 所属业务线 | 页面目的 | 主要文案来源 | 视觉资产来源 | 当前状态 | Codex 自动维护 | 是否同步到 Control Center portfolio dashboard |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| WERD 产品入口页 | `/WERD/` 或 `index.html`，发布路径待确认 | Portfolio Web Hub | 作为 WERD 的产品入口，当前展示 WealthX 与 Daxhboard，并保留 Biography 导航 | `index.html` 内嵌文案；项目列表应参考 Control Center | `WealthX logo.png`、`Daxhboard logo.svg`、`assets/wealthx/devices/*.webp`；共享视觉层 | active | 可以维护结构和已确认文案；导航变化需确认 | 是 |
-| WealthX landing page | `/WERD/wealthx.html` | WealthX | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA | `wealthx.html`、`i18n/en-US.json`、`i18n/zh-Hans.json`；产品事实需回到 WealthX 源文件确认 | `WealthX logo.png`、`assets/wealthx/devices/*.webp`、`assets/wealthx/device-assets.json` | active | 仅限已确认事实、格式、链接检查和 i18n 缺口；SEO/隐私/CTA 需确认 | 是 |
+| WERD 产品入口页 | `/WERD/` 或 `index.html` | Portfolio Web Hub | 作为 WERD 的产品入口，当前展示 WealthX 与 Daxhboard，并保留 Biography 导航 | `index.html` 内嵌文案；项目列表应参考 Control Center | `assets/wealthx/20261015/icon-*.png`、`Daxhboard logo.svg`、`assets/wealthx/20261015/devices/overview.*.png` | active | 可以维护结构和已确认文案；导航变化需确认 | 是 |
+| WealthX landing page | `/WERD/wealthx.html` | WealthX | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA | `wealthx.html`、`i18n/en-US.json`、`i18n/zh-Hans.json`；产品事实需回到 WealthX 源文件确认 | `assets/wealthx/20261015/` 中的图标、设备图、社交预览和 `device-assets.json` | active | 仅限已确认事实、格式、链接检查和 i18n 缺口；SEO/隐私/CTA 需确认 | 是 |
 | Daxhboard 介绍/隐私页 | `/WERD/daxhboard.html` | Daxhboard | 展示 Daxhboard 产品范围、数据边界与隐私声明 | `daxhboard.html`；产品事实需回到 Daxhboard 源文件确认 | `Daxhboard logo.svg`、页内样式 | active | 可维护排版和已确认事实；平台/数据/隐私表述需确认 | 是 |
 | Personal biography | `/WERD/bio.html` | Personal Branding | 展示 Eric Dai 的个人介绍、经历信号和工作方式 | `bio.html` 内嵌文案；个人事实需用户确认 | 页面当前主要为文本和样式；其他视觉资产待确认 | active | 可维护排版、结构和已确认措辞；个人经历和定位需确认 | 是，作为个人品牌入口 |
 | TravelX landing page | 待确认 | TravelX | 未来展示 TravelX 产品定位、核心能力和 CTA | 待确认，应来自 TravelX `ProjectContext.md`、roadmap 或用户确认 | 待确认 | planned | 不可自动创建；需先确认定位、route、资产和 CTA | 是，创建后同步 |
@@ -29,21 +31,23 @@
 
 ### `index.html`
 
-- 状态：active。
-- 当前目的：产品入口页。
-- 当前内容：WERD home、WealthX 主产品舞台、WealthX 与 Daxhboard product card、Biography link、privacy link。
-- 图片契约：使用 `data-product-shot="charts-overview"`，由共享脚本按 locale/theme 选择透明设备资产。
-- 维护注意：新增产品卡片前，应先更新 `docs/Site Architecture.md`。
+- 状态：active；2026-10-15 更新 WealthX 入口。
+- 当前目的：WERD 产品入口页，继续保留 Daxhboard、Biography 和隐私入口。
+- WealthX 入口：首屏使用 WealthX 当前产品介绍，移除维护者视角的未来入口说明；最新总览完整设备图、当前图标、分摊介绍与直达 `wealthx.html?lang=…#sharing` 的链接。
+- 图片契约：`data-product-shot="overview"`，由 `assets/wealthx/20261015/hub.js` 按语言与主题选择图片；中文组 → zh-Hans，日文 → ja，其余 → en-US。
 
 ### `wealthx.html`
 
-- 状态：active。
-- 当前目的：WealthX 主 landing page。
-- 当前内容：hero、feature map、五个桌面 sticky 产品场景（Budget + Scenario、Flow、Goals + Investments、Charts + Cashflow Map、Widgets）、FAQ、privacy policy、App Store CTA。导入、导出与隐私承诺保留在功能卡、FAQ 与隐私政策中。
-- 响应式：桌面使用滚动进度叙事；移动端、短 viewport 与 reduced-motion 使用正常文档流。
-- 图片契约：`data-product-shot` + `{topic}.{source-locale}.{theme}.webp`；所有当前页面产品图均位于 `assets/wealthx/devices/`。Widgets 使用成对完整设备图 `widgets-pair`，在两台 iPhone 内分别展示主屏与 Today View。中文 locale 使用 `zh-Hans` 图片组，其余使用 `en-US` 图片组。
-- 隐私政策：2026-07-14 已统一为 iOS 与 macOS 共用政策，明确 iOS 可选 iCloud、Mac Pro 强制 CloudKit、财务记录不进入 WealthX backend、账户/Apple/Stripe entitlement 元数据处理、服务提供方、锁定与账户删除边界。`en-US` 与 `zh-Hans` 是 source locale；其余 locale 已由现有 i18n workflow 自动同步并通过 fallback 与 JSON 质量 gate，页面随本次 PR 合并到 `main` 后发布。
-- 维护注意：隐私政策、App Store URL、版本号、SEO 和产品承诺需要确认。
+- 状态：active；2026-10-15 完整页面更新。
+- 结构：总览 Hero → 分摊（三步说明与 Pro 范围）→ 六个功能区（预算、流水、对账、洞察、目标、小组件）→ 六项 FAQ → 隐私政策 → App Store CTA。
+- 文案：场景是场景，不增加私人或共享类型。分摊用于场景中的项目预算；实际付款由用户在应用外完成。分摊与 Split Bill 的用途在 FAQ 中区分。
+- 视觉：完整设备图、正常文档流、原生 details FAQ、浅色/深色主题；支持小屏、键盘操作和 reduced-motion。
+- 图片：`assets/wealthx/20261015/devices/{topic}.{source-locale}.{theme}.png`；8 个主题 × 中/英/日 × 浅/深 = 48 张。图片来自已制作的真实应用素材，使用 LaunchCanvas 原生渲染；目标配图明确为创建目标界面。
+- 语言：28 种文案；中文组使用 zh-Hans 图片，日文使用 ja，其余使用 en-US。每页只请求当前语言/主题图片，首屏优先、其余延迟加载。
+- 样式/脚本：`assets/wealthx/20261015/page.css` 和 `page.js`，不改变其他产品的共享脚本。
+- SEO：使用无版本号标题和最新 1200×630 社交图，保留 canonical、28 个 hreflang、App Store 地址；SoftwareApplication 和 FAQ 结构化数据与页面一致。
+- 隐私：政策原文及各语言内容保留，`#privacy` 仍可直达并展开。政策事实后续可另行对照当前产品核验，本轮未作法律内容改写。
+- i18n：新增文案与修改值的 source_hashes 同步记录；未改自动翻译 workflow。新译文尚未经过母语者审校。
 
 ### `daxhboard.html`
 
