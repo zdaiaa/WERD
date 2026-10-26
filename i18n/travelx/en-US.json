@@ -1,0 +1,276 @@
+{
+  "locale": "en-US",
+  "meta": {
+    "title": "TravelX — Trip planning. Simple and straightforward.",
+    "description": "Plan places, days and stays on the map. TravelX 1.0 is free, with a five-trip local creation limit and optional private iCloud sync."
+  },
+  "nav": {
+    "skip": "Skip to content",
+    "home": "WERD products",
+    "features": "Overview",
+    "steps": "How it works",
+    "faq": "Questions",
+    "support": "Support",
+    "privacy": "Privacy",
+    "language": "Language",
+    "theme": "Appearance",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "hero": {
+    "eyebrow": "TRAVELX 1.0",
+    "title": "Trip planning. Simple and straightforward.",
+    "lines": [
+      "Trip planning.",
+      "Simple and straightforward."
+    ],
+    "body": "Choose places in the app. Arrange each day. Keep stays and travel-time estimates together, so every part of the plan is clear.",
+    "primary": "Explore trip planning",
+    "secondary": "Read the privacy policy",
+    "availability": "iPhone and iPad · Free 1.0 · Local creation limit: 5 trips"
+  },
+  "example": {
+    "label": "A trip-planning example",
+    "title": "Your day, clearly planned.",
+    "items": [
+      {
+        "time": "09:00",
+        "title": "Choose the first stop",
+        "body": "Pick a place on the map in the app."
+      },
+      {
+        "time": "12:00",
+        "title": "Make time for lunch",
+        "body": "Give dining and visits their place in the day."
+      },
+      {
+        "time": "15:00",
+        "title": "Plan the next stop",
+        "body": "Use estimated travel time as a reference."
+      }
+    ],
+    "stayLabel": "Plan tonight’s stay",
+    "stay": "Keep check-in and check-out dates in the plan.",
+    "caption": "Illustrative trip plan, not an app screenshot. You choose the places and timing."
+  },
+  "features": {
+    "eyebrow": "TRIP PLANNING, IN VIEW",
+    "title": "A map for the places. A calendar for the days.",
+    "body": "Choose the places. Arrange the days. Keep stays and travel references beside the plan. Place search, routes, and travel-time availability depend on your current environment, destination data, network conditions, and system services.",
+    "items": [
+      {
+        "label": "01 · Places",
+        "title": "Plan from the map.",
+        "body": "Choose places on the in-app map, add them to your trip, and arrange them by day. TravelX 1.0 does not provide an import entry."
+      },
+      {
+        "label": "02 · Daily plans",
+        "title": "Give each stop its time.",
+        "body": "Adjust start times, visit lengths, and activity order in the daily timeline. Review estimated travel times between stops to keep the plan clear."
+      },
+      {
+        "label": "03 · Stays",
+        "title": "Bring stays into the plan.",
+        "body": "Record check-in and check-out dates and see the relevant stay beside each day. Know where the day starts and where you will rest."
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "MAKE YOUR TRIP A PLAN",
+    "title": "Three steps to a clear trip plan.",
+    "items": [
+      {
+        "title": "Choose dates and a starting place.",
+        "body": "Pick your dates and a place on the in-app map. A day out or a longer holiday can start here."
+      },
+      {
+        "title": "Arrange places by day.",
+        "body": "Add places inside the app and arrange them in the day’s plan. Start times and visit lengths can change as your plans take shape."
+      },
+      {
+        "title": "Plan stays and travel together.",
+        "body": "Record accommodation dates and review estimated journeys between stops. Open Apple Maps when you need detailed directions or navigation."
+      }
+    ]
+  },
+  "control": {
+    "eyebrow": "A PLAN YOU CAN KEEP SHAPING",
+    "title": "Plans change. Keep planning.",
+    "body": "Move a stop out of today’s plan and keep the place for another day. Trips are saved on this device by default, with optional iCloud sync in Settings for devices using the same iCloud account.",
+    "link": "See how trip data is handled"
+  },
+  "faq": {
+    "eyebrow": "ABOUT TRIP PLANNING",
+    "title": "A few useful answers.",
+    "items": [
+      {
+        "id": "availability",
+        "question": "Is TravelX free?",
+        "answer": "TravelX 1.0 is free, with no TravelX account, in-app purchase, or subscription. You can create a new trip locally while fewer than five trips are saved, counting Trips, Memories, and older undated drafts together. Delete a trip to free a slot. Existing or synced records remain complete and editable even if the total exceeds five; local creation resumes below five. This is a current-version creation limit, not a lifetime count or paid unlock. Optional iCloud sync needs an iCloud account. TravelX Pro has not launched."
+      },
+      {
+        "id": "languages",
+        "question": "Which languages does TravelX support?",
+        "answer": "TravelX supports English, Simplified Chinese, Traditional Chinese, and Hong Kong Chinese."
+      },
+      {
+        "id": "dates",
+        "question": "Can I plan a one-day trip?",
+        "answer": "Yes. Choose that day’s date and a starting place to begin. A day out, a weekend, or a longer holiday can be arranged day by day."
+      },
+      {
+        "id": "changes",
+        "question": "Can I keep editing my trip plan?",
+        "answer": "You can adjust trip dates, places, and daily activity times. Before shortening a date range that already has activities or stays, organize those plans first."
+      },
+      {
+        "id": "routing",
+        "question": "How do travel-time estimates help planning?",
+        "answer": "Estimated travel times help you arrange your stops. TravelX uses Apple MapKit for walking, driving, and public-transport time references. Open Apple Maps for detailed public-transport routes, transfers, and navigation. If a distance-based estimate is used, the app labels its source."
+      },
+      {
+        "id": "map-coverage",
+        "question": "Why are search, routes, or travel times sometimes unavailable?",
+        "answer": "Availability depends on your current environment, destination data, network conditions, and system services. A request without a result does not mean the destination or transport mode is always unavailable. The app shows service status and identifies the estimate source. You can also select visible places on the in-app map and keep arranging your days."
+      },
+      {
+        "id": "offline",
+        "question": "Where is my trip plan saved?",
+        "answer": "Trips are stored on this device by default. Enable optional iCloud sync in Settings to sync trips across devices using the same iCloud account. Turning it off keeps local trips and does not erase existing cloud records. Maps, place lookup, and travel-time estimates need network services; TravelX does not provide complete offline maps."
+      },
+      {
+        "id": "stays",
+        "question": "Can I plan stays alongside the itinerary?",
+        "answer": "Record accommodation places and check-in/check-out dates, then see the relevant stay beside the day. TravelX helps plan and record accommodation arrangements."
+      }
+    ]
+  },
+  "support": {
+    "eyebrow": "SUPPORT",
+    "title": "A question about trip planning?",
+    "body": "Email us for TravelX support or privacy questions. Include the app version, device and OS version, and the steps that led to the issue. Settings → Privacy Policy and Help & Support are readable offline in the app.",
+    "note": "Send only what is useful for the question. Remove unnecessary private trip details from attachments.",
+    "cta": "Email support",
+    "privacyLink": "Read the privacy policy"
+  },
+  "privacy": {
+    "eyebrow": "TRIP DATA AND YOUR CHOICES",
+    "title": "Privacy policy",
+    "date": "Effective date: 2026-10-13 · Revised: 2026-10-25",
+    "intro": "This policy explains local trip storage, optional iCloud sync, map and location services, legacy import data, diagnostics, deletion, and support in TravelX.",
+    "toc": "In this policy",
+    "sections": [
+      {
+        "id": "local-data",
+        "title": "1. Trip data and optional iCloud sync",
+        "paragraphs": [
+          "TravelX stores trip plans on your device by default. Records include trip names, destinations, dates and any saved trip time zone, places and coordinates, notes and source links, daily activities and times, stays, and travel preferences. Existing records may also contain companion counts and types, budgets, estimated costs, or other fields you previously saved.",
+          "iCloud sync is off by default. If you enable it in Settings, trip records and the identifiers, change records, and account-scoping information needed for sync are processed through Apple CloudKit using your iCloud account’s private database. This lets devices using the same iCloud account sync trips. TravelX does not operate a trip-storage server or use a public CloudKit database for these records.",
+          "TravelX 1.0 is free to use, with no TravelX account, in-app purchase, or subscription. Optional iCloud sync requires an available iCloud account and storage. TravelX Pro has not launched; any future features and pricing will be announced separately."
+        ]
+      },
+      {
+        "id": "map-services",
+        "title": "2. Maps and optional current location",
+        "paragraphs": [
+          "TravelX uses Apple’s official MapKit for maps, place search and lookup, routes, and estimated travel times. Map areas, search text, selected coordinates, journey endpoints, transport modes, and requested departure or arrival times are handled by map services, which may also process device and network request information.",
+          "Using Current Location can ask for location access while you use the app. TravelX uses the result to show or focus your position on the foreground map; it does not save your current device location in trip records or sync it to CloudKit. Location access is optional, and you can change it in system Settings. Saved destinations, place coordinates, and trip time-zone choices are separate trip data. A trip time zone comes from destination/place information or your selection, not a saved record of your current device location.",
+          "Opening Apple Maps for detailed directions or navigation uses that app’s own permissions, settings, and privacy practices. Service availability depends on the destination, network, system services, and your environment; TravelX does not provide complete offline maps.",
+          "Apple states that its Maps product in China uses mapping services from Amap Software Co., Ltd. The linked Apple Maps privacy information explains those service practices."
+        ]
+      },
+      {
+        "id": "use",
+        "title": "3. Current release, legacy import data, and on-device feedback",
+        "paragraphs": [
+          "TravelX 1.0 does not provide an import entry or include the Apple Maps sharing extension. Add places on the in-app map. This version does not receive new shared Apple Maps places or Guide links through an import flow.",
+          "Records from earlier builds may include source links and an on-device App Group import inbox containing place names, coordinates, provided time-zone information, addresses, and import state. Closing the entry does not automatically remove existing inbox content. Places already saved to a trip remain trip records and may sync if iCloud sync is enabled.",
+          "Earlier builds could request Guide webpages using the system networking service, involving the link, normal network information, redirects, cookies, or caches. Closing the import entry does not clear previous records or system caches. TravelX 1.0 does not provide this Guide-import request flow.",
+          "A brief Live Activity for a place you add may show its name and completion message on the Dynamic Island or Lock Screen, subject to system settings. TravelX supplies this feedback locally, without a remote Live Activity update service."
+        ]
+      },
+      {
+        "id": "services",
+        "title": "4. Services, diagnostics, and support",
+        "paragraphs": [
+          "Apple provides CloudKit, map, and other system services under its own practices. TravelX does not use trip data for advertising tracking or sell it. The app has no developer-operated analytics or crash-upload service. System diagnostics may contain error codes, import counts, link hosts and paths, query-key names, or other diagnostic details; Apple’s analytics settings may affect diagnostic sharing.",
+          "When you choose to email support, the developer receives your email address, message, and any attachments you send to answer the request and investigate issues. Opening the support email action does not automatically send a message, trip records, or logs. Send only what is needed, and remove private trip details from screenshots.",
+          "This website is hosted with GitHub Pages. GitHub’s General Privacy Statement describes how GitHub handles information in connection with its services. The site stores your chosen language and appearance preferences locally; app trip records are not uploaded through this page."
+        ]
+      },
+      {
+        "id": "storage",
+        "title": "5. Storage and retention",
+        "paragraphs": [
+          "Local trip files, legacy import inbox content, sync records, and temporary files are kept on this device under app-sandbox and device protections. This release does not add new inbox content through an import entry. Optional CloudKit records use your iCloud account’s storage and Apple’s service protections.",
+          "TravelX may keep migration backups, records needed to reconcile deletions, and conflict or recovery copies. Turning off sync stops the app’s sync session and keeps local records; it does not erase trips already in iCloud. Apple device backups are separate from live trip sync and may include app data according to your settings.",
+          "Support correspondence is handled to respond to your request and resolve related issues. No digital system or deletion process can guarantee that every historical copy is immediately erased."
+        ]
+      },
+      {
+        "id": "choices",
+        "title": "6. Your choices and deletion",
+        "paragraphs": [
+          "You can edit and delete trips in the app. Removing a daily assignment can leave the saved place available for another day. With sync enabled and working, trip changes and deletions are queued for the same iCloud account; offline or failed sync may delay changes on other devices. If synced trips have overlapping dates, their content is kept for you to review and resolve rather than automatically deleting a trip.",
+          "Deleting visible trips does not guarantee removal of legacy import inbox content, migration backups, sync recovery records, conflict copies, device backups, or previously shared copies. Turning sync off is not a cloud-data erasure action. Use Apple’s settings to manage app storage, iCloud storage, device backups, and location permissions; contact support to ask about retained copies."
+        ]
+      },
+      {
+        "id": "children-changes",
+        "title": "7. Children and policy updates",
+        "paragraphs": [
+          "TravelX is a general trip-planning tool with no child-specific account or profiling system.",
+          "This policy is revised when features or data practices change. The bundled policy is available in Settings → Privacy Policy even offline; a public website copy is updated separately."
+        ]
+      },
+      {
+        "id": "contact",
+        "title": "8. Contact",
+        "paragraphs": [
+          "For TravelX support or privacy questions, contact ericdai2013@gmail.com."
+        ]
+      }
+    ],
+    "contactLabel": "Support and privacy contact",
+    "referencesLabel": "Related service information",
+    "references": [
+      {
+        "label": "Apple Maps & Privacy",
+        "url": "https://www.apple.com/legal/privacy/data/en/apple-maps/"
+      },
+      {
+        "label": "iCloud data security",
+        "url": "https://support.apple.com/en-us/102651"
+      },
+      {
+        "label": "Apple device backups",
+        "url": "https://support.apple.com/en-us/108770"
+      },
+      {
+        "label": "Apple Device Analytics & Privacy",
+        "url": "https://www.apple.com/legal/privacy/data/en/device-analytics/"
+      },
+      {
+        "label": "Apple Maps & Privacy (China)",
+        "url": "https://www.apple.com.cn/legal/privacy/data/zh-cn/apple-maps/"
+      },
+      {
+        "label": "GitHub General Privacy Statement",
+        "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+      }
+    ]
+  },
+  "footer": {
+    "notice": "TravelX 1.0",
+    "top": "Back to top",
+    "fallback": "Languages",
+    "languageStatus": "Language updated.",
+    "languageError": "The language could not be loaded. Use the language links below."
+  },
+  "screenshots": {
+    "label": "INTERFACE PREVIEW",
+    "note": "Interface images will follow after UI review.",
+    "releaseStatus": "Product preview · Preparing for the App Store"
+  }
+}

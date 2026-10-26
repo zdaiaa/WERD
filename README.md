@@ -1,16 +1,20 @@
 # WERD
 
-## 当前网站与维护方式 — 2026-10-04
+## 当前网站与维护方式 — 2026-10-26
 
 GitHub Pages 直接承载当前公开网站：
 
 - 产品入口：`https://zdaiaa.github.io/WERD/`
 - WealthX 支持/产品页：`https://zdaiaa.github.io/WERD/wealthx.html`
 - WealthX 隐私政策：`https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US#privacy`
+- SightReader（英文 / 简体中文）：`sightreader.html`、`sightreader-zh-Hans.html`
+- TravelX（英文 / 简体中文）：`travelx.html`、`travelx-zh-Hans.html`
 
-当前页面和资源来自已发布的 Sites 版本 15，内容迁移时仅适配托管地址。以后用 Codex 在本仓库修改静态页面、`assets/` 和 `i18n/`，经本地检查后按用户授权发布到 `main`。已核实 Pages 发布源为分支根目录，无需迁入 Sites 的应用框架、服务器、凭据或配置。
+主页同级展示 WealthX、SightReader 与 TravelX。SightReader 和 TravelX 的产品页目前预留真实界面截图位，待 UI 验收后补图。Daxhboard 入口和营销/隐私展示已从当前站点移除；`daxhboard.html` 保留为归档说明，旧版页面仍可从 Git 历史恢复。WealthX 2026-10-15 页面、截图、图标路由和 28 语言资源保持现有版本。
 
-修改语言源文件会触发现有自动翻译 workflow。本次迁移已包含完整 28 语言成品，因此使用 `[skip ci]` 提交并显式请求 Pages 构建，避免重新生成已有翻译。现有部署和翻译配置保持原样。
+2026-10-04 的首次迁移以 Sites 版本 15 为基线；其后 GitHub `main` 已于 2026-10-15 更新 WealthX 页面和截图，并在 2026-10-26 加入 SightReader、TravelX 预览页。以 GitHub 当前主站为准，不用旧 Sites 版本覆盖。以后在本仓库修改静态页面，经本地检查后按用户授权发布到 `main`。Pages 发布源为分支根目录，无需迁入 Sites 的应用框架、服务器、凭据或配置。
+
+根级语言源文件及工作流列出的脚本变更会触发现有自动翻译流程。2026-10-04 迁移时按当时流程保留了完整 28 语言成品；本轮新增的 `i18n/travelx/` 文件不在该工作流的触发清单中，因此不会重生成这 28 种现有翻译。Pages 仍从 `main` 根目录发布，本轮不改部署或翻译配置。
 
 WERD 是 Portfolio Web Hub / 共享网站承载层。
 
@@ -30,16 +34,17 @@ git@github.com:zdaiaa/WERD.git
 
 | 页面 | 文件 | 当前状态 | 用途 |
 | --- | --- | --- | --- |
-| WERD 产品入口页 | `index.html` | active | 当前展示 WealthX 与 Daxhboard，并保留个人介绍入口 |
+| WERD 产品入口页 | `index.html` | active | 同级展示 WealthX、SightReader、TravelX，并保留个人介绍入口 |
 | WealthX landing page | `wealthx.html` | active | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA |
-| Daxhboard 介绍/隐私页 | `daxhboard.html` | active | 展示 Daxhboard 产品范围、数据边界和隐私声明 |
+| SightReader landing page | `sightreader.html`、`sightreader-zh-Hans.html` | preview | 中英双语展示当前读谱能力与发布准备状态，截图待 UI 验收；正式隐私政策待提供 |
+| TravelX landing page | `travelx.html`、`travelx-zh-Hans.html` | preview | 中英双语展示地图、每日行程、住宿规划与当前版本信息；保留产品页 noindex |
+| Daxhboard archive notice | `daxhboard.html` | archived | 保留旧链接并说明页面已归档；不再展示产品营销或隐私内容 |
 | Personal biography | `bio.html` | active | 展示 Eric Dai 的个人介绍、经历信号和工作方式 |
 
 ## 未来可承载页面
 
 WERD 未来可以继续承载：
 
-- TravelX landing page
 - Metro Planner landing page
 - 其他 App / 项目的 landing page
 - 更多个人品牌或 portfolio 展示页面
@@ -50,8 +55,8 @@ WERD 未来可以继续承载：
 
 - `Control Center`：管理 portfolio 层状态、策略、同步和审计；WERD 应被 `Control Center/Portfolio` 引用。
 - `WealthX`：产品事实、版本号、隐私政策、App Store 链接和截图来源应回到 WealthX 源文件确认；WERD 负责页面呈现。
-- `Daxhboard`：产品范围、平台、数据与隐私边界应回到 Daxhboard 源文件确认；WERD 负责页面呈现。
-- `TravelX`：未来可加入独立 landing page，route、文案、截图和 CTA 待确认。
+- `Daxhboard`：WERD 当前仅保留归档说明，不再展示其产品营销或隐私内容。
+- `TravelX`：WERD 已承载英文与简体中文产品预览页；产品事实仍以 TravelX 当前项目资料为准，界面截图待 UI 验收后补充。
 - `Metro Planner`：未来可加入独立 landing page，route、文案、视觉资产和公开范围待确认。
 - Personal branding：`bio.html` 承载个人介绍内容，涉及经历、定位和联系信息时需要用户确认。
 
@@ -59,42 +64,43 @@ WERD 未来可以继续承载：
 
 基于当前目录观察，WERD 是静态网站项目：
 
-- HTML：`index.html`、`wealthx.html`、`daxhboard.html`、`bio.html`
+- HTML：`index.html`、`wealthx.html`、`sightreader*.html`、`travelx*.html`、归档页 `daxhboard.html`、`bio.html`
 - 样式与交互：页面内 CSS + vanilla JavaScript
 - 多语言：`i18n/*.json` 和页面内文案对象并存
-- 视觉资产：`assets/tips/*.png`、`WealthX logo.png`、`Daxhboard logo.svg`、`favicon.ico`
+- 视觉资产：`assets/wealthx/20261015/`、`assets/sightreader/`、`assets/travelx/`、`assets/tips/*.png`、图标来源记录 `assets/app-icon-provenance.json`、WERD `favicon.ico`
 - 网站规则：`docs/website-style.md`
 
 目前未发现 `package.json`、Vite、Next.js、Astro、Vercel、Netlify 或 Cloudflare Pages 配置。
 
 ## 本地运行
 
-待确认。
-
-初步判断可以用静态 HTTP server 预览，因为 `wealthx.html` 会 fetch `i18n/*.json`，直接用 `file://` 打开可能受浏览器限制。
+从仓库的上级目录启动静态 HTTP server，保留 `/WERD/` 子目录路由。`wealthx.html` 与 TravelX 使用 `fetch`，请用 HTTP 预览而不是 `file://`。
 
 ```sh
+cd ..
 python3 -m http.server 8000
 ```
 
 然后访问：
 
 ```text
-http://127.0.0.1:8000/
-http://127.0.0.1:8000/wealthx.html
-http://127.0.0.1:8000/daxhboard.html
-http://127.0.0.1:8000/bio.html
+http://127.0.0.1:8000/WERD/
+http://127.0.0.1:8000/WERD/wealthx.html
+http://127.0.0.1:8000/WERD/sightreader.html
+http://127.0.0.1:8000/WERD/sightreader-zh-Hans.html
+http://127.0.0.1:8000/WERD/travelx.html
+http://127.0.0.1:8000/WERD/travelx-zh-Hans.html
+http://127.0.0.1:8000/WERD/daxhboard.html
+http://127.0.0.1:8000/WERD/bio.html
 ```
 
 ## 构建方式
 
-待确认。
-
-当前没有发现前端构建配置。初步判断 WERD 可能不需要本地 build，直接发布静态文件。
+当前没有发现前端构建配置或 `package.json`。页面作为静态 HTML、CSS、JavaScript、JSON 和 PNG 直接发布；使用 HTTP 预览和链接/资源检查验证。
 
 ## 部署方式
 
-待确认。
+GitHub Pages 从 `main` 分支根目录发布，公开前缀为 `/WERD/`。本轮不修改 Pages、Actions 或部署配置。
 
 当前证据：
 
@@ -104,7 +110,6 @@ http://127.0.0.1:8000/bio.html
 
 仍需确认：
 
-- GitHub Pages source 是 repo root、`docs/`、GitHub Actions artifact，还是其他设置。
 - `workflows/eod.yml` 是否仍属于 WERD 当前职责。
 - 是否存在外部 Vercel / Netlify / Cloudflare Pages 配置。
 
@@ -126,7 +131,7 @@ http://127.0.0.1:8000/bio.html
 - `AGENTS.md`：WERD 内部 agent 工作规则。
 - `docs/Site Architecture.md`：站点信息架构、内容 owner、routing、自动化边界。
 - `docs/Content Map.md`：当前和未来页面的内容地图。
-- `docs/Development Notes.md`：技术栈观察、运行/构建/部署待确认项、风险和下一步。
+- `docs/Development Notes.md`：技术栈观察、运行/构建/部署方式、风险和下一步。
 - `docs/website-style.md`：现有网站视觉和内容风格规则。
 
 ## 修改边界

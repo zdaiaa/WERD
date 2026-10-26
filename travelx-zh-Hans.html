@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-Hans" data-page-locale="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="在地图上选地点、安排行程，把住宿与交通时间参考放在一起。TravelX 1.0 免费使用，本地新建上限为 5 个旅行计划，可选 iCloud 私人同步。" data-tx-meta="meta.description">
+  <meta property="og:title" content="TravelX — 原来旅行计划可以如此简单直接" data-tx-meta="meta.title">
+  <meta property="og:description" content="在地图上选地点、安排行程，把住宿与交通时间参考放在一起。TravelX 1.0 免费使用，本地新建上限为 5 个旅行计划，可选 iCloud 私人同步。" data-tx-meta="meta.description">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WERD">
+  <meta property="og:url" content="https://zdaiaa.github.io/WERD/travelx-zh-Hans.html?lang=zh-Hans" id="tx-og-url">
+  <link rel="canonical" href="https://zdaiaa.github.io/WERD/travelx-zh-Hans.html?lang=zh-Hans" id="tx-canonical">
+  <link rel="alternate" hreflang="en" href="https://zdaiaa.github.io/WERD/travelx.html?lang=en-US">
+  <link rel="alternate" hreflang="zh-Hans" href="https://zdaiaa.github.io/WERD/travelx-zh-Hans.html?lang=zh-Hans">
+  <link rel="alternate" hreflang="x-default" href="https://zdaiaa.github.io/WERD/travelx.html?lang=en-US">
+  <title data-tx="meta.title">TravelX — 原来旅行计划可以如此简单直接</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="assets/travelx.css">
+  <script>
+    (() => {
+      const params = new URLSearchParams(location.search);
+      let preference = params.get("theme");
+      if (!["system", "light", "dark"].includes(preference)) preference = null;
+      if (!preference) {
+        try {
+          const stored = localStorage.getItem("werd-theme");
+          if (["light", "dark"].includes(stored)) preference = stored;
+        } catch {}
+      }
+      const dark = preference === "dark" || (preference !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+    })();
+  </script>
+  <script src="assets/travelx.js" defer></script>
+  <script src="assets/app-icons.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main"><span data-tx="nav.skip">跳到正文</span></a>
+  <header class="nav">
+    <div class="nav-inner rail">
+      <a class="brand" href="#top"><span class="brand-art" aria-hidden="true"><img data-app-icon="travelx" data-icon-light="assets/travelx/appicon.light.png" data-icon-dark="assets/travelx/appicon.dark.png" width="36" height="36" class="app-icon" src="assets/travelx/appicon.light.png" alt="" /></span><span>TravelX</span></a>
+      <nav class="nav-links" aria-label="TravelX"><a href="#features"><span data-tx="nav.features">概览</span></a>
+<a href="#how-it-works"><span data-tx="nav.steps">使用步骤</span></a>
+<a href="#questions"><span data-tx="nav.faq">常见问题</span></a>
+<a href="#support"><span data-tx="nav.support">支持</span></a>
+<a href="#privacy"><span data-tx="nav.privacy">隐私</span></a></nav>
+      <div class="nav-controls">
+        <label><span data-tx="nav.language" class="sr-only">语言</span><select id="tx-language"><option value="en-US">English</option><option value="zh-Hans" selected>简体中文</option></select></label>
+        <label><span data-tx="nav.theme" class="sr-only">外观</span><select id="tx-theme"><option value="system" data-tx="nav.system">跟随系统</option><option value="light" data-tx="nav.light">浅色</option><option value="dark" data-tx="nav.dark">深色</option></select></label>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero rail" aria-labelledby="hero-title">
+      <div class="hero-copy"><p data-tx="hero.eyebrow" class="eyebrow">TRAVELX 1.0</p><h1 id="hero-title"><span data-tx="hero.lines.0">原来旅行计划</span><span data-tx="hero.lines.1">可以如此简单直接</span></h1><p data-tx="hero.body" class="lead">在 App 内选择地点，安排每天的行程。把住宿与预计交通时间放在一起，清楚规划每一步。</p>
+        <div class="actions"><a class="button primary" href="#how-it-works"><span data-tx="hero.primary">开始了解旅行规划</span></a><a class="text-link" href="#privacy"><span data-tx="hero.secondary">阅读隐私政策</span> <span aria-hidden="true">↗</span></a></div>
+        <p class="store-status" data-tx="screenshots.releaseStatus">产品预览 · App Store 上架准备中</p><p data-tx="hero.availability" class="availability">iPhone 与 iPad · 1.0 免费 · 本地新建上限 5 个旅行计划</p>
+      </div>
+      <figure class="screenshot-slot" data-screenshot-slot="travelx-hero" data-screenshot-status="reserved"><div class="screenshot-slot-inner"><span class="eyebrow" data-tx="screenshots.label">界面预览</span><strong>TravelX</strong><p data-tx="screenshots.note">正式界面图片将在 UI 验收后补充。</p></div></figure>
+    </section>
+    <section id="features" class="section rail" aria-labelledby="features-title"><p data-tx="features.eyebrow" class="eyebrow">旅行规划，一起看清</p><h2 data-tx="features.title" id="features-title">地图看地点，日历看每天。</h2><p data-tx="features.body" class="section-intro">选好想去的地点，排好每天的行程。住宿与交通参考，也在计划里。地点搜索、路线与交通时间的可用性，会受使用环境、目的地数据、网络和系统服务影响。</p><div class="features-grid"><article id="feature-map"><p data-tx="features.items.0.label" class="eyebrow">01 · 地点规划</p><h3 data-tx="features.items.0.title">从地图开始规划。</h3><p data-tx="features.items.0.body">在 App 内地图选择地点，加入旅行，再安排到每天的行程。TravelX 1.0 暂不提供导入入口。</p><figure class="screenshot-slot screenshot-slot-small" data-screenshot-slot="travelx-feature-map" data-screenshot-status="reserved" aria-label="界面预览"><span data-tx="screenshots.label">界面预览</span></figure></article>
+<article id="feature-days"><p data-tx="features.items.1.label" class="eyebrow">02 · 每日安排</p><h3 data-tx="features.items.1.title">把每一站排明白。</h3><p data-tx="features.items.1.body">在每天的时间轴里调整开始时间、停留时长和顺序。参考相邻地点的预计交通时间，让安排更清楚。</p><figure class="screenshot-slot screenshot-slot-small" data-screenshot-slot="travelx-feature-days" data-screenshot-status="reserved" aria-label="界面预览"><span data-tx="screenshots.label">界面预览</span></figure></article>
+<article id="feature-stays"><p data-tx="features.items.2.label" class="eyebrow">03 · 住宿安排</p><h3 data-tx="features.items.2.title">把住宿也放进计划。</h3><p data-tx="features.items.2.body">记录入住与退房日期，在当天行程旁查看相关住宿。出发与休息，都有安排。</p><figure class="screenshot-slot screenshot-slot-small" data-screenshot-slot="travelx-feature-stays" data-screenshot-status="reserved" aria-label="界面预览"><span data-tx="screenshots.label">界面预览</span></figure></article></div></section>
+    <div class="surface"><section id="how-it-works" class="section rail how-section" aria-labelledby="steps-title"><div><p data-tx="steps.eyebrow" class="eyebrow">把旅行规划起来</p><h2 data-tx="steps.title" id="steps-title">三步，安排好一段旅行。</h2></div><ol class="steps-list"><li><span class="step-number" aria-hidden="true">01</span><div><h3 data-tx="steps.items.0.title">确定日期，选好起点。</h3><p data-tx="steps.items.0.body">选择出行日期，在 App 内的地图上选一个起点。一天的出游，或一段假期，都可以从这里开始。</p></div></li>
+<li><span class="step-number" aria-hidden="true">02</span><div><h3 data-tx="steps.items.1.title">把地点排进每天。</h3><p data-tx="steps.items.1.body">在 App 内添加想去的地点，安排到当天的行程。什么时候出发、停留多久，都可以继续调整。</p></div></li>
+<li><span class="step-number" aria-hidden="true">03</span><div><h3 data-tx="steps.items.2.title">把住宿和交通一起规划。</h3><p data-tx="steps.items.2.body">记录住宿日期，参考各站之间的预计交通时间。需要具体线路或导航时，可以打开 Apple Maps。</p></div></li></ol></section></div>
+    <section class="section rail control-section" aria-labelledby="control-title"><div><p data-tx="control.eyebrow" class="eyebrow">旅行计划，随时调整</p><h2 data-tx="control.title" id="control-title">计划有变，继续调整。</h2></div><div><p data-tx="control.body" class="section-intro">从今天的安排里移除一站，地点可以留给另一天。旅行默认保存在这台设备上；也可以在设置中开启 iCloud 同步，与同一 iCloud 账号的设备同步。</p><a class="text-link" href="#privacy"><span data-tx="control.link">了解旅行数据如何处理</span> <span aria-hidden="true">↗</span></a></div></section>
+    <section id="questions" class="section rail questions-section" aria-labelledby="faq-title"><div><p data-tx="faq.eyebrow" class="eyebrow">关于旅行规划</p><h2 data-tx="faq.title" id="faq-title">几个实用的答案。</h2></div><div class="faq-list"><details id="faq-availability"><summary><span data-tx="faq.items.0.question">TravelX 需要付费吗？</span></summary><p data-tx="faq.items.0.answer">TravelX 1.0 免费使用，无需 TravelX 账号，没有内购或订阅。本地新建上限为 5 个旅行计划，旅行、回忆与未设日期的旧草稿合计计数。删除一个可释放名额；已有或同步而来的资料即使超过 5 个，仍完整保留并可编辑，总数降到 5 个以下后可再新建。这是本版的新建限制，不是终身累计创建次数，也没有付费解锁入口。可选 iCloud 同步需要 iCloud 账号。TravelX Pro 尚未推出。</p></details>
+<details id="faq-languages"><summary><span data-tx="faq.items.1.question">TravelX 支持哪些语言？</span></summary><p data-tx="faq.items.1.answer">TravelX 支持英文、简体中文、繁体中文与香港繁体中文。</p></details>
+<details id="faq-dates"><summary><span data-tx="faq.items.2.question">只有一天，也能做旅行计划吗？</span></summary><p data-tx="faq.items.2.answer">可以。选择当天的日期和一个起点，就能开始规划。一天出游、周末旅行或一段假期，都可以按天安排。</p></details>
+<details id="faq-changes"><summary><span data-tx="faq.items.3.question">旅行计划可以继续修改吗？</span></summary><p data-tx="faq.items.3.answer">可以调整旅行日期、地点和每天的活动时间。缩短日期范围时，如果相关日期已有活动或住宿，需要先整理这些安排。</p></details>
+<details id="faq-routing"><summary><span data-tx="faq.items.4.question">预计交通时间怎样帮助规划？</span></summary><p data-tx="faq.items.4.answer">预计交通时间帮助你安排相邻地点。TravelX 通过 Apple MapKit 获取步行、驾车与公交时间参考；公交的具体线路、换乘与导航可在 Apple Maps 查看。如果采用距离估算，App 会标明来源。</p></details>
+<details id="faq-map-coverage"><summary><span data-tx="faq.items.5.question">为什么有时搜索、路线或交通时间不可用？</span></summary><p data-tx="faq.items.5.answer">这些服务会受使用环境、目的地数据、网络和系统服务状态影响。某次请求未返回结果，不代表该目的地或交通方式始终不可用。App 会提示服务状态，并标明估算来源。你也可以在 App 内的地图上选择可见地点，继续安排行程。</p></details>
+<details id="faq-offline"><summary><span data-tx="faq.items.6.question">旅行计划保存在什么地方？</span></summary><p data-tx="faq.items.6.answer">旅行默认保存在这台设备上。在设置中开启可选 iCloud 同步后，可以与同一 iCloud 账号的设备同步；关闭同步会保留本机旅行，不会清除已有云端记录。地图、地点查询与交通时间需要网络，TravelX 不提供完整离线地图。</p></details>
+<details id="faq-stays"><summary><span data-tx="faq.items.7.question">住宿可以和行程一起安排吗？</span></summary><p data-tx="faq.items.7.answer">可以记录住宿地点、入住与退房日期，并在当天行程旁查看相关住宿。TravelX 用于规划和记录住宿安排。</p></details></div></section>
+    <div class="surface"><section id="support" class="section rail support-section" aria-labelledby="support-title"><div><p data-tx="support.eyebrow" class="eyebrow">支持</p><h2 data-tx="support.title" id="support-title">对旅行规划有疑问？</h2></div><div><p data-tx="support.body" class="section-intro">TravelX 使用与隐私问题可以通过邮件联系。请附上 App 版本、设备与系统版本，以及问题出现前的操作。“设置”中的隐私政策与帮助支持内容可离线阅读。</p><a class="contact-email" href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a><p data-tx="support.note" class="support-note">只发送解决问题所需的资料。附件中如有私人旅行计划，请先去掉不必要的细节。</p><div class="actions"><a class="button primary" href="mailto:ericdai2013@gmail.com"><span data-tx="support.cta">发送支持邮件</span></a><a class="text-link" href="#privacy"><span data-tx="support.privacyLink">阅读隐私政策</span></a></div></div></section></div>
+    <section id="privacy" class="section rail privacy-section" aria-labelledby="privacy-title">
+      <div class="privacy-intro"><p data-tx="privacy.eyebrow" class="eyebrow">旅行数据与你的选择</p><h2 data-tx="privacy.title" id="privacy-title">隐私政策</h2><p data-tx="privacy.date" class="policy-date">生效日期：2026-10-13 · 修订日期：2026-10-25</p><p data-tx="privacy.intro" class="section-intro">本政策说明 TravelX 的本机旅行存储、可选 iCloud 同步、地图与定位、旧版导入资料、诊断、删除及支持。</p></div>
+      <div class="privacy-layout"><nav class="policy-toc" aria-labelledby="policy-toc-title"><h3 data-tx="privacy.toc" id="policy-toc-title">政策内容</h3><ol><li><a href="#privacy-local-data"><span data-tx="privacy.sections.0.title">1. 旅行数据与可选 iCloud 同步</span></a></li>
+<li><a href="#privacy-map-services"><span data-tx="privacy.sections.1.title">2. 地图与可选当前位置</span></a></li>
+<li><a href="#privacy-use"><span data-tx="privacy.sections.2.title">3. 当前版本、旧版导入资料与本机反馈</span></a></li>
+<li><a href="#privacy-services"><span data-tx="privacy.sections.3.title">4. 服务、诊断与支持</span></a></li>
+<li><a href="#privacy-storage"><span data-tx="privacy.sections.4.title">5. 存储与保留</span></a></li>
+<li><a href="#privacy-choices"><span data-tx="privacy.sections.5.title">6. 你的选择与删除</span></a></li>
+<li><a href="#privacy-children-changes"><span data-tx="privacy.sections.6.title">7. 儿童与政策更新</span></a></li>
+<li><a href="#privacy-contact"><span data-tx="privacy.sections.7.title">8. 联系方式</span></a></li></ol></nav><article class="policy-body"><section id="privacy-local-data" aria-labelledby="privacy-heading-0"><h3 data-tx="privacy.sections.0.title" id="privacy-heading-0">1. 旅行数据与可选 iCloud 同步</h3><p data-tx="privacy.sections.0.paragraphs.0">TravelX 默认将旅行计划保存在这台设备上。记录包括旅行名称、目的地、日期和已设置的行程时区、地点及坐标、备注与来源链接、每日活动及时间、住宿和交通偏好。既有记录也可能包含你过去保存的同行人数与类型、预算、预计花费或其他字段。</p>
+<p data-tx="privacy.sections.0.paragraphs.1">iCloud 同步默认关闭。你在设置中开启后，旅行记录以及同步所需的标识、更改记录和账号隔离信息，会通过 Apple CloudKit 在当前 iCloud 账号的私人数据库中处理，让同一 iCloud 账号的设备同步行程。TravelX 不运营旅行存储服务器，也不把这些记录存入公共 CloudKit 数据库。</p>
+<p data-tx="privacy.sections.0.paragraphs.2">TravelX 1.0 免费使用，无需 TravelX 账号，没有内购或订阅。可选 iCloud 同步需要可用的 iCloud 账号与储存空间。TravelX Pro 尚未推出，未来功能和价格将另行公布。</p></section>
+<section id="privacy-map-services" aria-labelledby="privacy-heading-1"><h3 data-tx="privacy.sections.1.title" id="privacy-heading-1">2. 地图与可选当前位置</h3><p data-tx="privacy.sections.1.paragraphs.0">TravelX 使用 Apple 官方 MapKit 提供地图、地点搜索与查询、路线和预计交通时间。地图区域、搜索文字、所选坐标、路程起终点、交通方式及指定的出发或到达时间，会由地图服务处理；服务也可能处理设备与网络请求信息。</p>
+<p data-tx="privacy.sections.1.paragraphs.1">使用“当前位置”时，App 可能请求“使用 App 期间”的定位权限。TravelX 用定位结果在前台地图显示或聚焦你的位置，不会把当前设备位置保存进旅行记录或同步至 CloudKit。定位是可选的，可以在系统设置中更改。你保存的目的地、地点坐标和行程时区选择属于另一类旅行数据。行程时区来自目的地或地点资料，也可以由你选择，不是对当前设备位置的持久记录。</p>
+<p data-tx="privacy.sections.1.paragraphs.2">打开 Apple Maps 查看具体线路或导航时，适用该 App 自身的权限、设置与隐私规则。服务可用性受目的地、网络、系统服务和使用环境影响；TravelX 不提供完整离线地图。</p>
+<p data-tx="privacy.sections.1.paragraphs.3">Apple 说明，在中国的 Apple 地图产品使用高德软件有限公司的地图服务。相关服务处理方式见所附 Apple 地图隐私说明。</p></section>
+<section id="privacy-use" aria-labelledby="privacy-heading-2"><h3 data-tx="privacy.sections.2.title" id="privacy-heading-2">3. 当前版本、旧版导入资料与本机反馈</h3><p data-tx="privacy.sections.2.paragraphs.0">TravelX 1.0 不提供导入入口，也不包含 Apple Maps 分享扩展。请在 App 内地图添加地点。本版本不会通过导入流程接收新的 Apple Maps 分享地点或指南链接。</p>
+<p data-tx="privacy.sections.2.paragraphs.1">此前构建版本的记录可能包含来源链接，以及本机 App Group 导入收件箱中的地点名称、坐标、已提供的时区资料、地址和导入状态。关闭入口不会自动移除已有收件箱内容。此前已保存到旅行的地点仍属于旅行记录；开启 iCloud 同步后，这些记录也可能同步。</p>
+<p data-tx="privacy.sections.2.paragraphs.2">此前构建版本可通过系统网络服务请求指南网页，涉及链接、通常的网络信息、重定向、cookie 或缓存。关闭导入入口不会清除此前的记录或系统缓存。TravelX 1.0 不提供这条指南导入请求流程。</p>
+<p data-tx="privacy.sections.2.paragraphs.3">添加地点后的短暂实时活动，可能按系统设置在灵动岛或锁定屏幕显示地点名称及完成提示。TravelX 在本机提供这项反馈，没有远程实时活动更新服务。</p></section>
+<section id="privacy-services" aria-labelledby="privacy-heading-3"><h3 data-tx="privacy.sections.3.title" id="privacy-heading-3">4. 服务、诊断与支持</h3><p data-tx="privacy.sections.3.paragraphs.0">Apple 按其自身规则提供 CloudKit、地图及其他系统服务。TravelX 不使用旅行数据进行广告跟踪，也不出售这些数据。App 没有开发者自建的分析或崩溃上传服务。系统诊断可能包含错误代码、导入数量、链接主机与路径、查询参数名称或其他诊断细节；Apple 的分析设置可能影响诊断共享。</p>
+<p data-tx="privacy.sections.3.paragraphs.1">你主动发送支持邮件时，开发者会收到邮箱地址、邮件内容和你选择发送的附件，用于回复请求和排查问题。打开支持邮件入口不会自动发送邮件、旅行记录或日志。请只发送所需资料，并遮去截图中的私人行程。</p>
+<p data-tx="privacy.sections.3.paragraphs.2">本网站由 GitHub Pages 托管。GitHub 通用隐私声明介绍 GitHub 如何依据其服务规则处理相关信息。网站在本地保存你选择的语言与外观偏好；App 旅行记录不会通过此网页上传。</p></section>
+<section id="privacy-storage" aria-labelledby="privacy-heading-4"><h3 data-tx="privacy.sections.4.title" id="privacy-heading-4">5. 存储与保留</h3><p data-tx="privacy.sections.4.paragraphs.0">本地旅行文件、旧版导入收件箱内容、同步记录及临时文件保存在这台设备上，受 App 沙盒与设备保护。本版本不会通过导入入口向收件箱添加新内容。可选 CloudKit 记录使用你的 iCloud 储存空间及 Apple 的服务保护。</p>
+<p data-tx="privacy.sections.4.paragraphs.1">TravelX 可能保留迁移备份、协调删除所需的记录，以及冲突或恢复副本。关闭同步会停止 App 的同步会话并保留本机记录，不会清除已经存在 iCloud 中的旅行。Apple 设备备份与实时行程同步不同，可能按你的设置包含 App 数据。</p>
+<p data-tx="privacy.sections.4.paragraphs.2">支持邮件用于答复请求和处理相关问题。任何数字系统或删除流程都不能保证立即擦除每一份历史副本。</p></section>
+<section id="privacy-choices" aria-labelledby="privacy-heading-5"><h3 data-tx="privacy.sections.5.title" id="privacy-heading-5">6. 你的选择与删除</h3><p data-tx="privacy.sections.5.paragraphs.0">你可以在 App 内编辑和删除旅行。仅移除某天的安排，可以保留已保存地点供其他日期使用。同步开启且正常工作时，行程更改与删除会排队同步至同一 iCloud 账号；离线或同步失败可能延迟其他设备上的更新。同步后旅行日期发生重叠时，会保留内容供你查看和处理，不会自动替你删除旅行。</p>
+<p data-tx="privacy.sections.5.paragraphs.1">删除可见旅行，不保证清除旧版导入收件箱内容、迁移备份、同步恢复记录、冲突副本、设备备份或此前已分享的副本。关闭同步不是清除云端数据的操作。你可以通过 Apple 的设置管理 App 储存空间、iCloud 储存空间、设备备份与定位权限；如需了解仍保留的副本，可以联系支持。</p></section>
+<section id="privacy-children-changes" aria-labelledby="privacy-heading-6"><h3 data-tx="privacy.sections.6.title" id="privacy-heading-6">7. 儿童与政策更新</h3><p data-tx="privacy.sections.6.paragraphs.0">TravelX 是通用旅行规划工具，没有儿童专用账号或画像系统。</p>
+<p data-tx="privacy.sections.6.paragraphs.1">功能或数据处理方式改变时，本政策会修订。App 内政策可在“设置 → 隐私政策”离线阅读；公开网站副本另行更新。</p></section>
+<section id="privacy-contact" aria-labelledby="privacy-heading-7"><h3 data-tx="privacy.sections.7.title" id="privacy-heading-7">8. 联系方式</h3><p data-tx="privacy.sections.7.paragraphs.0">TravelX 使用与隐私问题，请联系 ericdai2013@gmail.com。</p><p><a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a></p></section><div class="policy-references"><h3 data-tx="privacy.referencesLabel">相关服务说明</h3><ul><li><a href="https://www.apple.com/legal/privacy/data/en/apple-maps/" rel="noreferrer"><span data-tx="privacy.references.0.label">Apple 地图与隐私</span></a></li>
+<li><a href="https://support.apple.com/en-us/102651" rel="noreferrer"><span data-tx="privacy.references.1.label">iCloud 数据安全</span></a></li>
+<li><a href="https://support.apple.com/en-us/108770" rel="noreferrer"><span data-tx="privacy.references.2.label">Apple 设备备份</span></a></li>
+<li><a href="https://www.apple.com/legal/privacy/data/en/device-analytics/" rel="noreferrer"><span data-tx="privacy.references.3.label">Apple 设备分析与隐私</span></a></li>
+<li><a href="https://www.apple.com.cn/legal/privacy/data/zh-cn/apple-maps/" rel="noreferrer"><span data-tx="privacy.references.4.label">Apple 地图与隐私（中国）</span></a></li>
+<li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noreferrer"><span data-tx="privacy.references.5.label">GitHub 通用隐私声明</span></a></li></ul></div></article></div>
+    </section>
+  </main>
+  <footer class="footer rail"><div class="footer-top"><p data-tx="footer.notice">TravelX 1.0</p><nav aria-label="WERD"><a href="index.html?lang=zh-Hans" id="tx-home"><span data-tx="nav.home">WERD 产品</span></a><a href="#support"><span data-tx="nav.support">支持</span></a><a href="#privacy"><span data-tx="nav.privacy">隐私</span></a><a href="#top"><span data-tx="footer.top">返回顶部</span></a></nav></div><div class="static-versions"><p data-tx="footer.fallback">语言</p><a href="travelx.html?lang=en-US" lang="en-US" data-static-locale="en-US">English</a><span aria-hidden="true"> · </span><a href="travelx-zh-Hans.html?lang=zh-Hans" lang="zh-Hans" data-static-locale="zh-Hans">简体中文</a></div><p id="tx-language-status" class="language-status" role="status" aria-live="polite"></p></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Three current product entries share a card grid; the WealthX detail CTA stays nested. */
+.portfolio-home .entry-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.portfolio-home .entry-link,
+.portfolio-home .entry-link:first-child,
+.portfolio-home .entry-link:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-width: 0;
+  min-height: 390px;
+  gap: 0;
+  padding: 28px;
+  border-radius: var(--werd-radius-lg);
+}
+
+.portfolio-home .entry-visual,
+.portfolio-home .entry-link:first-child .entry-visual,
+.portfolio-home .entry-link:nth-child(2) .entry-visual {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  border-radius: 18px;
+}
+
+.portfolio-home .entry-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-home .wealthx-entry-main {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-bottom: 48px;
+  gap: 20px;
+}
+
+.portfolio-home .entry-copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.portfolio-home .entry-copy p {
+  max-width: none;
+}
+
+.portfolio-home .entry-meta {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.portfolio-home .entry-link .arrow,
+.portfolio-home .entry-link:nth-child(2) .arrow {
+  position: static;
+  align-self: flex-end;
+  margin-top: 24px;
+}
+
+.portfolio-home .wealthx-entry-main .arrow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+}
+
+.portfolio-home .sharing-link {
+  width: 100%;
+  min-height: 44px;
+  margin: auto 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .portfolio-home .entry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-home .entry-link,
+  .portfolio-home .entry-link:first-child,
+  .portfolio-home .entry-link:nth-child(2) {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 620px) {
+  .portfolio-home .entry-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portfolio-home .entry-link,
+  .portfolio-home .entry-link:first-child,
+  .portfolio-home .entry-link:nth-child(2) {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .portfolio-home .wealthx-entry-main {
+    min-height: 270px;
+  }
+}

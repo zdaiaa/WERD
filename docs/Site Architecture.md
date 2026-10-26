@@ -1,12 +1,21 @@
 # WERD Site Architecture
 
-## 当前发布结构 — 2026-10-04
+## 历史发布结构 — 2026-10-04
 
-已核实 GitHub Pages 从 `main` 分支根目录发布，站点前缀为 `/WERD/`。直接保留 `index.html`、`wealthx.html`、`daxhboard.html`、`bio.html` 及其相对资源路径；WealthX 继续使用 `wealthx.html?lang=<locale>#privacy` 作为本地化隐私地址。
+已核实 GitHub Pages 从 `main` 分支根目录发布，站点前缀为 `/WERD/`。现行静态 route 使用仓库根目录文件名和相对资源路径；WealthX 继续使用 `wealthx.html?lang=<locale>#privacy` 作为本地化隐私地址。
 
 本次内容来自 Sites 已发布版本 15 的 `public/` 静态目录，只适配托管 URL，不迁入应用服务器、Sites 凭据或框架配置。现有 Pages 设置、workflow、路由名称与 `.nojekyll` 保留。整站公开内容在 GitHub 上独立提供，访问者无需转跳到原 Sites 域名。
 
-更新时间：2026-07-13
+更新时间：2026-10-26
+
+## 当前页面发布结构 — 2026-10-26
+
+- `/WERD/` 的产品卡片同级展示 WealthX、SightReader、TravelX；现有 WealthX hero、2026-10-15 截图与 `hub.js` 语言/图标映射保持不变。
+- `/WERD/sightreader.html` 与 `/WERD/sightreader-zh-Hans.html`：SightReader 英文与简体中文产品预览。每页保留四个截图位；UI 验收后再补入真实 App 界面。正式隐私政策待提供，当前页面明确声明预览不是生效政策并保留支持邮箱。
+- `/WERD/travelx.html` 与 `/WERD/travelx-zh-Hans.html`：TravelX 英文与简体中文产品预览，使用 `assets/travelx.css`、`assets/travelx.js` 和 `i18n/travelx/`。网站托管说明仅指向 GitHub 官方隐私声明，不声明未核实的请求日志或留存事实。
+- `/WERD/daxhboard.html`：保留旧链接的归档说明页，设为 `noindex`；旧版产品介绍与隐私文本保存在 Git 历史中，不再出现在主页、sitemap 或当前营销页。
+- 三个 App 的 light/dark 图标来自各自当前项目 AppIcon PNG。产品图标随页面主题切换，网站标签页继续使用 WERD `favicon.ico`。
+- 共享相对路由基于 GitHub Pages `/WERD/` 子目录；不要使用从域名根部开始的 `/assets/...` 绝对资源路径。
 
 ## 定位
 
@@ -20,11 +29,13 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 /
 ├── index.html        # WERD 产品入口页
 ├── wealthx.html      # WealthX landing page
-├── daxhboard.html    # Daxhboard 介绍/隐私页
+├── sightreader*.html # SightReader 英文 / 简体中文预览页
+├── travelx*.html     # TravelX 英文 / 简体中文预览页
+├── daxhboard.html    # 旧链接的归档说明页
 ├── bio.html          # Personal homepage / biography
-├── assets/           # 产品截图和共享资产
+├── assets/           # 产品截图、AppIcon 和共享资产
 ├── i18n/             # 多语言文案
-└── docs/             # 文档和可能的 Pages artifact 输出目录，具体部署关系待确认
+└── docs/             # 项目文档；Pages 从仓库根目录发布
 ```
 
 ## Personal Homepage
@@ -62,7 +73,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 - 不得承诺投资收益、保证省钱、银行级安全或完全自动银行同步。
 - 修改页面内容时同步更新 `docs/Content Map.md`。
 
-## Daxhboard Page
+## Daxhboard Archive Route
 
 当前页面：
 
@@ -70,19 +81,18 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 职责：
 
-- 承载 Daxhboard 产品介绍、平台范围、数据边界和隐私声明。
-- 使用 `Daxhboard logo.svg` 作为产品识别资产。
+- 为访问旧链接的用户说明 Daxhboard 页面已归档。
+- 不再展示产品营销、功能或隐私声明；页面设置为 `noindex,follow`。
+- 旧产品页面和文案保存在 Git 历史中。
 
 维护规则：
 
-- 产品事实、支持平台、iCloud 同步与隐私表述必须从 Daxhboard 源文件或用户确认中获取。
-- 修改页面内容时同步更新 `docs/Content Map.md`。
+- 旧版产品事实仍在历史版本；不得从归档说明推断当前产品状态。
 
 ## Future Apps Landing Pages
 
 未来可承载：
 
-- TravelX landing page：planned，route 待确认。
 - Metro Planner landing page：planned，route 待确认。
 - 其他 App / 项目的 landing page：planned，route 待确认。
 
@@ -115,14 +125,17 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 - `favicon.ico`
 - `WealthX logo.png`
-- `Daxhboard logo.svg`
-- `assets/tips/*.png`
+- `assets/wealthx/20261015/`：WealthX 当前图标与页面截图。
+- `assets/sightreader/`、`assets/travelx/`：对应 App 当前 light/dark AppIcon PNG。
+- `assets/app-icon-provenance.json`：记录六个 AppIcon 文件的来源、用途、尺寸和 SHA-256。
+- `assets/tips/*.png`：WealthX 旧页面资源；保留现状。
 
 规则：
 
 - WealthX 截图属于 WealthX marketing asset。
 - favicon 和站点基础图标属于 WERD shared web platform。
-- 未来 TravelX / Metro Planner 资产应放入清晰子目录，命名规则待确认。
+- SightReader 与 TravelX 页面中的四个截图位均为预留状态，UI 验收通过后才能替换为真实截图。
+- Metro Planner 资产待确认后再纳入。
 
 ## SEO / Metadata
 
@@ -142,15 +155,19 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 当前 route 形式：
 
-- `/WERD/` 或 `/WERD/index.html`：产品入口页，实际发布路径待确认。
+- `/WERD/` 或 `/WERD/index.html`：产品入口页，GitHub Pages 从 `main` 根目录提供。
 - `/WERD/wealthx.html`：WealthX landing page。
-- `/WERD/daxhboard.html`：Daxhboard 介绍/隐私页。
+- `/WERD/daxhboard.html`：旧链接的归档说明页，不再是当前产品/隐私页。
 - `/WERD/bio.html`：个人介绍页。
 
 未来 route：
 
-- TravelX：待确认。
 - Metro Planner：待确认。
+
+当前已发布 route：
+
+- `/WERD/sightreader.html`、`/WERD/sightreader-zh-Hans.html`。
+- `/WERD/travelx.html`、`/WERD/travelx-zh-Hans.html`。
 - 其他项目：待确认。
 
 修改 route 或导航前必须先确认部署方式和外部链接影响。
@@ -175,6 +192,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 | Portfolio 总览与业务线状态 | Control Center | WERD 只引用确认后的对外内容 |
 | WERD 站点结构 | WERD | 修改前更新站点架构和内容地图 |
 | WealthX 产品事实 | WealthX | WERD 不直接发明产品能力 |
+| SightReader、TravelX 产品事实与支持/隐私内容 | 各 App 项目 | 只呈现已提供的当前信息；未确认政策保留准备状态与支持方式 |
 | Personal biography | 用户确认 | 涉及经历和定位必须确认 |
 | SEO / navigation / CTA | WERD + 用户确认 | 修改前先给计划 |
 | 部署配置 | WERD + 用户确认 | 先只读审计，再改 |

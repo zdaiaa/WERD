@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="在 iPad 上阅读 PDF 和 MusicXML 乐谱、记录排练标记。了解 SightReader 的功能规划和支持信息。">
+  <meta property="og:url" content="https://zdaiaa.github.io/WERD/sightreader-zh-Hans.html">
+  <link rel="canonical" href="https://zdaiaa.github.io/WERD/sightreader-zh-Hans.html">
+  <link rel="alternate" hreflang="en-US" href="https://zdaiaa.github.io/WERD/sightreader.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://zdaiaa.github.io/WERD/sightreader-zh-Hans.html">
+  <link rel="alternate" hreflang="x-default" href="https://zdaiaa.github.io/WERD/sightreader.html">
+  <title>SightReader 视奏器 · 乐谱阅读与排练 | WERD</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script>(() => {
+  const root = document.documentElement;
+  const params = new URLSearchParams(location.search);
+  const system = window.matchMedia("(prefers-color-scheme: dark)");
+  let preference = params.get("theme");
+  if (!["system", "light", "dark"].includes(preference)) preference = null;
+  if (!preference) {
+    try {
+      const stored = localStorage.getItem("werd-theme");
+      if (["light", "dark"].includes(stored)) preference = stored;
+    } catch { /* The static page works without local storage. */ }
+  }
+  preference ||= "system";
+  const requested = params.get("lang");
+  if (requested) {
+    const locale = /^(zh-Hans|zh-CN)$/i.test(requested) ? "zh-Hans" : "en-US";
+    if (locale !== root.lang) {
+      const filename = locale === "zh-Hans" ? "sightreader-zh-Hans.html" : "sightreader.html";
+      const target = new URL(filename, location.href);
+      target.searchParams.set("lang", locale);
+      target.searchParams.set("theme", preference);
+      target.hash = location.hash;
+      location.replace(target.href);
+      return;
+    }
+  }
+  function applyTheme() {
+    root.dataset.theme = preference === "system" ? (system.matches ? "dark" : "light") : preference;
+  }
+  function updateThemeUrl() {
+    const url = new URL(location.href);
+    url.searchParams.set("theme", preference);
+    history.replaceState(null, "", url.href);
+  }
+  applyTheme();
+  system.addEventListener("change", () => { if (preference === "system") applyTheme(); });
+  document.addEventListener("DOMContentLoaded", () => {
+    const theme = document.getElementById("sr-theme");
+    theme.value = preference;
+    theme.addEventListener("change", () => {
+      preference = theme.value;
+      try {
+        if (preference === "system") localStorage.removeItem("werd-theme");
+        else localStorage.setItem("werd-theme", preference);
+      } catch { /* Appearance still changes for this visit. */ }
+      updateThemeUrl();
+      applyTheme();
+      syncLanguages();
+    });
+    function syncLanguages() {
+      document.querySelectorAll("[data-language]").forEach(link => {
+        const target = new URL(link.getAttribute("href"), location.href);
+        target.searchParams.set("theme", preference);
+        target.hash = location.hash;
+        link.href = target.href;
+        if (link.dataset.language === root.lang) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+    }
+    syncLanguages();
+    window.addEventListener("hashchange", syncLanguages);
+  });
+})();
+</script>
+  <style>:root{color-scheme:light;--bg:#fafaf7;--surface:#fff;--ink:#162d29;--muted:#536460;--line:#d4ddd7;--accent:#075d4f;--tint:#edf4ed;--banner:#edf1e7;--focus:#0067cc;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+[data-theme=dark]{color-scheme:dark;--bg:#111b18;--surface:#192722;--ink:#f0f5ee;--muted:#b5c7bd;--line:#40574b;--accent:#a5ddc9;--tint:#1a2e25;--banner:#293327;--focus:#75b9ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-underline-offset:.22em}a:hover{text-decoration-thickness:2px}a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:5px;border-radius:4px}img{display:block;max-width:100%;height:auto}.rail{width:min(1160px,100% - 64px);margin-inline:auto}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.skip{position:fixed;z-index:20;top:12px;left:12px;padding:12px 18px;background:var(--surface);transform:translateY(-200%)}.skip:focus{transform:translateY(0)}
+.site-header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}.header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:20px;font-weight:650;white-space:nowrap}.brand img{border-radius:9px}.primary-nav,.preferences,.languages{display:flex;align-items:center;gap:22px}.primary-nav a,.languages a{text-decoration:none;font-size:14px;white-space:nowrap}.languages{gap:12px}.languages [aria-current=page]{text-decoration:underline;font-weight:650}.preferences{gap:18px}.appearance select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--ink);background:var(--surface)}.draft-banner{background:var(--banner);font-size:13px}.draft-banner p{padding-block:11px;margin-block:0}
+.hero{display:grid;grid-template-columns:1.08fr 1fr;gap:80px;align-items:start;padding-block:76px 96px}.eyebrow{font-size:13px;letter-spacing:.05em;font-weight:650;color:var(--accent);margin:0 0 18px}h1,h2,h3,p,figure{margin-top:0}h1{font-size:clamp(40px,5.1vw,66px);letter-spacing:-.045em;line-height:1.12;max-width:10.5em;margin-bottom:26px;text-wrap:balance}h2{font-size:clamp(31px,3.2vw,44px);letter-spacing:-.035em;line-height:1.22;margin-bottom:20px;text-wrap:balance}h3{font-size:23px;letter-spacing:-.02em;line-height:1.35;margin-bottom:16px}.hero-body{font-size:21px;color:var(--muted);max-width:28em;line-height:1.6}.platform{font-size:13px;color:var(--muted);margin-block:26px}.actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.button{display:inline-block;padding:12px 23px;border-radius:999px;background:var(--accent);color:var(--surface);text-decoration:none;font-size:15px;font-weight:600}.text-link{font-weight:600;text-decoration:none;font-size:16px}.hero-copy{padding-top:96px}.hero figure{margin:0;max-width:440px;justify-self:end}.score-frame{padding:13px;border:1px solid var(--line);border-radius:25px;background:#fff;box-shadow:0 22px 60px #153f2820}.score-frame img{border-radius:12px;width:100%;object-fit:contain}figcaption{font-size:12px;color:var(--muted);line-height:1.6;margin:16px 5px 0;max-width:46em}
+figcaption p{margin:0 0 9px}figcaption p:last-child{margin-bottom:0}
+.section{padding-block:88px;scroll-margin-top:90px}.section-intro{font-size:19px;color:var(--muted);max-width:760px;line-height:1.7}.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:46px}.feature-card{border-top:1px solid var(--line);padding-top:26px}.feature-card p,.plan p{color:var(--muted);font-size:16px;margin-bottom:0}.item-number{display:block;margin-bottom:28px;color:var(--accent);font-size:13px;font-variant-numeric:tabular-nums}.plans-section{background:var(--tint)}.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-block:38px}.plan{padding:32px;border-radius:18px;border:1px solid var(--line);background:var(--bg)}.boundary{max-width:890px;color:var(--muted);font-size:15px;margin-bottom:0}.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}.email{display:inline-block;margin-top:12px}.email-address{font-size:14px;margin-top:6px;color:var(--muted)}.small{font-size:14px;color:var(--muted)}.questions{padding-top:10px}.questions details{border-bottom:1px solid var(--line);padding:20px 0}.questions summary{cursor:pointer;font-weight:600;font-size:17px;padding-right:12px}.questions details p{font-size:15px;color:var(--muted);margin:16px 0 0}
+.privacy-background{background:var(--surface);border-top:1px solid var(--line)}.policy-status{font-size:15px;font-weight:650;color:var(--accent)}.policy-scope{font-size:16px}.privacy-grid{display:grid;grid-template-columns:245px minmax(0,1fr);gap:72px;align-items:start;margin-top:44px}.policy-toc{position:sticky;top:110px;display:grid;gap:15px;font-size:13px;line-height:1.5}.policy-toc a{text-decoration:none}.policy-body{max-width:760px;min-width:0}.policy-section{scroll-margin-top:110px;padding-bottom:26px;margin-bottom:28px;border-bottom:1px solid var(--line)}.policy-section h3,.references h3{font-size:23px}.policy-section p{font-size:16px;line-height:1.85;color:var(--muted);overflow-wrap:anywhere}.policy-section p:last-child{margin-bottom:0}.references ul{padding-left:20px}.references li{padding-bottom:8px;font-size:14px}footer{padding-block:40px 48px;color:var(--muted);font-size:13px}footer nav{display:flex;flex-wrap:wrap;gap:24px;margin-block:20px}footer a{text-decoration:none}.footer-languages{display:flex;flex-wrap:wrap;gap:16px}
+@media(max-width:1000px){.header-inner{gap:14px}.primary-nav{gap:16px}.wide-nav{display:none}.preferences{gap:12px}.hero{gap:44px}.support-grid{gap:44px}.privacy-grid{gap:36px;grid-template-columns:210px minmax(0,1fr)}}
+@media(max-width:700px){.rail{width:calc(100% - 40px)}.header-inner{min-height:92px;flex-wrap:wrap;gap:10px 14px;padding-block:10px}.brand{font-size:18px}.brand img{width:28px;height:28px}.primary-nav{gap:18px;margin-left:auto}.preferences{width:100%;justify-content:space-between}.appearance select{padding:5px 9px;font-size:12px}.languages a{font-size:12px}.hero{grid-template-columns:1fr;padding-block:48px 60px;gap:42px}.hero-copy{padding-top:0}.hero-body{font-size:19px}h1{font-size:43px;max-width:10em}.hero figure{max-width:420px;justify-self:center}.hero .score-frame{padding:9px;border-radius:20px}figcaption{font-size:11px}.section{padding-block:60px}.section-intro{font-size:17px}.feature-grid{grid-template-columns:1fr;gap:28px;margin-top:32px}.item-number{margin-bottom:16px}.feature-card h3{font-size:23px}.plan-grid{grid-template-columns:1fr;gap:16px}.plan{padding:24px}.support-grid{grid-template-columns:1fr;gap:20px}.privacy-grid{grid-template-columns:1fr;gap:34px}.policy-toc{position:static;grid-template-columns:1fr 1fr;gap:15px 18px;border-block:1px solid var(--line);padding-block:22px}.policy-section h3{font-size:22px}.policy-section p{font-size:16px}.draft-banner{font-size:12px}.draft-banner p{padding-block:12px}footer nav{gap:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.media-reserved{width:100%;aspect-ratio:4/3;display:grid;place-items:center;border:1px solid var(--line);border-radius:18px;background:var(--tint);text-align:center;color:var(--muted);font-size:24px;letter-spacing:-.02em}.media-reserved small{display:block;font-size:12px;letter-spacing:0;margin-top:12px}.hero figure{width:100%}.hero .media-reserved{aspect-ratio:4/5}.feature-card figure{margin:28px 0 0}.feature-card figcaption{font-size:11px}.hero-copy{padding-top:32px}</style>
+  <script src="assets/app-icons.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="site-header"><div class="rail header-inner">
+    <a class="brand" href="#top"><img data-app-icon="sightreader" data-icon-light="assets/sightreader/appicon.light.png" data-icon-dark="assets/sightreader/appicon.dark.png" width="36" height="36" class="app-icon" src="assets/sightreader/appicon.light.png" alt="" /><span>视奏器</span></a>
+    <nav class="primary-nav" aria-label="视奏器"><a href="index.html?lang=zh-Hans">WERD</a><a class="wide-nav" href="#features">读谱</a><a href="#support">支持</a><a href="#privacy">隐私</a></nav>
+    <div class="preferences"><span class="languages" aria-label="语言"><a data-language="en-US" href="sightreader.html?lang=en-US" lang="en-US">English</a><a data-language="zh-Hans" href="sightreader-zh-Hans.html?lang=zh-Hans" lang="zh-Hans">简体中文</a></span><label class="appearance"><span class="sr-only">外观</span><select id="sr-theme" aria-label="外观"><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></select></label></div>
+  </div></header>
+  <main id="main">
+    <div class="draft-banner"><p class="rail">产品预览 · 正在准备 App Store 上架</p></div>
+    <section class="hero rail" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow">为 iPad 上的排练而设计</p><h1 id="hero-title">把乐谱，放回演奏中央。</h1><p class="hero-body">读谱、做记号，为下一次排练做好准备。面向各类乐器，以乐团演奏为主要专业场景。</p><p class="platform">iPadOS 26.0+ · 简体中文 / English</p><div class="actions"><a class="button" href="#features">了解当前能力</a><a class="text-link" href="#support">获取支持<span aria-hidden="true"> ↗</span></a></div></div><figure class="screenshot-reserved" data-screenshot-slot="sightreader-hero" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>界面展示即将补充</small></span></div><figcaption>界面图片将在 UI 检验完成后补充。</figcaption></figure></section>
+    <section class="section rail" id="features" aria-labelledby="features-title"><p class="eyebrow">为日常排练准备</p><h2 id="features-title">从自己的乐谱开始。</h2><p class="section-intro">从自己的分谱开始：阅读原始页面，调整结构化乐谱的布局，留下下一次排练需要的标记。</p><div class="feature-grid"><article class="feature-card"><span class="item-number" aria-hidden="true">01</span><h3>原谱，清楚地读。</h3><p>导入 PDF 或未压缩 MusicXML。PDF 保留原稿，支持缩放、平移和手动翻页；MusicXML 可调整音符大小与密度，按阅读视口换行分页。</p><figure class="screenshot-reserved" data-screenshot-slot="sightreader-reading" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>界面展示即将补充</small></span></div><figcaption>界面图片将在 UI 检验完成后补充。</figcaption></figure></article><article class="feature-card"><span class="item-number" aria-hidden="true">02</span><h3>把排练记号留在谱上。</h3><p>通过 PencilKit 批注，原谱和笔迹保存在本机。扫描可将纸谱保存为图像 PDF；扫描识别成可重排音符尚未提供。</p><figure class="screenshot-reserved" data-screenshot-slot="sightreader-annotations" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>界面展示即将补充</small></span></div><figcaption>界面图片将在 UI 检验完成后补充。</figcaption></figure></article><article class="feature-card"><span class="item-number" aria-hidden="true">03</span><h3>从来源明确的曲谱中选择。</h3><p>在随包的 OpenScore / Mutopia 目录快照中本地搜索，查看声部、许可与署名，再主动下载。当前目录以小提琴 PDF 为主，已下载乐谱可离线阅读。</p><figure class="screenshot-reserved" data-screenshot-slot="sightreader-catalog" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>界面展示即将补充</small></span></div><figcaption>界面图片将在 UI 检验完成后补充。</figcaption></figure></article></div></section>
+    <section class="plans-section" id="plans" aria-labelledby="plans-title"><div class="rail section"><p class="eyebrow">1.0 版本规划</p><h2 id="plans-title">基础读谱，专注演奏。</h2><p class="section-intro">基础读谱免费。Pro 计划采用一次性应用内购买，以 US$4.99 为全球定价锚点；各地区以 App Store 上架后的当地货币价格为准。</p><div class="plan-grid"><article class="plan"><h3>免费基础版</h3><p>导入、扫描、读谱、批注、基础乐谱管理、阅读进度与备份。</p></article><article class="plan"><h3>Pro 专业版</h3><p>规划支持自动翻谱及双 iPad 双页显示，无订阅。同一 Apple ID 可在第二台 iPad 恢复已购项目，无需重复购买。</p></article></div><p class="boundary">Pro 功能仍在准备中，尚未开放购买。自动跟随仅面向受支持的单声部 MusicXML；PDF 与扫描件使用手动翻页。自动跟随及双 iPad 功能尚未经真机验收，最终支持范围将在发布前确认。</p></div></section>
+<section class="section rail" id="support" aria-labelledby="support-title"><div class="support-grid"><div><p class="eyebrow">需要帮助时</p><h2 id="support-title">联系视奏器支持。</h2><p class="section-intro">使用现有 WERD 公开支持邮箱。邮件由你主动发送；本页不会自动上传乐谱或诊断资料。</p><a class="text-link email" href="mailto:ericdai2013@gmail.com?subject=视奏器 SightReader 支持">发送支持邮件<span aria-hidden="true"> ↗</span></a><p class="email-address">ericdai2013@gmail.com</p><p class="small">请说明 App 版本、iPad 型号、iPadOS 版本、文件格式及复现步骤。分享截图或谱例前，请移除姓名、未公开曲谱和其他不必要内容；不要发送网关令牌或 API 密钥。</p></div><div class="questions"><details><summary>哪些文件可以导入？</summary><p>当前支持 PDF、.xml / .musicxml，单文件须小于 50,000,000 字节；暂不支持压缩 .mxl。加密、无页面或无法解析的文件会拒绝。</p></details><details><summary>相机或麦克风被拒绝后还能读谱吗？</summary><p>可以继续本地阅读与手动翻页。相机用于主动眼动跟随或扫描，麦克风用于主动演奏跟随；你可以在 iPad 系统设置中管理授权。</p></details><details><summary>备份与删除需要注意什么？</summary><p>备份文件未加密，请保留原始乐谱并选择可信的保存位置。“最近删除”仍保留原文件，当前没有永久删除控件或自动清理期限。</p></details><details><summary>现在可以下载吗？</summary><p>SightReader（视奏器）尚未正式上架。此页为产品预览，暂无 App Store 下载入口。</p></details></div></div></section>
+    <section class="privacy-background" id="privacy" aria-labelledby="privacy-title"><div class="rail section"><h2 id="privacy-title">隐私信息</h2><p class="section-intro">SightReader 的正式隐私政策将在 App Store 发布前提供。此产品预览不是已生效的隐私政策。</p><p>如有隐私或支持问题，请联系 <a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>。</p></div></section>
+  </main>
+  <footer class="rail"><p>SightReader · 产品预览</p><nav aria-label="WERD"><a href="index.html?lang=zh-Hans">WERD 产品</a><a href="#support">支持</a><a href="#privacy">隐私</a><a href="#top">回到顶部</a></nav><div class="footer-languages"><span>完整静态语言版本</span><a data-language="en-US" href="sightreader.html?lang=en-US" lang="en-US">English</a><a data-language="zh-Hans" href="sightreader-zh-Hans.html?lang=zh-Hans" lang="zh-Hans">简体中文</a></div></footer>
+</body>
+</html>

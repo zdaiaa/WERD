@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Read PDF and MusicXML scores, annotate your part and prepare for rehearsal on iPad. Explore SightReader and get support.">
+  <meta property="og:url" content="https://zdaiaa.github.io/WERD/sightreader.html">
+  <link rel="canonical" href="https://zdaiaa.github.io/WERD/sightreader.html">
+  <link rel="alternate" hreflang="en-US" href="https://zdaiaa.github.io/WERD/sightreader.html">
+  <link rel="alternate" hreflang="zh-Hans" href="https://zdaiaa.github.io/WERD/sightreader-zh-Hans.html">
+  <link rel="alternate" hreflang="x-default" href="https://zdaiaa.github.io/WERD/sightreader.html">
+  <title>SightReader · Score reading and rehearsal | WERD</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script>(() => {
+  const root = document.documentElement;
+  const params = new URLSearchParams(location.search);
+  const system = window.matchMedia("(prefers-color-scheme: dark)");
+  let preference = params.get("theme");
+  if (!["system", "light", "dark"].includes(preference)) preference = null;
+  if (!preference) {
+    try {
+      const stored = localStorage.getItem("werd-theme");
+      if (["light", "dark"].includes(stored)) preference = stored;
+    } catch { /* The static page works without local storage. */ }
+  }
+  preference ||= "system";
+  const requested = params.get("lang");
+  if (requested) {
+    const locale = /^(zh-Hans|zh-CN)$/i.test(requested) ? "zh-Hans" : "en-US";
+    if (locale !== root.lang) {
+      const filename = locale === "zh-Hans" ? "sightreader-zh-Hans.html" : "sightreader.html";
+      const target = new URL(filename, location.href);
+      target.searchParams.set("lang", locale);
+      target.searchParams.set("theme", preference);
+      target.hash = location.hash;
+      location.replace(target.href);
+      return;
+    }
+  }
+  function applyTheme() {
+    root.dataset.theme = preference === "system" ? (system.matches ? "dark" : "light") : preference;
+  }
+  function updateThemeUrl() {
+    const url = new URL(location.href);
+    url.searchParams.set("theme", preference);
+    history.replaceState(null, "", url.href);
+  }
+  applyTheme();
+  system.addEventListener("change", () => { if (preference === "system") applyTheme(); });
+  document.addEventListener("DOMContentLoaded", () => {
+    const theme = document.getElementById("sr-theme");
+    theme.value = preference;
+    theme.addEventListener("change", () => {
+      preference = theme.value;
+      try {
+        if (preference === "system") localStorage.removeItem("werd-theme");
+        else localStorage.setItem("werd-theme", preference);
+      } catch { /* Appearance still changes for this visit. */ }
+      updateThemeUrl();
+      applyTheme();
+      syncLanguages();
+    });
+    function syncLanguages() {
+      document.querySelectorAll("[data-language]").forEach(link => {
+        const target = new URL(link.getAttribute("href"), location.href);
+        target.searchParams.set("theme", preference);
+        target.hash = location.hash;
+        link.href = target.href;
+        if (link.dataset.language === root.lang) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+    }
+    syncLanguages();
+    window.addEventListener("hashchange", syncLanguages);
+  });
+})();
+</script>
+  <style>:root{color-scheme:light;--bg:#fafaf7;--surface:#fff;--ink:#162d29;--muted:#536460;--line:#d4ddd7;--accent:#075d4f;--tint:#edf4ed;--banner:#edf1e7;--focus:#0067cc;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+[data-theme=dark]{color-scheme:dark;--bg:#111b18;--surface:#192722;--ink:#f0f5ee;--muted:#b5c7bd;--line:#40574b;--accent:#a5ddc9;--tint:#1a2e25;--banner:#293327;--focus:#75b9ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}a{color:var(--accent);text-underline-offset:.22em}a:hover{text-decoration-thickness:2px}a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:5px;border-radius:4px}img{display:block;max-width:100%;height:auto}.rail{width:min(1160px,100% - 64px);margin-inline:auto}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.skip{position:fixed;z-index:20;top:12px;left:12px;padding:12px 18px;background:var(--surface);transform:translateY(-200%)}.skip:focus{transform:translateY(0)}
+.site-header{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}.header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:20px;font-weight:650;white-space:nowrap}.brand img{border-radius:9px}.primary-nav,.preferences,.languages{display:flex;align-items:center;gap:22px}.primary-nav a,.languages a{text-decoration:none;font-size:14px;white-space:nowrap}.languages{gap:12px}.languages [aria-current=page]{text-decoration:underline;font-weight:650}.preferences{gap:18px}.appearance select{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--ink);background:var(--surface)}.draft-banner{background:var(--banner);font-size:13px}.draft-banner p{padding-block:11px;margin-block:0}
+.hero{display:grid;grid-template-columns:1.08fr 1fr;gap:80px;align-items:start;padding-block:76px 96px}.eyebrow{font-size:13px;letter-spacing:.05em;font-weight:650;color:var(--accent);margin:0 0 18px}h1,h2,h3,p,figure{margin-top:0}h1{font-size:clamp(40px,5.1vw,66px);letter-spacing:-.045em;line-height:1.12;max-width:10.5em;margin-bottom:26px;text-wrap:balance}h2{font-size:clamp(31px,3.2vw,44px);letter-spacing:-.035em;line-height:1.22;margin-bottom:20px;text-wrap:balance}h3{font-size:23px;letter-spacing:-.02em;line-height:1.35;margin-bottom:16px}.hero-body{font-size:21px;color:var(--muted);max-width:28em;line-height:1.6}.platform{font-size:13px;color:var(--muted);margin-block:26px}.actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.button{display:inline-block;padding:12px 23px;border-radius:999px;background:var(--accent);color:var(--surface);text-decoration:none;font-size:15px;font-weight:600}.text-link{font-weight:600;text-decoration:none;font-size:16px}.hero-copy{padding-top:96px}.hero figure{margin:0;max-width:440px;justify-self:end}.score-frame{padding:13px;border:1px solid var(--line);border-radius:25px;background:#fff;box-shadow:0 22px 60px #153f2820}.score-frame img{border-radius:12px;width:100%;object-fit:contain}figcaption{font-size:12px;color:var(--muted);line-height:1.6;margin:16px 5px 0;max-width:46em}
+figcaption p{margin:0 0 9px}figcaption p:last-child{margin-bottom:0}
+.section{padding-block:88px;scroll-margin-top:90px}.section-intro{font-size:19px;color:var(--muted);max-width:760px;line-height:1.7}.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:46px}.feature-card{border-top:1px solid var(--line);padding-top:26px}.feature-card p,.plan p{color:var(--muted);font-size:16px;margin-bottom:0}.item-number{display:block;margin-bottom:28px;color:var(--accent);font-size:13px;font-variant-numeric:tabular-nums}.plans-section{background:var(--tint)}.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-block:38px}.plan{padding:32px;border-radius:18px;border:1px solid var(--line);background:var(--bg)}.boundary{max-width:890px;color:var(--muted);font-size:15px;margin-bottom:0}.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}.email{display:inline-block;margin-top:12px}.email-address{font-size:14px;margin-top:6px;color:var(--muted)}.small{font-size:14px;color:var(--muted)}.questions{padding-top:10px}.questions details{border-bottom:1px solid var(--line);padding:20px 0}.questions summary{cursor:pointer;font-weight:600;font-size:17px;padding-right:12px}.questions details p{font-size:15px;color:var(--muted);margin:16px 0 0}
+.privacy-background{background:var(--surface);border-top:1px solid var(--line)}.policy-status{font-size:15px;font-weight:650;color:var(--accent)}.policy-scope{font-size:16px}.privacy-grid{display:grid;grid-template-columns:245px minmax(0,1fr);gap:72px;align-items:start;margin-top:44px}.policy-toc{position:sticky;top:110px;display:grid;gap:15px;font-size:13px;line-height:1.5}.policy-toc a{text-decoration:none}.policy-body{max-width:760px;min-width:0}.policy-section{scroll-margin-top:110px;padding-bottom:26px;margin-bottom:28px;border-bottom:1px solid var(--line)}.policy-section h3,.references h3{font-size:23px}.policy-section p{font-size:16px;line-height:1.85;color:var(--muted);overflow-wrap:anywhere}.policy-section p:last-child{margin-bottom:0}.references ul{padding-left:20px}.references li{padding-bottom:8px;font-size:14px}footer{padding-block:40px 48px;color:var(--muted);font-size:13px}footer nav{display:flex;flex-wrap:wrap;gap:24px;margin-block:20px}footer a{text-decoration:none}.footer-languages{display:flex;flex-wrap:wrap;gap:16px}
+@media(max-width:1000px){.header-inner{gap:14px}.primary-nav{gap:16px}.wide-nav{display:none}.preferences{gap:12px}.hero{gap:44px}.support-grid{gap:44px}.privacy-grid{gap:36px;grid-template-columns:210px minmax(0,1fr)}}
+@media(max-width:700px){.rail{width:calc(100% - 40px)}.header-inner{min-height:92px;flex-wrap:wrap;gap:10px 14px;padding-block:10px}.brand{font-size:18px}.brand img{width:28px;height:28px}.primary-nav{gap:18px;margin-left:auto}.preferences{width:100%;justify-content:space-between}.appearance select{padding:5px 9px;font-size:12px}.languages a{font-size:12px}.hero{grid-template-columns:1fr;padding-block:48px 60px;gap:42px}.hero-copy{padding-top:0}.hero-body{font-size:19px}h1{font-size:43px;max-width:10em}.hero figure{max-width:420px;justify-self:center}.hero .score-frame{padding:9px;border-radius:20px}figcaption{font-size:11px}.section{padding-block:60px}.section-intro{font-size:17px}.feature-grid{grid-template-columns:1fr;gap:28px;margin-top:32px}.item-number{margin-bottom:16px}.feature-card h3{font-size:23px}.plan-grid{grid-template-columns:1fr;gap:16px}.plan{padding:24px}.support-grid{grid-template-columns:1fr;gap:20px}.privacy-grid{grid-template-columns:1fr;gap:34px}.policy-toc{position:static;grid-template-columns:1fr 1fr;gap:15px 18px;border-block:1px solid var(--line);padding-block:22px}.policy-section h3{font-size:22px}.policy-section p{font-size:16px}.draft-banner{font-size:12px}.draft-banner p{padding-block:12px}footer nav{gap:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.media-reserved{width:100%;aspect-ratio:4/3;display:grid;place-items:center;border:1px solid var(--line);border-radius:18px;background:var(--tint);text-align:center;color:var(--muted);font-size:24px;letter-spacing:-.02em}.media-reserved small{display:block;font-size:12px;letter-spacing:0;margin-top:12px}.hero figure{width:100%}.hero .media-reserved{aspect-ratio:4/5}.feature-card figure{margin:28px 0 0}.feature-card figcaption{font-size:11px}.hero-copy{padding-top:32px}</style>
+  <script src="assets/app-icons.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header"><div class="rail header-inner">
+    <a class="brand" href="#top"><img data-app-icon="sightreader" data-icon-light="assets/sightreader/appicon.light.png" data-icon-dark="assets/sightreader/appicon.dark.png" width="36" height="36" class="app-icon" src="assets/sightreader/appicon.light.png" alt="" /><span>SightReader</span></a>
+    <nav class="primary-nav" aria-label="SightReader"><a href="index.html?lang=en-US">WERD</a><a class="wide-nav" href="#features">Reading</a><a href="#support">Support</a><a href="#privacy">Privacy</a></nav>
+    <div class="preferences"><span class="languages" aria-label="Language"><a data-language="en-US" href="sightreader.html?lang=en-US" lang="en-US">English</a><a data-language="zh-Hans" href="sightreader-zh-Hans.html?lang=zh-Hans" lang="zh-Hans">简体中文</a></span><label class="appearance"><span class="sr-only">Appearance</span><select id="sr-theme" aria-label="Appearance"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
+  </div></header>
+  <main id="main">
+    <div class="draft-banner"><p class="rail">Product preview · Preparing for the App Store</p></div>
+    <section class="hero rail" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow">Made for rehearsal on iPad</p><h1 id="hero-title">Your score. Room to play.</h1><p class="hero-body">Read, mark your part, and prepare for the next rehearsal. For musicians across instruments, with orchestral performance at the heart of its professional use.</p><p class="platform">iPadOS 26.0+ · 简体中文 / English</p><div class="actions"><a class="button" href="#features">Explore current features</a><a class="text-link" href="#support">Get support<span aria-hidden="true"> ↗</span></a></div></div><figure class="screenshot-reserved" data-screenshot-slot="sightreader-hero" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>Interface preview to follow</small></span></div><figcaption>Interface images will be added after UI review.</figcaption></figure></section>
+    <section class="section rail" id="features" aria-labelledby="features-title"><p class="eyebrow">Ready for your rehearsal routine</p><h2 id="features-title">Start with your own part.</h2><p class="section-intro">Start with your own part: read original pages, adjust structured notation, and keep the marks you need for the next rehearsal.</p><div class="feature-grid"><article class="feature-card"><span class="item-number" aria-hidden="true">01</span><h3>Read the original clearly.</h3><p>Import PDF or uncompressed MusicXML. PDFs preserve the source page, with zoom, pan and manual turns. MusicXML offers note-size and density controls, with lines and pages fitted to the reading viewport.</p><figure class="screenshot-reserved" data-screenshot-slot="sightreader-reading" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>Interface preview to follow</small></span></div><figcaption>Interface images will be added after UI review.</figcaption></figure></article><article class="feature-card"><span class="item-number" aria-hidden="true">02</span><h3>Keep rehearsal marks on the page.</h3><p>Annotate with PencilKit, keeping source scores and drawings on this iPad. Scanning saves paper scores as image PDFs; recognition into reflowable notation is not provided.</p><figure class="screenshot-reserved" data-screenshot-slot="sightreader-annotations" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>Interface preview to follow</small></span></div><figcaption>Interface images will be added after UI review.</figcaption></figure></article><article class="feature-card"><span class="item-number" aria-hidden="true">03</span><h3>Choose scores with visible sources.</h3><p>Search the bundled OpenScore / Mutopia catalog snapshot locally, review parts, licenses and attribution, then choose a download. The current catalog focuses on violin PDFs; downloaded scores can be read offline.</p><figure class="screenshot-reserved" data-screenshot-slot="sightreader-catalog" data-screenshot-status="reserved"><div class="media-reserved"><span>SightReader<small>Interface preview to follow</small></span></div><figcaption>Interface images will be added after UI review.</figcaption></figure></article></div></section>
+    <section class="plans-section" id="plans" aria-labelledby="plans-title"><div class="rail section"><p class="eyebrow">The 1.0 plan</p><h2 id="plans-title">Core reading. Professional playing.</h2><p class="section-intro">Core reading is free. Pro is planned as a one-time in-app purchase anchored at US$4.99 worldwide; local-currency prices will be shown in the App Store at release.</p><div class="plan-grid"><article class="plan"><h3>Free core edition</h3><p>Import, scanning, reading, annotations, basic score management, reading progress and backup.</p></article><article class="plan"><h3>Pro edition</h3><p>Planned automatic page turning and a two-page spread across two iPads, with no subscription. Restore the purchase on a second iPad with the same Apple ID without paying again.</p></article></div><p class="boundary">Pro is still in preparation and is not available to purchase. Automatic following is limited to supported monophonic MusicXML; PDFs and scans use manual turns. Automatic following and two-iPad features have not completed physical-device acceptance. Final compatibility will be confirmed before release.</p></div></section>
+<section class="section rail" id="support" aria-labelledby="support-title"><div class="support-grid"><div><p class="eyebrow">When you need a hand</p><h2 id="support-title">Contact SightReader support.</h2><p class="section-intro">Use the existing public WERD support address. You choose when to send an email; this page does not automatically upload scores or diagnostics.</p><a class="text-link email" href="mailto:ericdai2013@gmail.com?subject=SightReader support">Email support<span aria-hidden="true"> ↗</span></a><p class="email-address">ericdai2013@gmail.com</p><p class="small">Include the app version, iPad model, iPadOS version, file format and steps to reproduce. Remove names, unpublished scores and unrelated content before sharing a screenshot or example. Do not send passwords or API keys.</p></div><div class="questions"><details><summary>Which files can I import?</summary><p>The current build accepts PDF and .xml / .musicxml files smaller than 50,000,000 bytes. Compressed .mxl is not supported. Encrypted, empty or unparseable files are rejected.</p></details><details><summary>Can I read after denying camera or microphone access?</summary><p>Yes. Local reading and manual page turns remain available. The camera supports user-started gaze following or scanning; the microphone supports user-started performance following. Manage access in iPad settings.</p></details><details><summary>What should I know about backups and deletion?</summary><p>Backup files are unencrypted. Keep your originals and choose a trusted destination. Recently Deleted retains original files; there is currently no permanent-delete control or automatic expiry.</p></details><details><summary>Can I download the app now?</summary><p>SightReader is not yet released. This is a product preview; an App Store download link is not available yet.</p></details></div></div></section>
+    <section class="privacy-background" id="privacy" aria-labelledby="privacy-title"><div class="rail section"><h2 id="privacy-title">Privacy information</h2><p class="section-intro">SightReader’s formal privacy policy will be provided before its App Store release. This product preview is not an effective privacy policy.</p><p>For privacy or support questions, contact <a href="mailto:ericdai2013@gmail.com">ericdai2013@gmail.com</a>.</p></div></section>
+  </main>
+  <footer class="rail"><p>SightReader · Product preview</p><nav aria-label="WERD"><a href="index.html?lang=en-US">WERD products</a><a href="#support">Support</a><a href="#privacy">Privacy</a><a href="#top">Back to top</a></nav><div class="footer-languages"><span>Complete static language versions</span><a data-language="en-US" href="sightreader.html?lang=en-US" lang="en-US">English</a><a data-language="zh-Hans" href="sightreader-zh-Hans.html?lang=zh-Hans" lang="zh-Hans">简体中文</a></div></footer>
+</body>
+</html>

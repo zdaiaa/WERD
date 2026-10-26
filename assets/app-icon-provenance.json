@@ -1,0 +1,69 @@
+{
+  "title": "WERD website AppIcon provenance",
+  "verifiedDate": "2026-10-26",
+  "purpose": "Record the existing light and dark AppIcon PNG sources used on the WERD website.",
+  "copyMethod": "Byte-for-byte copy from existing app project PNGs; no recoloring or re-export.",
+  "websiteFavicon": "favicon.ico (WERD brand, unchanged)",
+  "files": [
+    {
+      "product": "SightReader",
+      "appearance": "light",
+      "source": "Resources/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "sourceMapping": "Universal iOS default appearance; project.yml selects AppIcon.",
+      "websitePath": "assets/sightreader/appicon.light.png",
+      "pixelSize": "1024x1024",
+      "format": "PNG",
+      "sha256": "a377b14b23b7baf9ed70577cc95d0994aafb7a948c814c0c3a690873cc3e63a4"
+    },
+    {
+      "product": "SightReader",
+      "appearance": "dark",
+      "source": "Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-dark.png",
+      "sourceMapping": "Universal iOS dark luminosity appearance; project.yml selects AppIcon.",
+      "websitePath": "assets/sightreader/appicon.dark.png",
+      "pixelSize": "1024x1024",
+      "format": "PNG",
+      "sha256": "0f2e3c4dc75cf4f00b5f839104b1602f7c951254a6ac4bdc8a936be9c7caf325"
+    },
+    {
+      "product": "TravelX",
+      "appearance": "light",
+      "source": "Design/AppIcon/Previews/iOS27/TravelX Exports/TravelX-iOS-Default-1024@1x.png",
+      "sourceMapping": "Existing Icon Composer 27 render from TravelX.icon; app project selects AppIcon TravelX.",
+      "websitePath": "assets/travelx/appicon.light.png",
+      "pixelSize": "1024x1024",
+      "format": "PNG",
+      "sha256": "35f16d85314fd0b075ea38c39d081c42231b03dd60c6816ac54acfd5cf84149a"
+    },
+    {
+      "product": "TravelX",
+      "appearance": "dark",
+      "source": "Design/AppIcon/Previews/iOS27/TravelX Exports/TravelX-iOS-Dark-1024@1x.png",
+      "sourceMapping": "Existing Icon Composer 27 dark render from TravelX.icon.",
+      "websitePath": "assets/travelx/appicon.dark.png",
+      "pixelSize": "1024x1024",
+      "format": "PNG",
+      "sha256": "e5a8b489f35e8cade2815d51a0ccd5b133a085ffe2456097f27dd1896c37c792"
+    },
+    {
+      "product": "WealthX",
+      "appearance": "light",
+      "source": "Design/AppIconComposer/WealthX/WealthXAppIconFixed-Renders/WealthXAppIconFixed-iOS-Default-1024x1024@2x.png",
+      "sourceMapping": "Existing iOS Default render for the active WealthXAppIconFixed asset catalog.",
+      "websitePath": "assets/wealthx/20261015/icon-light.png",
+      "pixelSize": "2048x2048",
+      "format": "PNG",
+      "sha256": "2914e0ea1478d294eb7abf499ec8f4832334f40203244f6deefabd63cbf4517a"
+    },
+    {
+      "product": "WealthX",
+      "appearance": "dark",
+      "source": "Design/AppIconComposer/WealthX/WealthXAppIconFixed-Renders/WealthXAppIconFixed-iOS-Dark-1024x1024@2x.png",
+      "sourceMapping": "Existing iOS Dark render for the active WealthXAppIconFixed asset catalog.",
+      "websitePath": "assets/wealthx/20261015/icon-dark.png",
+      "pixelSize": "2048x2048",
+      "format": "PNG",
+      "sha256": "3213d73b8aac6c96b8f69c09c42baa04dc5f19acd14b3b055e091e1b6e35f24c"
+    }
+  ]
+}

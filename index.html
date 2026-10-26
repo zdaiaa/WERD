@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="WERD home for WealthX, Daxhboard, and related pages." data-i18n-attr="content:home_meta_description" />
+  <meta name="description" content="WERD home for WealthX, SightReader, TravelX, and related pages." data-i18n-attr="content:home_meta_description" />
   <meta property="og:title" content="WERD - Products" data-i18n-attr="content:home_title" />
-  <meta property="og:description" content="WERD home for WealthX, Daxhboard, and related pages." data-i18n-attr="content:home_meta_description" />
+  <meta property="og:description" content="WERD home for WealthX, SightReader, TravelX, and related pages." data-i18n-attr="content:home_meta_description" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://zdaiaa.github.io/WERD/" />
   <meta property="og:image" content="https://zdaiaa.github.io/WERD/og.png" />
@@ -17,7 +17,11 @@
   <script>
     (() => {
       try {
-        const storedTheme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("werd-theme");
+        const params = new URLSearchParams(location.search);
+        const queryTheme = params.get("theme");
+        const storedTheme = ["light", "dark"].includes(queryTheme)
+          ? queryTheme
+          : (queryTheme === "system" ? null : localStorage.getItem("werd-theme"));
         const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
       } catch (error) {
@@ -371,6 +375,8 @@
   </style>
   <link rel="stylesheet" href="assets/werd-premium.css" />
   <link rel="stylesheet" href="assets/wealthx/20261015/hub.css?v=20261015-mobile" />
+  <link rel="stylesheet" href="assets/werd-portfolio-products.css?v=20261026" />
+  <script src="assets/app-icons.js" defer></script>
 </head>
 <body class="portfolio-home">
   <div class="shell">
@@ -423,17 +429,28 @@
             <span class="arrow" aria-hidden="true">→</span>
           </a>
 <a id="wealthx-sharing-link" class="sharing-link" href="wealthx.html#sharing"><span data-i18n="wx_home_sharing_cta" >See Expense Sharing</span><span aria-hidden="true">↗</span></a></article>
-          <a class="entry-link" id="daxhboard-link" href="daxhboard.html">
-            <span class="entry-visual">
-              <img class="entry-icon" src="Daxhboard logo.svg" alt="" />
-            </span>
+          <a class="entry-link product-entry" id="sightreader-link" href="sightreader.html?lang=en-US&amp;theme=system">
+            <span class="entry-visual"><img class="entry-icon" data-app-icon="sightreader" data-icon-light="assets/sightreader/appicon.light.png" data-icon-dark="assets/sightreader/appicon.dark.png" src="assets/sightreader/appicon.light.png" alt="" /></span>
             <div class="entry-copy">
-              <h3>Daxhboard</h3>
-              <p data-i18n="home_daxhboard_desc">A read-only Apple-platform quota and status tool that syncs minimized snapshots through your own iCloud account.</p>
-              <div class="entry-meta" aria-label="Daxhboard tags">
-                <span class="pill" data-i18n="home_daxhboard_tag1">AI quota status</span>
-                <span class="pill" data-i18n="home_daxhboard_tag2">Apple platforms</span>
-                <span class="pill" data-i18n="home_daxhboard_tag3">Privacy-first</span>
+              <h3>SightReader</h3>
+              <p data-i18n="home_sightreader_desc">Read scores, annotate, and prepare your performance on iPad.</p>
+              <div class="entry-meta" aria-label="SightReader tags">
+                <span class="pill" data-i18n="home_sightreader_tag1">Sheet music</span>
+                <span class="pill">iPad</span>
+                <span class="pill" data-i18n="home_preview_tag">Product preview</span>
+              </div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="entry-link product-entry" id="travelx-link" href="travelx.html?lang=en-US&amp;theme=system">
+            <span class="entry-visual"><img class="entry-icon" data-app-icon="travelx" data-icon-light="assets/travelx/appicon.light.png" data-icon-dark="assets/travelx/appicon.dark.png" src="assets/travelx/appicon.light.png" alt="" /></span>
+            <div class="entry-copy">
+              <h3>TravelX</h3>
+              <p data-i18n="home_travelx_desc">Plan places, days and stays together, with a map and daily itinerary.</p>
+              <div class="entry-meta" aria-label="TravelX tags">
+                <span class="pill" data-i18n="home_travelx_tag1">Trip planning</span>
+                <span class="pill">iPhone · iPad</span>
+                <span class="pill" data-i18n="home_preview_tag">Product preview</span>
               </div>
             </div>
             <span class="arrow" aria-hidden="true">→</span>
@@ -447,7 +464,6 @@
       <div class="footer-links">
         <a id="footer-bio-link" href="bio.html" data-i18n="footer_bio">Biography</a>
         <a id="wealthx-privacy-link" href="wealthx.html#privacy" data-i18n="wealthx_privacy">WealthX Privacy</a>
-        <a id="daxhboard-privacy-link" href="daxhboard.html" data-i18n="daxhboard_privacy">Daxhboard Privacy</a>
       </div>
     </footer>
   </div>
@@ -460,25 +476,25 @@
       "en-US": {
         footer_bio: "Biography",
         footer_copyright: "© 2026 WERD. All rights reserved.",
-        home_current_body: "WealthX and Daxhboard have independent product pages, with supporting information kept in one WERD home.",
+        home_current_body: "WealthX, SightReader, and TravelX each have their own product page in one WERD home.",
         home_current_title: "Current products",
         home_entries_title: "Products",
         home_future_note: "This page stays as the product entry layer. New products can be added here as independent product pages.",
-        home_hero_subtitle: "Explore WealthX and Daxhboard. Supporting site pages stay available through the navigation when needed.",
+        home_hero_subtitle: "Explore WealthX, SightReader, and TravelX. Each product has its own page with current information and support.",
         home_hero_title: "One clear entry for WERD products.",
         home_kicker: "WERD home",
-        home_meta_description: "WERD home for WealthX, Daxhboard, and related pages.",
+        home_meta_description: "WERD home for WealthX, SightReader, TravelX, and related pages.",
         home_title: "WERD - Products",
         home_wealthx_desc: "Bring everyday spending, shared expenses, budgets, and long-term plans into one clear view.",
         home_wealthx_tag1: "Personal finance",
         home_wealthx_tag2: "iOS",
         home_wealthx_tag3: "Expense Sharing",
-        home_daxhboard_desc: "A read-only Apple-platform quota and status tool that syncs minimized snapshots through your own iCloud account.",
-        home_daxhboard_tag1: "AI quota status",
-        home_daxhboard_tag2: "Apple platforms",
-        home_daxhboard_tag3: "Privacy-first",
+        home_sightreader_desc: "Read scores, annotate, and prepare your performance on iPad.",
+        home_sightreader_tag1: "Sheet music",
+        home_travelx_desc: "Plan places, days and stays together, with a map and daily itinerary.",
+        home_travelx_tag1: "Trip planning",
+        home_preview_tag: "Product preview",
         wealthx_privacy: "WealthX Privacy",
-        daxhboard_privacy: "Daxhboard Privacy",
         nav_bio: "Biography",
         nav_privacy: "Privacy",
         theme_dark: "Dark",
@@ -487,25 +503,25 @@
       "zh-Hans": {
         footer_bio: "个人简介",
         footer_copyright: "© 2026 WERD。保留所有权利。",
-        home_current_body: "WealthX 与 Daxhboard 各自拥有独立产品页，相关资料集中在同一个 WERD 主页。",
+        home_current_body: "WealthX、SightReader 与 TravelX 各自拥有独立产品页，集中展示在 WERD 主页。",
         home_current_title: "当前产品",
         home_entries_title: "产品",
         home_future_note: "这个页面保持产品入口层定位。未来新产品可以作为独立产品页加入这里。",
-        home_hero_subtitle: "查看 WERD 产品 WealthX 与 Daxhboard。辅助页面会保留在导航中，需要时可以进入。",
+        home_hero_subtitle: "了解 WealthX、SightReader 与 TravelX。每个产品都有独立页面，介绍当前信息与支持方式。",
         home_hero_title: "WERD 产品的清晰入口。",
         home_kicker: "WERD 主页",
-        home_meta_description: "WERD 主页，包含 WealthX、Daxhboard 与相关页面入口。",
+        home_meta_description: "WERD 主页，包含 WealthX、SightReader、TravelX 与相关页面入口。",
         home_title: "WERD - 产品",
         home_wealthx_desc: "一个精密而直觉的个人财务系统，把账户、预算、交易、目标、投资、现金流洞察、小组件与可携带的数据放在一起。",
         home_wealthx_tag1: "个人财务",
         home_wealthx_tag2: "iOS",
         home_wealthx_tag3: "项目分摊",
-        home_daxhboard_desc: "一款只读的 Apple 平台 AI 额度与状态工具，通过用户自己的 iCloud Account 同步最小化快照。",
-        home_daxhboard_tag1: "AI 额度状态",
-        home_daxhboard_tag2: "Apple 平台",
-        home_daxhboard_tag3: "隐私优先",
+        home_sightreader_desc: "在 iPad 上阅读乐谱、记录批注，为演奏做好准备。",
+        home_sightreader_tag1: "乐谱阅读",
+        home_travelx_desc: "把地点、每日行程与住宿放在一起，用地图和日历规划旅行。",
+        home_travelx_tag1: "旅行规划",
+        home_preview_tag: "产品预览",
         wealthx_privacy: "WealthX 隐私",
-        daxhboard_privacy: "Daxhboard 隐私",
         nav_bio: "个人简介",
         nav_privacy: "隐私",
         theme_dark: "深色",
@@ -540,7 +556,11 @@
         external = fallbackMessages;
       }
       const sourceGroup = locale === "zh-Hans" || locale === "zh-Hant" ? "zh-Hans" : DEFAULT_LOCALE;
-      return { ...PAGE_FALLBACKS[sourceGroup], ...external };
+      const result = { ...PAGE_FALLBACKS[sourceGroup], ...external };
+      for (const key of ["home_current_body", "home_hero_subtitle", "home_meta_description", "home_future_note"]) {
+        result[key] = PAGE_FALLBACKS[sourceGroup][key];
+      }
+      return result;
     }
 
     function preferredLocale() {
@@ -568,11 +588,14 @@
       document.title = t("home_title");
       const suffix = `?lang=${encodeURIComponent(activeLocale)}`;
       document.getElementById("wealthx-link").href = `wealthx.html${suffix}`;
-      document.getElementById("daxhboard-link").href = `daxhboard.html${suffix}`;
+      const productLocale = activeLocale.startsWith("zh-") ? "zh-Hans" : "en-US";
+      const productTheme = explicitThemePreference || "system";
+      const productRoute = productLocale === "zh-Hans" ? "-zh-Hans.html" : ".html";
+      document.getElementById("sightreader-link").href = `sightreader${productRoute}?lang=${productLocale}&theme=${productTheme}`;
+      document.getElementById("travelx-link").href = `travelx${productRoute}?lang=${productLocale}&theme=${productTheme}`;
       document.getElementById("header-bio-link").href = `bio.html${suffix}`;
       document.getElementById("footer-bio-link").href = `bio.html${suffix}`;
       document.getElementById("wealthx-privacy-link").href = `wealthx.html${suffix}#privacy`;
-      document.getElementById("daxhboard-privacy-link").href = `daxhboard.html${suffix}`;
     }
 
     function updateUrl(locale) {
@@ -600,22 +623,44 @@
       });
     }
 
+    let explicitThemePreference = null;
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
     function preferredTheme() {
       try {
-        const storedTheme = new URLSearchParams(location.search).get("theme") || localStorage.getItem("werd-theme");
-        if (storedTheme === "dark" || storedTheme === "light") return storedTheme;
+        const queryTheme = new URLSearchParams(location.search).get("theme");
+        if (queryTheme === "system") {
+          explicitThemePreference = null;
+          return systemTheme.matches ? "dark" : "light";
+        }
+        if (queryTheme === "dark" || queryTheme === "light") {
+          explicitThemePreference = queryTheme;
+          return queryTheme;
+        }
+        const storedTheme = localStorage.getItem("werd-theme");
+        if (storedTheme === "dark" || storedTheme === "light") {
+          explicitThemePreference = storedTheme;
+          return storedTheme;
+        }
       } catch (error) {
         // Follow the system when a saved preference is unavailable.
       }
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      explicitThemePreference = null;
+      return systemTheme.matches ? "dark" : "light";
     }
 
-    function applyTheme(theme) {
+    function applyTheme(theme, persist = false) {
       document.documentElement.dataset.theme = theme;
-      try {
-        localStorage.setItem("werd-theme", theme);
-      } catch (error) {
-        // Theme still applies for this page even if storage is unavailable.
+      if (persist) {
+        explicitThemePreference = theme;
+        try {
+          localStorage.setItem("werd-theme", theme);
+        } catch (error) {
+          // Theme still applies for this page even if storage is unavailable.
+        }
+        const url = new URL(window.location.href);
+        url.searchParams.set("theme", theme);
+        window.history.replaceState({}, "", url);
       }
       const themeToggle = document.getElementById("theme-toggle");
       const themeLabel = theme === "dark" ? t("theme_dark") : t("theme_light");
@@ -623,9 +668,6 @@
       themeToggle.setAttribute("aria-label", themeLabel);
       themeToggle.title = themeLabel;
       themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
-      const url = new URL(window.location.href);
-      url.searchParams.set("theme", theme);
-      window.history.replaceState({}, "", url);
     }
 
     async function init() {
@@ -633,11 +675,16 @@
       fallbackMessages = await fetchJson(`i18n/${DEFAULT_LOCALE}.json`);
       activeLocale = preferredLocale();
       messages = await loadMessages(activeLocale);
+      const initialTheme = preferredTheme();
       buildLanguageSelect();
       applyI18n();
-      applyTheme(preferredTheme());
+      applyTheme(initialTheme);
       document.getElementById("theme-toggle").addEventListener("click", () => {
-        applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+        applyTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true);
+        applyI18n();
+      });
+      systemTheme.addEventListener("change", () => {
+        if (!explicitThemePreference) applyTheme(systemTheme.matches ? "dark" : "light");
       });
     }
 

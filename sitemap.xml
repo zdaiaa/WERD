@@ -3,8 +3,10 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zdaiaa.github.io/WERD/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
+  <url><loc>https://zdaiaa.github.io/WERD/sightreader.html</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://zdaiaa.github.io/WERD/sightreader-zh-Hans.html</loc><lastmod>2026-10-26</lastmod></url>
   <url><loc>https://zdaiaa.github.io/WERD/wealthx.html?lang=cs</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://zdaiaa.github.io/WERD/wealthx.html?lang=da</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://zdaiaa.github.io/WERD/wealthx.html?lang=de-DE</loc><lastmod>2026-08-26</lastmod></url>
@@ -33,6 +35,5 @@
   <url><loc>https://zdaiaa.github.io/WERD/wealthx.html?lang=vi</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://zdaiaa.github.io/WERD/wealthx.html?lang=zh-Hans</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://zdaiaa.github.io/WERD/wealthx.html?lang=zh-Hant</loc><lastmod>2026-08-26</lastmod></url>
-  <url><loc>https://zdaiaa.github.io/WERD/daxhboard.html</loc><lastmod>2026-07-19</lastmod></url>
   <url><loc>https://zdaiaa.github.io/WERD/bio.html</loc><lastmod>2026-07-19</lastmod></url>
 </urlset>

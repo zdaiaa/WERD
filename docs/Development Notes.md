@@ -1,18 +1,18 @@
 # WERD Development Notes
 
-更新时间：2026-07-13
+更新时间：2026-10-26
 
 ## 当前技术栈初步判断
 
 基于只读观察，WERD 当前是静态网站项目：
 
-- 根目录包含 `index.html`、`wealthx.html`、`daxhboard.html`、`bio.html`。
-- 页面使用 HTML + inline CSS + vanilla JavaScript。
+- 根目录包含 `index.html`、`wealthx.html`、`sightreader*.html`、`travelx*.html`、`daxhboard.html`（归档说明）和 `bio.html`。
+- 页面使用 HTML + inline CSS + vanilla JavaScript；TravelX 另用 `assets/travelx.css`、`assets/travelx.js` 和 `i18n/travelx/*.json`。
 - 未发现 `package.json`、Vite、Next.js、Astro、Vercel、Netlify 或 Cloudflare Pages 配置。
 - `wealthx.html` 使用 `fetch("i18n/locales.json")` 和 `fetch("i18n/<locale>.json")` 加载多语言 JSON。
 - `bio.html` 和 `index.html` 主要使用页面内文案对象进行中英文切换。
-- `.github/workflows/i18n_autotranslate.yml` 会在 i18n 源文件或脚本变化时运行自动翻译并提交 locale 文件。
-- `workflows/eod.yml` 看起来与 Pages artifact 和 EOD 数据生成有关，是否仍属于 WERD 当前职责待确认。
+- `.github/workflows/i18n_autotranslate.yml` 仅监听列出的根级 `i18n/*.json` 源文件、脚本和自身；`i18n/travelx/` 产品文案不在当前触发清单中，本轮不改 workflow。
+- `workflows/eod.yml` 看起来与 EOD 数据/Pages artifact 有关，业务归属待确认；本轮保持不变。
 
 ## 当前目录结构观察
 
@@ -21,13 +21,19 @@
 ├── README.md
 ├── index.html
 ├── wealthx.html
-├── daxhboard.html
+├── sightreader*.html
+├── travelx*.html
+├── daxhboard.html   # 归档说明
 ├── bio.html
 ├── WealthX logo.png
 ├── Daxhboard logo.svg
 ├── favicon.ico
 ├── assets/
-│   └── tips/
+│   ├── wealthx/20261015/
+│   ├── sightreader/
+│   ├── travelx/
+│   ├── tips/
+│   └── app-icon-provenance.json
 ├── i18n/
 ├── scripts/
 ├── docs/
@@ -37,59 +43,56 @@
 
 ## 运行方式
 
-待确认。
-
-初步判断：
-
-- 由于 `wealthx.html` 会 fetch 本地 JSON，直接用 `file://` 打开可能受浏览器限制。
-- 本地预览更适合使用静态 HTTP server，例如：
+使用静态 HTTP server 预览；`wealthx.html` 和 TravelX 页面使用 `fetch` 加载 JSON，因此不应使用 `file://` 直接打开。
 
 ```sh
+cd ..
 python3 -m http.server 8000
 ```
 
 然后访问：
 
 ```text
-http://127.0.0.1:8000/
-http://127.0.0.1:8000/wealthx.html
-http://127.0.0.1:8000/daxhboard.html
-http://127.0.0.1:8000/bio.html
+http://127.0.0.1:8000/WERD/
+http://127.0.0.1:8000/WERD/wealthx.html
+http://127.0.0.1:8000/WERD/sightreader.html
+http://127.0.0.1:8000/WERD/sightreader-zh-Hans.html
+http://127.0.0.1:8000/WERD/travelx.html
+http://127.0.0.1:8000/WERD/travelx-zh-Hans.html
+http://127.0.0.1:8000/WERD/daxhboard.html
+http://127.0.0.1:8000/WERD/bio.html
 ```
 
-以上只是基于当前静态文件结构的推断，不代表正式运行流程。
+从仓库的上级目录运行服务器，才能用 `/WERD/` 前缀检查与 GitHub Pages 一致的相对路径。
 
 ## 构建方式
 
-待确认。
-
-当前没有发现前端构建配置。初步判断 WERD 可能不需要本地 build，直接发布静态文件。
+当前未发现前端构建配置或 `package.json`。WERD 页面直接以静态 HTML、CSS、JavaScript、JSON 和图片发布；本轮以本地 HTTP 预览、链接/资源扫描和浏览器主题/语言检查代替打包构建。
 
 ## 部署方式
 
-待确认。
+当前发布源已确认是 GitHub Pages 的 `main` 分支根目录，公开前缀为 `/WERD/`。发布流程不修改 Pages 设置、Actions 或部署配置。
 
 当前证据：
 
 - HTML 中的 canonical / Open Graph URL 指向 `https://zdaiaa.github.io/WERD/wealthx.html` 和 `https://zdaiaa.github.io/WERD/bio.html`。
 - `.nojekyll` 存在，常见于 GitHub Pages 静态发布。
 - `.github/workflows/i18n_autotranslate.yml` 会自动提交 i18n 翻译。
-- `workflows/eod.yml` 使用 GitHub Pages artifact，但该 workflow 位于 `workflows/` 而不是 `.github/workflows/`，是否实际生效待确认。
+- `workflows/eod.yml` 位于 `workflows/` 而不是 `.github/workflows/`；其历史用途待确认，本轮未修改。
 
-不能确认：
+尚未核实：
 
-- GitHub Pages source 是 repo root、`docs/`、GitHub Actions artifact，还是其他设置。
 - 是否还有 Vercel / Netlify / Cloudflare Pages 外部配置。
-- `workflows/eod.yml` 是否是历史遗留。
+- `workflows/eod.yml` 是否为历史遗留；本轮保持该文件不变。
 
 ## 代码风险
 
-- `README.md` 已更新为 WERD Portfolio Web Hub 入口，并需随新增产品页持续校正页面清单。
+- `README.md` 与 `ProjectContext.md` 应保持当前三产品入口、双语预览页与 Daxhboard 归档状态一致。
 - `docs/` 目录为小写；用户目标路径写作 `Docs/`。当前不做大小写重命名，避免移动现有文件。
 - `wealthx.html` 是大型单文件页面，结构、样式、脚本和内容耦合较高。
 - `bio.html` 与 `index.html` 使用页面内翻译对象，而 `wealthx.html` 使用外部 i18n JSON，国际化机制不完全一致。
 - `.github/workflows/i18n_autotranslate.yml` 有写入权限并会 push 翻译提交；修改 i18n 源文件前要明确影响范围。
-- `scripts/__pycache__` 存在，是否需要清理待确认。本轮不删除。
+- `scripts/__pycache__` 存在；本轮不清理。
 - `workflows/eod.yml` 的业务归属不清，可能是历史数据工作流或其他项目遗留。不要在未确认前删除或修改。
 
 ## 文档缺口
@@ -104,13 +107,19 @@ http://127.0.0.1:8000/bio.html
 
 仍缺：
 
-- 部署审计记录：需要确认 GitHub Pages source 和实际发布流程。
-- Landing page 新增流程模板：新增 TravelX / Metro Planner 页面前需要创建。
+- 部署审计记录：GitHub Pages 已确认使用 `main` 根目录；发布记录需在每次上线后补充。
+- Landing page 新增流程模板：Metro Planner 新页面提出前需要创建。
 - i18n 维护规则：需要明确哪些页面使用外部 JSON，哪些页面仍是内嵌对象。
 
-## 下一步建议
+## 当前维护边界
 
-1. 只读审计 GitHub Pages 当前 source 与实际部署入口。
-2. 决定 `workflows/eod.yml` 是否仍属于 WERD。
-3. 为 TravelX / Metro Planner landing page 建立创建前检查清单。
-4. 建立轻量脚本或检查流程，验证 route、asset、i18n key 和 Content Map 一致性。
+- SightReader 与 TravelX 的四个截图位均保持预留；需 UI 验收后才使用真实产品截图。
+- SightReader 的正式隐私政策待提供；当前预览页不会把占位内容当作生效政策。
+- TravelX 页面保留 `noindex,nofollow`；网站托管说明链接 GitHub 官方隐私声明，不声称日志处理或留存期限。
+- WealthX 2026-10-15 页面、截图和 `assets/wealthx/20261015/hub.js` 映射继续作为当前基线。
+
+## 后续维护建议
+
+1. 决定 `workflows/eod.yml` 是否仍属于 WERD。
+2. 为 Metro Planner landing page 建立创建前检查清单。
+3. 建立轻量检查流程，验证 route、asset、i18n key 和 Content Map 一致性。
