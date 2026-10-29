@@ -1,4 +1,4 @@
-/* Three current product entries share a card grid; the WealthX detail CTA stays nested. */
+/* Three product entries share one icon-to-copy rhythm and card grid; the optional detail link stays nested. */
 .portfolio-home .entry-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: stretch;
@@ -25,6 +25,7 @@
   height: 72px;
   flex: 0 0 72px;
   border-radius: 18px;
+  margin-bottom: var(--werd-space-2);
 }
 
 .portfolio-home .entry-icon {
@@ -42,7 +43,7 @@
   align-items: flex-start;
   min-width: 0;
   padding-bottom: 48px;
-  gap: 20px;
+  gap: 0;
 }
 
 .portfolio-home .entry-copy {
