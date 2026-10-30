@@ -99,9 +99,9 @@
     }
   ],
   "attributions": {
-    "scene01-reader": "J. S. Bach, Sonata No. 1 BWV 1001, III. Siciliano; transcription by Hajo Dezelski; Mutopia Project 1448; CC BY-SA 3.0. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1448",
-    "scene02-library": "Displayed score thumbnails: Hajo Dezelski (Mutopia 1448, CC BY-SA 3.0), Felix Hammer (Mutopia 652, CC BY-SA 2.5), Samuel Rummel (Mutopia 2000, CC BY-SA 4.0). The page presents source links and license text below the screenshot.",
-    "scene04-annotations": "J. S. Bach, Sonata No. 1 BWV 1001, III. Siciliano; transcription by Hajo Dezelski; Mutopia Project 1448; CC BY-SA 3.0. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1448",
+    "scene01-reader": "J. S. Bach, BWV 1001 Siciliano; source edition: Bach-Gesellschaft 1879, vol. 27.1. Mutopia Project 1448, maintainer Hajo Dezelski; CC BY-SA 3.0.",
+    "scene02-library": "Scores shown: Bach, BWV 1001 Siciliano (Mutopia 1448, maintainer Hajo Dezelski, CC BY-SA 3.0); Handel, Sonata for Violin and Piano HWV 361 (Mutopia 652, maintainer Felix Hammer, CC BY-SA 2.5); Paganini, 24 Caprices for Solo Violin No. 24 (Mutopia 2000, maintainer Samuel Rummel, CC BY-SA 4.0).",
+    "scene04-annotations": "J. S. Bach, BWV 1001 Siciliano; source edition: Bach-Gesellschaft 1879, vol. 27.1. Mutopia Project 1448, maintainer Hajo Dezelski; CC BY-SA 3.0.",
     "scene05-catalog": "Catalog rows shown are from the bundled Mutopia score catalog."
   }
 }
