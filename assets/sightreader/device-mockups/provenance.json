@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-30",
+  "purpose": "Provenance for bilingual SightReader website mockups using original App captures and the verified Apple iPad Pro 13-inch (M5) Space Black portrait bezel.",
+  "sourceEvidence": "SightReader/artifacts/release-20261030/event-labels-review/raw/",
+  "device": {
+    "name": "Apple iPad Pro 13-inch (M5)",
+    "finish": "Space Black",
+    "orientation": "portrait",
+    "launchCanvasConfig": "LaunchCanvas LocalDeviceLibrary/ipad-pro-13-m5-space-black-portrait.json",
+    "configSHA256": "95d10a3e29a797039cae3dac7bc23c616672716663fc59d7ca15c5e56f646dae",
+    "frameSource": "LaunchCanvas LocalDeviceLibrary/Sources/Bezel-iPad-Pro-M5/PNG/iPad Pro (M5) 13-inch - Space Black - Portrait.png",
+    "frameSHA256": "0f995b4f4f48ea4f50f4da416eb18979ca4b0987a653158730a3b272901c2cc6",
+    "frameDimensions": [
+      2300,
+      3000
+    ],
+    "screenRect": {
+      "x": 118,
+      "y": 124,
+      "width": 2064,
+      "height": 2752
+    },
+    "officialDesignResources": "https://developer.apple.com/design/resources/#product-bezels",
+    "license": "Apple Design Resources License",
+    "licenseURL": "https://developer.apple.com/support/downloads/terms/apple-design-resources/Apple-Design-Resources-License-20230621-English.pdf"
+  },
+  "composition": {
+    "format": "WebP lossless",
+    "outputDimensions": [
+      2300,
+      3000
+    ],
+    "sourceScreenshotPixels": "2064×2752, mapped 1:1 into the configured screen aperture with no scaling, crop, or UI redraw.",
+    "framePixels": "The official transparent bezel foreground is kept pixel-identical; the screenshot is composited behind its screen opening.",
+    "visualReview": "All eight composites visually approved by primary reviewer; one correct M5 device frame per full-resolution screenshot, no poster artwork, nested frames, UI distortion, or screenshot crop.",
+    "imageQA": "Automated pixel comparison reported zero mismatches across the eight screen regions and eight device-frame regions; the lossless WebP round-trip preserved composite pixels.",
+    "publicAssetPolicy": "Only flattened UI mockups are published. The standalone Apple bezel PNG/PSD and source files are not distributed. Each product page includes a visible license notice; recipients are directed to the Apple license."
+  },
+  "outputs": [
+    {
+      "locale": "en-US",
+      "scene": "scene01-reader",
+      "sourceAsset": "assets/sightreader/screenshots/en-US-scene01-reader.jpg",
+      "sourceSHA256": "ccc2f8a477aec9c326754f9505ef15816759a7a804a698a4a850bfa771339543",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/en-US-scene01-reader-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 466300,
+      "sha256": "4259c266c70061e6affa8c36ced9e8b71b8bcf1c764605788d90f0bbc0f4151c",
+      "gitBlobSha": "fd750d80ef6ad03e06db1394c13d3881ef559da5"
+    },
+    {
+      "locale": "en-US",
+      "scene": "scene02-library",
+      "sourceAsset": "assets/sightreader/screenshots/en-US-scene02-library.jpg",
+      "sourceSHA256": "cea2fb8e01bf54d1557fdba28d3e40c0c2310d6ae1d231a6bfe19d3730f8ddb6",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/en-US-scene02-library-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 487626,
+      "sha256": "5c43b65aa9790b7d6c0ca25ec51ac571bc4f838109be7d3a0a3c511e02eb44ac",
+      "gitBlobSha": "2f2b32e5f396d6b1a9e1133fcf579ed06d3eff07"
+    },
+    {
+      "locale": "en-US",
+      "scene": "scene04-annotations",
+      "sourceAsset": "assets/sightreader/screenshots/en-US-scene04-annotations.jpg",
+      "sourceSHA256": "f07ba6cb62c1fe9086d6c9bd8301eaf8fca3978d446e6b34988fa9179112ad93",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/en-US-scene04-annotations-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 495426,
+      "sha256": "511bd55f9987e720ee3a2ec2e4436088ecc922d72750f15756b12121e42cef80",
+      "gitBlobSha": "3f398f596c46a4bb162a6ca6977b5f11702870d0"
+    },
+    {
+      "locale": "en-US",
+      "scene": "scene05-catalog",
+      "sourceAsset": "assets/sightreader/screenshots/en-US-scene05-catalog.jpg",
+      "sourceSHA256": "399aed8c4d03a59f6a83eaa966312ee712d3afa252cdc79faac28249dbf41993",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/en-US-scene05-catalog-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 381750,
+      "sha256": "75ef9f5a8b52b1b03634fa48f8302d12ae4765dd314ca2197114f38791d94f8e",
+      "gitBlobSha": "ed456d5c175bb9485bd9c1aca3925659340a12e2"
+    },
+    {
+      "locale": "zh-Hans",
+      "scene": "scene01-reader",
+      "sourceAsset": "assets/sightreader/screenshots/zh-Hans-scene01-reader.jpg",
+      "sourceSHA256": "ccc2f8a477aec9c326754f9505ef15816759a7a804a698a4a850bfa771339543",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/zh-Hans-scene01-reader-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 466300,
+      "sha256": "4259c266c70061e6affa8c36ced9e8b71b8bcf1c764605788d90f0bbc0f4151c",
+      "gitBlobSha": "fd750d80ef6ad03e06db1394c13d3881ef559da5"
+    },
+    {
+      "locale": "zh-Hans",
+      "scene": "scene02-library",
+      "sourceAsset": "assets/sightreader/screenshots/zh-Hans-scene02-library.jpg",
+      "sourceSHA256": "26e4ce1c03f51db641e4be78764dfa7964c8b041d9a1989cc9daf732b82cec5d",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/zh-Hans-scene02-library-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 476186,
+      "sha256": "fabfe3e2554b2973fc14f9297943cca41e8d155c24193b2963c3fdd6181838c5",
+      "gitBlobSha": "e24d6fd661aca99af3b26b98b173f4fc6a7064c4"
+    },
+    {
+      "locale": "zh-Hans",
+      "scene": "scene04-annotations",
+      "sourceAsset": "assets/sightreader/screenshots/zh-Hans-scene04-annotations.jpg",
+      "sourceSHA256": "5ae9678813767f57aee3066c6753fa0733c25c96a50a75c99c60e02b6242c811",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/zh-Hans-scene04-annotations-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 490632,
+      "sha256": "61683e1d65e484c62340c65ad42a49f17749d015f6db9757498e6e6f58c5fa8b",
+      "gitBlobSha": "6fc22e225e6d5fa28f35d3f9db6f91f68ba476d6"
+    },
+    {
+      "locale": "zh-Hans",
+      "scene": "scene05-catalog",
+      "sourceAsset": "assets/sightreader/screenshots/zh-Hans-scene05-catalog.jpg",
+      "sourceSHA256": "36128a47d3246090dfa90746a20462519ead5db023b7154036c56456fd3aacb0",
+      "sourceDimensions": [
+        2064,
+        2752
+      ],
+      "asset": "assets/sightreader/device-mockups/zh-Hans-scene05-catalog-ipad-pro-13-m5.webp",
+      "format": "WebP lossless",
+      "dimensions": [
+        2300,
+        3000
+      ],
+      "bytes": 383524,
+      "sha256": "f352543b87f554b9ee6cffc0a14457a49980355c06fa54afa1e565a1539d26f4",
+      "gitBlobSha": "f6be0bf5f3edbbad19ed07517114ace94af5ff07"
+    }
+  ]
+}

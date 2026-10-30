@@ -11,7 +11,7 @@
 ## 当前页面发布结构 — 2026-10-26
 
 - `/WERD/` 的产品卡片同级展示 WealthX、SightReader、TravelX；现有 WealthX hero、2026-10-15 截图与 `hub.js` 语言/图标映射保持不变。
-- `/WERD/sightreader.html` 与 `/WERD/sightreader-zh-Hans.html`：SightReader 英文与简体中文产品预览，完整隐私政策于 2026-10-30 首次正式公开发布并生效，固定入口为各页 `#privacy`。每页四个图片位使用 2026-10-30 发行材料中的原始 App 截屏，图片逐字节复用；每张仅由 HTML/CSS 添加一层 iPad 外框。没有从海报裁图、重绘界面或把设备框嵌入截图，乐谱署名与许可显示在图外；来源路径、SHA-256 与尺寸见 `assets/sightreader/screenshots/provenance.json`。
+- `/WERD/sightreader.html` 与 `/WERD/sightreader-zh-Hans.html`：SightReader 英文与简体中文产品预览，完整隐私政策于 2026-10-30 首次正式公开发布并生效，固定入口为各页 `#privacy`。每页四个图片位使用 2026-10-30 发行材料中的原始 App 截屏，并输出为扁平 lossless WebP mockup：LaunchCanvas 已核验的 Apple iPad Pro 13 英寸（M5）Space Black 竖屏边框开口为 x=118,y=124,width=2064,height=2752，与源截图尺寸逐像素匹配；页面不使用 CSS 假边框、海报、裁切或重绘。原始 JPG 保持不变，曲谱署名和设备许可说明显示在图外；原图路径、SHA-256 与尺寸见 `assets/sightreader/screenshots/provenance.json`，设备配置、边框/许可来源与八个输出 SHA-256 见 `assets/sightreader/device-mockups/provenance.json`。
 - `/WERD/travelx.html` 与 `/WERD/travelx-zh-Hans.html`：TravelX 英文与简体中文产品预览，使用 `assets/travelx.css`、`assets/travelx.js` 和 `i18n/travelx/`。网站托管说明仅指向 GitHub 官方隐私声明，不声明未核实的请求日志或留存事实。
 - `/WERD/daxhboard.html`：保留旧链接的归档说明页，设为 `noindex`；旧版产品介绍与隐私文本保存在 Git 历史中，不再出现在主页、sitemap 或当前营销页。
 - 三个 App 的 light/dark 图标来自各自当前项目 AppIcon PNG。产品图标随页面主题切换，网站标签页继续使用 WERD `favicon.ico`。
@@ -134,7 +134,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 - WealthX 截图属于 WealthX marketing asset。
 - favicon 和站点基础图标属于 WERD shared web platform。
-- TravelX 的四个截图位仍为预留状态，待其独立 UI 验收后补图。SightReader 页面当前使用中英各四张原始 App 截屏，设备框由网页 CSS 渲染；来源与哈希见 `assets/sightreader/screenshots/provenance.json`。
+- TravelX 的四个截图位仍为预留状态，待其独立 UI 验收后补图。SightReader 页面使用中英各四张原始 App 截屏生成的扁平 WebP mockup，采用官方 iPad Pro 13 英寸（M5）设备框；原图和输出来源、许可与 SHA-256 分别见 `assets/sightreader/screenshots/provenance.json`、`assets/sightreader/device-mockups/provenance.json`。
 - Metro Planner 资产待确认后再纳入。
 
 ## SEO / Metadata

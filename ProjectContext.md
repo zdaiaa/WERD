@@ -16,10 +16,10 @@
 
 - GitHub Pages 主入口仍为 `https://zdaiaa.github.io/WERD/`；SightReader 与 TravelX 分别有英文和简体中文静态页面。
 - 主页同级展示 WealthX、SightReader、TravelX。保留 WealthX 2026-10-15 页面、截图、语言映射和图标脚本，不用旧 Sites 版本覆盖。
-- 两款新产品页保留四个截图位置，待 UI 验收通过后补入真实界面图片；不使用示意图冒充产品截图。
+- SightReader 中英页使用四个已核验的原始 App 截图，并以官方 iPad Pro 13 英寸（M5）边框制成扁平 mockup；TravelX 四个截图位仍待 UI 验收后补充，不用示意图冒充产品截图。
 - 使用三款 App 当前真实 light/dark AppIcon PNG；浏览器 favicon 仍为 WERD 品牌图标。主题默认跟随系统，手动选择与语言切换均保留外观。
 - Daxhboard 已从当前入口和营销/隐私展示中撤下。`daxhboard.html` 保留归档说明，旧版内容仍在 Git 历史中。
-- SightReader 正式隐私政策仍待发布，页面明确说明预览不是已生效政策并保留支持邮箱。TravelX 网站托管信息指向 GitHub 官方隐私声明，不推断请求日志或留存期限。
+- SightReader 中英页面已发布完整 11 节隐私政策（生效日期 2026-10-30）及支持信息。TravelX 网站托管信息指向 GitHub 官方隐私声明，不推断请求日志或留存期限。
 
 ## 项目定位
 
@@ -39,7 +39,7 @@ git@github.com:zdaiaa/WERD.git
 - `WERD`：对外展示层，承载跨项目主页、App landing page 和个人介绍页。
 - `WealthX`：当前已有独立 landing page，由 WERD 发布和维护页面表现，产品事实应回到 WealthX 项目源文件确认。
 - `Daxhboard`：产品介绍/隐私展示已归档；旧页面内容可从 Git 历史恢复，WERD 当前入口不展示此产品。
-- `SightReader`：已有中英双语产品预览页；正式隐私政策待发布，界面截图待 UI 验收。
+- `SightReader`：已有中英双语产品页及完整隐私政策；四个场景均以原始截图搭配官方 iPad Pro 13 英寸（M5）设备 mockup 展示。
 - `TravelX`：已有中英双语产品预览页；产品事实仍以项目当前资料为准，界面截图待 UI 验收。
 - `Metro Planner`：未来可新增 landing page，当前页面状态待确认。
 
@@ -49,13 +49,13 @@ WERD 应被 `Control Center/Portfolio` 引用，但 WERD 自身作为独立 repo
 
 - `index.html`：WERD 产品入口页，同级承载 WealthX、SightReader 与 TravelX，并保留个人介绍入口。
 - `wealthx.html`：WealthX landing page，包含产品介绍、功能区、FAQ、隐私政策、App Store 链接和多语言加载逻辑。
-- `sightreader.html`、`sightreader-zh-Hans.html`：SightReader 英文与简体中文预览页，截图位均为预留状态。
+- `sightreader.html`、`sightreader-zh-Hans.html`：SightReader 英文与简体中文页面，含完整隐私政策、支持信息及四张 M5 iPad mockup。
 - `travelx.html`、`travelx-zh-Hans.html`：TravelX 英文与简体中文预览页，截图位均为预留状态。
 - `daxhboard.html`：保留旧链接的归档说明页；旧版介绍与政策可从 Git 历史恢复。
 - `bio.html`：Eric Dai 个人介绍页，承载 personal branding。
 - `docs/website-style.md`：现有网站视觉和内容规则。
 - `i18n/*.json`：WealthX 页面多语言文案源；`i18n/travelx/` 为 TravelX 中英页面文案。
-- `assets/wealthx/20261015/`：WealthX 当前页面和截图资产；`assets/sightreader/`、`assets/travelx/` 保存已核验的 AppIcon 文件；`assets/app-icon-provenance.json` 记录六个图标的来源与 SHA-256。
+- `assets/wealthx/20261015/`：WealthX 当前页面和截图资产；`assets/sightreader/` 保存原始截图与官方 M5 设备 mockup；`assets/travelx/` 保存已核验 AppIcon；`assets/app-icon-provenance.json` 记录六个图标来源与 SHA-256。
 
 ## Shared Web Platform
 
@@ -146,5 +146,5 @@ Codex 默认不应修改：
 ## Current SightReader website update — 2026-10-30
 
 - The English and Simplified Chinese SightReader pages now publish the full 11-section privacy policy at their existing `#privacy` anchors. Effective date: 2026-10-30.
-- Each SightReader page uses four original, unedited app captures from the 2026-10-30 release evidence under `assets/sightreader/screenshots/`; the HTML/CSS supplies one iPad frame per capture. The image bytes are reused unchanged, without crop, retouching, or a frame baked into the file. Attribution is rendered as page text below the images. Per-file source paths, SHA-256 values, and dimensions are recorded in `assets/sightreader/screenshots/provenance.json`.
+- Each SightReader page uses four original, unedited app captures from the 2026-10-30 release evidence under `assets/sightreader/screenshots/`, flattened into lossless WebP mockups in `assets/sightreader/device-mockups/`. Each uses the licensed Apple iPad Pro 13-inch (M5) Space Black portrait frame with the native 2064×2752 screen placed pixel-for-pixel at x=118,y=124; no CSS bezel, poster, crop, retouching or UI redrawing is used. The original JPGs remain unchanged. Source hashes and dimensions are in `screenshots/provenance.json`; device identity, license and output hashes are in `device-mockups/provenance.json`. The visible page credit links the Apple resource license.
 - TravelX image slots remain reserved pending its separate UI review. WealthX pages and assets are unchanged.

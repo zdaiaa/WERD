@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "updated": "2026-10-30",
   "purpose": "Provenance for the unedited SightReader App captures used by the bilingual WERD product pages.",
-  "imagePolicy": "Each published JPEG is a byte-for-byte copy of its local release-evidence source. No crop, retouch, redraw, scaling export, or baked-in device frame. The page adds one responsive CSS iPad frame.",
+  "imagePolicy": "Each published source JPEG remains a byte-for-byte copy of its release-evidence original. The website displays the matching locale's source image in a separate flattened lossless WebP mockup using the Apple iPad Pro 13-inch (M5) bezel; the screenshot is mapped 1:1 into the configured screen opening and the original JPG is not cropped or edited. Device and output provenance is in ../device-mockups/provenance.json. The standalone Apple frame file is not published.",
   "sourceCaptureSet": "SightReader/artifacts/release-20261030/event-labels-review/raw/",
   "pages": {
     "en-US": "sightreader.html",
@@ -18,7 +18,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "en-US",
@@ -29,7 +29,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "en-US",
@@ -40,7 +40,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "en-US",
@@ -51,7 +51,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "zh-Hans",
@@ -62,7 +62,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "zh-Hans",
@@ -73,7 +73,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "zh-Hans",
@@ -84,7 +84,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     },
     {
       "locale": "zh-Hans",
@@ -95,7 +95,7 @@
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
     }
   ],
   "attributions": {
