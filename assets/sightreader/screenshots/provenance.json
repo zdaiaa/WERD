@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "purpose": "Provenance for the unedited SightReader App captures used by the bilingual WERD product pages.",
-  "imagePolicy": "Each published source JPEG remains a byte-for-byte copy of its release-evidence original. The website displays the matching locale's source image in a separate flattened lossless WebP mockup using the Apple iPad Pro 13-inch (M5) bezel; the screenshot is mapped 1:1 into the configured screen opening and the original JPG is not cropped or edited. Device and output provenance is in ../device-mockups/provenance.json. The standalone Apple frame file is not published.",
+  "imagePolicy": "Each currently used source asset is a byte-for-byte copy of its release-evidence original; source screenshots may be JPEG or PNG. The website displays the matching locale's source image in a separate flattened lossless WebP mockup using the Apple iPad Pro 13-inch (M5) bezel; the screenshot is mapped 1:1 into the configured screen opening and the original capture is not cropped or edited. Device and output provenance is in ../device-mockups/provenance.json. The standalone Apple frame file is not published.",
   "sourceCaptureSet": "SightReader/artifacts/release-20261030/event-labels-review/raw/",
   "pages": {
     "en-US": "sightreader.html",
@@ -67,13 +67,14 @@
     {
       "locale": "zh-Hans",
       "asset": "assets/sightreader/screenshots/zh-Hans-scene02-library.jpg",
-      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene02-library-zh-Hans-final.jpg",
-      "sha256": "26e4ce1c03f51db641e4be78764dfa7964c8b041d9a1989cc9daf732b82cec5d",
-      "bytes": 383590,
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/brand-20261031/scene02-library-zh-Hans-final.jpg",
+      "sha256": "c4fe358a36c8b9b5b962042e755acdf86b32535244711126e607248fc3188b90",
+      "bytes": 389228,
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged.",
+      "gitBlobSha": "1cb040f41cf7b1a8146a020a1a81b90983296945"
     },
     {
       "locale": "zh-Hans",
@@ -103,5 +104,19 @@
     "scene02-library": "Scores shown: Bach, BWV 1001 Siciliano (Mutopia 1448, maintainer Hajo Dezelski, CC BY-SA 3.0); Handel, Sonata for Violin and Piano HWV 361 (Mutopia 652, maintainer Felix Hammer, CC BY-SA 2.5); Paganini, 24 Caprices for Solo Violin No. 24 (Mutopia 2000, maintainer Samuel Rummel, CC BY-SA 4.0).",
     "scene04-annotations": "J. S. Bach, BWV 1001 Siciliano; source edition: Bach-Gesellschaft 1879, vol. 27.1. Mutopia Project 1448, maintainer Hajo Dezelski; CC BY-SA 3.0.",
     "scene05-catalog": "Catalog rows shown are from the bundled Mutopia score catalog."
-  }
+  },
+  "supersededAssets": [
+    {
+      "locale": "zh-Hans",
+      "scene": "scene05-catalog",
+      "asset": "assets/sightreader/screenshots/zh-Hans-scene05-catalog.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene05-catalog-zh-Hans-v2-violin.jpg",
+      "sha256": "36128a47d3246090dfa90746a20462519ead5db023b7154036c56456fd3aacb0",
+      "bytes": 522398,
+      "width": 2064,
+      "height": 2752,
+      "status": "removed-from-current-pages-tree; retained-in-git-history",
+      "reason": "Replaced by the verified 2026-10-31 SightReader-branded PNG capture. Not used by current page markup."
+    }
+  ]
 }

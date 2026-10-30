@@ -6,12 +6,12 @@
 
 本次内容来自 Sites 已发布版本 15 的 `public/` 静态目录，只适配托管 URL，不迁入应用服务器、Sites 凭据或框架配置。现有 Pages 设置、workflow、路由名称与 `.nojekyll` 保留。整站公开内容在 GitHub 上独立提供，访问者无需转跳到原 Sites 域名。
 
-更新时间：2026-10-26
+更新时间：2026-10-31
 
 ## 当前页面发布结构 — 2026-10-26
 
 - `/WERD/` 的产品卡片同级展示 WealthX、SightReader、TravelX；现有 WealthX hero、2026-10-15 截图与 `hub.js` 语言/图标映射保持不变。
-- `/WERD/sightreader.html` 与 `/WERD/sightreader-zh-Hans.html`：SightReader 英文与简体中文产品预览，完整隐私政策于 2026-10-30 首次正式公开发布并生效，固定入口为各页 `#privacy`。每页四个图片位使用 2026-10-30 发行材料中的原始 App 截屏，并输出为扁平 lossless WebP mockup：LaunchCanvas 已核验的 Apple iPad Pro 13 英寸（M5）Space Black 竖屏边框开口为 x=118,y=124,width=2064,height=2752，与源截图尺寸逐像素匹配；页面不使用 CSS 假边框、海报、裁切或重绘。原始 JPG 保持不变，曲谱署名和设备许可说明显示在图外；原图路径、SHA-256 与尺寸见 `assets/sightreader/screenshots/provenance.json`，设备配置、边框/许可来源与八个输出 SHA-256 见 `assets/sightreader/device-mockups/provenance.json`。
+- /WERD/sightreader.html 与 /WERD/sightreader-zh-Hans.html：SightReader 英文与简体中文产品页，完整隐私政策于 2026-10-30 首次正式公开发布并生效，固定入口为各页 #privacy。每页四个图片位为真实 App 截图的扁平 lossless WebP mockup，使用已核验的 Apple iPad Pro 13 英寸（M5）Space Black 竖屏边框，开口 x=118,y=124,width=2064,height=2752，与原始 2064×2752 屏幕像素逐点匹配；页面不使用 CSS 假边框、海报、裁切或 UI 重绘。2026-10-31 简中 scene02 和 scene05 已换成品牌更新后的原始截图（分别 JPEG 与 PNG），另六张截图保持原样；旧 scene05 JPG 已从当前 Pages 发布树移除并保留于 Git 历史。源文件、SHA-256、尺寸、设备许可和输出像素 QA 见 assets/sightreader/screenshots/provenance.json、assets/sightreader/device-mockups/provenance.json。
 - `/WERD/travelx.html` 与 `/WERD/travelx-zh-Hans.html`：TravelX 英文与简体中文产品预览，使用 `assets/travelx.css`、`assets/travelx.js` 和 `i18n/travelx/`。网站托管说明仅指向 GitHub 官方隐私声明，不声明未核实的请求日志或留存事实。
 - `/WERD/daxhboard.html`：保留旧链接的归档说明页，设为 `noindex`；旧版产品介绍与隐私文本保存在 Git 历史中，不再出现在主页、sitemap 或当前营销页。
 - 三个 App 的 light/dark 图标来自各自当前项目 AppIcon PNG。产品图标随页面主题切换，网站标签页继续使用 WERD `favicon.ico`。

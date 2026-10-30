@@ -143,6 +143,12 @@ Codex 默认不应修改：
 - Daxhboard 的产品源文件与 WERD 之间的长期同步责任尚待明确。
 
 
+## Current SightReader website update — 2026-10-31
+
+- The Simplified Chinese SightReader page now uses SightReader as its visible brand throughout the title, navigation, body, policy, support, accessibility labels and image descriptions. Product facts, privacy terms, support contact, price references, anchors and page layout remain unchanged.
+- Simplified Chinese scene02 and scene05 now use the verified brand-refresh captures: scene02 JPEG SHA-256 c4fe358a36c8b9b5b962042e755acdf86b32535244711126e607248fc3188b90 (389,228 bytes, 2064×2752); scene05 PNG SHA-256 ba9a8485bf0330893dc13f004a7d1040c49cde352481def235a8dd3214d90f77 (477,918 bytes, 2064×2752). Their lossless M5 WebP mockups retain the exact screen pixels and device-frame pixels outside the screen aperture; both outputs are 2300×3000. The blank scene05 v2 was not used.
+- The previous Simplified Chinese scene05 source JPEG is no longer in the current Pages tree; its prior commit remains in Git history. The other six screenshots, English page, homepage, WealthX, TravelX, full 11-section policy and support anchors are unchanged. Pixel and asset hashes are recorded in both SightReader provenance files.
+
 ## Current SightReader website update — 2026-10-30
 
 - The English and Simplified Chinese SightReader pages now publish the full 11-section privacy policy at their existing `#privacy` anchors. Effective date: 2026-10-30.
