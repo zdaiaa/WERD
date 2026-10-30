@@ -141,3 +141,10 @@ Codex 默认不应修改：
 - `workflows/eod.yml` 是否仍属于 WERD 当前职责。
 - `scripts/parse_hist_all.py` 与 `docs/latest.json` 数据工作流是否仍有效。
 - Daxhboard 的产品源文件与 WERD 之间的长期同步责任尚待明确。
+
+
+## Current SightReader website update — 2026-10-30
+
+- The English and Simplified Chinese SightReader pages now publish the full 11-section privacy policy at their existing `#privacy` anchors. Effective date: 2026-10-30.
+- Four existing ASC poster images per language fill the four SightReader page image slots under `assets/sightreader/screenshots/`. No replacement images were generated.
+- TravelX image slots remain reserved pending its separate UI review. WealthX pages and assets are unchanged.

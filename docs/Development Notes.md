@@ -113,8 +113,8 @@ http://127.0.0.1:8000/WERD/bio.html
 
 ## 当前维护边界
 
-- SightReader 与 TravelX 的四个截图位均保持预留；需 UI 验收后才使用真实产品截图。
-- SightReader 的正式隐私政策待提供；当前预览页不会把占位内容当作生效政策。
+- TravelX 的四个截图位仍保持预留，待其独立 UI 验收后补图；SightReader 四个图片位现已复用现成 ASC 海报。
+- SightReader 的完整中英双语隐私政策于 2026-10-30 首次正式公开发布并生效，英文与简体中文页面均可通过 `#privacy` 访问。
 - TravelX 页面保留 `noindex,nofollow`；网站托管说明链接 GitHub 官方隐私声明，不声称日志处理或留存期限。
 - WealthX 2026-10-15 页面、截图和 `assets/wealthx/20261015/hub.js` 映射继续作为当前基线。
 

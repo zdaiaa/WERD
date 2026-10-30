@@ -11,7 +11,7 @@
 ## 当前页面发布结构 — 2026-10-26
 
 - `/WERD/` 的产品卡片同级展示 WealthX、SightReader、TravelX；现有 WealthX hero、2026-10-15 截图与 `hub.js` 语言/图标映射保持不变。
-- `/WERD/sightreader.html` 与 `/WERD/sightreader-zh-Hans.html`：SightReader 英文与简体中文产品预览。每页保留四个截图位；UI 验收后再补入真实 App 界面。正式隐私政策待提供，当前页面明确声明预览不是生效政策并保留支持邮箱。
+- `/WERD/sightreader.html` 与 `/WERD/sightreader-zh-Hans.html`：SightReader 英文与简体中文产品预览，完整隐私政策于 2026-10-30 首次正式公开发布并生效，固定入口为各页 `#privacy`。每页四个图片位使用现成的 ASC 海报；未制作替代图。
 - `/WERD/travelx.html` 与 `/WERD/travelx-zh-Hans.html`：TravelX 英文与简体中文产品预览，使用 `assets/travelx.css`、`assets/travelx.js` 和 `i18n/travelx/`。网站托管说明仅指向 GitHub 官方隐私声明，不声明未核实的请求日志或留存事实。
 - `/WERD/daxhboard.html`：保留旧链接的归档说明页，设为 `noindex`；旧版产品介绍与隐私文本保存在 Git 历史中，不再出现在主页、sitemap 或当前营销页。
 - 三个 App 的 light/dark 图标来自各自当前项目 AppIcon PNG。产品图标随页面主题切换，网站标签页继续使用 WERD `favicon.ico`。
@@ -134,7 +134,7 @@ WERD 不负责 portfolio 层决策；portfolio 层决策由总项目 `Control Ce
 
 - WealthX 截图属于 WealthX marketing asset。
 - favicon 和站点基础图标属于 WERD shared web platform。
-- SightReader 与 TravelX 页面中的四个截图位均为预留状态，UI 验收通过后才能替换为真实截图。
+- TravelX 的四个截图位仍为预留状态，待其独立 UI 验收后补图。SightReader 页面已使用现成 ASC 海报填入四个图片位。
 - Metro Planner 资产待确认后再纳入。
 
 ## SEO / Metadata

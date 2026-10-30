@@ -8,9 +8,11 @@ GitHub Pages 直接承载当前公开网站：
 - WealthX 支持/产品页：`https://zdaiaa.github.io/WERD/wealthx.html`
 - WealthX 隐私政策：`https://zdaiaa.github.io/WERD/wealthx.html?lang=en-US#privacy`
 - SightReader（英文 / 简体中文）：`sightreader.html`、`sightreader-zh-Hans.html`
+- SightReader 英文隐私政策：`https://zdaiaa.github.io/WERD/sightreader.html#privacy`
+- SightReader 简体中文隐私政策：`https://zdaiaa.github.io/WERD/sightreader-zh-Hans.html#privacy`
 - TravelX（英文 / 简体中文）：`travelx.html`、`travelx-zh-Hans.html`
 
-主页同级展示 WealthX、SightReader 与 TravelX。SightReader 和 TravelX 的产品页目前预留真实界面截图位，待 UI 验收后补图。Daxhboard 入口和营销/隐私展示已从当前站点移除；`daxhboard.html` 保留为归档说明，旧版页面仍可从 Git 历史恢复。WealthX 2026-10-15 页面、截图、图标路由和 28 语言资源保持现有版本。
+主页同级展示 WealthX、SightReader 与 TravelX。SightReader 英文与简体中文页现已展示完整隐私政策及四张既有产品海报；TravelX 的四个截图位仍待 UI 验收后补充。Daxhboard 入口和营销/隐私展示已从当前站点移除；`daxhboard.html` 保留为归档说明，旧版页面仍可从 Git 历史恢复。WealthX 2026-10-15 页面、截图、图标路由和 28 语言资源保持现有版本。
 
 2026-10-04 的首次迁移以 Sites 版本 15 为基线；其后 GitHub `main` 已于 2026-10-15 更新 WealthX 页面和截图，并在 2026-10-26 加入 SightReader、TravelX 预览页。以 GitHub 当前主站为准，不用旧 Sites 版本覆盖。以后在本仓库修改静态页面，经本地检查后按用户授权发布到 `main`。Pages 发布源为分支根目录，无需迁入 Sites 的应用框架、服务器、凭据或配置。
 
@@ -36,7 +38,7 @@ git@github.com:zdaiaa/WERD.git
 | --- | --- | --- | --- |
 | WERD 产品入口页 | `index.html` | active | 同级展示 WealthX、SightReader、TravelX，并保留个人介绍入口 |
 | WealthX landing page | `wealthx.html` | active | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA |
-| SightReader landing page | `sightreader.html`、`sightreader-zh-Hans.html` | preview | 中英双语展示当前读谱能力与发布准备状态，截图待 UI 验收；正式隐私政策待提供 |
+| SightReader landing page | `sightreader.html`、`sightreader-zh-Hans.html` | preview | 中英双语展示当前读谱能力、完整隐私政策与四张产品海报；隐私政策自 2026-10-30 生效 |
 | TravelX landing page | `travelx.html`、`travelx-zh-Hans.html` | preview | 中英双语展示地图、每日行程、住宿规划与当前版本信息；保留产品页 noindex |
 | Daxhboard archive notice | `daxhboard.html` | archived | 保留旧链接并说明页面已归档；不再展示产品营销或隐私内容 |
 | Personal biography | `bio.html` | active | 展示 Eric Dai 的个人介绍、经历信号和工作方式 |
