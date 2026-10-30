@@ -89,14 +89,15 @@
     },
     {
       "locale": "zh-Hans",
-      "asset": "assets/sightreader/screenshots/zh-Hans-scene05-catalog.jpg",
-      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene05-catalog-zh-Hans-v2-violin.jpg",
-      "sha256": "36128a47d3246090dfa90746a20462519ead5db023b7154036c56456fd3aacb0",
-      "bytes": 522398,
+      "asset": "assets/sightreader/screenshots/zh-Hans-scene05-catalog.png",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/brand-20261031/scene05-catalog-zh-Hans-v3-violin.png",
+      "sha256": "ba9a8485bf0330893dc13f004a7d1040c49cde352481def235a8dd3214d90f77",
+      "bytes": 477918,
       "width": 2064,
       "height": 2752,
       "transformation": "byte-for-byte copy; none",
-      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original JPEG remains unchanged."
+      "presentation": "Displayed in the matching locale's flattened lossless WebP iPad Pro 13-inch (M5) mockup; source screenshot pixels are placed 1:1, and this original PNG remains unchanged.",
+      "gitBlobSha": "c7870d36677b83ddacfc4e02e038da5a700ed8f0"
     }
   ],
   "attributions": {
