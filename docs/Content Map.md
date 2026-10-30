@@ -12,7 +12,7 @@
 
 
 > 本次更新（2026-10-26）：主页同级展示 WealthX、SightReader 与 TravelX，保留 WealthX 2026-10-15 页面、截图和 `hub.js` 映射。新增 SightReader、TravelX 中英双语预览页，各保留四个截图位，UI 验收后使用真实 App 界面补图。使用三款 App 当前真实 light/dark AppIcon PNG，WERD favicon 不变。Daxhboard 当前网站营销与隐私内容归档；旧页面内容仍在 Git 历史。SightReader 正式隐私政策待发布；TravelX 网站托管说明使用 GitHub 官方隐私声明，不推断日志或留存。
-> 本次更新（2026-10-30）：SightReader 英文与简体中文页面现已发布完整隐私政策，固定入口分别为 `/WERD/sightreader.html#privacy` 与 `/WERD/sightreader-zh-Hans.html#privacy`，政策生效日期为 2026-10-30。四个截图位改用每种语言四张现成 ASC 海报，原图保存在 `assets/sightreader/screenshots/`；没有生成替代图。TravelX 四个截图位仍保留，待其独立 UI 验收后补充。WealthX、首页与 TravelX 页面保持不变。
+> 本次更新（2026-10-30）：SightReader 英文与简体中文页面现已发布完整隐私政策，固定入口分别为 `/WERD/sightreader.html#privacy` 与 `/WERD/sightreader-zh-Hans.html#privacy`，政策生效日期为 2026-10-30。首次发布时四个截图位使用了现成 ASC 海报；经用户纠正后，英文与简体中文各四张均已替换为同一发行材料包中的原始 App 截屏，保存在 `assets/sightreader/screenshots/`。网页以 HTML/CSS 添加唯一一层 iPad 外框；图像本身逐字节复用，没有裁切、重绘、缩放导出或设备框烘焙。相关乐谱署名和许可显示在图片外的页面说明中；来源路径、SHA-256 和原始尺寸记录在 `assets/sightreader/screenshots/provenance.json`。TravelX 四个截图位仍保留，待其独立 UI 验收后补充。WealthX、首页与 TravelX 页面保持不变。
 
 
 > 手机与深色模式复审（2026-10-15）：日文产品页主标题与分摊标题按手机宽度调整字号，避免 320px 下出现短尾孤行；总首页日文标题同步适配。主页导航、主题切换及页脚链接补足 44px 点击区域。总首页切换主题同步既有 theme 参数，刷新后保留选择；首次访问且没有主题偏好时使用系统外观。保留已确认的中英日截图及明暗版本，其他语言仍使用英文截图。样式文件引用增加版本参数，使浏览器加载本次修订；路由、文案、截图原件与部署配置不变。
@@ -23,8 +23,8 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | WERD 产品入口页 | `/WERD/` 或 `index.html` | Portfolio Web Hub | 同级展示 WealthX、SightReader、TravelX，并保留 Biography 导航 | `index.html` 内嵌中英文文案 | 三款 App light/dark AppIcon（来源记录见 `assets/app-icon-provenance.json`）；WealthX 2026-10-15 hero 图 | active | 可以维护结构和已确认文案；导航变化需确认 | 是 |
 | WealthX landing page | `/WERD/wealthx.html` | WealthX | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA | `wealthx.html`、`i18n/en-US.json`、`i18n/zh-Hans.json`；产品事实需回到 WealthX 源文件确认 | `assets/wealthx/20261015/` 中的图标、设备图、社交预览和 `device-assets.json` | active | 仅限已确认事实、格式、链接检查和 i18n 缺口；SEO/隐私/CTA 需确认 | 是 |
-| SightReader 英文页 | `/WERD/sightreader.html` | SightReader | 英文产品预览、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张现成 ASC 海报 | preview | 产品文案与政策以当前 App 源文件和用户确认更新；图片仅复用已完成海报 | 是 |
-| SightReader 简体中文页 | `/WERD/sightreader-zh-Hans.html` | SightReader | 简体中文产品预览、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张现成 ASC 海报 | preview | 同上 | 是 |
+| SightReader 英文页 | `/WERD/sightreader.html` | SightReader | 英文产品预览、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张原始 App 截屏，网页仅用一层 CSS iPad 外框 | preview | 产品文案与政策以当前 App 源文件和用户确认更新；图片仅复用已完成海报 | 是 |
+| SightReader 简体中文页 | `/WERD/sightreader-zh-Hans.html` | SightReader | 简体中文产品预览、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张原始 App 截屏，网页仅用一层 CSS iPad 外框 | preview | 同上 | 是 |
 | TravelX 英文页 | `/WERD/travelx.html` | TravelX | 英文产品预览、支持与当前隐私信息 | `travelx.html`、`assets/travelx.js`、`i18n/travelx/en-US.json` | `assets/travelx/` AppIcon；四个预留截图位 | preview / noindex | 页面语言与主题可切换；网站托管仅引用 GitHub 官方说明 | 是 |
 | TravelX 简体中文页 | `/WERD/travelx-zh-Hans.html` | TravelX | 简体中文产品预览、支持与当前隐私信息 | `travelx-zh-Hans.html`、`assets/travelx.js`、`i18n/travelx/zh-Hans.json` | 同上 | preview / noindex | 同上 | 是 |
 | Daxhboard 归档说明 | `/WERD/daxhboard.html` | Daxhboard | 为旧链接说明页面已归档，不再展示营销或隐私内容 | `daxhboard.html` | WERD favicon | archived / noindex | 仅维护归档说明；旧版内容保存在 Git 历史 | 否 |
@@ -66,7 +66,7 @@
 
 - 状态：双语产品预览，完整隐私政策已于 2026-10-30 首次正式公开发布并生效；通过现有 `#privacy` 锚点访问。
 - 当前目的：说明读谱、批注、曲谱选择、支持方式与尚未发布的功能状态。
-- 图片：每页四个截图位现已填入对应语言的现成 ASC 海报；原始图片复用，未生成替代图。
+- 图片：每页四个截图位使用对应语言的原始 App 截屏，由 HTML/CSS 设备框单层包围；原始 JPG 未改动，作品署名在图外显示。来源和 SHA-256 见 `assets/sightreader/screenshots/provenance.json`。
 - 语言切换保留主题偏好；主题默认跟随系统，也可手动选择。
 
 ### `travelx.html` 与 `travelx-zh-Hans.html`

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-30",
+  "purpose": "Provenance for the unedited SightReader App captures used by the bilingual WERD product pages.",
+  "imagePolicy": "Each published JPEG is a byte-for-byte copy of its local release-evidence source. No crop, retouch, redraw, scaling export, or baked-in device frame. The page adds one responsive CSS iPad frame.",
+  "sourceCaptureSet": "SightReader/artifacts/release-20261030/event-labels-review/raw/",
+  "pages": {
+    "en-US": "sightreader.html",
+    "zh-Hans": "sightreader-zh-Hans.html"
+  },
+  "screenshots": [
+    {
+      "locale": "en-US",
+      "asset": "assets/sightreader/screenshots/en-US-scene01-reader.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/en-US/scene01-reader-en-US-ccc2f8a477ae.jpg",
+      "sha256": "ccc2f8a477aec9c326754f9505ef15816759a7a804a698a4a850bfa771339543",
+      "bytes": 561083,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "en-US",
+      "asset": "assets/sightreader/screenshots/en-US-scene02-library.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/en-US/scene02-library-en-US-final.jpg",
+      "sha256": "cea2fb8e01bf54d1557fdba28d3e40c0c2310d6ae1d231a6bfe19d3730f8ddb6",
+      "bytes": 391070,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "en-US",
+      "asset": "assets/sightreader/screenshots/en-US-scene04-annotations.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/en-US/scene04-annotation-en-US-f07ba6cb62c1.jpg",
+      "sha256": "f07ba6cb62c1fe9086d6c9bd8301eaf8fca3978d446e6b34988fa9179112ad93",
+      "bytes": 581809,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "en-US",
+      "asset": "assets/sightreader/screenshots/en-US-scene05-catalog.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/en-US/scene05-catalog-en-US-399aed8c4d03.jpg",
+      "sha256": "399aed8c4d03a59f6a83eaa966312ee712d3afa252cdc79faac28249dbf41993",
+      "bytes": 511131,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "zh-Hans",
+      "asset": "assets/sightreader/screenshots/zh-Hans-scene01-reader.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene01-reader-zh-Hans-v2.jpg",
+      "sha256": "ccc2f8a477aec9c326754f9505ef15816759a7a804a698a4a850bfa771339543",
+      "bytes": 561083,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "zh-Hans",
+      "asset": "assets/sightreader/screenshots/zh-Hans-scene02-library.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene02-library-zh-Hans-final.jpg",
+      "sha256": "26e4ce1c03f51db641e4be78764dfa7964c8b041d9a1989cc9daf732b82cec5d",
+      "bytes": 383590,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "zh-Hans",
+      "asset": "assets/sightreader/screenshots/zh-Hans-scene04-annotations.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene04-annotation-zh-Hans.jpg",
+      "sha256": "5ae9678813767f57aee3066c6753fa0733c25c96a50a75c99c60e02b6242c811",
+      "bytes": 581361,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    },
+    {
+      "locale": "zh-Hans",
+      "asset": "assets/sightreader/screenshots/zh-Hans-scene05-catalog.jpg",
+      "source": "SightReader/artifacts/release-20261030/event-labels-review/raw/zh-Hans/scene05-catalog-zh-Hans-v2-violin.jpg",
+      "sha256": "36128a47d3246090dfa90746a20462519ead5db023b7154036c56456fd3aacb0",
+      "bytes": 522398,
+      "width": 2064,
+      "height": 2752,
+      "transformation": "byte-for-byte copy; none",
+      "presentation": "single HTML/CSS iPad frame on the matching locale page"
+    }
+  ],
+  "attributions": {
+    "scene01-reader": "J. S. Bach, Sonata No. 1 BWV 1001, III. Siciliano; transcription by Hajo Dezelski; Mutopia Project 1448; CC BY-SA 3.0. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1448",
+    "scene02-library": "Displayed score thumbnails: Hajo Dezelski (Mutopia 1448, CC BY-SA 3.0), Felix Hammer (Mutopia 652, CC BY-SA 2.5), Samuel Rummel (Mutopia 2000, CC BY-SA 4.0). The page presents source links and license text below the screenshot.",
+    "scene04-annotations": "J. S. Bach, Sonata No. 1 BWV 1001, III. Siciliano; transcription by Hajo Dezelski; Mutopia Project 1448; CC BY-SA 3.0. https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1448",
+    "scene05-catalog": "Catalog rows shown are from the bundled Mutopia score catalog."
+  }
+}

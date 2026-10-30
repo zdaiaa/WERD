@@ -146,5 +146,5 @@ Codex 默认不应修改：
 ## Current SightReader website update — 2026-10-30
 
 - The English and Simplified Chinese SightReader pages now publish the full 11-section privacy policy at their existing `#privacy` anchors. Effective date: 2026-10-30.
-- Four existing ASC poster images per language fill the four SightReader page image slots under `assets/sightreader/screenshots/`. No replacement images were generated.
+- Each SightReader page uses four original, unedited app captures from the 2026-10-30 release evidence under `assets/sightreader/screenshots/`; the HTML/CSS supplies one iPad frame per capture. The image bytes are reused unchanged, without crop, retouching, or a frame baked into the file. Attribution is rendered as page text below the images. Per-file source paths, SHA-256 values, and dimensions are recorded in `assets/sightreader/screenshots/provenance.json`.
 - TravelX image slots remain reserved pending its separate UI review. WealthX pages and assets are unchanged.
