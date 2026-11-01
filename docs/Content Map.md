@@ -1,6 +1,6 @@
 # WERD Content Map
 
-更新时间：2026-10-26
+更新时间：2026-11-01
 
 > 当前迁移（2026-10-04）：用户确认将 Sites 已发布版本 15 的公开内容迁回 GitHub Pages。`/WERD/`、`wealthx.html`、`daxhboard.html` 和 `bio.html` 直接提供页面；WealthX 支持/隐私地址保持已填写的 GitHub 地址，保留 `?lang=` 和 `#privacy`。页面、图片、脚本、28 语言 JSON、社交预览及 sitemap 统一使用 GitHub Pages 托管地址。
 
@@ -18,14 +18,16 @@
 
 > 手机与深色模式复审（2026-10-15）：日文产品页主标题与分摊标题按手机宽度调整字号，避免 320px 下出现短尾孤行；总首页日文标题同步适配。主页导航、主题切换及页脚链接补足 44px 点击区域。总首页切换主题同步既有 theme 参数，刷新后保留选择；首次访问且没有主题偏好时使用系统外观。保留已确认的中英日截图及明暗版本，其他语言仍使用英文截图。样式文件引用增加版本参数，使浏览器加载本次修订；路由、文案、截图原件与部署配置不变。
 
+> 本次更新（2026-11-01）：SightReader 英文与简体中文页面移除“产品预览／正在准备 App Store 上架”等状态话术和 iPadOS 版本展示；将 SightReader Pro 说明更新为一次性非消耗型购买，并提示适用价格由购买者当前使用的 App Store 商店显示，不列任何固定价格。功能文案按当前 App 界面与 Pro 方案复核；1.0 隐私说明按 Release 实际权限更新（相机用于扫描，麦克风未用于实时跟随），并把修订生效日期更新为 2026-11-01。隐私政策保留完整 11 节内容和既有锚点，仅更新 StoreKit 价格措辞及已核实的数据处理说明，并参考 WealthX 使用可展开的全文格式。本次修订仅涉及 SightReader 双语页面和本内容地图，其余产品页面保持不变。
+
 ## 页面地图
 
 | 页面名称 | URL / route | 所属业务线 | 页面目的 | 主要文案来源 | 视觉资产来源 | 当前状态 | Codex 自动维护 | 是否同步到 Control Center portfolio dashboard |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | WERD 产品入口页 | `/WERD/` 或 `index.html` | Portfolio Web Hub | 同级展示 WealthX、SightReader、TravelX，并保留 Biography 导航 | `index.html` 内嵌中英文文案 | 三款 App light/dark AppIcon（来源记录见 `assets/app-icon-provenance.json`）；WealthX 2026-10-15 hero 图 | active | 可以维护结构和已确认文案；导航变化需确认 | 是 |
 | WealthX landing page | `/WERD/wealthx.html` | WealthX | 展示 WealthX 产品定位、功能、FAQ、隐私政策和 App Store CTA | `wealthx.html`、`i18n/en-US.json`、`i18n/zh-Hans.json`；产品事实需回到 WealthX 源文件确认 | `assets/wealthx/20261015/` 中的图标、设备图、社交预览和 `device-assets.json` | active | 仅限已确认事实、格式、链接检查和 i18n 缺口；SEO/隐私/CTA 需确认 | 是 |
-| SightReader 英文页 | `/WERD/sightreader.html` | SightReader | 英文产品预览、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张原始 App 截屏 + `assets/sightreader/device-mockups/` 四张 M5 iPad WebP mockup | preview | 产品文案与政策以当前 App 源文件和用户确认更新；图片由核验过的源截图合成官方 iPad Pro 13 英寸（M5）mockup；禁止发布独立边框素材 | 是 |
-| SightReader 简体中文页 | `/WERD/sightreader-zh-Hans.html` | SightReader | 简体中文产品预览、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张原始 App 截屏 + `assets/sightreader/device-mockups/` 四张 M5 iPad WebP mockup | preview | 同上 | 是 |
+| SightReader 英文页 | `/WERD/sightreader.html` | SightReader | 英文产品功能、购买机制、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张原始 App 截屏 + `assets/sightreader/device-mockups/` 四张 M5 iPad WebP mockup | active | App Store 销售状态不在页面中陈述；功能与购买信息按已核实来源维护 | 是 |
+| SightReader 简体中文页 | `/WERD/sightreader-zh-Hans.html` | SightReader | 简体中文产品功能、购买机制、完整隐私政策与支持信息 | 页面内文案；产品事实来自 SightReader 当前源文件与用户确认 | AppIcon；`assets/sightreader/screenshots/` 四张原始 App 截屏 + `assets/sightreader/device-mockups/` 四张 M5 iPad WebP mockup | active | 同上 | 是 |
 | TravelX 英文页 | `/WERD/travelx.html` | TravelX | 英文产品预览、支持与当前隐私信息 | `travelx.html`、`assets/travelx.js`、`i18n/travelx/en-US.json` | `assets/travelx/` AppIcon；四个预留截图位 | preview / noindex | 页面语言与主题可切换；网站托管仅引用 GitHub 官方说明 | 是 |
 | TravelX 简体中文页 | `/WERD/travelx-zh-Hans.html` | TravelX | 简体中文产品预览、支持与当前隐私信息 | `travelx-zh-Hans.html`、`assets/travelx.js`、`i18n/travelx/zh-Hans.json` | 同上 | preview / noindex | 同上 | 是 |
 | Daxhboard 归档说明 | `/WERD/daxhboard.html` | Daxhboard | 为旧链接说明页面已归档，不再展示营销或隐私内容 | `daxhboard.html` | WERD favicon | archived / noindex | 仅维护归档说明；旧版内容保存在 Git 历史 | 否 |
@@ -65,8 +67,8 @@
 
 ### `sightreader.html` 与 `sightreader-zh-Hans.html`
 
-- 状态：双语产品预览，完整隐私政策已于 2026-10-30 首次正式公开发布并生效；通过现有 `#privacy` 锚点访问。
-- 当前目的：说明读谱、批注、曲谱选择、支持方式与尚未发布的功能状态。
+- 状态：双语产品页 active；完整隐私政策已于 2026-10-30 首次正式公开发布并生效，继续通过现有 `#privacy` 锚点访问。
+- 当前目的：介绍已核实的产品功能、SightReader Pro 购买机制、支持信息与完整隐私政策；不声明 App Store 当前销售状态或显示固定价格。
 - 图片：每页四个实际展示位使用对应语言的原始 App 截屏生成官方 iPad Pro 13 英寸（M5）扁平 WebP mockup；屏幕像素按 1:1 嵌入，原始 JPG 保持不变。署名与边框许可说明在图外显示。来源、几何和 SHA-256 见两份 `assets/sightreader/` provenance 文件。
 - 语言切换保留主题偏好；主题默认跟随系统，也可手动选择。
 
